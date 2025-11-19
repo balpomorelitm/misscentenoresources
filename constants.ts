@@ -19,10 +19,21 @@ export const personalInfo: PersonalInfo = {
 
 export const experiences: Experience[] = [
   {
+    id: "0",
+    role: "Spanish Teacher & Class Teacher",
+    company: "Dalton School",
+    period: "2025",
+    description: [
+      "Spanish teacher for P1-P4.",
+      "General Studies Teacher for P2 & P3."
+    ],
+    color: "teacher-yellow"
+  },
+  {
     id: "1",
     role: "Spanish Teacher",
     company: "Yu Chun Keung Memorial College N. 2",
-    period: "2024 - Ongoing",
+    period: "2024 - 2025",
     description: ["Prepared students for the HKDSE, Category C – Spanish diploma DELE A2-B1."],
     color: "teacher-red"
   },
