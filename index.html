@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raquel M. Centeno - Spanish & Art Teacher</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Fredoka:wght@300..700&family=Nunito:wght@300..900&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Nunito', 'sans-serif'],
+              display: ['Fredoka', 'sans-serif'],
+              handwriting: ['Arizonia', 'cursive'],
+            },
+            colors: {
+              'teacher-yellow': '#FFD166',
+              'teacher-red': '#EF476F',
+              'teacher-teal': '#06D6A0',
+              'teacher-blue': '#118AB2',
+              'teacher-dark': '#073B4C',
+              'paper-cream': '#FDFCF5',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FDFCF5;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #FFD166;
+        border-radius: 20px;
+        border: 3px solid #FDFCF5;
+      }
+      /* Artistic Background texture */
+      .bg-artistic {
+        background-color: #FDFCF5;
+        background-image: 
+          radial-gradient(at 40% 20%, hsla(28,100%,74%,0.15) 0px, transparent 50%),
+          radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+          radial-gradient(at 0% 50%, hsla(340,100%,76%,0.15) 0px, transparent 50%);
+        background-attachment: fixed; /* Keeps the gradient fixed while scrolling */
+      }
+      .dark .bg-artistic {
+        background-color: #0f172a;
+        background-image: 
+          radial-gradient(at 40% 20%, hsla(28,100%,74%,0.05) 0px, transparent 50%),
+          radial-gradient(at 80% 0%, hsla(189,100%,56%,0.05) 0px, transparent 50%),
+          radial-gradient(at 0% 50%, hsla(340,100%,76%,0.05) 0px, transparent 50%);
+      }
+      .blob-shape {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-artistic text-teacher-dark dark:text-gray-100 antialiased selection:bg-teacher-yellow selection:text-teacher-dark transition-colors duration-300">
+    <div id="root"></div>
+  </body>
+</html>
