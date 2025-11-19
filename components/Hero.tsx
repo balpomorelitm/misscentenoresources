@@ -87,13 +87,14 @@ const Hero: React.FC = () => {
             </a>
             
             {/* Download CV */}
-            <button 
-              onClick={() => alert("CV Download started...")}
+            <a 
+              href="/documents/RMC_CV_2025.pdf"
+              download="RMC_CV_2025.pdf"
               className="flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-white/50 dark:bg-white/10 backdrop-blur-sm text-teacher-dark dark:text-white border-2 border-teacher-dark/10 dark:border-white/20 rounded-full font-bold shadow-sm hover:bg-white hover:dark:bg-white/20 transition-colors text-sm md:text-base"
             >
               <Download size={18} className="md:w-5 md:h-5" />
               Download CV
-            </button>
+            </a>
           </div>
         </div>
       </div>
