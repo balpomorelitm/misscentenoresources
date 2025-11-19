@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
            <div className="absolute inset-0 bg-teacher-blue rounded-[2rem] -rotate-3 transform transition-transform group-hover:-rotate-1"></div>
            <div className="relative w-56 h-56 md:w-80 md:h-80 rounded-[2rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl blob-shape bg-gray-200">
              <img 
-               src="./images/profile.jpg"
+               src="./images/profile.webp"
                alt={personalInfo.name} 
                className="w-full h-full object-cover"
              />
