@@ -1,4 +1,5 @@
 import React from 'react';
+import { personalInfo } from '../constants';
 import { Utensils, Palette, Scissors, Layout, Camera } from 'lucide-react';
 
 type Category = 'Food' | 'Art' | 'Crafts' | 'Class';
@@ -13,7 +14,7 @@ const Hobbies: React.FC = () => {
   // Configuration based on user request
   // Food - 1, 4, 5, 8, 13
   // Art - 2, 3, 9, 12
-  // Crafts 10, 11
+  // Crafts 10, 11, 14
   // Class designs 6, 7
   
   const galleryItems: GalleryItem[] = [
@@ -30,6 +31,7 @@ const Hobbies: React.FC = () => {
     { id: 11, category: 'Crafts', rotation: 'rotate-1' },
     { id: 12, category: 'Art', rotation: '-rotate-3' },
     { id: 13, category: 'Food', rotation: 'rotate-2' },
+    { id: 14, category: 'Crafts', rotation: '-rotate-1' },
   ];
 
   const getCategoryIcon = (cat: Category) => {
@@ -112,9 +114,12 @@ const Hobbies: React.FC = () => {
         </div>
 
         <div className="mt-16 text-center">
-           <button className="bg-teacher-dark text-white px-8 py-4 rounded-full font-bold shadow-xl hover:scale-105 hover:bg-gray-900 transition-all duration-300 border-4 border-white/20">
+           <a 
+             href={`mailto:${personalInfo.contact.email}?subject=Workshop Inquiry`}
+             className="inline-block bg-teacher-dark text-white px-8 py-4 rounded-full font-bold shadow-xl hover:scale-105 hover:bg-gray-900 transition-all duration-300 border-4 border-white/20"
+           >
              Book a Workshop!
-           </button>
+           </a>
         </div>
       </div>
     </div>
