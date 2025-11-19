@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Timeline from './components/Timeline';
 import SkillSection from './components/SkillSection';
+import Services from './components/Services';
 import Hobbies from './components/Hobbies';
 import { experiences, skills, languages, education, personalInfo } from './constants';
 import { Mail, Phone, FileText, Menu, X, Moon, Sun } from 'lucide-react';
@@ -45,8 +46,8 @@ const App: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <a href="#experience" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-blue transition-colors">Experience</a>
-            <a href="#skills" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-teal transition-colors">Skills</a>
-            <a href="#education" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-yellow transition-colors">Education</a>
+            <a href="#skills" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-teal transition-colors">Skills & Ed</a>
+            <a href="#tutoring" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-red transition-colors">Tutoring</a>
             <a href="#hobbies" className="text-gray-600 dark:text-gray-300 font-bold hover:text-orange-500 transition-colors">Creativity</a>
             
             <button 
@@ -83,8 +84,8 @@ const App: React.FC = () => {
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-lg py-4 px-6 flex flex-col gap-4 border-t border-gray-100 dark:border-gray-800">
             <a href="#experience" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Experience</a>
-            <a href="#skills" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Skills</a>
-            <a href="#education" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Education</a>
+            <a href="#skills" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Skills & Education</a>
+            <a href="#tutoring" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Tutoring</a>
             <a href="#hobbies" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Creativity</a>
             <a href={`mailto:${personalInfo.contact.email}`} onClick={toggleMenu} className="bg-teacher-red text-white text-center py-3 rounded-xl font-bold mt-2">
               Hire me!
@@ -118,6 +119,11 @@ const App: React.FC = () => {
         <div id="education">
           <SkillSection skills={skills} languages={languages} education={education} />
         </div>
+      </section>
+
+      {/* Services / Tutoring Section */}
+      <section id="tutoring" className="py-20 bg-white/30 dark:bg-slate-800/30">
+        <Services />
       </section>
 
       {/* Hobbies Section */}
