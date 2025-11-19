@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
            <div className="absolute inset-0 bg-teacher-blue rounded-[2rem] -rotate-3 transform transition-transform group-hover:-rotate-1"></div>
            <div className="relative w-56 h-56 md:w-80 md:h-80 rounded-[2rem] overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl blob-shape bg-gray-200">
              <img 
-               src="https://picsum.photos/600/600?grayscale" 
+               src="./images/profile.jpg"
                alt={personalInfo.name} 
                className="w-full h-full object-cover"
              />
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Interactive Animated Name */}
-            <h1 className="font-handwriting font-bold text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-teacher-dark dark:text-white leading-tight whitespace-nowrap py-2 cursor-default select-none">
+            <h1 className="font-handwriting font-bold text-4xl sm:text-5xl md:text-4xl lg:text-8xl text-teacher-dark dark:text-white leading-tight whitespace-nowrap py-2 cursor-default select-none">
               {personalInfo.name.split('').map((char, index) => {
                 // Handle spaces
                 if (char === ' ') return <span key={index} className="inline-block w-3 md:w-6"></span>;
@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
             </h1>
           </div>
           
-          <p className="font-sans text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0">
+          <p className="font-sans text-base sm:text-base md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0">
             {personalInfo.summary}
           </p>
 
