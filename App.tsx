@@ -166,7 +166,7 @@ const App: React.FC = () => {
                 </div>
                  <div className="text-left">
                    <span className="block text-xs text-gray-400 uppercase font-bold">HK Permanent I.C</span>
-                   <span className="text-sm md:text-base">R491079(5)</span>
+                   <span className="text-sm md:text-base"></span>
                 </div>
               </div>
             </div>
