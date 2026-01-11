@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 15: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Slate background for "Media/News" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 110px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #94a3b8;
+        }
+
+        .vocab-card-back {
+            background-color: #334155; /* Slate-700 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #334155;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #e2e8f0; /* Slate-200 */
+            color: #0f172a; /* Slate-900 */
+            border-left: 4px solid #334155;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #334155;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 15</h1>
+                <p class="text-xs text-slate-300">Digital Study Guide (Pages 331 - 350)</p>
+            </div>
+            <div class="text-sm bg-blue-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_media')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Mass Media</button>
+                <button onclick="scrollToSection('the_news')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Vocab: The News & Press</button>
+                <button onclick="scrollToSection('advertising')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Advertising & Influence</button>
+                <button onclick="scrollToSection('grammar_opinion')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Expressing Opinions</button>
+                <button onclick="scrollToSection('subjunctive_neg')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Grammar: Subjunctive in Negation</button>
+                <button onclick="scrollToSection('media_pros_cons')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Analysis: Media in Society</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Final Review</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-slate-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-slate-700 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Human Ingenuity / Media Influence.<br>
+                    <strong>Focus:</strong> In this final unit, you will learn to navigate the world of news, advertising, and social media. You will master how to express complex opinions and defend your point of view using both Indicative and Subjunctive moods.
+                </div>
+            </section>
+
+            <!-- Section 2: Mass Media Vocab -->
+            <section id="vocab_media" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Mass Media (Los Medios de ComunicaciÃ³n)</h2>
+                <p class="mb-4 text-sm text-gray-600">The ways we receive information. Click to reveal English translation.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La prensa escrita</div>
+                            <div class="vocab-card-back">Written press / Newspapers</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La televisiÃ³n</div>
+                            <div class="vocab-card-back">Television</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La radio</div>
+                            <div class="vocab-card-back">Radio</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Las redes sociales</div>
+                            <div class="vocab-card-back">Social networks</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El buscador</div>
+                            <div class="vocab-card-back">Search engine</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La revista</div>
+                            <div class="vocab-card-back">Magazine</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El periodismo</div>
+                            <div class="vocab-card-back">Journalism</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El anuncio</div>
+                            <div class="vocab-card-back">Advertisement / Ad</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: The News -->
+            <section id="the_news" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Vocab: The News & Press (Las Noticias)</h2>
+                <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-700 mb-3 text-sm uppercase">Newspaper sections & terms:</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <li>ðŸ—žï¸ <span class="hover-translation font-medium" data-en="The headline">El titular</span></li>
+                        <li>ðŸ“… <span class="hover-translation font-medium" data-en="Current events">La actualidad</span></li>
+                        <li>ðŸŸï¸ <span class="hover-translation font-medium" data-en="Sports section">SecciÃ³n de deportes</span></li>
+                        <li>ðŸ‘” <span class="hover-translation font-medium" data-en="Business / Economy">EconomÃ­a y negocios</span></li>
+                        <li>ðŸŽ¬ <span class="hover-translation font-medium" data-en="Entertainment / Culture">Cultura y ocio</span></li>
+                        <li>ðŸŒ <span class="hover-translation font-medium" data-en="International news">Noticias internacionales</span></li>
+                        <li>ðŸ“£ <span class="hover-translation font-medium" data-en="An interview">Una entrevista</span></li>
+                        <li>ðŸ“ <span class="hover-translation font-medium" data-en="The article / report">El artÃ­culo / reportaje</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Advertising -->
+            <section id="advertising" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Advertising & Influence (La Publicidad)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Terms:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ“¢ <span class="hover-translation" data-en="Marketing campaign">La campaÃ±a publicitaria</span></li>
+                            <li>ðŸ·ï¸ <span class="hover-translation" data-en="The brand">La marca</span></li>
+                            <li>ðŸ‘¤ <span class="hover-translation" data-en="The consumer">El consumidor</span></li>
+                            <li>ðŸ›’ <span class="hover-translation" data-en="The product">El producto</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Purpose (Actions):</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ’¡ <span class="hover-translation" data-en="To influence">Influir en</span></li>
+                            <li>ðŸ—£ï¸ <span class="hover-translation" data-en="To convince">Convencer</span></li>
+                            <li>ðŸ’° <span class="hover-translation" data-en="To sell">Vender</span></li>
+                            <li>ðŸŽ¨ <span class="hover-translation" data-en="To design">DiseÃ±ar</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Expressing Opinions -->
+            <section id="grammar_opinion" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Expressing Opinions (Creer / Pensar)</h2>
+                
+                <div class="bg-slate-100 p-6 rounded-lg border-l-4 border-slate-500 mb-6">
+                    <h3 class="font-bold text-slate-900 mb-2">Indicative vs. Subjunctive</h3>
+                    <p class="text-sm mb-4">When you express an opinion in an **affirmative** way, use the **Indicative** (Normal present). When you **deny** or **doubt** an opinion, use the **Subjunctive**.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded border border-green-200">
+                            <h4 class="font-bold text-green-700 mb-2">AFFIRMATIVE (+ Indicative)</h4>
+                            <p class="text-xs mb-2">Used for certainty/belief.</p>
+                            <p class="text-sm italic"><span class="hover-translation" data-en="I think that TV is boring."><strong>Creo que</strong> la tele <strong>es</strong> aburrida.</span></p>
+                            <p class="text-sm italic mt-1"><span class="hover-translation" data-en="I think that ads are useful."><strong>Pienso que</strong> los anuncios <strong>son</strong> Ãºtiles.</span></p>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded border border-red-200">
+                            <h4 class="font-bold text-red-700 mb-2">NEGATIVE (+ Subjunctive)</h4>
+                            <p class="text-xs mb-2">Used for doubt/denial.</p>
+                            <p class="text-sm italic"><span class="hover-translation" data-en="I don't think that TV is boring."><strong>No creo que</strong> la tele <strong>sea</strong> aburrida.</span></p>
+                            <p class="text-sm italic mt-1"><span class="hover-translation" data-en="I don't think that ads are useful."><strong>No pienso que</strong> los anuncios <strong>sean</strong> Ãºtiles.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Subjunctive in Negation -->
+            <section id="subjunctive_neg" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Grammar: Key Subjunctive Forms</h2>
+                <p class="mb-4 text-sm">A quick reminder of the most common irregular and regular subjunctive forms needed for opinions:</p>
+                
+                <div class="bg-white p-5 rounded border border-gray-200 shadow-sm overflow-x-auto">
+                    <table class="min-w-full text-sm text-center">
+                        <thead class="bg-slate-700 text-white">
+                            <tr>
+                                <th class="p-2">Infinitive</th>
+                                <th class="p-2">Indicative (Normal)</th>
+                                <th class="p-2">Subjunctive (Doubt)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr><td class="p-2">Ser</td><td>Es / Son</td><td class="font-bold text-blue-600">Sea / Sean</td></tr>
+                            <tr><td class="p-2">Tener</td><td>Tiene / Tienen</td><td class="font-bold text-blue-600">Tenga / Tengan</td></tr>
+                            <tr><td class="p-2">Estar</td><td>EstÃ¡ / EstÃ¡n</td><td class="font-bold text-blue-600">EstÃ© / EstÃ©n</td></tr>
+                            <tr><td class="p-2">Haber</td><td>Hay (Existence)</td><td class="font-bold text-blue-600">Haya</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Analysis -->
+            <section id="media_pros_cons" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Analysis: Media in Society</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <p class="font-bold text-blue-400">Pros (Ventajas):</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Keeps us informed in real time.">Nos mantiene informados en tiempo real.</span></li>
+                                <li><span class="hover-translation" data-en="Allows for diversity of opinions.">Permite la diversidad de opiniones.</span></li>
+                                <li><span class="hover-translation" data-en="Connects people globally.">Conecta a personas de todo el mundo.</span></li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-rose-400 pl-4">
+                            <p class="font-bold text-rose-400">Cons (Desventajas):</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Spread of fake news.">La difusiÃ³n de noticias falsas (Fake news).</span></li>
+                                <li><span class="hover-translation" data-en="Can manipulate public opinion.">Puede manipular la opiniÃ³n pÃºblica.</span></li>
+                                <li><span class="hover-translation" data-en="Invasion of privacy.">La invasiÃ³n de la privacidad.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Final Review -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Final Review (PrÃ¡ctica Final)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Choose the correct verb form (Self-Check):</h4>
+                    <div class="space-y-4 text-sm">
+                        <p>1. <span class="hover-translation" data-en="I think that social networks are dangerous.">Creo que las redes sociales ______ (ser) peligrosas.</span> <span class="text-gray-400 italic">(Answer: son - indicative)</span></p>
+                        <p>2. <span class="hover-translation" data-en="I don't think that social networks are dangerous.">No creo que las redes sociales ______ (ser) peligrosas.</span> <span class="text-gray-400 italic">(Answer: sean - subjunctive)</span></p>
+                        <p>3. <span class="hover-translation" data-en="The news headline is very shocking.">El ______ (headline) de la noticia es muy impactante.</span> <span class="text-gray-400 italic">(Answer: titular)</span></p>
+                        <p>4. <span class="hover-translation" data-en="I hope there is more peace in the world.">Espero que ______ (haber) mÃ¡s paz en el mundo.</span> <span class="text-gray-400 italic">(Answer: haya - subjunctive)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

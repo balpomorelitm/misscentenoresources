@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Español Ab Initio - Prep Oral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .card-flip:hover .card-inner { transform: rotateY(180deg); }
+        .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+        .card-front, .card-back { backface-visibility: hidden; position: absolute; inset: 0; }
+        .card-back { transform: rotateY(180deg); }
+        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 700; }
+        .img-container { position: relative; cursor: zoom-in; overflow: hidden; border-radius: 1.5rem; }
+        .img-container img { transition: transform 0.5s ease; }
+        .img-container:hover img { transform: scale(1.05); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .timer-animate { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-indigo-600 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">IB Ab Initio Master</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <button onclick="showSection('home')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600 transition">Inicio</button>
+                    <button onclick="showSection('unidades')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600 transition">Unidades</button>
+                    <button onclick="showSection('estrategia')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600 transition">Estrategia</button>
+                    <button onclick="showSection('simulacro')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-stopwatch"></i> Simulacro Oral 3.0
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Sección: Inicio -->
+        <section id="home" class="space-y-12">
+            <div class="text-center py-12">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 mb-4 tracking-tight">Preparación para el <span class="text-indigo-600">Oral de IB</span></h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Plataforma diseñada para dominar el examen oral mediante simulacros realistas. Imágenes alineadas, vocabulario y cultura hispana.</p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="showSection('simulacro')" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all flex items-center gap-3">
+                        <i class="fa-solid fa-play"></i> Iniciar Simulacro de Examen
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-images text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">3 Variantes de Examen</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Más de 15 estímulos visuales diferentes para que tus estudiantes nunca repitan la misma foto.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-clock text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Cronómetro IB</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Tiempos exactos: 15 min de preparación y presentación controlada por reloj.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-graduation-cap text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Guía en Vivo</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Pistas sobre el Método de los 4 Pasos y Vínculos Culturales visibles durante el examen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Unidades -->
+        <section id="unidades" class="hidden space-y-8">
+            <div class="flex overflow-x-auto border-b border-slate-200 pb-2 space-x-6 no-scrollbar">
+                <button onclick="loadUnit(1)" id="tab1" class="tab-active whitespace-nowrap px-1 pb-4 transition-all">U1: Identidades</button>
+                <button onclick="loadUnit(2)" id="tab2" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U2: Experiencias</button>
+                <button onclick="loadUnit(3)" id="tab3" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U3: Ingenio Humano</button>
+                <button onclick="loadUnit(4)" id="tab4" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U4: Org. Social</button>
+                <button onclick="loadUnit(5)" id="tab5" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U5: Compartir Planeta</button>
+            </div>
+            <div id="unit-content" class="animate-in fade-in duration-700"></div>
+        </section>
+
+        <!-- Sección: Simulacro -->
+        <section id="simulacro" class="hidden space-y-8">
+            <div id="sim-start-screen" class="bg-white p-12 rounded-[3rem] shadow-sm border border-slate-100 text-center space-y-6">
+                <div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-stopwatch text-3xl"></i>
+                </div>
+                <h2 class="text-3xl font-black">Modo Examen Oral</h2>
+                <p class="text-slate-500 max-w-lg mx-auto">Selecciona una de las tres variantes. Cada una contiene un set diferente de imágenes para evitar la repetición.</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 py-4">
+                    <button onclick="startSimulation(0)" class="bg-slate-100 hover:bg-slate-200 px-6 py-3 rounded-2xl font-bold transition border border-slate-200">Variante A (Clásica)</button>
+                    <button onclick="startSimulation(1)" class="bg-slate-100 hover:bg-slate-200 px-6 py-3 rounded-2xl font-bold transition border border-slate-200">Variante B (Relaciones)</button>
+                    <button onclick="startSimulation(2)" class="bg-slate-100 hover:bg-slate-200 px-6 py-3 rounded-2xl font-bold transition border border-slate-200">Variante C (Nuevos Temas)</button>
+                </div>
+            </div>
+
+            <div id="sim-exam-screen" class="hidden space-y-6">
+                <div class="flex flex-col md:flex-row gap-6 items-start">
+                    <!-- Area de Imagen -->
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="bg-white p-4 rounded-[2rem] shadow-sm border border-slate-100">
+                            <img id="sim-image" src="" alt="Estímulo visual" class="w-full h-[450px] object-cover rounded-2xl shadow-inner">
+                            <div class="mt-4 p-3 bg-slate-50 rounded-xl text-center">
+                                <span id="sim-theme-tag" class="bg-indigo-100 text-indigo-700 text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest">Tema</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel de Control -->
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="bg-slate-900 text-white p-8 rounded-[2rem] shadow-xl relative overflow-hidden">
+                            <div id="sim-timer-container" class="relative z-10 text-center">
+                                <span id="sim-phase-title" class="text-xs font-bold text-indigo-400 uppercase tracking-widest">Preparación</span>
+                                <div id="sim-timer" class="text-6xl font-black my-2 tracking-tighter">15:00</div>
+                                <button id="next-phase-btn" onclick="nextPhase()" class="mt-4 bg-indigo-500 hover:bg-indigo-400 text-white px-8 py-3 rounded-2xl font-bold transition shadow-lg shadow-indigo-900">
+                                    Siguiente Fase
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Guía Dinámica -->
+                        <div id="sim-guide" class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                            <h4 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-lightbulb text-amber-500"></i> Pistas de Apoyo</h4>
+                            <div id="sim-guide-content" class="text-sm text-slate-600 space-y-4 italic leading-relaxed">
+                                <!-- Contenido dinámico -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Estrategia -->
+        <section id="estrategia" class="hidden space-y-8">
+            <div class="bg-indigo-900 text-white p-10 rounded-[2.5rem] shadow-xl">
+                <h2 class="text-3xl font-black mb-4 italic">El Método de los 4 Pasos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20"><span class="font-bold block text-indigo-300">1. Identificar</span> Tema y subtema general.</div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20"><span class="font-bold block text-indigo-300">2. Describir</span> Objetos, personas y ubicación.</div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20"><span class="font-bold block text-indigo-300">3. Interpretar</span> Hipótesis sobre la acción.</div>
+                    <div class="bg-white/10 p-6 rounded-2xl border border-white/20"><span class="font-bold block text-indigo-300">4. Vínculo</span> Relación con la cultura hispana.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const units = [
+            // VARIANTE A: REVISADA (Corregidas fotos U4 y U5)
+            {
+                1: { title: "Identidades", image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop", culture: "La dieta mediterránea es un pilar de la identidad social hispana.", questions: ["¿Qué es para ti una vida sana?", "¿El deporte define quién eres?"] },
+                2: { title: "Experiencias", image: "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1200&auto=format&fit=crop", culture: "El senderismo en los Pirineos une a jóvenes de muchas regiones.", questions: ["¿Prefieres la montaña o la playa?", "¿Cuál fue tu última excursión?"] },
+                3: { title: "Ingenio Humano", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop", culture: "España y México son líderes en el uso social de la tecnología móvil.", questions: ["¿Es internet seguro para los jóvenes?", "¿Cómo estudias con tecnología?"] },
+                4: { title: "Organización Social", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", culture: "El instituto es un centro de vida comunitaria en los barrios hispanos.", questions: ["¿Cómo es tu horario escolar?", "¿Es mejor estudiar en grupo?"] },
+                5: { title: "Compartir el Planeta", image: "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?q=80&w=1200&auto=format&fit=crop", culture: "Costa Rica es el modelo hispano de protección de la biodiversidad.", questions: ["¿Reciclas en casa?", "¿Cómo podemos salvar el planeta?"] }
+            },
+            // VARIANTE B: RELACIONES (Café, Fiestas...)
+            {
+                1: { title: "Identidades", image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop", culture: "La cultura del café en Colombia y España es tiempo de socialización.", questions: ["¿Te gusta socializar con amigos?", "¿Qué importancia tiene el café?"] },
+                2: { title: "Experiencias", image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop", culture: "Las fiestas de cumpleaños en Latinoamérica son eventos familiares masivos.", questions: ["¿Cómo celebraste tu último cumpleaños?", "¿Prefieres regalos o viajes?"] },
+                3: { title: "Ingenio Humano", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop", culture: "España destaca en ingeniería renovable y trenes de alta velocidad.", questions: ["¿Cómo cambiarán los robots el trabajo?", "¿Qué invento es vital hoy?"] },
+                4: { title: "Organización Social", image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200&auto=format&fit=crop", culture: "El sistema de salud pública español es gratuito y de alta calidad.", questions: ["¿Es importante la salud pública?", "¿Se cuidan bien los jóvenes?"] },
+                5: { title: "Compartir el Planeta", image: "https://images.unsplash.com/photo-1530633762170-188fed614522?q=80&w=1200&auto=format&fit=crop", culture: "La agricultura urbana en ciudades como Madrid ayuda al clima.", questions: ["¿Es posible cultivar en la ciudad?", "¿Cómo reduces tu huella?"] }
+            },
+            // VARIANTE C: NUEVOS RETOS (Expresión, Arte, Océanos...)
+            {
+                1: { title: "Identidades", image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?q=80&w=1200&auto=format&fit=crop", culture: "El arte callejero en ciudades como Bogotá es identidad nacional.", questions: ["¿El arte define tu personalidad?", "¿Qué pasatiempos creativos tienes?"] },
+                2: { title: "Experiencias", image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop", culture: "Festivales como las Fallas o el Carnaval son experiencias históricas.", questions: ["¿Has ido a un festival musical?", "¿Por qué amamos las fiestas?"] },
+                3: { title: "Ingenio Humano", image: "https://images.unsplash.com/photo-1474487056236-0529c99a78a1?q=80&w=1200&auto=format&fit=crop", culture: "La red de trenes AVE en España es símbolo de eficiencia moderna.", questions: ["¿Cómo viajaremos en el futuro?", "¿Es mejor el tren que el coche?"] },
+                4: { title: "Organización Social", image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=1200&auto=format&fit=crop", culture: "Los mercados locales son el corazón del comercio en los pueblos hispanos.", questions: ["¿Prefieres mercados o supermercados?", "¿Cómo es el centro de tu barrio?"] },
+                5: { title: "Compartir el Planeta", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200&auto=format&fit=crop", culture: "Los arrecifes del Caribe son vitales para el ecosistema marino mundial.", questions: ["¿Cómo podemos salvar los océanos?", "¿Qué haces tú por el mar?"] }
+            }
+        ];
+
+        let currentVariant = 0;
+        let currentPhase = 0; 
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let simUnit = null;
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            if (id !== 'simulacro') resetSimulation();
+            if (id === 'unidades') loadUnit(1);
+            window.scrollTo(0,0);
+        }
+
+        function loadUnit(num) {
+            const u = units[0][num];
+            const content = document.getElementById('unit-content');
+            document.querySelectorAll('#unidades button').forEach(b => b.classList.remove('tab-active', 'text-indigo-600'));
+            document.getElementById('tab' + num).classList.add('tab-active');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div class="img-container shadow-2xl">
+                            <img src="${u.image}" alt="${u.title}" class="w-full h-[400px] object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <h3 class="text-2xl font-bold">Estímulo Visual U${num}</h3>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-600 text-white p-8 rounded-3xl shadow-lg">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fa-solid fa-microphone"></i> Preguntas de Seguimiento</h4>
+                            <ul class="space-y-3">${u.questions.map(q => `<li class="bg-white/10 p-3 rounded-xl border border-white/20 text-sm italic">"${q}"</li>`).join('')}</ul>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+                            <h2 class="text-4xl font-black text-slate-900">${u.title}</h2>
+                            <div class="mt-8 bg-emerald-50 p-6 rounded-3xl border border-emerald-100">
+                                <h4 class="font-bold text-emerald-800 flex items-center gap-2 mb-2"><i class="fa-solid fa-earth-americas"></i> El Vínculo Cultural</h4>
+                                <p class="text-emerald-900 text-sm leading-relaxed">${u.culture}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function startSimulation(variantIdx) {
+            currentVariant = variantIdx;
+            document.getElementById('sim-start-screen').classList.add('hidden');
+            document.getElementById('sim-exam-screen').classList.remove('hidden');
+            const randKey = Math.floor(Math.random() * 5) + 1;
+            simUnit = units[currentVariant][randKey];
+            document.getElementById('sim-image').src = simUnit.image;
+            document.getElementById('sim-theme-tag').innerText = simUnit.title + " (Var " + ["A","B","C"][currentVariant] + ")";
+            currentPhase = 1;
+            startTimer(15 * 60); 
+            updateGuide();
+        }
+
+        function startTimer(seconds) {
+            clearInterval(timerInterval);
+            timerSeconds = seconds;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                if (timerSeconds < 0) { clearInterval(timerInterval); timerSeconds = 0; }
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('sim-timer').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            if (timerSeconds <= 10) document.getElementById('sim-timer').classList.add('text-red-500', 'timer-animate');
+            else document.getElementById('sim-timer').classList.remove('text-red-500', 'timer-animate');
+        }
+
+        function nextPhase() {
+            currentPhase++;
+            const btn = document.getElementById('next-phase-btn');
+            const phaseTitle = document.getElementById('sim-phase-title');
+            if (currentPhase === 2) {
+                phaseTitle.innerText = "Fase de Presentación (2 min)";
+                startTimer(2 * 60);
+                btn.innerText = "Pasar a Conversación";
+            } else if (currentPhase === 3) {
+                phaseTitle.innerText = "Fase de Conversación (8 min)";
+                startTimer(8 * 60);
+                btn.innerText = "Finalizar Simulacro";
+            } else { resetSimulation(); showSection('home'); return; }
+            updateGuide();
+        }
+
+        function updateGuide() {
+            const guide = document.getElementById('sim-guide-content');
+            if (currentPhase === 1) {
+                guide.innerHTML = `Analiza la imagen de <b>${simUnit.title}</b>. Prepara tu presentación de 4 pasos e intenta memorizar el vínculo cultural: "${simUnit.culture}"`;
+            } else if (currentPhase === 2) {
+                guide.innerHTML = `<div class="space-y-2"><b>Paso 1:</b> Tema. <b>Paso 2:</b> ¿Quién? ¿Qué? ¿Dónde?. <b>Paso 3:</b> Interpretación. <b>Paso 4:</b> Cultura.</div>`;
+            } else if (currentPhase === 3) {
+                guide.innerHTML = `Responde a estas preguntas (imaginando al examinador):<br><br>${simUnit.questions.map(q => `• "${q}"`).join('<br>')}`;
+            }
+        }
+
+        function resetSimulation() {
+            clearInterval(timerInterval);
+            currentPhase = 0;
+            document.getElementById('sim-start-screen').classList.remove('hidden');
+            document.getElementById('sim-exam-screen').classList.add('hidden');
+            document.getElementById('sim-timer').classList.remove('text-red-500');
+            document.getElementById('next-phase-btn').innerText = "Siguiente Fase";
+        }
+
+        window.onload = () => loadUnit(1);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

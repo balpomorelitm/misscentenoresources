@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Digital: La Comparación y el Superlativo - Spanish Ab Initio</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notebook {
+            background: white;
+            max-width: 850px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-left: 15px solid var(--primary-color);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        h1 { margin: 0; color: var(--primary-color); }
+        .subtitle { font-style: italic; color: #666; }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background-color: #fdfefe;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #dfe6e9;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .grammar-table th { background-color: var(--primary-color); color: white; }
+
+        .english-note {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.95em;
+            margin: 10px 0 20px 0;
+            color: #856404;
+            line-height: 1.4;
+        }
+
+        /* Tooltip Styles */
+        .vocab {
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: underline dotted;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vocab::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2c3e50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .vocab:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .exercise-block {
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 280px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-check {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .btn-check:hover { opacity: 0.9; }
+
+        .feedback {
+            margin-top: 10px;
+            display: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .correct { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #e1f5fe;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #b3e5fc;
+        }
+
+        .word-tag {
+            background: white;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+<div class="score-display" id="global-score">0</div>
+
+<div class="notebook">
+    <header>
+        <h1>Cuaderno de Práctica: La Comparación y el Superlativo</h1>
+        <p class="subtitle">Spanish Ab Initio - Unidad de Gramática Completa</p>
+    </header>
+
+    <!-- 1. REPASO -->
+    <div class="section">
+        <h2>1. Repaso Gramatical (Grammar Review)</h2>
+        <div class="english-note">
+            <strong>How it works:</strong> To compare things in Spanish, we usually use <span class="vocab" data-tooltip="more">más</span> or <span class="vocab" data-tooltip="less">menos</span> before an adjective. 
+            <br><em>Example:</em> El coche es <span class="vocab" data-tooltip="more ... than">más rápido que</span> la bici.
+        </div>
+        <table class="grammar-table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Estructura</th>
+                    <th>Ejemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Superioridad</td><td><span class="vocab" data-tooltip="more ... than">más ... que</span></td><td>El gato es más rápido que el ratón.</td></tr>
+                <tr><td>Inferioridad</td><td><span class="vocab" data-tooltip="less ... than">menos ... que</span></td><td>El chico es menos alto que la novia.</td></tr>
+                <tr><td>Igualdad (Adj)</td><td><span class="vocab" data-tooltip="as ... as">tan ... como</span></td><td>La tarea es tan fácil como el examen.</td></tr>
+                <tr><td>Irregulares</td><td>mejor, peor, mayor...</td><td>Mi hermano es mayor que yo.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 2. IRREGULARES -->
+    <div class="section">
+        <h2>2. Comparativos Irregulares</h2>
+        <div class="english-note">
+            <strong>Easy Rule:</strong> Some words don't follow the "más/menos" rule. 
+            Don't say "más bueno", say <span class="vocab" data-tooltip="better/best">mejor</span>. 
+            Don't say "más malo", say <span class="vocab" data-tooltip="worse/worst">peor</span>. 
+            For age, use <span class="vocab" data-tooltip="older / bigger">mayor</span> or <span class="vocab" data-tooltip="younger / smaller">menor</span>.
+        </div>
+        
+        <div class="exercise-block" id="block1">
+            <div class="question">1. Mi abuelo es el <input type="text" data-ans="mayor"> de la familia.</div>
+            <div class="question">2. Perder un examen es <input type="text" data-ans="peor"> que estudiar mucho.</div>
+            <div class="question">3. Mi hermana pequeña es <input type="text" data-ans="menor"> que yo.</div>
+            <button class="btn-check" onclick="checkBlock('block1')">Corregir</button>
+            <div class="feedback" id="fb-block1"></div>
+        </div>
+    </div>
+
+    <!-- 3. ORDENAR -->
+    <div class="section">
+        <h2>3. Ordena la frase (Word Scramble)</h2>
+        <div class="english-note">
+            <strong>Word Order:</strong> In Spanish, we usually put the adjective <em>after</em> the noun. 
+            <br><em>Example:</em> Su amigo (noun) es alto (adjective).
+        </div>
+        <div class="word-bank">
+            <span class="word-tag">estudia</span> <span class="word-tag">que</span> <span class="word-tag">Su</span> <span class="word-tag">menos</span> <span class="word-tag">amiga</span> <span class="word-tag">novio</span> <span class="word-tag">su</span>
+        </div>
+        <div class="exercise-block" id="block2">
+            <div class="question">
+                <input type="text" style="width: 90%;" data-ans="Su novio estudia menos que su amiga">
+            </div>
+            <button class="btn-check" onclick="checkBlock('block2')">Corregir</button>
+            <div class="feedback" id="fb-block2"></div>
+        </div>
+    </div>
+
+    <!-- 4. IGUALDAD -->
+    <div class="section">
+        <h2>4. Comparativos de Igualdad</h2>
+        <div class="english-note">
+            <strong>Equality:</strong> Use <span class="vocab" data-tooltip="as (for adjectives)">tan</span> + adjective (<em>tan guapa como</em>). 
+            But use <span class="vocab" data-tooltip="as much / as many (for nouns)">tanto/tanta</span> + noun (<em>tanto dinero como / tanta tarea como</em>). 
+            Remember to match the gender!
+        </div>
+        
+        <div class="exercise-block" id="block3">
+            <div class="question">1. La chica es <input type="text" data-ans="tan"> guapa como su madre.</div>
+            <div class="question">2. El chico tiene <input type="text" data-ans="tanta"> tarea como su novia.</div>
+            <div class="question">3. Los ratones son <input type="text" data-ans="tan"> pequeños como el gato.</div>
+            <button class="btn-check" onclick="checkBlock('block3')">Corregir</button>
+            <div class="feedback" id="fb-block3"></div>
+        </div>
+    </div>
+
+    <!-- 5. SUPERLATIVO RELATIVO -->
+    <div class="section">
+        <h2>5. El Superlativo Relativo (The Most...)</h2>
+        <div class="english-note">
+            <strong>The Best/Worst:</strong> To say someone is "the most" or "the best" <strong>in</strong> a group, use <span class="vocab" data-tooltip="in/of (for superlatives)">de</span> (instead of 'en'). 
+            <br><em>Formula:</em> The + noun + more + adjective + <strong>de</strong> (the group).
+        </div>
+        
+        <div class="exercise-block" id="block5">
+            <div class="question">1. The tallest girl in the school: <br>
+                La chica <input type="text" data-ans="mas alta de"> la escuela.</div>
+            <div class="question">2. The easiest task of the year: <br>
+                La tarea <input type="text" data-ans="mas facil del"> año.</div>
+            <div class="question">3. The best professors in the university: <br>
+                Los <input type="text" data-ans="mejores profesores de"> la universidad.</div>
+            <button class="btn-check" onclick="checkBlock('block5')">Corregir</button>
+            <div class="feedback" id="fb-block5"></div>
+        </div>
+    </div>
+
+    <!-- 6. SUPERLATIVO ABSOLUTO -->
+    <div class="section">
+        <h2>6. El Superlativo Absoluto (-ísimo)</h2>
+        <div class="english-note">
+            <strong>Super Big:</strong> If you want to say something is "extremely" or "super" something, just add <span class="vocab" data-tooltip="suffix for 'extremely'">-ísimo</span> to the adjective. 
+            <br><em>Note:</em> If the word ends in a vowel, drop it first (Grande -> Grandísimo).
+        </div>
+        
+        <div class="exercise-block" id="block6">
+            <div class="question">1. Muy guapo: <input type="text" data-ans="guapisimo"></div>
+            <div class="question">2. Muy feliz: <input type="text" data-ans="felicisismo"></div>
+            <div class="question">3. Muy fácil: <input type="text" data-ans="facilisimo"></div>
+            <div class="question">4. Muy genial: <input type="text" data-ans="genialisimo"></div>
+            <button class="btn-check" onclick="checkBlock('block6')">Corregir</button>
+            <div class="feedback" id="fb-block6"></div>
+        </div>
+    </div>
+
+    <!-- 7. DESAFÍO FINAL -->
+    <div class="section">
+        <h2>7. Desafío Final (Final Challenge)</h2>
+        <div class="english-note">
+            <strong>Ready?</strong> Combine everything you have learned. Pay attention to vocabulary and gender agreement!
+        </div>
+
+        <div class="exercise-block" id="block4">
+            <div class="question">
+                1. The cat is faster than the mice. <br>
+                <input type="text" style="width: 90%;" data-ans="El gato es mas rapido que los ratones">
+            </div>
+            <div class="question">
+                2. The house is extremely enormous (absolute superlative). <br>
+                <input type="text" style="width: 90%;" data-ans="La casa es enormisima">
+            </div>
+            <div class="question">
+                3. The professors are as happy as the students. <br>
+                <input type="text" style="width: 90%;" data-ans="Los profesores son tan felices como los estudiantes">
+            </div>
+            <button class="btn-check" onclick="checkBlock('block4')">Corregir Final</button>
+            <div class="feedback" id="fb-block4"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let totalScore = 0;
+    const answeredBlocks = new Set();
+
+    function checkBlock(blockId) {
+        const block = document.getElementById(blockId);
+        const inputs = block.querySelectorAll('input[type="text"]');
+        const feedback = document.getElementById('fb-' + blockId);
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""); // Remove punctuation
+            
+            const correctAns = input.getAttribute('data-ans').toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+            if (userAns === correctAns) {
+                input.style.borderColor = "var(--success-color)";
+                correctCount++;
+            } else {
+                input.style.borderColor = "var(--error-color)";
+            }
+        });
+
+        feedback.style.display = "block";
+        if (correctCount === inputs.length) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = "<strong>¡Excelente!</strong> Se nota que has estudiado mucho.";
+            if (!answeredBlocks.has(blockId)) {
+                totalScore += correctCount;
+                answeredBlocks.add(blockId);
+            }
+        } else {
+            feedback.className = "feedback incorrect";
+            feedback.innerHTML = "<strong>Inténtalo de nuevo.</strong> Revisa los irregulares o los sufijos (-ísimo/a).";
+        }
+
+        document.getElementById('global-score').innerText = totalScore;
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

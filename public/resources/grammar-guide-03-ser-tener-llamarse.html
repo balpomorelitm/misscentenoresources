@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .conjugation-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 3: Ser, Tener & Llamarse</h1>
+            <p class="text-indigo-200 mt-2">Essential verbs for introductions</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- VERB 1: SER -->
+            <section id="section-ser" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">1. El verbo SER (To be)</h2>
+                    <p class="text-gray-600 mt-2">
+                        Use <strong>SER</strong> to identify people (I am Ana) or describe permanent characteristics (nationality, profession, physical traits).
+                    </p>
+                    <div class="mt-4 bg-white rounded p-4 border border-indigo-100">
+                        <h4 class="font-bold text-indigo-800 mb-2">Conjugation (Present):</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>Yo <strong>soy</strong> (I am)</div>
+                            <div>Nosotros <strong>somos</strong> (We are)</div>
+                            <div>TÃº <strong>eres</strong> (You are)</div>
+                            <div>Vosotros <strong>sois</strong> (You all are)</div>
+                            <div>Ã‰l/Ella <strong>es</strong> (He/She is)</div>
+                            <div>Ellos/Ellas <strong>son</strong> (They are)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                        Exercise: Complete with the correct form of SER
+                    </h3>
+                    <div class="space-y-4" id="ex1-container">
+                        <!-- JS injected -->
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkEx1()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetEx1()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback1" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- VERB 2: TENER -->
+            <section id="section-tener" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">2. El verbo TENER (To have)</h2>
+                    <p class="text-gray-600 mt-2">
+                        Use <strong>TENER</strong> for possession and <strong>age</strong>.
+                        <br><em>Important:</em> In Spanish, we say "I have 20 years" (<span class="vocab-hint" data-en="I am 20 years old">Tengo 20 aÃ±os</span>), not "I am 20".
+                    </p>
+                    <div class="mt-4 bg-white rounded p-4 border border-indigo-100">
+                        <h4 class="font-bold text-indigo-800 mb-2">Conjugation (Present):</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>Yo <strong>tengo</strong> (I have)</div>
+                            <div>Nosotros <strong>tenemos</strong> (We have)</div>
+                            <div>TÃº <strong>tienes</strong> (You have)</div>
+                            <div>Vosotros <strong>tenÃ©is</strong> (You all have)</div>
+                            <div>Ã‰l/Ella <strong>tiene</strong> (He/She has)</div>
+                            <div>Ellos/Ellas <strong>tienen</strong> (They have)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                        Exercise: Complete with TENER
+                    </h3>
+                    <div class="space-y-4" id="ex2-container">
+                        <!-- JS injected -->
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkEx2()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetEx2()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback2" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- VERB 3: LLAMARSE -->
+            <section id="section-llamarse" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">3. El verbo LLAMARSE (To be called)</h2>
+                    <p class="text-gray-600 mt-2">
+                        This is a <strong>reflexive verb</strong> (it ends in -se). You need a pronoun (me, te, se, nos, os, se) before the verb.
+                        <br><em>Literal meaning:</em> "I call myself..."
+                    </p>
+                    <div class="mt-4 bg-white rounded p-4 border border-indigo-100">
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>(Yo) <strong>Me llamo</strong></div>
+                            <div>(Nosotros) <strong>Nos llamamos</strong></div>
+                            <div>(TÃº) <strong>Te llamas</strong></div>
+                            <div>(Vosotros) <strong>Os llamÃ¡is</strong></div>
+                            <div>(Ã‰l/Ella) <strong>Se llama</strong></div>
+                            <div>(Ellos/Ellas) <strong>Se llaman</strong></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                        Exercise: Choose the correct reflexive pronoun
+                    </h3>
+                    <div class="space-y-4" id="ex3-container">
+                        <!-- JS injected -->
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkEx3()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetEx3()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback3" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- INTEGRATED PRACTICE -->
+            <section id="section-mixed" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">4. Integrated Practice</h2>
+                    <p class="text-gray-600 mt-2">Fill in the blanks using <strong>Ser</strong>, <strong>Tener</strong>, or <strong>Llamarse</strong>.</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 leading-relaxed text-lg" id="ex4-container">
+                        Hola, yo <input type="text" id="ex4-0" class="w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(1)"> (llamarse) SofÃ­a. 
+                        <br>
+                        Yo <input type="text" id="ex4-1" class="w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(2)"> (ser) estudiante en una escuela internacional. 
+                        <br>
+                        <input type="text" id="ex4-2" class="w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(3)"> (Tener) quince aÃ±os. 
+                        <br>
+                        Mis amigos <input type="text" id="ex4-3" class="w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(4)"> (ser) muy simpÃ¡ticos. 
+                        <br>
+                        Nosotros <input type="text" id="ex4-4" class="w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(5)"> (tener) muchas clases juntos.
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkEx4()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetEx4()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback4" class="feedback-msg"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // DATA
+        const ex1Data = [
+            { q: "Yo ______ estudiante.", ans: "soy", hint: "I am" },
+            { q: "TÃº ______ mi amigo.", ans: "eres", hint: "You are" },
+            { q: "Ella ______ profesora.", ans: "es", hint: "She is" },
+            { q: "Nosotros ______ de EspaÃ±a.", ans: "somos", hint: "We are (from)" },
+            { q: "Ellos ______ inteligentes.", ans: "son", hint: "They are" }
+        ];
+
+        const ex2Data = [
+            { q: "Yo ______ un hermano.", ans: "tengo", hint: "I have" },
+            { q: "TÃº ______ 17 aÃ±os.", ans: "tienes", hint: "You are (have) 17" },
+            { q: "El colegio ______ una biblioteca.", ans: "tiene", hint: "The school has" },
+            { q: "Nosotros ______ muchos libros.", ans: "tenemos", hint: "We have" },
+            { q: "Ustedes ______ una casa grande.", ans: "tienen", hint: "You all have" }
+        ];
+
+        const ex3Data = [
+            { q: "Yo ______ llamo Juan.", options: ["me", "te", "se"], ans: "me" },
+            { q: "Â¿CÃ³mo ______ llamas tÃº?", options: ["me", "te", "se"], ans: "te" },
+            { q: "Ella ______ llama MarÃ­a.", options: ["te", "nos", "se"], ans: "se" },
+            { q: "Nosotros ______ llamamos GarcÃ­a.", options: ["nos", "os", "se"], ans: "nos" },
+            { q: "Ellos ______ llaman PÃ©rez.", options: ["me", "nos", "se"], ans: "se" }
+        ];
+
+        const ex4Answers = ["me llamo", "soy", "tengo", "son", "tenemos"];
+
+        // RENDER FUNCTIONS
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="flex items-center gap-3">
+                        <div class="w-full flex items-center bg-gray-50 p-3 rounded border">
+                            <span class="mr-2 vocab-hint" data-en="${item.hint}">${item.q.split('______')[0]}</span>
+                            <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent text-center w-24 focus:border-indigo-500 outline-none">
+                            <span class="ml-2">${item.q.split('______')[1]}</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="flex items-center gap-3">
+                        <div class="w-full flex items-center bg-gray-50 p-3 rounded border">
+                            <span class="mr-2 vocab-hint" data-en="${item.hint}">${item.q.split('______')[0]}</span>
+                            <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent text-center w-24 focus:border-indigo-500 outline-none">
+                            <span class="ml-2">${item.q.split('______')[1]}</span>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('ex3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                let opts = `<option value="">?</option>` + item.options.map(o => `<option value="${o}">${o}</option>`).join('');
+                container.innerHTML += `
+                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded border">
+                        <span>${item.q.split('______')[0]} _______ ${item.q.split('______')[1]}</span>
+                        <select id="ex3-${i}" class="border rounded p-1">${opts}</select>
+                    </div>`;
+            });
+        }
+
+        // CHECK FUNCTIONS
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Data.forEach((item, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                if(el.value === item.ans) {
+                    el.parentElement.classList.add('correct-answer');
+                    el.parentElement.classList.remove('incorrect-answer');
+                    s++;
+                } else {
+                    el.parentElement.classList.add('incorrect-answer');
+                    el.parentElement.classList.remove('correct-answer');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+        function checkEx4() {
+            let s = 0;
+            ex4Answers.forEach((ans, i) => {
+                const el = document.getElementById(`ex4-${i}`);
+                if(el.value.trim().toLowerCase() === ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback4', s, ex4Answers.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // RESET
+        function resetEx1() { ex1Data.forEach((_, i) => { const el = document.getElementById(`ex1-${i}`); el.value = ''; el.className = "border-b-2 border-gray-300 bg-transparent text-center w-24 focus:border-indigo-500 outline-none"; }); document.getElementById('feedback1').textContent = ''; }
+        function resetEx2() { ex2Data.forEach((_, i) => { const el = document.getElementById(`ex2-${i}`); el.value = ''; el.className = "border-b-2 border-gray-300 bg-transparent text-center w-24 focus:border-indigo-500 outline-none"; }); document.getElementById('feedback2').textContent = ''; }
+        function resetEx3() { ex3Data.forEach((_, i) => { const el = document.getElementById(`ex3-${i}`); el.value = ''; el.parentElement.classList.remove('correct-answer', 'incorrect-answer'); }); document.getElementById('feedback3').textContent = ''; }
+        function resetEx4() { ex4Answers.forEach((_, i) => { const el = document.getElementById(`ex4-${i}`); el.value = ''; el.className = "w-24 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600"; }); document.getElementById('feedback4').textContent = ''; }
+
+        // Init
+        renderEx1();
+        renderEx2();
+        renderEx3();
+    </script>
+</body>
+</html>
+
+
+
+

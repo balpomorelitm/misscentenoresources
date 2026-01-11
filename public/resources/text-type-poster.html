@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuÃ­a: El PÃ³ster - IB Spanish</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .poster-shadow { box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2); }
+        .feature-tag { transition: all 0.2s; cursor: help; border-bottom: 2px dashed #0284c7; }
+        .feature-tag:hover { background-color: #f0f9ff; color: #075985; }
+        .poster-bg {
+            background: linear-gradient(to bottom, #0ea5e9 0%, #0c4a6e 100%);
+        }
+    </style>
+</head>
+<body class="bg-sky-50 text-slate-800 font-sans p-4 md:p-8">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <div class="max-w-4xl mx-auto">
+        <!-- TÃ­tulo de la GuÃ­a -->
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-black text-sky-700 uppercase tracking-tighter">El PÃ³ster</h1>
+            <p class="text-sky-600 font-bold mt-2">ComunicaciÃ³n Visual y PÃºblica <span class="text-sky-400 font-normal block text-sm">(Visual Communication / Designing a Poster)</span></p>
+        </div>
+
+        <!-- 1. Estructura del PÃ³ster -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                <span class="bg-sky-600 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm">1</span>
+                Estructura del Formato <span class="text-slate-400 font-normal text-lg">(Poster Layout)</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border-l-8 border-sky-500 shadow-sm">
+                    <p class="font-bold text-sky-800 mb-3 underline">Elementos GrÃ¡ficos:</p>
+                    <ul class="text-sm space-y-2 list-none font-medium">
+                        <li>ðŸ“¢ <strong>Cabecera:</strong> TÃ­tulo grande y directo. <span class="text-slate-400 italic">(Main Headline)</span></li>
+                        <li>ðŸ—“ï¸ <strong>Datos Clave:</strong> Fecha y hora bien visibles. <span class="text-slate-400 italic">(Date & Time)</span></li>
+                        <li>ðŸ“ <strong>UbicaciÃ³n:</strong> DÃ³nde ocurre el evento. <span class="text-slate-400 italic">(Location)</span></li>
+                        <li>ðŸš€ <strong>Llamada a la AcciÃ³n:</strong> QuÃ© debe hacer el lector. <span class="text-slate-400 italic">(Call to action)</span></li>
+                        <li>ðŸŽ¨ <strong>Branding:</strong> Logos o contacto al pie. <span class="text-slate-400 italic">(Organization/Contact)</span></li>
+                    </ul>
+                </div>
+                <div class="bg-sky-900 text-white p-6 rounded-2xl shadow-md">
+                    <p class="font-bold mb-3 italic">ðŸ’¡ El impacto visual:</p>
+                    <p class="text-sm leading-relaxed">
+                        A poster must be understood from a distance. Use <strong>minimal text</strong>, high contrast, and a clear hierarchy. Information should flow from the most important (the "What") to the details (the "How").
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Ejemplo Visual Interactivo -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                <span class="bg-sky-600 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm">2</span>
+                Ejemplo: Evento de Limpieza <span class="text-slate-400 font-normal text-lg">(Example: Clean-up Event)</span>
+            </h2>
+            
+            <div class="poster-bg rounded-3xl poster-shadow p-8 md:p-12 text-white text-center space-y-8 border-4 border-white/20">
+                
+                <!-- Headline -->
+                <div class="space-y-2">
+                    <h3 class="text-5xl md:text-6xl font-black uppercase tracking-tighter feature-tag border-white/50" title="Main Catchy Title: Short and powerful / TÃ­tulo corto e impactante">Â¡ACTÃšA AHORA!</h3>
+                    <p class="text-sky-200 text-xl font-bold italic">Limpieza de Playas en la Costa Blanca</p>
+                </div>
+
+                <!-- Visual Gap / Placeholder -->
+                <div class="bg-white/10 rounded-2xl py-12 border-2 border-dashed border-white/30">
+                    <p class="text-sm uppercase tracking-widest opacity-60 italic"></p>
+                </div>
+
+                <!-- Logistics Grid -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white text-sky-900 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-bold uppercase text-sky-600">CuÃ¡ndo</p>
+                        <p class="font-black feature-tag" title="Key info: Date should be big / La fecha debe destacar">22 SEPT</p>
+                    </div>
+                    <div class="bg-white text-sky-900 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-bold uppercase text-sky-600">Hora</p>
+                        <p class="font-black feature-tag" title="Key info: Start time / Hora de inicio">10:00 H</p>
+                    </div>
+                    <div class="bg-white text-sky-900 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-bold uppercase text-sky-600">Lugar</p>
+                        <p class="font-black feature-tag" title="Key info: Venue / Punto de encuentro">FARO CB</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="space-y-4 pt-4">
+                    <p class="text-lg font-medium italic feature-tag border-white/50" title="The Hook: Why people should go / El gancho emocional">"Un pequeÃ±o gesto para un gran cambio"</p>
+                    <button class="bg-yellow-400 text-sky-900 px-10 py-4 rounded-full font-black text-xl hover:bg-yellow-300 transition-all shadow-xl uppercase">
+                        Â¡InscrÃ­bete!
+                    </button>
+                </div>
+
+                <!-- Footer / Contact -->
+                <div class="pt-6 border-t border-white/10 flex justify-between items-center text-[10px] font-bold opacity-80 uppercase tracking-widest">
+                    <span>COSTA BLANCA LIMPIA</span>
+                    <span class="feature-tag border-white/50" title="Official Website or QR / Canal oficial">WWW.CB-LIMPIA.ES</span>
+                </div>
+            </div>
+            <p class="text-center text-xs text-slate-400 mt-6 italic">Pasa el ratÃ³n por los elementos para ver los trucos de diseÃ±o. <span class="block">(Hover for design tips)</span></p>
+        </section>
+
+        <!-- 3. Frases y Estilo Visual -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                <span class="bg-sky-600 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm">3</span>
+                Claves Visuales <span class="text-slate-400 font-normal text-lg">(Visual Keys)</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <h4 class="font-bold text-sky-800 mb-4 uppercase text-xs tracking-widest">ðŸŽ¨ TipografÃ­a <span class="text-slate-400 font-normal lowercase">(Fonts)</span></h4>
+                    <ul class="text-sm space-y-3 font-medium">
+                        <li>ðŸ“ **TÃ­tulos:** Sans-serif y negrita. <span class="text-xs text-slate-400 italic">(Bold headers)</span></li>
+                        <li>ðŸ“ **JerarquÃ­a:** No todo puede ser igual de grande. <span class="text-xs text-slate-400 italic">(Clear sizing)</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <h4 class="font-bold text-sky-800 mb-4 uppercase text-xs tracking-widest">ðŸŽ¨ Color <span class="text-slate-400 font-normal lowercase">(Color)</span></h4>
+                    <ul class="text-sm space-y-3 font-medium">
+                        <li>ðŸŒˆ **Contraste:** Texto claro sobre fondo oscuro. <span class="text-xs text-slate-400 italic">(Contrast)</span></li>
+                        <li>ðŸŒˆ **EmociÃ³n:** Azul (mar), Verde (eco), Rojo (urgencia). <span class="text-xs text-slate-400 italic">(Meaning)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Checklist Final -->
+        <div class="bg-sky-800 text-white p-8 rounded-3xl shadow-xl">
+            <h3 class="text-xl font-bold mb-6">âœ… Checklist para tu PÃ³ster:</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm font-medium">
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Impactful Title? (TÃ­tulo grande)</label>
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Minimum text? (Pocas palabras)</label>
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Readable logistics? (Datos claros)</label>
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Strong call to action? (Llamada a la acciÃ³n)</label>
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Contact or Social Media? (Contacto)</label>
+                <label class="flex items-center gap-2 opacity-90"><input type="checkbox" checked> Visual balance? (Equilibrio visual)</label>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 9</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 9: PretÃ©rito Indefinido</h1>
+            <p class="text-indigo-200 mt-2">The Past Simple Tense (Completed Actions)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Regular Verbs</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('irregular')">2. Grammar: Irregular Verbs</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">3. Practice: Narrative</div>
+            </div>
+
+            <!-- TAB 1: REGULAR VERBS -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Regular Verbs (Indefinido)</h2>
+                        
+                        <div class="mt-4 space-y-4 text-gray-700">
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">When to use it:</h3>
+                                <p class="text-lg mt-1">
+                                    For actions that started and finished at a specific time in the past.
+                                </p>
+                                <p class="text-sm text-gray-500 mt-1 italic">
+                                    Keywords: <span class="vocab-hint" data-en="Yesterday">Ayer</span>, 
+                                    <span class="vocab-hint" data-en="Last week">la semana pasada</span>, 
+                                    <span class="vocab-hint" data-en="In 2010">en 2010</span>.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-blue-800 mb-2">-AR Verbs (e.g., Hablar)</h4>
+                                    <ul class="text-sm list-none space-y-2">
+                                        <li>Yo habl<strong>Ã©</strong></li>
+                                        <li>TÃº habl<strong>aste</strong></li>
+                                        <li>Ã‰l/Ella habl<strong>Ã³</strong></li>
+                                        <li>Nosotros habl<strong>amos</strong></li>
+                                        <li>Vosotros habl<strong>asteis</strong></li>
+                                        <li>Ellos/Ellas habl<strong>aron</strong></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-green-800 mb-2">-ER / -IR Verbs (e.g., Comer/Vivir)</h4>
+                                    <ul class="text-sm list-none space-y-2">
+                                        <li>Yo com<strong>Ã­</strong></li>
+                                        <li>TÃº com<strong>iste</strong></li>
+                                        <li>Ã‰l/Ella com<strong>iÃ³</strong></li>
+                                        <li>Nosotros com<strong>imos</strong></li>
+                                        <li>Vosotros com<strong>isteis</strong></li>
+                                        <li>Ellos/Ellas com<strong>ieron</strong></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-500 mt-2">*Note: -ER and -IR endings are identical!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Conjugate Regular Verbs
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Example: (yo / hablar) -> hablÃ©</p>
+
+                        <div class="space-y-4" id="ex1-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: IRREGULAR VERBS -->
+            <div id="irregular" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-red-50">
+                        <h2 class="text-2xl font-bold text-red-900">2. Key Irregular Verbs</h2>
+                        <p class="text-gray-600 mt-2">
+                            These verbs change completely. You must memorize them!
+                        </p>
+                        
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                            <div class="bg-white p-4 rounded border border-red-200">
+                                <h4 class="font-bold text-red-700 mb-2">SER (To be) / IR (To go)</h4>
+                                <p class="text-xs text-gray-500 mb-2">They are identical in the past!</p>
+                                <ul class="list-none space-y-1">
+                                    <li>Yo <strong>fui</strong></li>
+                                    <li>TÃº <strong>fuiste</strong></li>
+                                    <li>Ã‰l/Ella <strong>fue</strong></li>
+                                    <li>Nosotros <strong>fuimos</strong></li>
+                                    <li>Ellos <strong>fueron</strong></li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded border border-red-200">
+                                <h4 class="font-bold text-red-700 mb-2">HACER (To do/make)</h4>
+                                <ul class="list-none space-y-1">
+                                    <li>Yo <strong>hice</strong></li>
+                                    <li>TÃº <strong>hiciste</strong></li>
+                                    <li>Ã‰l/Ella <strong>hizo</strong> (Notice the Z!)</li>
+                                    <li>Nosotros <strong>hicimos</strong></li>
+                                    <li>Ellos <strong>hicieron</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Choose the correct irregular form
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 3: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-green-50">
+                        <h2 class="text-2xl font-bold text-green-900">3. Narrative Practice</h2>
+                        <p class="text-gray-600 mt-2">
+                            Use the PretÃ©rito Indefinido to tell a story about a past trip.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Complete the Story
+                        </h3>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 text-lg leading-relaxed">
+                            <h4 class="font-bold text-indigo-700 mb-4">Un viaje a EspaÃ±a</h4>
+                            El aÃ±o pasado, yo <input type="text" id="ex3-0" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(ir)"> a EspaÃ±a de vacaciones.
+                            <br><br>
+                            Mis amigos y yo <input type="text" id="ex3-1" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(viajar)"> en aviÃ³n hasta Madrid.
+                            <br><br>
+                            AllÃ­, nosotros <input type="text" id="ex3-2" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(visitar)"> muchos museos interesantes.
+                            <br><br>
+                            Yo <input type="text" id="ex3-3" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(comer)"> mucha paella y me gustÃ³ mucho.
+                            <br><br>
+                            El Ãºltimo dÃ­a, (yo) <input type="text" id="ex3-4" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(comprar)"> recuerdos para mi familia.
+                            <br><br>
+                            Â¡<input type="text" id="ex3-5" class="w-32 border-b-2 border-indigo-300 bg-transparent text-center focus:outline-none focus:border-indigo-600" placeholder="(ser)"> un viaje fantÃ¡stico!
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Regular Verbs
+        const ex1Data = [
+            { q: "(Yo / hablar) con el profesor.", ans: "hablÃ©", hint: "I spoke" },
+            { q: "(TÃº / comer) en el restaurante.", ans: "comiste", hint: "You ate" },
+            { q: "(Ella / vivir) en ParÃ­s un aÃ±o.", ans: "viviÃ³", hint: "She lived" },
+            { q: "(Nosotros / estudiar) ayer.", ans: "estudiamos", hint: "We studied" },
+            { q: "(Ellos / escribir) un libro.", ans: "escribieron", hint: "They wrote" }
+        ];
+
+        // Ex 2: Irregular Verbs
+        const ex2Data = [
+            { q: "Ayer yo (ir) al cine.", options: ["fui", "fue", "iba"], ans: "fui" },
+            { q: "Ella (hacer) la tarea.", options: ["haciÃ³", "hizo", "hace"], ans: "hizo" },
+            { q: "Nosotros (ir) a la playa.", options: ["fuimos", "fueron", "Ã­bamos"], ans: "fuimos" },
+            { q: "TÃº (hacer) un pastel.", options: ["haciste", "hiciste", "hicistes"], ans: "hiciste" },
+            { q: "Ellos (ser) muy amables.", options: ["fueron", "eran", "sido"], ans: "fueron" }
+        ];
+
+        // Ex 3: Narrative Answers
+        const ex3Answers = ["fui", "viajamos", "visitamos", "comÃ­", "comprÃ©", "fue"];
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 bg-white p-3 rounded border border-gray-200">
+                        <span class="vocab-hint font-medium text-gray-700 min-w-[200px]" data-en="${item.hint}">${item.q}</span>
+                        <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-indigo-700 font-medium" placeholder="Answer here...">
+                    </div>`;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3">${item.q}</p>
+                    <div class="flex flex-col gap-2">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex2-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex2-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex2-${i}`)[0].closest('.bg-gray-50');
+                
+                // Reset visual state
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Answers.forEach((ans, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                if(el.value.trim().toLowerCase() === ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Answers.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() { 
+            ex1Data.forEach((_, i) => { 
+                const el = document.getElementById(`ex1-${i}`); 
+                el.value = ""; 
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-indigo-700 font-medium"; 
+            }); 
+            document.getElementById('feedback1').textContent = ""; 
+        }
+        
+        function resetEx2() {
+            ex2Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex2-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+            ex3Answers.forEach((_, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32";
+                el.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

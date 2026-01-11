@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Digital: Presentaciones Personales</title>
+    <style>
+        :root {
+            --ser-color: #2980b9;
+            --tener-color: #c0392b;
+            --llamarse-color: #8e44ad;
+            --secondary-color: #f39c12;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notebook {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Sistema de Pestañas */
+        .tabs-header {
+            display: flex;
+            background: #eee;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #777;
+            transition: all 0.3s;
+            background: #e0e0e0;
+        }
+
+        .tab-btn.active[data-tab="verbs"] {
+            background: white;
+            color: var(--ser-color);
+            border-bottom: 4px solid var(--ser-color);
+        }
+
+        .tab-btn.active[data-tab="idcard"] {
+            background: white;
+            color: var(--llamarse-color);
+            border-bottom: 4px solid var(--llamarse-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed #ddd;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .english-note {
+            background: #fff9db;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.95em;
+            margin: 10px 0 20px 0;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        .vocab {
+            font-weight: bold;
+            text-decoration: underline dotted;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vocab::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #34495e;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .vocab:hover::after { opacity: 1; visibility: visible; }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .grammar-table th { color: white; }
+        .th-ser { background-color: var(--ser-color); }
+        .th-tener { background-color: var(--tener-color); }
+        .th-llamarse { background-color: var(--llamarse-color); }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ddd;
+        }
+
+        .text-fill-container {
+            line-height: 2.2;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1.1em;
+        }
+
+        /* Cédula Personal Styles */
+        .id-card {
+            border: 2px solid var(--ser-color);
+            border-radius: 10px;
+            padding: 20px;
+            background: #fff;
+            max-width: 450px;
+            margin: 20px auto;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .id-card h3 {
+            margin: 0 0 15px 0;
+            text-align: center;
+            color: var(--ser-color);
+            text-transform: uppercase;
+            font-size: 1.1em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .id-row { display: flex; margin-bottom: 12px; align-items: center; border-bottom: 1px solid #f9f9f9; padding-bottom: 4px; }
+        .id-label { font-weight: bold; width: 160px; color: #555; font-size: 0.9em; }
+        .id-value { flex: 1; font-style: italic; color: var(--ser-color); }
+        
+        .id-input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px dashed #777;
+            padding: 2px 5px;
+            font-family: inherit;
+            font-size: 0.95em;
+            outline: none;
+            background: transparent;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            resize: vertical;
+            margin-top: 15px;
+            outline-color: var(--ser-color);
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95em;
+            width: 130px;
+            transition: all 0.3s;
+        }
+
+        input.inline-input { width: 110px; display: inline-block; margin: 0 4px; }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 15px; }
+        .btn { color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
+        .btn-check { background-color: var(--ser-color); }
+        .btn-reset { background-color: #95a5a6; }
+        .btn:hover { filter: brightness(1.1); }
+
+        .feedback { margin-top: 15px; display: none; padding: 12px; border-radius: 6px; font-weight: bold; text-align: center; }
+        .correct-box { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-box { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+<div class="score-display">Puntos: <span id="total-score">0</span></div>
+
+<div class="notebook">
+    <div class="tabs-header">
+        <button class="tab-btn active" data-tab="verbs">Verbos Esenciales</button>
+        <button class="tab-btn" data-tab="idcard">Cédula Personal</button>
+    </div>
+
+    <!-- PESTAÑA 1: VERBOS -->
+    <div id="verbs" class="tab-content active">
+        <header>
+            <h1>Ser, Tener y Llamarse</h1>
+            <p>Conjugación y uso en presentaciones personales.</p>
+        </header>
+
+        <div class="section">
+            <h2> Repaso Gramatical</h2>
+            <div class="english-note">
+                Use <strong>SER</strong> for identity, <strong>TENER</strong> for age/possession, and <strong>LLAMARSE</strong> for names. Hover for translations!
+            </div>
+            <table class="grammar-table">
+                <thead>
+                    <tr><th>Persona</th><th class="th-ser">SER</th><th class="th-tener">TENER</th><th class="th-llamarse">LLAMARSE</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Yo</td><td>soy</td><td>tengo</td><td>me llamo</td></tr>
+                    <tr><td>Tú</td><td>eres</td><td>tienes</td><td>te llamas</td></tr>
+                    <tr><td>Él/Ella/Ud</td><td>es</td><td>tiene</td><td>se llama</td></tr>
+                    <tr><td>Nosotros/as</td><td>somos</td><td>tenemos</td><td>nos llamamos</td></tr>
+                    <tr><td>Vosotros/as</td><td>sois</td><td>tenéis</td><td>os llamáis</td></tr>
+                    <tr><td>Ellos/as/Uds</td><td>son</td><td>tienen</td><td>se llaman</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 1: Conjugación Mixta</h2>
+            <div class="exercise-block" id="ex1">
+                <div class="exercise-grid">
+                    <div class="question">1. Yo <input type="text" data-ans="me llamo"> Juan.</div>
+                    <div class="question">2. Nosotros <input type="text" data-ans="somos"> estudiantes.</div>
+                    <div class="question">3. Ella <input type="text" data-ans="tiene"> veinte años.</div>
+                    <div class="question">4. ¿Tú cómo <input type="text" data-ans="te llamas">?</div>
+                    <div class="question">5. Ellos <input type="text" data-ans="son"> de Inglaterra.</div>
+                    <div class="question">6. Vosotros <input type="text" data-ans="teneis"> una casa grande.</div>
+                    <div class="question">7. Mi madre <input type="text" data-ans="se llama"> Carmen.</div>
+                    <div class="question">8. Mis amigos <input type="text" data-ans="tienen"> mucha tarea.</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex1')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex1')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex1" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 2: Uso del Verbo Correcto</h2>
+            <div class="english-note">Choose between <strong>Ser</strong>, <strong>Tener</strong> or <strong>Llamarse</strong> according to the context.</div>
+            <div class="exercise-block" id="ex2">
+                <div class="exercise-grid">
+                    <div class="question">1. Mi perro <input type="text" data-ans="se llama"> Toby.</div>
+                    <div class="question">2. Yo <input type="text" data-ans="tengo"> dos hermanos.</div>
+                    <div class="question">3. Nosotros <input type="text" data-ans="somos"> simpáticos.</div>
+                    <div class="question">4. ¿Cuántos años <input type="text" data-ans="tienes"> tú?</div>
+                    <div class="question">5. Los profesores <input type="text" data-ans="son"> inteligentes.</div>
+                    <div class="question">6. Mis primos <input type="text" data-ans="se llaman"> Luis y Ana.</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex2')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex2')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex2" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 3: ¡Preséntate!</h2>
+            <div class="exercise-block" id="ex3">
+                <div class="text-fill-container" style="padding: 20px;">
+                    ¡Hola! Yo <input type="text" class="inline-input" data-ans="me llamo"> (llamarse) Alberto. Yo <input type="text" class="inline-input" data-ans="tengo"> (tener) diecisiete años y <input type="text" class="inline-input" data-ans="soy"> (ser) de Madrid. 
+                    <input type="text" class="inline-input" data-ans="Tengo"> (tener) una hermana que <input type="text" class="inline-input" data-ans="se llama"> (llamarse) Sofía. 
+                    Nosotros <input type="text" class="inline-input" data-ans="somos"> (ser) alumnos de esta escuela.
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex3')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex3')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex3" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 4: Mi mejor amiga</h2>
+            <div class="english-note">Complete this description of a friend. Use the verbs: <strong>Ser, Tener</strong> or <strong>Llamarse</strong>.</div>
+            <div class="exercise-block" id="ex4">
+                <div class="text-fill-container" style="padding: 20px;">
+                    Esta <input type="text" class="inline-input" data-ans="es"> (ser) Lucía. Ella <input type="text" class="inline-input" data-ans="es"> (ser) mi mejor amiga. Lucía <input type="text" class="inline-input" data-ans="tiene"> (tener) dieciséis años. 
+                    Ella <input type="text" class="inline-input" data-ans="es"> (ser) muy alta y <input type="text" class="inline-input" data-ans="tiene"> (tener) el pelo rubio. 
+                    Sus padres <input type="text" class="inline-input" data-ans="se llaman"> (llamarse) Roberto y Elena. Ellos <input type="text" class="inline-input" data-ans="son"> (ser) de Italia.
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex4')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex4')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex4" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 2: CÉDULA PERSONAL -->
+    <div id="idcard" class="tab-content">
+        <header>
+            <h1>La Cédula Personal</h1>
+            <p>Profiles and ID Cards in Spanish.</p>
+        </header>
+
+        <div class="section">
+            <h2> Ejemplo de Cédula</h2>
+            <div class="id-card">
+                <h3>Cédula Personal</h3>
+                <div class="id-row"><div class="id-label">Nombre:</div><div class="id-value">Marco Rossi</div></div>
+                <div class="id-row"><div class="id-label">Edad:</div><div class="id-value">19 años</div></div>
+                <div class="id-row"><div class="id-label">Nacionalidad:</div><div class="id-value">Italiano</div></div>
+                <div class="id-row"><div class="id-label">Profesión:</div><div class="id-value">Estudiante</div></div>
+                <div class="id-row"><div class="id-label">Idiomas:</div><div class="id-value">Italiano y español</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 5: Comprensión y Ficha</h2>
+            <div class="english-note">Read about Clara and complete her ID Card.</div>
+            <div class="text-fill-container" style="background-color: #f0f8ff; padding: 20px; margin-bottom: 20px;">
+                "¡Hola! Me llamo Clara Smith. Tengo veintiún años y soy de Londres, soy inglesa. Soy enfermera en un hospital. Hablo inglés y francés."
+            </div>
+            <div class="exercise-block" id="ex5">
+                <div class="id-card" style="border-color: var(--llamarse-color);">
+                    <h3>Cédula de Clara</h3>
+                    <div class="id-row"><div class="id-label">Nombre:</div><input type="text" class="id-input" data-ans="Clara Smith"></div>
+                    <div class="id-row"><div class="id-label">Edad:</div><input type="text" class="id-input" data-ans="21 años"></div>
+                    <div class="id-row"><div class="id-label">Nacionalidad:</div><input type="text" class="id-input" data-ans="Inglesa"></div>
+                    <div class="id-row"><div class="id-label">Profesión:</div><input type="text" class="id-input" data-ans="Enfermera"></div>
+                    <div class="id-row"><div class="id-label">Idiomas:</div><input type="text" class="id-input" data-ans="Ingles y frances"></div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" style="background-color: var(--llamarse-color);" onclick="checkExercise('ex5')">Corregir Ficha</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex5')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex5" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 6: Tu Presentación</h2>
+            <div class="english-note">Step 1: Fill your ID. Step 2: Write your presentation below.</div>
+            <div class="id-card" style="border-color: var(--tener-color);">
+                <h3>Mi Ficha</h3>
+                <div class="id-row"><div class="id-label">Nombre:</div><input type="text" class="id-input" placeholder="..."></div>
+                <div class="id-row"><div class="id-label">Edad:</div><input type="text" class="id-input" placeholder="..."></div>
+                <div class="id-row"><div class="id-label">Nacionalidad:</div><input type="text" class="id-input" placeholder="..."></div>
+                <div class="id-row"><div class="id-label">Profesión:</div><input type="text" class="id-input" placeholder="..."></div>
+            </div>
+            <textarea id="my-text" placeholder="Escribe aquí tu presentación completa... (Ej: Me llamo..., soy..., tengo...)"></textarea>
+            <button class="btn btn-reset" style="width: 100%; margin-top: 15px; background: var(--secondary-color);" onclick="alert('¡Excelente trabajo personalizando tu presentación!')">Guardar Borrador</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let globalScore = 0;
+    const completedBlocks = new Set();
+
+    // Tab Logic
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    function checkExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input[type="text"]');
+        const feedback = document.getElementById('feedback-' + id);
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const correctAns = input.getAttribute('data-ans').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAns === correctAns || (correctAns.includes(userAns) && userAns.length > 3)) {
+                input.style.borderColor = "#27ae60";
+                input.style.backgroundColor = "#e8f5e9";
+                correctCount++;
+            } else {
+                input.style.borderColor = "#e74c3c";
+                input.style.backgroundColor = "#ffebee";
+            }
+        });
+
+        feedback.style.display = "block";
+        if (correctCount === inputs.length) {
+            feedback.className = "feedback correct-box";
+            feedback.innerHTML = "¡Excelente! Todo es correcto. ";
+            if (!completedBlocks.has(id)) {
+                globalScore += correctCount;
+                completedBlocks.add(id);
+                document.getElementById('total-score').innerText = globalScore;
+            }
+        } else {
+            feedback.className = "feedback incorrect-box";
+            feedback.innerHTML = `Tienes ${inputs.length - correctCount} error(es). Revisa y repite.`;
+        }
+    }
+
+    function resetExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input');
+        const feedback = document.getElementById('feedback-' + id);
+        inputs.forEach(input => {
+            input.value = "";
+            input.style.borderColor = "#ddd";
+            input.style.backgroundColor = "white";
+        });
+        feedback.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,1419 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificación IB Español Ab Initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: #f1f1f1; }
+        .modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .card-hover { transition: all 0.2s ease-in-out; }
+        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        
+        .check-circle { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .completed-card .check-circle { background-color: #4f46e5; border-color: #4f46e5; color: white; }
+        .completed-card .card-content { opacity: 0.5; filter: grayscale(0.5); }
+        .completed-card { border-color: #4f46e5; }
+        
+        .text-type-tag {
+            background-color: #e0e7ff;
+            color: #4338ca;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        /* Styles for interactive exercises */
+        .exercise-input {
+            border-bottom: 2px solid #cbd5e1;
+            padding: 0 4px;
+            margin: 0 4px;
+            outline: none;
+            text-align: center;
+            color: #4f46e5;
+            font-weight: 600;
+            background: transparent;
+            transition: all 0.2s;
+            min-width: 80px;
+        }
+        .exercise-input:focus { border-color: #4f46e5; }
+        .exercise-input.correct { border-color: #22c55e; color: #15803d; background-color: #dcfce7; }
+        .exercise-input.incorrect { border-color: #ef4444; color: #b91c1c; background-color: #fee2e2; }
+        
+        .feedback-icon { margin-left: 5px; opacity: 0; transition: opacity 0.2s; }
+        .feedback-icon.show { opacity: 1; }
+
+        /* Flashcard Styles */
+        .vocab-card {
+            perspective: 1000px;
+            height: 80px;
+            cursor: pointer;
+        }
+        .vocab-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .vocab-card:hover .vocab-inner {
+            transform: rotateY(180deg);
+        }
+        .vocab-front, .vocab-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .vocab-front {
+            background-color: #ffffff;
+            color: #374151;
+        }
+        .vocab-back {
+            background-color: #f0fdf4;
+            color: #15803d;
+            transform: rotateY(180deg);
+            border: 1px solid #bbf7d0;
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-indigo-700 flex items-center gap-2">
+                    <i class="fas fa-graduation-cap"></i> IB Español Ab Initio
+                </h1>
+                <p class="text-sm text-gray-500">Suite de Aprendizaje v4.0 (Audio Mejorado)</p>
+            </div>
+            <div class="w-full sm:w-auto text-right">
+                <div class="flex justify-between sm:justify-end items-center mb-1 gap-4">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-gray-400">Tu Progreso</div>
+                    <button onclick="resetProgress()" class="text-xs text-red-400 hover:text-red-600 underline">Resetear Todo</button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-full sm:w-48 h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                        <div id="progressBar" class="h-full bg-indigo-600 w-0 transition-all duration-700 ease-out rounded-full"></div>
+                    </div>
+                    <span id="progressText" class="text-sm font-bold text-indigo-600 min-w-[3rem]">0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Legend -->
+        <div class="bg-gray-50 border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 overflow-x-auto">
+                <div class="flex space-x-2 text-xs whitespace-nowrap pb-1">
+                    <span class="px-2 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200 font-medium">Identidades</span>
+                    <span class="px-2 py-1 rounded-full bg-green-100 text-green-800 border border-green-200 font-medium">Experiencias</span>
+                    <span class="px-2 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200 font-medium">Ingenio Humano</span>
+                    <span class="px-2 py-1 rounded-full bg-orange-100 text-orange-800 border border-orange-200 font-medium">Org. Social</span>
+                    <span class="px-2 py-1 rounded-full bg-teal-100 text-teal-800 border border-teal-200 font-medium">Planeta</span>
+                    <span class="px-2 py-1 rounded-full bg-gray-800 text-white border border-gray-600 font-medium">Examen Final</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div id="calendarGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Cards will be injected here by JS -->
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl border-t-4 border-indigo-600">
+                    
+                    <!-- Modal Header -->
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-between items-start">
+                        <div>
+                            <span id="modalThemeBadge" class="mb-2 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset">Tema</span>
+                            <div id="modalTextTypeBadge" class="text-type-tag ml-2">TIPO DE TEXTO</div>
+                            <h3 class="text-xl font-bold leading-6 text-gray-900 mt-2" id="modalTitle">Título Clase</h3>
+                        </div>
+                        <button type="button" class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none" onclick="closeModal()">
+                            <span class="sr-only">Cerrar</span>
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="px-4 py-4 sm:p-6 modal-content max-h-[80vh] overflow-y-auto">
+                        
+                        <!-- Objective Box -->
+                        <div class="rounded-md bg-indigo-50 p-4 mb-4 flex justify-between items-start">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-bullseye text-indigo-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-sm font-medium text-indigo-800">Objetivo Principal</h3>
+                                    <div class="mt-2 text-sm text-indigo-700" id="modalObjective">...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pro Tip Box -->
+                        <div class="rounded-md bg-amber-50 p-4 mb-6 border border-amber-100">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-lightbulb text-amber-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide">Consejo Pro IB</h3>
+                                    <div class="mt-1 text-sm text-amber-700 italic" id="modalProTip">...</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Basic Details Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="border border-gray-100 rounded-lg p-3 bg-white shadow-sm">
+                                <h4 class="text-xs font-bold text-gray-400 uppercase mb-2 flex items-center gap-2">
+                                    <i class="fas fa-chalkboard-teacher"></i> Actividad (40 min)
+                                </h4>
+                                <p id="modalActivity" class="text-sm text-gray-600">...</p>
+                            </div>
+
+                            <div class="border border-yellow-100 rounded-lg p-3 bg-yellow-50 shadow-sm">
+                                <h4 class="text-xs font-bold text-yellow-600 uppercase mb-2 flex items-center gap-2">
+                                    <i class="fas fa-book-reader"></i> Tarea
+                                </h4>
+                                <p id="modalHomework" class="text-sm text-yellow-700">...</p>
+                            </div>
+                        </div>
+
+                        <!-- Vocabulary Flashcards -->
+                        <div class="mb-6">
+                            <h4 class="text-sm font-bold text-gray-900 mb-3 flex items-center">
+                                <i class="fas fa-tags mr-2 text-green-600"></i> Vocabulario Clave (Pasa el ratón)
+                            </h4>
+                            <div id="modalVocabGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <!-- Flashcards injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Teacher Kit (Collapsible Sections) -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <h4 class="text-sm font-bold text-gray-900 mb-4 flex items-center">
+                                <i class="fas fa-toolbox mr-2 text-indigo-600"></i> Kit de Práctica
+                            </h4>
+                            
+                            <!-- CULTURAL SECTION -->
+                            <details class="group mb-3">
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none bg-white border border-rose-200 p-3 rounded-lg shadow-sm hover:bg-rose-50 text-rose-700 transition-colors">
+                                    <span><i class="fas fa-globe-americas mr-2 w-5"></i> Rincón Cultural (España y Latam)</span>
+                                    <span class="transition group-open:rotate-180 text-rose-400"><i class="fas fa-chevron-down"></i></span>
+                                </summary>
+                                <div class="text-gray-600 mt-2 p-4 bg-rose-50 border border-rose-100 rounded-lg text-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <h5 class="font-bold text-rose-800" id="modalCulturalTitle"></h5>
+                                        <button onclick="speakText('cultural')" class="text-xs bg-rose-100 text-rose-700 px-3 py-1 rounded-full hover:bg-rose-200 transition-colors flex items-center shadow-sm">
+                                            <i class="fas fa-volume-up mr-1"></i> Audio
+                                        </button>
+                                    </div>
+                                    <p class="leading-relaxed" id="modalCulturalText"></p>
+                                </div>
+                            </details>
+
+                            <!-- Grammar Guide -->
+                            <details class="group mb-3">
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:bg-gray-50 text-indigo-700 transition-colors">
+                                    <span><i class="fas fa-spell-check mr-2 w-5"></i> Repaso Gramatical</span>
+                                    <span class="transition group-open:rotate-180 text-gray-400"><i class="fas fa-chevron-down"></i></span>
+                                </summary>
+                                <div class="text-gray-600 mt-2 p-4 bg-gray-50 border border-gray-100 rounded-lg text-sm whitespace-pre-line leading-relaxed" id="modalGrammarGuide"></div>
+                            </details>
+
+                            <!-- Interactive Exercises -->
+                            <details class="group mb-3" open>
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:bg-gray-50 text-indigo-700 transition-colors">
+                                    <span><i class="fas fa-pencil-alt mr-2 w-5"></i> Ejercicios Interactivos</span>
+                                    <span class="transition group-open:rotate-180 text-gray-400"><i class="fas fa-chevron-down"></i></span>
+                                </summary>
+                                <div class="text-gray-600 mt-2 p-5 bg-white border border-gray-200 rounded-lg shadow-inner">
+                                    <div id="interactiveExercisesContainer" class="space-y-4 mb-4">
+                                        <!-- Exercises injected here -->
+                                    </div>
+                                    <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                                        <button onclick="checkAnswers()" class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-bold hover:bg-indigo-700 transition shadow-sm">
+                                            <i class="fas fa-check mr-1"></i> Corregir
+                                        </button>
+                                        <button onclick="resetExercises()" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-md text-sm font-medium hover:bg-gray-200 transition">
+                                            <i class="fas fa-redo mr-1"></i> Reintentar
+                                        </button>
+                                        <span id="exerciseScore" class="ml-auto font-bold text-lg text-indigo-600 opacity-0 transition-opacity"></span>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- Reading / Questions + TTS -->
+                            <details class="group mb-3">
+                                <summary class="flex justify-between items-center font-medium cursor-pointer list-none bg-white border border-gray-200 p-3 rounded-lg shadow-sm hover:bg-gray-50 text-indigo-700 transition-colors">
+                                    <span><i class="fas fa-file-alt mr-2 w-5"></i> Texto y Preguntas</span>
+                                    <span class="transition group-open:rotate-180 text-gray-400"><i class="fas fa-chevron-down"></i></span>
+                                </summary>
+                                <div class="text-gray-600 mt-2 p-4 bg-gray-50 border border-gray-100 rounded-lg text-sm">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-xs font-bold text-gray-400 uppercase">Texto de Lectura</span>
+                                        <button onclick="speakText('reading')" class="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full hover:bg-indigo-200 transition-colors flex items-center shadow-sm">
+                                            <i class="fas fa-volume-up mr-1"></i> Escuchar Texto
+                                        </button>
+                                    </div>
+                                    <div class="mb-4 p-4 bg-white rounded border-l-4 border-indigo-300 shadow-sm italic text-gray-700 leading-relaxed font-serif" id="modalReadingText"></div>
+                                    <p class="font-bold text-gray-800 mb-2 text-xs uppercase tracking-wider">Preguntas de Comprensión:</p>
+                                    <ul id="modalQuestions" class="list-decimal pl-5 space-y-2 text-gray-700"></ul>
+                                </div>
+                            </details>
+
+                            <!-- Notes Section -->
+                            <div class="mt-6 border-t border-gray-200 pt-4">
+                                <label for="classNotes" class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-sticky-note mr-1 text-yellow-500"></i> Mis Notas Personales
+                                </label>
+                                <textarea id="classNotes" rows="3" class="shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md p-2 bg-yellow-50" placeholder="Escribe aquí tus dudas, vocabulario extra o recordatorios..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 gap-2 border-t border-gray-200">
+                        <button type="button" id="btnMarkComplete" onclick="toggleCompleteFromModal()" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:w-auto transition-colors">
+                            Marcar como Hecho
+                        </button>
+                        <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+            <p>Diseñado para IB Español Ab Initio &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        // Full Dataset with Regional Accents (added 'region' field)
+        const classes = [
+            // FASE 1: Identidades
+            { 
+                id: 1, 
+                title: "Diagnóstico + Presentaciones", 
+                theme: "Identidades", 
+                color: "blue", 
+                region: "es-ES", // Spain default
+                grammar: "Presente de Indicativo", 
+                textType: "Blog Personal", 
+                objective: "Evaluar nivel inicial y romper el hielo.", 
+                proTip: "Para el IB, un BLOG debe tener: Título atractivo, Fecha, Nombre de Autor y una llamada a la acción al final (ej. '¡Comenta abajo!').",
+                culturalTitle: "Los Apellidos en el Mundo Hispano",
+                culturalText: "A diferencia de muchos países, en España y Latinoamérica usamos dos apellidos: el primero del padre y el primero de la madre. Ejemplo: Gabriel García Márquez (García es del padre, Márquez de la madre). ¡Las mujeres no pierden sus apellidos al casarse!",
+                vocabulary: [
+                    { es: "Me llamo", en: "My name is" },
+                    { es: "Soy de...", en: "I am from..." },
+                    { es: "Tengo ... años", en: "I am ... years old" },
+                    { es: "Me gusta", en: "I like" },
+                    { es: "El apellido", en: "Surname" }
+                ],
+                activity: "<b>15':</b> 'Speed Dating'. <br><b>20':</b> Prueba escrita: <b>Entrada de Blog</b> (Presentación Personal).", 
+                homework: "Traer una foto de su familia.",
+                grammarGuide: "• SER vs ESTAR vs TENER:\n- Soy Ana (Identidad)\n- Estoy cansada (Estado)\n- Tengo 15 años (Edad/Posesión)\n\n• LLAMARSE:\n- Me llamo, Te llamas, Se llama.",
+                interactiveExercises: [
+                    { q: "Yo _____ (ser) de México.", a: ["soy"] },
+                    { q: "Ella _____ (tener) dos hermanos.", a: ["tiene"] },
+                    { q: "Nosotros _____ (estar) contentos hoy.", a: ["estamos"] },
+                    { q: "¿Cómo te _____ (llamar) tú?", a: ["llamas"] }
+                ],
+                readingText: "TÍTULO: ¡Bienvenidos a mi mundo! 🌎\nFECHA: 15 de septiembre\nAUTOR: Carlos\n\n¡Hola a todos! 👋\nMe llamo Carlos y tengo dieciséis años. Soy de Colombia, pero ahora vivo en Madrid con mi familia. Escribo este blog para practicar mi español y hacer amigos.\n\nSoy estudiante y me gusta mucho el fútbol ⚽. Mi equipo favorito es el Real Madrid. También me gusta escuchar música pop y comer pizza los viernes.\n\n¿Y tú? ¿Cómo te llamas? ¿De dónde eres? ¡Escribe en los comentarios! 💬",
+                questions: ["¿Qué tipo de texto es?", "¿Quién es el autor y cuándo escribió?", "¿Cuál es el propósito del blog?", "¿Qué pide a los lectores al final?"]
+            },
+            { 
+                id: 2, 
+                title: "La Familia y Relaciones", 
+                theme: "Identidades", 
+                color: "blue", 
+                region: "es-AR", // Argentina hint
+                grammar: "Adjetivos y Concordancia", 
+                textType: "Correo Electrónico (Informal)", 
+                objective: "Describir personas en formato email.", 
+                proTip: "En Paper 1 (Email), si olvidas la fecha o la despedida, pierdes puntos de formato inmediatamente.",
+                culturalTitle: "La Familia Extendida y los Domingos",
+                culturalText: "La familia hispana no es solo padres e hijos; incluye abuelos, tíos y primos. Es muy común reunirse todos los domingos para una gran comida familiar. En Argentina es típico el asado, y en España, la paella o el cocido.",
+                vocabulary: [
+                    { es: "Padre/Madre", en: "Father/Mother" },
+                    { es: "Hermanos", en: "Siblings" },
+                    { es: "Abuelos", en: "Grandparents" },
+                    { es: "Simpático/a", en: "Nice/Friendly" },
+                    { es: "Alto/Bajo", en: "Tall/Short" },
+                    { es: "Querido/a...", en: "Dear..." }
+                ],
+                activity: "<b>10':</b> Describir foto. <br><b>20':</b> Intro a <b>Email Informal</b>: Saludos y estructura.", 
+                homework: "Escribir email (70 pals) describiendo a familia.",
+                grammarGuide: "• Adjetivos Posesivos: Mi(s), Tu(s), Su(s).\n• Concordancia: El chico altO, La chica altA.\n• Ser + Descripción Física/Personalidad.",
+                interactiveExercises: [
+                    { q: "Mi madre es _____ (alto).", a: ["alta"] },
+                    { q: "Mis hermanos son _____ (inteligente).", a: ["inteligentes"] },
+                    { q: "Mi padre es _____ (funny/gracioso).", a: ["gracioso", "divertido"] },
+                    { q: "(My) _____ perro es negro.", a: ["mi"] }
+                ],
+                readingText: "Asunto: Mi familia\nHola Juan: \n¿Cómo estás? Te escribo para hablar de mi familia. Mi padre se llama Luis y es muy alto. Mi madre es rubia y muy simpática. Tengo un hermano pequeño que es un poco travieso. \nUn abrazo,\nMaría.",
+                questions: ["¿Quién escribe el correo?", "¿Cómo es el padre de María?", "¿Qué dice sobre su hermano?", "¿Qué saludo y despedida usa?"]
+            },
+            { 
+                id: 3, 
+                title: "Salud y Bienestar", 
+                theme: "Identidades", 
+                color: "blue", 
+                region: "es-ES",
+                grammar: "Verbos 'Gustar' / Doler", 
+                textType: "Diario Personal", 
+                objective: "Expresar sentimientos y dolencias.", 
+                proTip: "Usa 'Me siento mal' (reflexivo) o 'Estoy enfermo'. Evita 'Soy enfermo' (incorrecto).",
+                culturalTitle: "La Dieta Mediterránea y la Sanidad",
+                culturalText: "España es famosa por la Dieta Mediterránea (aceite de oliva, pescado, verduras), considerada Patrimonio Cultural Inmaterial de la Humanidad. Además, el sistema de salud público es muy importante en la cultura española.",
+                vocabulary: [
+                    { es: "Me duele", en: "It hurts me" },
+                    { es: "La cabeza", en: "Head" },
+                    { es: "El estómago", en: "Stomach" },
+                    { es: "Tener fiebre", en: "To have a fever" },
+                    { es: "Estar cansado", en: "To be tired" }
+                ],
+                activity: "<b>15':</b> Vocabulario cuerpo. <br><b>20':</b> Role-play médico.", 
+                homework: "Escribir <b>Entrada de Diario</b>: 'El día que me sentí enfermo'.",
+                grammarGuide: "• GUSTAR / DOLER funcionan igual:\n- Me duele LA cabeza (singular)\n- Me duelen LOS pies (plural)\n• Estar + enfermo/cansado.",
+                interactiveExercises: [
+                    { q: "A mí me _____ (gustar) las manzanas.", a: ["gustan"] },
+                    { q: "A Juan le _____ (doler) la cabeza.", a: ["duele"] },
+                    { q: "Me _____ (doler) mucho las piernas.", a: ["duelen"] },
+                    { q: "¿Te _____ (gustar) el chocolate?", a: ["gusta"] }
+                ],
+                readingText: "Querido diario:\nHoy no estoy bien. Me duele mucho la garganta y tengo fiebre. No fui a la escuela. Mi mamá dice que tengo que beber agua y descansar. ¡Qué aburrido!",
+                questions: ["¿Qué le duele a la persona?", "¿Tiene fiebre?", "¿Fue a la escuela?", "¿Qué recomendación le dio su mamá?"]
+            },
+            { 
+                id: 4, 
+                title: "Identidades: Cierre", 
+                theme: "Identidades", 
+                color: "blue", 
+                region: "es-ES",
+                grammar: "Reflexivos (Rutina)", 
+                textType: "Redes Sociales", 
+                objective: "Hablar de rutina diaria.", 
+                proTip: "Para describir rutinas, usa conectores de tiempo: 'Primero me ducho, luego desayuno'.",
+                culturalTitle: "La Siesta y los Horarios Tardíos",
+                culturalText: "En España se come tarde (14:00-15:00) y se cena tarde (21:00-22:00). La 'Siesta' es famosa, pero hoy en día poca gente la duerme a diario por trabajo, aunque en verano y fin de semana sigue siendo sagrada.",
+                vocabulary: [
+                    { es: "Levantarse", en: "To get up" },
+                    { es: "Ducharse", en: "To shower" },
+                    { es: "Desayunar", en: "To have breakfast" },
+                    { es: "Acostarse", en: "To go to bed" },
+                    { es: "Temprano/Tarde", en: "Early/Late" }
+                ],
+                activity: "<b>10':</b> Repaso reflexivos. <br><b>25':</b> Reading sobre rutinas.", 
+                homework: "Post de Instagram sobre rutina ideal.",
+                grammarGuide: "• Verbos Reflexivos (Acción recae en uno mismo):\n- Levantarse, Ducharse, Lavarse.\n• Pronombres: Me, Te, Se, Nos, Os, Se.\n• Posición: ME levanto a las 8.",
+                interactiveExercises: [
+                    { q: "Yo _____ (ducharse) por la mañana.", a: ["me ducho"] },
+                    { q: "Ella _____ (lavarse) los dientes.", a: ["se lava"] },
+                    { q: "Nosotros _____ (levantarse) temprano.", a: ["nos levantamos"] },
+                    { q: "Tú _____ (vestirse) muy rápido.", a: ["te vistes"] }
+                ],
+                readingText: "Post de Instagram (@vidana):\n'¡Buenos días! ☀️ Hoy me levanto a las 6:00 AM para hacer yoga. Después me ducho y desayuno fruta fresca. ¡Lista para el día! ✨ #rutina #salud'",
+                questions: ["¿A qué hora se levanta?", "¿Qué hace primero?", "¿Qué desayuna?", "¿Es un texto formal o informal?"]
+            },
+            
+            // FASE 2: Experiencias
+            { 
+                id: 5, 
+                title: "Vacaciones y Viajes", 
+                theme: "Experiencias", 
+                color: "green", 
+                region: "es-PE", // Peru hint
+                grammar: "Pretérito Indefinido", 
+                textType: "Blog de Viajes", 
+                objective: "Narrar experiencias pasadas.", 
+                proTip: "Aprende los 5 irregulares clave de memoria: Fui, Tuve, Estuve, Hice, Dije.",
+                culturalTitle: "Machu Picchu y la Alhambra",
+                culturalText: "El turismo es vital. Machu Picchu (Perú) es la joya del imperio Inca. En España, la Alhambra de Granada es el monumento más visitado, mostrando la influencia árabe (Al-Ándalus) en la arquitectura y cultura.",
+                vocabulary: [
+                    { es: "Viajar", en: "To travel" },
+                    { es: "Ayer", en: "Yesterday" },
+                    { es: "El año pasado", en: "Last year" },
+                    { es: "Fui", en: "I went" },
+                    { es: "Increíble", en: "Incredible" }
+                ],
+                activity: "<b>15':</b> Marcadores temporales. <br><b>20':</b> Escribir <b>Blog</b> viaje.", 
+                homework: "Lista de 10 verbos irregulares.",
+                grammarGuide: "• Indefinido (Acciones terminadas):\n- AR: é, aste, ó, amos, aron\n- ER/IR: í, iste, ió, imos, ieron\n• Irregulares clave: Fui (Ser/Ir), Tuve (Tener), Hice (Hacer).",
+                interactiveExercises: [
+                    { q: "Ayer yo _____ (ir) al cine.", a: ["fui"] },
+                    { q: "Nosotros _____ (comer) paella el sábado.", a: ["comimos"] },
+                    { q: "Ellos _____ (viajar) a España.", a: ["viajaron"] },
+                    { q: "Tú _____ (hacer) la tarea.", a: ["hiciste"] }
+                ],
+                readingText: "TÍTULO: Mi aventura en los Andes 🏔️\nFECHA: 20 de julio\nAUTOR: Sofía\n\nEl año pasado viajé a Perú y fue la mejor experiencia de mi vida. Visité Machu Picchu y me quedé sin palabras. Comí ceviche en Lima (¡delicioso pero picante!) y caminé mucho.\n\nHizo mucho sol, pero por la noche hacía frío. Compré un poncho de lana de alpaca. ¡Tenéis que ir alguna vez!\n\nDeja tu comentario si te gusta viajar. 💬",
+                questions: ["¿A qué país viajó?", "¿Qué monumento visitó?", "¿Qué plato típico comió?", "¿Qué compró?"]
+            },
+            { 
+                id: 6, 
+                title: "Celebraciones y Fiestas", 
+                theme: "Experiencias", 
+                color: "green", 
+                region: "es-MX", // Mexico hint
+                grammar: "Pretérito Imperfecto", 
+                textType: "Invitación", 
+                objective: "Describir el pasado.", 
+                proTip: "Usa el Imperfecto para el 'escenario' (había música, hacía sol) y el Indefinido para la 'acción' (llegué, bailé).",
+                culturalTitle: "Día de Muertos vs Halloween",
+                culturalText: "El Día de Muertos (México, 1 y 2 de nov) NO es un Halloween mexicano. Es una celebración colorida para honrar a los ancestros con altares (ofrendas), flores de cempasúchil y calaveritas de azúcar. Es Patrimonio de la Humanidad.",
+                vocabulary: [
+                    { es: "La fiesta", en: "Party" },
+                    { es: "Celebrar", en: "To celebrate" },
+                    { es: "Había...", en: "There was/were..." },
+                    { es: "Bailar", en: "To dance" },
+                    { es: "Regalo", en: "Gift" }
+                ],
+                activity: "<b>10':</b> Indef vs Imp. <br><b>20':</b> Oral Fiestas.", 
+                homework: "Diseñar una <b>Invitación</b>.",
+                grammarGuide: "• Imperfecto (Descripciones/Hábitos en pasado):\n- AR: aba, abas, aba...\n- ER/IR: ía, ías, ía...\n• Usos: 'Hacía sol', 'Yo comía dulces cuando era niño'.",
+                interactiveExercises: [
+                    { q: "Cuando era niño, yo _____ (jugar) al fútbol.", a: ["jugaba"] },
+                    { q: "La casa _____ (ser) grande y bonita.", a: ["era"] },
+                    { q: "Siempre _____ (comer) con mi abuela.", a: ["comía"] },
+                    { q: "(Hacer) _____ mucho frío ese día.", a: ["hacía"] }
+                ],
+                readingText: "Invitación:\n'¡Estás invitado a mi fiesta de cumpleaños! 🎂\nCuándo: El sábado a las 18:00.\nDónde: En mi casa (Calle Sol, 12).\nHabrá comida típica (tacos y nachos), música latina y mucho baile. ¡No faltes!'",
+                questions: ["¿Qué evento es?", "¿Cuándo es la fiesta?", "¿Qué habrá en la fiesta?", "¿Dónde se celebra?"]
+            },
+            { 
+                id: 7, 
+                title: "Ocio y Tiempo Libre", 
+                theme: "Experiencias", 
+                color: "green", 
+                region: "es-ES",
+                grammar: "Contraste de Pasados", 
+                textType: "Artículo (Revista escolar)", 
+                objective: "Narrar vs Describir.", 
+                proTip: "El contraste pasado es vital para sacar un 6 o 7 en escritura. Muestra control de la gramática.",
+                culturalTitle: "El Fútbol: Más que un deporte",
+                culturalText: "En el mundo hispano, el fútbol es casi una religión. Equipos como el Real Madrid, Barça, Boca Juniors o River Plate paralizan las ciudades cuando juegan. Es el tema de conversación número uno en bares y plazas.",
+                vocabulary: [
+                    { es: "Tiempo libre", en: "Free time" },
+                    { es: "Divertido", en: "Fun" },
+                    { es: "Jugar al...", en: "To play (sport)" },
+                    { es: "Leer", en: "To read" },
+                    { es: "Mientras", en: "While" }
+                ],
+                activity: "<b>15':</b> Vocabulario hobbies. <br><b>20':</b> Listening.", 
+                homework: "Escribir un <b>Artículo</b> escolar.",
+                grammarGuide: "• Indefinido avanza la historia (acción).\n• Imperfecto detiene el tiempo (descripción).\n• Ejemplo: 'Yo caminaba (Imp) por el parque cuando vi (Ind) un perro'.",
+                interactiveExercises: [
+                    { q: "Yo _____ (leer) cuando entró mi madre.", a: ["leía"] },
+                    { q: "Mi madre _____ (entrar) mientras yo leía.", a: ["entró"] },
+                    { q: "_____ (ser) las ocho cuando llegó el taxi.", a: ["eran"] },
+                    { q: "Mientras yo _____ (estudiar), mi hermano dormía.", a: ["estudiaba"] }
+                ],
+                readingText: "REVISTA ESCOLAR 'EL ESTUDIANTE'\n\nUn fin de semana de cine\nPor: Ana Ruiz\n\nEl fin de semana pasado fui al cine con mis amigos. La película era muy larga pero interesante. Había mucha gente en la sala porque era el día del estreno. Comimos palomitas gigantes y nos divertimos mucho. Al salir, llovía un poco, así que corrimos al autobús.",
+                questions: ["¿Qué hizo el fin de semana?", "¿Cómo era la película?", "¿Había poca o mucha gente?", "¿Qué tiempo hacía al salir?"]
+            },
+            { 
+                id: 8, 
+                title: "Experiencias: Cierre", 
+                theme: "Experiencias", 
+                color: "green", 
+                region: "es-ES",
+                grammar: "Perífrasis (Ir a + Inf)", 
+                textType: "Ensayo (Narrativo)", 
+                objective: "Simulacro de escritura.", 
+                proTip: "Planifica tu escritura 5 minutos antes de empezar. Un buen esquema (intro, desarrollo, conclusión) te salva la vida.",
+                culturalTitle: "El Camino de Santiago",
+                culturalText: "El Camino de Santiago es una famosa peregrinación en el norte de España. Personas de todo el mundo caminan cientos de kilómetros hasta la catedral de Santiago de Compostela, no solo por religión, sino por deporte y espiritualidad.",
+                vocabulary: [
+                    { es: "Voy a...", en: "I am going to..." },
+                    { es: "Planear", en: "To plan" },
+                    { es: "Primero", en: "First" },
+                    { es: "Luego/Después", en: "Then/After" },
+                    { es: "Finalmente", en: "Finally" }
+                ],
+                activity: "<b>40':</b> Simulacro Paper 1.", 
+                homework: "Terminar texto.",
+                grammarGuide: "• Ir a + Infinitivo (Futuro próximo):\n- Voy a comer.\n- Vamos a estudiar.\n• Estructura de historia: Introducción, Nudo, Desenlace.",
+                interactiveExercises: [
+                    { q: "Mañana yo _____ (ir) a jugar tenis.", a: ["voy"] },
+                    { q: "¿Qué _____ (ir) a hacer tú el sábado?", a: ["vas"] },
+                    { q: "Nosotros _____ (ir) a visitar el museo.", a: ["vamos"] },
+                    { q: "Ella _____ (ir) a comprar ropa.", a: ["va"] }
+                ],
+                readingText: "Prompt de Ensayo:\n'Escribe una historia sobre un viaje escolar que salió mal. Usa conectores como: Primero, después, de repente, finalmente.'\n(Recuerda incluir una descripción del lugar, el problema que ocurrió y cómo se solucionó).",
+                questions: ["(Este es un ejercicio de escritura creativa, no de lectura).", "Enfocarse en usar pasado correctamente."]
+            },
+            
+            // FASE 3: Ingenio Humano
+            { 
+                id: 9, 
+                title: "Tecnología y Redes", 
+                theme: "Ingenio Humano", 
+                color: "purple", 
+                region: "es-MX",
+                grammar: "Futuro Simple", 
+                textType: "Ensayo (Opinión)", 
+                objective: "Argumentar y opinar.", 
+                proTip: "Para expresar opinión, no uses siempre 'Pienso que'. Usa 'Desde mi punto de vista', 'Creo que', 'Me parece que'.",
+                culturalTitle: "WhatsApp y los Audios",
+                culturalText: "En España y Latinoamérica, WhatsApp es la herramienta de comunicación principal, mucho más que el SMS o el correo personal. Es culturalmente muy común enviar 'notas de voz' (audios) muy largas en lugar de escribir.",
+                vocabulary: [
+                    { es: "El móvil", en: "Mobile phone" },
+                    { es: "Redes sociales", en: "Social media" },
+                    { es: "Opinar", en: "To opine" },
+                    { es: "Creo que", en: "I believe that" },
+                    { es: "Ventaja", en: "Advantage" }
+                ],
+                activity: "<b>15':</b> Móvil Pros/Contras. <br><b>20':</b> Debate.", 
+                homework: "Ensayo: '¿Móviles en el futuro?'",
+                grammarGuide: "• Futuro Simple (Infinitivo + é, ás, á...):\n- Hablaré, Comerás, Vivirá.\n• Irregulares: Haré (Hacer), Tendré (Tener), Diré (Decir).\n• Frases de opinión: Creo que, Pienso que, En mi opinión.",
+                interactiveExercises: [
+                    { q: "En el futuro, los coches _____ (volar).", a: ["volarán"] },
+                    { q: "Yo _____ (ser) médico.", a: ["seré"] },
+                    { q: "Nosotros _____ (tener) robots en casa.", a: ["tendremos"] },
+                    { q: "¿Qué _____ (hacer) tú mañana?", a: ["harás"] }
+                ],
+                readingText: "Ensayo de Opinión (Extracto):\n'Creo que la tecnología es buena, pero peligrosa. Por un lado, nos conecta con amigos de todo el mundo. Por otro lado, pasamos demasiado tiempo frente a la pantalla y olvidamos hablar cara a cara. Es importante buscar un equilibrio para no perder nuestras tradiciones.'",
+                questions: ["¿Cuál es la opinión principal?", "¿Qué ventaja menciona?", "¿Qué desventaja menciona?", "¿Qué solución propone?"]
+            },
+            { 
+                id: 10, 
+                title: "Entretenimiento", 
+                theme: "Ingenio Humano", 
+                color: "purple", 
+                region: "es-MX",
+                grammar: "Comparativos", 
+                textType: "Reseña (Review)", 
+                objective: "Evaluar y recomendar.", 
+                proTip: "En una reseña, usa adjetivos variados. No digas solo 'bueno' o 'malo', usa 'emocionante', 'aburrido', 'genial', 'lento'.",
+                culturalTitle: "El Cine Hispano y las Telenovelas",
+                culturalText: "El cine español (con directores como Almodóvar) y mexicano (Iñárritu, Del Toro) es mundialmente famoso. Además, las telenovelas son un fenómeno cultural masivo en Latinoamérica, exportadas a todo el mundo.",
+                vocabulary: [
+                    { es: "Película", en: "Movie" },
+                    { es: "Mejor que", en: "Better than" },
+                    { es: "Peor que", en: "Worse than" },
+                    { es: "Recomendar", en: "To recommend" },
+                    { es: "Estrellas", en: "Stars" }
+                ],
+                activity: "<b>15':</b> Cine vs Streaming. <br><b>20':</b> Estructura Reseña.", 
+                homework: "Escribir <b>Reseña</b>.",
+                grammarGuide: "• Comparativos:\n- Más ... que (Más alto que yo)\n- Menos ... que\n- Tan ... como (Tan listo como tú)\n• Superlativos: El más rápido, La mejor película.",
+                interactiveExercises: [
+                    { q: "El cine es _____ (más/menos) caro que Netflix.", a: ["más"] },
+                    { q: "María es tan alta _____ (como/que) su madre.", a: ["como"] },
+                    { q: "Este libro es el _____ (mejor) de todos.", a: ["mejor"] },
+                    { q: "Mi coche es _____ (más) rápido que el tuyo.", a: ["más"] }
+                ],
+                readingText: "Reseña de Película: 'Coco'\nCalificación: ⭐⭐⭐⭐⭐\n'Coco es una película visualmente impresionante que muestra la tradición del Día de Muertos. La música es emocionante y la historia te hace llorar. Es mejor que cualquier otra película de animación reciente. La recomiendo a toda la familia.'",
+                questions: ["¿Qué tradición muestra la película?", "¿Cómo es la música?", "¿Es mejor o peor que otras?", "¿A quién se la recomienda?"]
+            },
+            { 
+                id: 11, 
+                title: "Transporte e Innovación", 
+                theme: "Ingenio Humano", 
+                color: "purple", 
+                region: "es-US", // Generic latam
+                grammar: "Imperativo", 
+                textType: "Folleto (Brochure)", 
+                objective: "Dar instrucciones.", 
+                proTip: "Los folletos necesitan títulos atractivos y listas con viñetas. Usa el imperativo para 'mandar' al lector a hacer cosas divertidas.",
+                culturalTitle: "Del Metro a los Chicken Buses",
+                culturalText: "El transporte varía mucho. Madrid tiene uno de los mejores Metros de Europa. En contraste, en Centroamérica son famosos los 'Chicken Buses' (autobuses escolares de EEUU decorados con colores neón) y en Argentina los 'Colectivos'.",
+                vocabulary: [
+                    { es: "Visite", en: "Visit (Imp)" },
+                    { es: "Camine", en: "Walk (Imp)" },
+                    { es: "Pruebe", en: "Try (Imp)" },
+                    { es: "Autobús/Metro", en: "Bus/Subway" },
+                    { es: "Ciudad", en: "City" }
+                ],
+                activity: "<b>15':</b> Direcciones. <br><b>20':</b> Crear <b>Folleto</b>.", 
+                homework: "Terminar folleto.",
+                grammarGuide: "• Imperativo (Tú / Usted):\n- Habla / Hable\n- Come / Coma\n- Escribe / Escriba\n• Irregulares: Ve (Ir), Haz (Hacer), Sé (Ser), Ten (Tener).",
+                interactiveExercises: [
+                    { q: "(Tú) _____ (girar) a la derecha.", a: ["gira"] },
+                    { q: "(Usted) _____ (seguir) todo recto.", a: ["siga"] },
+                    { q: "(Tú) _____ (tomar) el autobús 5.", a: ["toma"] },
+                    { q: "¡(Tú) _____ (hacer) la tarea!", a: ["haz"] }
+                ],
+                readingText: "Folleto Turístico:\n¡VISITE BARCELONA! 🏰\n\n• Disfrute de la arquitectura de Gaudí.\n• Camine por Las Ramblas y vea a los artistas.\n• Pruebe la deliciosa comida local en el Mercado de la Boquería.\n• ¡No olvide visitar la playa de la Barceloneta!\n\n¡Reserve ya su viaje!",
+                questions: ["¿Qué ciudad promociona?", "¿Qué tres actividades sugiere?", "¿Qué modo verbal se usa (Camine, Pruebe)?", "¿Es formal o informal?"]
+            },
+            
+            // FASE 4: Organización Social
+            { 
+                id: 12, 
+                title: "Escuela y Educación", 
+                theme: "Org. Social", 
+                color: "orange", 
+                region: "es-ES",
+                grammar: "Obligación", 
+                textType: "Carta Formal", 
+                objective: "Registro formal.", 
+                proTip: "Nunca uses 'Hola' en una carta formal. Usa 'Estimado/a Sr./Sra.'. Termina con 'Atentamente'.",
+                culturalTitle: "El Sistema de Notas y Selectividad",
+                culturalText: "En muchos países hispanos se califica del 0 al 10 (aprobado es un 5). Al final del bachillerato, los estudiantes en España hacen la 'Selectividad' (o EBAU), un examen muy difícil y estresante para entrar a la universidad.",
+                vocabulary: [
+                    { es: "Estimado Director", en: "Dear Principal" },
+                    { es: "Atentamente", en: "Sincerely" },
+                    { es: "Tener que", en: "Have to" },
+                    { es: "El uniforme", en: "Uniform" },
+                    { es: "Respetar", en: "To respect" }
+                ],
+                activity: "<b>15':</b> Normas. <br><b>20':</b> <b>Carta Formal</b>.", 
+                homework: "Revisar conectores formales.",
+                grammarGuide: "• Obligación:\n- Tener que + Infinitivo (Personal): Tengo que estudiar.\n- Hay que + Infinitivo (Impersonal): Hay que respetar las normas.\n- Deber + Infinitivo: Debes escuchar.",
+                interactiveExercises: [
+                    { q: "En la clase, _____ (tener que) guardar silencio.", a: ["tienes que", "tenemos que"] },
+                    { q: "Para aprender, _____ (hay que) leer mucho.", a: ["hay que"] },
+                    { q: "Tú _____ (deber) hacer los deberes.", a: ["debes"] },
+                    { q: "Nosotros _____ (tener que) llevar uniforme.", a: ["tenemos que"] }
+                ],
+                readingText: "Carta Formal:\n\nEstimado Sr. Director:\n\nLe escribo para proponer un cambio en el uniforme escolar. Creo que es importante permitir ropa más cómoda en verano, dado que hace mucho calor y los estudiantes no pueden concentrarse.\n\nEspero su respuesta.\n\nAtentamente,\nJuan Pérez.",
+                questions: ["¿A quién va dirigida la carta?", "¿Cuál es el propósito?", "¿Qué argumento usa?", "¿Cuál es la despedida formal?"]
+            },
+            { 
+                id: 13, 
+                title: "El Mundo Laboral", 
+                theme: "Org. Social", 
+                color: "orange", 
+                region: "es-ES",
+                grammar: "Subjuntivo (Deseos)", 
+                textType: "Entrevista", 
+                objective: "Formato diálogo.", 
+                proTip: "El subjuntivo es difícil. Si aprendes 3 frases hechas como 'Espero que tengas un buen día' o 'Quiero que sepas', impresionarás.",
+                culturalTitle: "La Jornada Partida y los 'Enchufes'",
+                culturalText: "En España es común la 'jornada partida': trabajar por la mañana, hacer una pausa larga (2 horas) para comer y volver a trabajar hasta tarde (19:00 o 20:00). Conseguir trabajo a veces depende de contactos, coloquialmente llamados 'enchufes'.",
+                vocabulary: [
+                    { es: "Quiero que...", en: "I want that..." },
+                    { es: "Espero que...", en: "I hope that..." },
+                    { es: "Ojalá", en: "Hopefully" },
+                    { es: "Trabajo", en: "Job" },
+                    { es: "Entrevista", en: "Interview" }
+                ],
+                activity: "<b>15':</b> Profesiones. <br><b>20':</b> Role-play entrevista.", 
+                homework: "Redactar <b>Entrevista</b>.",
+                grammarGuide: "• Intro al Subjuntivo (WEIRDO - Wish/Deseo):\n- Quiero que tú estudiES.\n- Espero que tengAS suerte.\n- AR -> E, ER/IR -> A.",
+                interactiveExercises: [
+                    { q: "Quiero que tú _____ (venir) a mi fiesta.", a: ["vengas"] },
+                    { q: "Espero que ella _____ (tener) buen día.", a: ["tenga"] },
+                    { q: "Mi madre quiere que yo _____ (comer) verduras.", a: ["coma"] },
+                    { q: "Ojalá _____ (hacer) sol mañana.", a: ["haga"] }
+                ],
+                readingText: "Entrevista a un futbolista famoso:\n\nPeriodista: Buenos días. ¿Qué hace usted cada mañana?\nFutbolista: Entreno tres horas en el gimnasio con mi equipo.\nPeriodista: ¿Qué espera del futuro?\nFutbolista: Espero que ganemos el campeonato este año y que la afición esté contenta.",
+                questions: ["¿Quiénes hablan?", "¿Qué hace el futbolista por la mañana?", "¿Qué deseo expresa (subjuntivo)?", "¿Usa 'tú' o 'usted'?"]
+            },
+            { 
+                id: 14, 
+                title: "El Barrio y Servicios", 
+                theme: "Org. Social", 
+                color: "orange", 
+                region: "es-ES",
+                grammar: "Preposiciones", 
+                textType: "Informe (Report)", 
+                objective: "Describir entorno.", 
+                proTip: "Los informes son objetivos. Usa subtítulos: 'Introducción', 'Problema', 'Solución'. No uses lenguaje emotivo.",
+                culturalTitle: "La Plaza Mayor y los Mercados",
+                culturalText: "El centro de la vida social en muchas ciudades hispanas es la Plaza Mayor. Es donde la gente pasea y toma café. También son vitales los Mercados (como San Miguel en Madrid o La Boquería en Barcelona) para comprar comida fresca.",
+                vocabulary: [
+                    { es: "El barrio", en: "Neighborhood" },
+                    { es: "Cerca de", en: "Close to" },
+                    { es: "Lejos de", en: "Far from" },
+                    { es: "El tráfico", en: "Traffic" },
+                    { es: "Ruido", en: "Noise" }
+                ],
+                activity: "<b>15':</b> Ciudad ideal. <br><b>25':</b> Reading.", 
+                homework: "Escribir <b>Informe</b> tráfico.",
+                grammarGuide: "• Ubicación:\n- Cerca de, Lejos de, Enfrente de, Al lado de, Entre.\n• Por vs Para (Básico).\n• Estructura Informe: Título, Intro, Cuerpo, Conclusión.",
+                interactiveExercises: [
+                    { q: "El banco está _____ (al lado) del supermercado.", a: ["al lado"] },
+                    { q: "Vivo _____ (cerca) de la escuela.", a: ["cerca"] },
+                    { q: "El parque está _____ (entre) el cine y el bar.", a: ["entre"] },
+                    { q: "Voy a la tienda _____ (para) comprar pan.", a: ["para"] }
+                ],
+                readingText: "INFORME: El Tráfico en el Barrio de Salamanca\n\nIntroducción: Este informe analiza el problema del tráfico en la calle Mayor.\n\nProblema actual: Hay demasiados coches y mucho ruido durante el día. Es peligroso para los niños.\n\nConclusión/Solución: Es necesario poner un semáforo y crear una zona peatonal.",
+                questions: ["¿Cuál es el tema del informe?", "¿Qué problema identifica?", "¿Qué solución propone?", "¿Es un texto objetivo o subjetivo?"]
+            },
+            
+            // FASE 5: Compartimos el Planeta
+            { 
+                id: 15, 
+                title: "Medio Ambiente", 
+                theme: "Planeta", 
+                color: "teal", 
+                region: "es-CR", // Costa Rica hint (uses generic latam or US usually)
+                grammar: "Subjuntivo (Influencia)", 
+                textType: "Anuncio / Póster", 
+                objective: "Persuadir.", 
+                proTip: "En un póster, el impacto visual cuenta. Usa exclamaciones y frases cortas. '¡Salva el planeta!' es mejor que una frase larga.",
+                culturalTitle: "Costa Rica: El paraíso verde",
+                culturalText: "Costa Rica es un ejemplo mundial de ecología. Casi el 100% de su energía es renovable y protege una inmensa biodiversidad. Su lema nacional 'Pura Vida' refleja este respeto por la naturaleza y la vida relajada.",
+                vocabulary: [
+                    { es: "Medio ambiente", en: "Environment" },
+                    { es: "Reciclar", en: "To recycle" },
+                    { es: "Plástico", en: "Plastic" },
+                    { es: "Es necesario que...", en: "It is necessary that..." },
+                    { es: "Salvar", en: "To save" }
+                ],
+                activity: "<b>15':</b> Reciclaje. <br><b>20':</b> Crear <b>Anuncio</b>.", 
+                homework: "Ninguna.",
+                grammarGuide: "• Subjuntivo para recomendaciones:\n- Es importante que recicles.\n- Es necesario que cuidemos el agua.\n- Recomiendo que uses transporte público.",
+                interactiveExercises: [
+                    { q: "Es importante que tú _____ (reciclar).", a: ["recicles"] },
+                    { q: "Es necesario que la gente _____ (usar) menos plástico.", a: ["use"] },
+                    { q: "Te aconsejo que _____ (ir) en bicicleta.", a: ["vayas"] },
+                    { q: "Es triste que _____ (haber) contaminación.", a: ["haya"] }
+                ],
+                readingText: "Póster de Campaña:\n\n¡SALVEMOS EL PLANETA! 🌍\n\n• No uses bolsas de plástico, usa tela.\n• Recicla el papel y el vidrio.\n• Apaga la luz cuando salgas de la habitación.\n\nEl futuro está en tus manos. ¡Actúa ahora!",
+                questions: ["¿Cuál es el eslogan?", "¿Qué tres instrucciones da?", "¿Qué modo verbal usa (No uses, Recicla)?", "¿Cuál es el objetivo del póster?"]
+            },
+            { 
+                id: 16, 
+                title: "Clima y Geografía", 
+                theme: "Planeta", 
+                color: "teal", 
+                region: "es-CL", // Chile hint
+                grammar: "Condicional Si...", 
+                textType: "Discurso (Speech)", 
+                objective: "Retórica.", 
+                proTip: "En un discurso, dirígete a la audiencia: 'Queridos amigos', '¿Sabían ustedes que...?'. Haz preguntas retóricas.",
+                culturalTitle: "Diversidad Geográfica Extrema",
+                culturalText: "El mundo hispano tiene todos los climas: Desde el desierto más árido del mundo (Atacama, Chile) hasta la selva húmeda (Amazonas), pasando por glaciares (Patagonia) y playas tropicales (Caribe).",
+                vocabulary: [
+                    { es: "Si...", en: "If..." },
+                    { es: "Clima", en: "Weather/Climate" },
+                    { es: "Cambio climático", en: "Climate change" },
+                    { es: "Llover", en: "To rain" },
+                    { es: "Ayudar", en: "To help" }
+                ],
+                activity: "<b>15':</b> Frases Si... <br><b>20':</b> Listening.", 
+                homework: "Guion de <b>Discurso</b>.",
+                grammarGuide: "• Condicional Tipo 1 (Posible):\n- Si + Presente + Futuro/Ir a\n- Si llueve, no iré al parque.\n- Si estudiamos, aprobaremos.",
+                interactiveExercises: [
+                    { q: "Si hace sol, nosotros _____ (ir) a la playa.", a: ["iremos", "vamos"] },
+                    { q: "Si no reciclas, el planeta _____ (sufrir).", a: ["sufrirá", "sufre"] },
+                    { q: "Si tienes tiempo, _____ (venir) a mi casa.", a: ["ven"] },
+                    { q: "Si ahorras agua, _____ (ayudar) al mundo.", a: ["ayudarás", "ayudas"] }
+                ],
+                readingText: "Discurso (Inicio):\n'Estimados compañeros y profesores: \n\nHoy quiero hablarles de un problema grave: el cambio climático. ¿Sabían que nuestros glaciares están desapareciendo? Si no actuamos ahora, perderemos nuestros bosques y animales. Es hora de cambiar nuestros hábitos.'",
+                questions: ["¿A quién se dirige?", "¿Cuál es el tema?", "¿Qué consecuencia menciona (Si no actuamos...)?", "¿Qué tono tiene (serio, cómico)?"]
+            },
+            { 
+                id: 17, 
+                title: "Cuestiones Globales", 
+                theme: "Planeta", 
+                color: "teal", 
+                region: "es-US",
+                grammar: "Repaso General", 
+                textType: "Propuesta", 
+                objective: "Soluciones.", 
+                proTip: "Una propuesta debe ser persuasiva pero práctica. Usa 'Propongo que...', 'Sería beneficioso...'.",
+                culturalTitle: "Las Lenguas Indígenas",
+                culturalText: "El español no es la única lengua. El Quechua (Andes), el Guaraní (Paraguay) y el Maya (Centroamérica) son lenguas vivas. Muchas palabras españolas vienen de ellas: chocolate, tomate, canoa, huracán.",
+                vocabulary: [
+                    { es: "Propuesta", en: "Proposal" },
+                    { es: "Evento", en: "Event" },
+                    { es: "Recaudar fondos", en: "To raise funds" },
+                    { es: "Porque", en: "Because" },
+                    { es: "Por lo tanto", en: "Therefore" }
+                ],
+                activity: "<b>40':</b> Discusión oral.", 
+                homework: "Escribir <b>Propuesta</b>.",
+                grammarGuide: "• Expresar causa y consecuencia:\n- Porque, Ya que, Debido a.\n- Por lo tanto, Así que, En consecuencia.\n• Repaso de pasados y futuros.",
+                interactiveExercises: [
+                    { q: "Hay contaminación _____ (porque) usamos coches.", a: ["porque"] },
+                    { q: "No llovió, _____ (así) que se secaron las plantas.", a: ["así"] },
+                    { q: "Queremos ayudar, por lo _____ (tanto) haremos algo.", a: ["tanto"] },
+                    { q: "Reciclamos _____ (para) proteger la tierra.", a: ["para"] }
+                ],
+                readingText: "Propuesta de Evento Benéfico:\n\nNombre del evento: Carrera por el Agua.\nObjetivo: Recaudar fondos para construir pozos en zonas rurales de África.\nActividades propuestas: Carrera de 5km, venta de comida y concierto.\nFecha: 15 de mayo.\nBeneficios: Ayudar a comunidades sin agua potable.",
+                questions: ["¿Cómo se llama el evento?", "¿Para qué es el dinero?", "¿Qué actividades habrá?", "¿Cuándo es?"]
+            },
+            
+            // FASE 6: MOCK PREP
+            { 
+                id: 18, 
+                title: "Oral Individual (IO) - Pt 1", 
+                theme: "Examen", 
+                color: "gray", 
+                region: "es-ES",
+                grammar: "Estrategia", 
+                textType: "Examen Oral", 
+                objective: "Estructura Oral.", 
+                proTip: "No te quedes callado. Si no sabes una palabra, descríbela: 'Es una cosa que se usa para...'.",
+                culturalTitle: "Acentos y Seseo",
+                culturalText: "En el oral, cualquier acento es válido. La principal diferencia es el 'Seseo': en Latinoamérica y partes del sur de España, la Z y la C se pronuncian como S. En el centro-norte de España se distinguen.",
+                vocabulary: [
+                    { es: "En la foto...", en: "In the photo..." },
+                    { es: "Veo...", en: "I see..." },
+                    { es: "Parece que...", en: "It seems that..." },
+                    { es: "A la derecha/izquierda", en: "On the right/left" },
+                    { es: "Al fondo", en: "In the background" }
+                ],
+                activity: "Desglose Oral.", 
+                homework: "Elegir foto.",
+                grammarGuide: "• Estructura IO (15 min):\n1. Presentación (Intro)\n2. Descripción imagen (Qué, Quién, Dónde)\n3. Relación con tema ibérico\n4. Preguntas profesor",
+                interactiveExercises: [
+                    { q: "En la foto _____ (ver) a muchas personas.", a: ["veo"] },
+                    { q: "Al fondo _____ (haber) unos edificios.", a: ["hay"] },
+                    { q: "A la _____ (derecha) hay un árbol.", a: ["derecha"] },
+                    { q: "Parece que _____ (ser) verano.", a: ["es"] }
+                ],
+                readingText: "Ejemplo de Descripción de Imagen:\n'En esta fotografía veo a un grupo de personas en una plaza pública. Parece que están celebrando una fiesta tradicional porque llevan ropa de colores. Al fondo se ven edificios de estilo colonial. Creo que es una ciudad de México o Colombia.'",
+                questions: ["¿Qué ve en la foto?", "¿Qué ropa llevan?", "¿Qué hay al fondo?", "¿De qué país cree que es?"]
+            },
+            { 
+                id: 19, 
+                title: "Oral Individual (IO) - Pt 2", 
+                theme: "Examen", 
+                color: "gray", 
+                region: "es-CO", // Colombia hint
+                grammar: "Oralidad", 
+                textType: "Examen Oral", 
+                objective: "Práctica intensiva.", 
+                proTip: "Relaciona siempre la foto con la cultura hispana. 'Esto me recuerda a las fiestas de España porque...'.",
+                culturalTitle: "Gastronomía: Tapas, Tacos y Arepas",
+                culturalText: "La comida es un tema visual perfecto. Las Tapas son pequeñas porciones en España. Los Tacos son la base de la comida mexicana. Las Arepas son el pan de cada día en Colombia y Venezuela. ¡Saber diferenciarlos suma puntos!",
+                vocabulary: [
+                    { es: "Típico", en: "Typical" },
+                    { es: "Cultura", en: "Culture" },
+                    { es: "Tradición", en: "Tradition" },
+                    { es: "Por ejemplo", en: "For example" },
+                    { es: "Es decir...", en: "That is to say..." }
+                ],
+                activity: "Práctica parejas.", 
+                homework: "Grabar audio.",
+                grammarGuide: "• Conectores Orales:\n- Bueno, pues...\n- Es decir...\n- Por ejemplo...\n- Lo que quiero decir es...",
+                interactiveExercises: [
+                    { q: "Esto es _____ (típico) de España.", a: ["típico"] },
+                    { q: "Me _____ (parecer) interesante.", a: ["parece"] },
+                    { q: "En mi _____ (opinión) es importante.", a: ["opinión"] },
+                    { q: "Por un _____ (lado) es bueno.", a: ["lado"] }
+                ],
+                readingText: "(No hay texto de lectura, es práctica de habla espontánea basada en estímulos visuales).",
+                questions: ["Enfocarse en la fluidez.", "No pararse demasiado a pensar gramática."]
+            },
+            { 
+                id: 20, 
+                title: "Taller Escritura (Paper 1)", 
+                theme: "Examen", 
+                color: "gray", 
+                region: "es-ES",
+                grammar: "Formatos", 
+                textType: "Repaso Formatos", 
+                objective: "Revisión Paper 1.", 
+                proTip: "Cuenta palabras. Si te piden 70-150 palabras, no escribas 200. Sé conciso.",
+                culturalTitle: "La Cortesía y el 'Usted'",
+                culturalText: "El uso de 'Usted' varía. En España es muy formal (para ancianos o jefes). En Colombia o Costa Rica se usa 'Usted' incluso entre amigos o familiares a veces. En Argentina usan 'Vos' en lugar de Tú.",
+                vocabulary: [
+                    { es: "Estimado...", en: "Dear..." },
+                    { es: "Asunto", en: "Subject" },
+                    { es: "Fecha", en: "Date" },
+                    { es: "Además", en: "Furthermore" },
+                    { es: "Sin embargo", en: "However" }
+                ],
+                activity: "Checklist Formatos.", 
+                homework: "Repasar conectores.",
+                grammarGuide: "• Checklist Formatos:\n- Email: Asunto, Saludo, Despedida.\n- Blog: Título, Autor, Fecha, Comentarios.\n- Diario: 'Querido diario', Fecha.\n- Folleto: Títulos grandes, listas.",
+                interactiveExercises: [
+                    { q: "Para empezar un email: _____ (Hola/Adiós).", a: ["hola", "estimado", "querido"] },
+                    { q: "Para terminar: Un _____ (abrazo).", a: ["abrazo", "saludo"] },
+                    { q: "En un diario: Querido _____ (diario).", a: ["diario"] },
+                    { q: "Conector final: _____ (finalmente).", a: ["finalmente", "por último", "en conclusión"] }
+                ],
+                readingText: "Tabla de Conectores Esenciales:\nAdición: Además, También.\nOposición: Pero, Sin embargo, Aunque.\nCausa: Porque, Dado que.\nOrden: Primero, Luego, Finalmente.",
+                questions: ["¿Qué conector usar para añadir info?", "¿Cuál para contrastar?", "¿Cuál para concluir?"]
+            },
+            { 
+                id: 21, 
+                title: "Taller Comprensión (Paper 2)", 
+                theme: "Examen", 
+                color: "gray", 
+                region: "es-ES",
+                grammar: "Comprensión", 
+                textType: "Lectura/Audio", 
+                objective: "Técnicas Paper 2.", 
+                proTip: "Lee las preguntas ANTES de leer el texto. Así sabrás qué buscar (Skimming y Scanning).",
+                culturalTitle: "Grandes Autores",
+                culturalText: "Aunque es 'Ab Initio', es bueno reconocer nombres. Miguel de Cervantes (Don Quijote, España) y Gabriel García Márquez (Cien Años de Soledad, Colombia) son los pilares de la literatura en español.",
+                vocabulary: [
+                    { es: "Significar", en: "To mean" },
+                    { es: "El texto", en: "The text" },
+                    { es: "Verdadero", en: "True" },
+                    { es: "Falso", en: "False" },
+                    { es: "Justificación", en: "Justification" }
+                ],
+                activity: "Skimming/Scanning.", 
+                homework: "Descansar.",
+                grammarGuide: "• Sinónimos comunes en examen:\n- Coche = Vehículo / Auto\n- Bonito = Hermoso / Bello\n- Empezar = Comenzar\n- Terminar = Acabar",
+                interactiveExercises: [
+                    { q: "Sinónimo de Feliz: _____ (contento).", a: ["contento", "alegre"] },
+                    { q: "Sinónimo de Grande: _____ (enorme).", a: ["enorme", "gigante"] },
+                    { q: "Sinónimo de Difícil: _____ (complicado).", a: ["complicado", "duro"] },
+                    { q: "Sinónimo de Nunca: _____ (jamás).", a: ["jamás"] }
+                ],
+                readingText: "Texto con trampa para practicar:\n'A Juan le gusta mucho ver el fútbol, pero prefiere jugar al baloncesto los fines de semana. Sin embargo, odia el tenis.'\nPregunta: ¿Cuál es el deporte favorito de Juan para practicar?",
+                questions: ["(Respuesta: Baloncesto. Cuidado con 'le gusta' vs 'prefiere')."]
+            },
+            { 
+                id: 22, 
+                title: "Repaso Final", 
+                theme: "Examen", 
+                color: "gray", 
+                region: "es-ES",
+                grammar: "Todo", 
+                textType: "Todo", 
+                objective: "Motivación final.", 
+                proTip: "¡Confía en ti! Has trabajado duro. Lee las instrucciones dos veces.",
+                culturalTitle: "La Sobremesa",
+                culturalText: "Una de las costumbres más bonitas: 'La Sobremesa'. Es el tiempo que pasamos sentados a la mesa charlando y bebiendo café después de haber terminado de comer. Puede durar horas y es donde ocurre la verdadera conexión social.",
+                vocabulary: [
+                    { es: "Suerte", en: "Luck" },
+                    { es: "Aprobar", en: "To pass" },
+                    { es: "Examen", en: "Exam" },
+                    { es: "Fácil", en: "Easy" },
+                    { es: "Difícil", en: "Hard" }
+                ],
+                activity: "Jeopardy/Kahoot.", 
+                homework: "¡Éxito!",
+                grammarGuide: "• ¡TÚ PUEDES!\nRecuerda: Respira, lee bien las instrucciones y revisa tu escritura al final.",
+                interactiveExercises: [
+                    { q: "Yo _____ (poder) aprobar.", a: ["puedo"] },
+                    { q: "El examen _____ (ser) fácil.", a: ["es", "será"] },
+                    { q: "Nosotros _____ (estudiar) mucho.", a: ["estudiamos", "hemos estudiado"] },
+                    { q: "¡Buena _____ (suerte)!", a: ["suerte"] }
+                ],
+                readingText: "Mensaje final:\n¡Buena suerte en el examen! Han trabajado muy duro y están listos para demostrar todo lo que saben.",
+                questions: ["¿Están listos?", "¡SÍ!"]
+            }
+        ];
+
+        // State Management
+        let completedClasses = JSON.parse(localStorage.getItem('ibSpanishProgress')) || [];
+        let currentModalId = null;
+
+        // Theme Colors Configuration
+        const themeColors = {
+            blue: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-800', badge: 'bg-blue-100 text-blue-800 ring-blue-600/20' },
+            green: { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-800', badge: 'bg-green-100 text-green-800 ring-green-600/20' },
+            purple: { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-800', badge: 'bg-purple-100 text-purple-800 ring-purple-600/20' },
+            orange: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-800', badge: 'bg-orange-100 text-orange-800 ring-orange-600/20' },
+            teal: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-800', badge: 'bg-teal-100 text-teal-800 ring-teal-600/20' },
+            gray: { bg: 'bg-gray-800', border: 'border-gray-600', text: 'text-white', badge: 'bg-gray-700 text-white ring-gray-500/20' }
+        };
+
+        // Render Calendar
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+
+            classes.forEach(cls => {
+                const isCompleted = completedClasses.includes(cls.id);
+                const colors = themeColors[cls.color];
+                
+                // Card HTML
+                const card = document.createElement('div');
+                card.className = `relative bg-white rounded-xl shadow-sm border ${isCompleted ? 'border-indigo-500 completed-card' : 'border-gray-200'} p-5 cursor-pointer card-hover flex flex-col justify-between h-full group`;
+                card.onclick = (e) => {
+                    if(!e.target.closest('.check-btn')) openModal(cls.id);
+                };
+
+                // Header
+                const header = `
+                    <div class="flex justify-between items-start mb-2 card-content">
+                        <span class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${colors.badge}">
+                            ${cls.theme}
+                        </span>
+                        <span class="text-xs font-bold text-gray-400">#${cls.id}</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1 card-content group-hover:text-indigo-600 transition-colors">${cls.title}</h3>
+                    <div class="mb-2 card-content"><span class="text-type-tag"><i class="fas fa-file-alt mr-1"></i> ${cls.textType}</span></div>
+                    <p class="text-xs text-gray-500 mb-4 line-clamp-2 card-content">${cls.objective}</p>
+                `;
+
+                // Footer (Grammar + Checkbox)
+                const footer = `
+                    <div class="mt-auto pt-3 border-t border-gray-100 flex justify-between items-center relative z-10">
+                        <div class="text-xs text-gray-500 font-medium truncate max-w-[70%] card-content">
+                            <i class="fas fa-pen-nib mr-1 text-gray-400"></i> ${cls.grammar}
+                        </div>
+                        <button class="check-btn w-8 h-8 rounded-full border-2 ${isCompleted ? 'bg-indigo-600 border-indigo-600 text-white' : 'border-gray-300 text-transparent hover:border-indigo-400'} flex items-center justify-center check-circle focus:outline-none" onclick="toggleComplete(${cls.id}, this)">
+                            <i class="fas fa-check text-sm"></i>
+                        </button>
+                    </div>
+                `;
+
+                card.innerHTML = header + footer;
+                grid.appendChild(card);
+            });
+
+            updateProgressBar();
+        }
+
+        // --- EXERCISE LOGIC ---
+        
+        function renderExercises(cls) {
+            const container = document.getElementById('interactiveExercisesContainer');
+            container.innerHTML = '';
+            document.getElementById('exerciseScore').style.opacity = '0';
+
+            if (!cls.interactiveExercises || cls.interactiveExercises.length === 0) {
+                container.innerHTML = '<p class="text-gray-400 italic">No hay ejercicios interactivos para esta clase.</p>';
+                return;
+            }
+
+            cls.interactiveExercises.forEach((ex, index) => {
+                const div = document.createElement('div');
+                div.className = 'text-sm text-gray-700 leading-loose';
+                
+                const parts = ex.q.split('_____');
+                let html = `<span class="font-bold text-indigo-400 mr-2">${index + 1}.</span>`;
+                
+                if (parts.length > 1) {
+                    html += parts[0];
+                    html += `<input type="text" class="exercise-input" data-index="${index}" autocomplete="off" spellcheck="false">`;
+                    html += parts[1];
+                } else {
+                    html += ex.q; 
+                }
+                
+                html += `<i class="fas fa-check text-green-500 feedback-icon ml-2" id="feedback-${index}"></i>`;
+                
+                div.innerHTML = html;
+                container.appendChild(div);
+            });
+        }
+
+        function checkAnswers() {
+            if (currentModalId === null) return;
+            const cls = classes.find(c => c.id === currentModalId);
+            const inputs = document.querySelectorAll('.exercise-input');
+            let correctCount = 0;
+
+            inputs.forEach(input => {
+                const index = input.getAttribute('data-index');
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswers = cls.interactiveExercises[index].a.map(a => a.toLowerCase());
+                const feedbackIcon = document.getElementById(`feedback-${index}`);
+
+                input.classList.remove('correct', 'incorrect');
+                feedbackIcon.classList.remove('show', 'fa-check', 'fa-times', 'text-green-500', 'text-red-500');
+
+                if (correctAnswers.includes(userAnswer)) {
+                    input.classList.add('correct');
+                    feedbackIcon.classList.add('fas', 'fa-check', 'text-green-500', 'show');
+                    correctCount++;
+                } else {
+                    input.classList.add('incorrect');
+                    feedbackIcon.classList.add('fas', 'fa-times', 'text-red-500', 'show');
+                }
+            });
+
+            const scoreEl = document.getElementById('exerciseScore');
+            scoreEl.innerText = `${correctCount}/${inputs.length}`;
+            scoreEl.style.opacity = '1';
+        }
+
+        function resetExercises() {
+            const inputs = document.querySelectorAll('.exercise-input');
+            const icons = document.querySelectorAll('.feedback-icon');
+            
+            inputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('correct', 'incorrect');
+            });
+            
+            icons.forEach(icon => {
+                icon.classList.remove('show');
+            });
+            
+            document.getElementById('exerciseScore').style.opacity = '0';
+        }
+
+        // --- VOCABULARY LOGIC ---
+        function renderVocabulary(cls) {
+            const grid = document.getElementById('modalVocabGrid');
+            grid.innerHTML = '';
+
+            if(!cls.vocabulary || cls.vocabulary.length === 0) {
+                grid.innerHTML = '<p class="text-sm text-gray-400 col-span-3">No hay vocabulario específico.</p>';
+                return;
+            }
+
+            cls.vocabulary.forEach(word => {
+                const card = document.createElement('div');
+                card.className = 'vocab-card group';
+                card.innerHTML = `
+                    <div class="vocab-inner">
+                        <div class="vocab-front">${word.es}</div>
+                        <div class="vocab-back">${word.en}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- TTS LOGIC (IMPROVED) ---
+        
+        function cleanText(text) {
+            // Remove common emoji ranges and specific formatting
+            return text
+                .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '')
+                .replace(/\*+/g, '') // remove asterisks
+                .replace(/\n/g, '. ') // replace newlines with periods for pause
+                .trim();
+        }
+
+        function getVoiceForRegion(targetLang) {
+            const voices = window.speechSynthesis.getVoices();
+            // Try strict match
+            let voice = voices.find(v => v.lang === targetLang);
+            // Try loose match (e.g., 'es-MX' -> 'es')
+            if (!voice) voice = voices.find(v => v.lang.startsWith('es'));
+            return voice;
+        }
+
+        function speakText(type) {
+            if (currentModalId === null) return;
+            const cls = classes.find(c => c.id === currentModalId);
+            
+            let rawText = "";
+            if (type === 'reading') {
+                rawText = cls.readingText;
+            } else if (type === 'cultural') {
+                rawText = cls.culturalText;
+            }
+            
+            if (!rawText) return;
+
+            const synth = window.speechSynthesis;
+            if (synth.speaking) {
+                synth.cancel();
+                return;
+            }
+
+            const cleanContent = cleanText(rawText);
+            const utterance = new SpeechSynthesisUtterance(cleanContent);
+            
+            // Voice Selection Logic
+            // Default to ES generic
+            let targetLang = 'es-ES'; // Default Spain
+            if (cls.region) targetLang = cls.region;
+
+            // Attempt to find a matching voice
+            // Note: Voices load asynchronously in some browsers, might need a timeout if init immediately
+            const selectedVoice = getVoiceForRegion(targetLang);
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+            }
+            
+            // Make it sound "younger" (Higher pitch, slightly faster rate)
+            utterance.pitch = 1.1; // Slightly higher pitch
+            utterance.rate = 1.05;  // Slightly faster
+            
+            // Fallback lang if voice not found object
+            utterance.lang = targetLang;
+
+            synth.speak(utterance);
+        }
+
+        // --- NOTES LOGIC ---
+        function loadNotes(id) {
+            const notes = localStorage.getItem(`ibSpanishNotes_${id}`) || '';
+            document.getElementById('classNotes').value = notes;
+        }
+
+        function saveNotes(id) {
+            const notes = document.getElementById('classNotes').value;
+            localStorage.setItem(`ibSpanishNotes_${id}`, notes);
+        }
+
+
+        // --- MODAL LOGIC ---
+
+        function openModal(id) {
+            const cls = classes.find(c => c.id === id);
+            currentModalId = id;
+            const colors = themeColors[cls.color];
+            
+            document.getElementById('modalTitle').innerText = `${cls.id}. ${cls.title}`;
+            document.getElementById('modalObjective').innerHTML = cls.objective;
+            document.getElementById('modalProTip').innerText = cls.proTip || "¡Estudia duro!";
+            
+            // Cultural Section
+            document.getElementById('modalCulturalTitle').innerText = cls.culturalTitle || "Rincón Cultural";
+            document.getElementById('modalCulturalText').innerText = cls.culturalText || "Información cultural en proceso...";
+
+            // Basic Details
+            document.getElementById('modalActivity').innerHTML = cls.activity;
+            document.getElementById('modalHomework').innerText = cls.homework;
+
+            // Teacher Kit Details
+            document.getElementById('modalGrammarGuide').innerText = cls.grammarGuide || "No hay guía específica.";
+            document.getElementById('modalReadingText').innerText = cls.readingText || "No hay texto asignado.";
+            
+            // Render Vocab
+            renderVocabulary(cls);
+
+            // Render Interactive Exercises
+            renderExercises(cls);
+            
+            // Load Notes
+            loadNotes(id);
+            
+            // Populate Questions List
+            const questionsList = document.getElementById('modalQuestions');
+            questionsList.innerHTML = '';
+            if(cls.questions && cls.questions.length > 0) {
+                cls.questions.forEach(q => {
+                    const li = document.createElement('li');
+                    li.innerText = q;
+                    questionsList.appendChild(li);
+                });
+            } else {
+                questionsList.innerHTML = '<li class="text-gray-400 italic">No hay preguntas asignadas.</li>';
+            }
+            
+            // Text Type Badge in Modal
+            document.getElementById('modalTextTypeBadge').innerHTML = `<i class="fas fa-file-alt mr-1"></i> ${cls.textType}`;
+            
+            // Badge styling
+            const badge = document.getElementById('modalThemeBadge');
+            badge.innerText = cls.theme;
+            badge.className = `mb-2 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${colors.badge}`;
+
+            // Button state
+            updateModalButtonState();
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            // Save notes before closing
+            if (currentModalId !== null) {
+                saveNotes(currentModalId);
+            }
+
+            document.getElementById('detailModal').classList.add('hidden');
+            window.speechSynthesis.cancel(); // Stop audio if playing
+            currentModalId = null;
+        }
+
+        function updateModalButtonState() {
+            const btn = document.getElementById('btnMarkComplete');
+            const isCompleted = completedClasses.includes(currentModalId);
+            
+            if (isCompleted) {
+                btn.innerHTML = '<i class="fas fa-undo mr-2"></i> Desmarcar';
+                btn.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
+                btn.classList.add('bg-red-500', 'hover:bg-red-600');
+            } else {
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i> Marcar como Hecho';
+                btn.classList.remove('bg-red-500', 'hover:bg-red-600');
+                btn.classList.add('bg-indigo-600', 'hover:bg-indigo-500');
+            }
+        }
+
+        function toggleCompleteFromModal() {
+            if (currentModalId !== null) {
+                toggleComplete(currentModalId);
+                updateModalButtonState();
+            }
+        }
+
+        // Progress Logic
+        function toggleComplete(id) {
+            const index = completedClasses.indexOf(id);
+            if (index > -1) {
+                completedClasses.splice(index, 1);
+            } else {
+                completedClasses.push(id);
+            }
+            localStorage.setItem('ibSpanishProgress', JSON.stringify(completedClasses));
+            renderCalendar(); 
+        }
+
+        function updateProgressBar() {
+            const total = classes.length;
+            const done = completedClasses.length;
+            const percent = Math.round((done / total) * 100);
+            
+            document.getElementById('progressBar').style.width = `${percent}%`;
+            document.getElementById('progressText').innerText = `${percent}%`;
+        }
+
+        function resetProgress() {
+            if(confirm("¿Estás segura de querer borrar todo el progreso?")) {
+                completedClasses = [];
+                localStorage.setItem('ibSpanishProgress', JSON.stringify(completedClasses));
+                localStorage.clear(); 
+                for(let i=1; i<=22; i++) localStorage.removeItem(`ibSpanishNotes_${i}`);
+                
+                renderCalendar();
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendar();
+            // Pre-load voices if possible
+            window.speechSynthesis.getVoices(); 
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
+

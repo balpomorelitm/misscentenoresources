@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Español Ab Initio - Prep Oral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .card-flip:hover .card-inner { transform: rotateY(180deg); }
+        .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+        .card-front, .card-back { backface-visibility: hidden; position: absolute; inset: 0; }
+        .card-back { transform: rotateY(180deg); }
+        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 700; }
+        .img-container { position: relative; cursor: zoom-in; overflow: hidden; border-radius: 1.5rem; }
+        .img-container img { transition: transform 0.5s ease; }
+        .img-container:hover img { transform: scale(1.05); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-indigo-600 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">IB Ab Initio Master</span>
+                </div>
+                <div class="hidden md:flex space-x-4">
+                    <button onclick="showSection('home')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600 transition">Inicio</button>
+                    <button onclick="showSection('estrategia')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600 transition">Estrategia Oral</button>
+                    <button onclick="showSection('unidades')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition">Estudiar Unidades</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Sección: Inicio -->
+        <section id="home" class="space-y-12">
+            <div class="text-center py-12">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 mb-4 tracking-tight">Dominando el <span class="text-indigo-600">Español Ab Initio</span></h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Plataforma interactiva diseñada para la preparación integral del examen oral. Imágenes alineadas, vocabulario contextual y cultura hispana.</p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="showSection('unidades')" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all">Empezar a Practicar</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-check-double text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Alineación Total</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Cada unidad presenta un estímulo visual que corresponde exactamente a los subtemas y preguntas propuestas.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-comments text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Preguntas Reales</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Preguntas de seguimiento basadas en el currículo del IB para practicar la interacción espontánea.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-globe text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Enfoque Cultural</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Vínculos socioculturales para que el alumno demuestre conocimiento del mundo hispano.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Estrategia -->
+        <section id="estrategia" class="hidden space-y-8">
+            <div class="bg-indigo-900 text-white p-10 rounded-[2.5rem] relative overflow-hidden shadow-xl shadow-indigo-100">
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black mb-4">El Método de los 4 Pasos</h2>
+                    <p class="text-indigo-100 text-lg max-w-xl">Usa esta estructura para tu presentación inicial (1-2 minutos) y evita silencios incómodos.</p>
+                </div>
+                <i class="fa-solid fa-bullseye absolute bottom-[-40px] right-[-40px] text-white opacity-10 text-[240px]"></i>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 1</span>
+                    <h4 class="font-bold text-2xl mt-2">Identificar</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"Esta imagen pertenece al tema de... y trata sobre..."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 2</span>
+                    <h4 class="font-bold text-2xl mt-2">Describir</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"En el centro hay... a la derecha veo... los colores son..."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 3</span>
+                    <h4 class="font-bold text-2xl mt-2">Interpretar</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"Parece que están felices porque... supongo que acaban de..."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 4</span>
+                    <h4 class="font-bold text-2xl mt-2">Vínculo</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"En los países hispanos, este tema es importante debido a..."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Unidades -->
+        <section id="unidades" class="hidden space-y-8">
+            <div class="flex overflow-x-auto border-b border-slate-200 pb-2 space-x-6 no-scrollbar">
+                <button onclick="loadUnit(1)" id="tab1" class="tab-active whitespace-nowrap px-1 pb-4 transition-all">U1: Identidades</button>
+                <button onclick="loadUnit(2)" id="tab2" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U2: Experiencias</button>
+                <button onclick="loadUnit(3)" id="tab3" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U3: Ingenio Humano</button>
+                <button onclick="loadUnit(4)" id="tab4" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U4: Org. Social</button>
+                <button onclick="loadUnit(5)" id="tab5" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U5: Compartir Planeta</button>
+            </div>
+
+            <div id="unit-content" class="animate-in fade-in duration-700">
+                <!-- El contenido se inyecta vía JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const units = {
+            1: {
+                title: "Identidades",
+                subtitle: "Estilos de vida, salud y bienestar.",
+                image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Una persona joven practicando ejercicio y cuidando su bienestar físico.",
+                vocab: [
+                    { sp: "Mantenerse en forma", en: "To keep fit" },
+                    { sp: "Llevar una vida sana", en: "To lead a healthy life" },
+                    { sp: "La salud mental", en: "Mental health" },
+                    { sp: "Estar estresado/a", en: "To be stressed" },
+                    { sp: "Evitar el tabaco", en: "To avoid smoking" }
+                ],
+                grammar: ["Ser vs Estar", "Verbos reflexivos (sentirse)"],
+                culture: "En España y muchos países hispanos, la 'dieta mediterránea' no es solo comida, es una identidad basada en ingredientes frescos y tiempo social.",
+                questions: [
+                    "¿Qué importancia tiene el deporte para tu identidad personal?",
+                    "¿Crees que el estrés es el mayor problema de los jóvenes hoy?",
+                    "¿Cómo describirías un estilo de vida equilibrado?"
+                ]
+            },
+            2: {
+                title: "Experiencias",
+                subtitle: "Viajes de aventura y ocio al aire libre.",
+                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Un grupo de jóvenes disfrutando de una caminata por la montaña.",
+                vocab: [
+                    { sp: "El senderismo", en: "Hiking" },
+                    { sp: "Hacer una excursión", en: "To go on a trip/hike" },
+                    { sp: "El paisaje", en: "Landscape" },
+                    { sp: "Divertirse", en: "To have fun" },
+                    { sp: "Inolvidable", en: "Unforgettable" }
+                ],
+                grammar: ["Pretérito Indefinido", "Pretérito Imperfecto"],
+                culture: "El senderismo en los Pirineos o los Andes es una experiencia cultural que une a jóvenes de diferentes regiones hispanas.",
+                questions: [
+                    "¿Adónde fuiste en tu última excursión al aire libre?",
+                    "¿Prefieres viajar con amigos o con tu familia? ¿Por qué?",
+                    "¿Qué beneficios tiene el contacto con la naturaleza para ti?"
+                ]
+            },
+            3: {
+                title: "Ingenio Humano",
+                subtitle: "Tecnología y comunicación digital.",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Estudiantes colaborando y utilizando dispositivos tecnológicos.",
+                vocab: [
+                    { sp: "El dispositivo", en: "Device" },
+                    { sp: "Las redes sociales", en: "Social media" },
+                    { sp: "Estar conectado/a", en: "To be connected" },
+                    { sp: "La herramienta", en: "Tool" },
+                    { sp: "Navegar por la red", en: "To surf the web" }
+                ],
+                grammar: ["Futuro Simple", "Por vs Para"],
+                culture: "El uso de redes sociales en países como México o Colombia es de los más altos del mundo, transformando la comunicación social.",
+                questions: [
+                    "¿Crees que dependemos demasiado de nuestros móviles?",
+                    "¿Cómo ha cambiado la tecnología la forma en que estudias?",
+                    "¿Cuáles son los peligros de internet para la privacidad?"
+                ]
+            },
+            4: {
+                title: "Organización Social",
+                subtitle: "Educación y vida en el instituto.",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Un grupo de jóvenes estudiantes colaborando en un entorno de aprendizaje.",
+                vocab: [
+                    { sp: "La asignatura", en: "School subject" },
+                    { sp: "El profesorado", en: "Teaching staff" },
+                    { sp: "El sistema educativo", en: "Education system" },
+                    { sp: "Sacar buenas notas", en: "To get good grades" },
+                    { sp: "El horario", en: "Schedule" }
+                ],
+                grammar: ["Comparativos", "Condicional Simple"],
+                culture: "En muchos países hispanos, el instituto es un centro neurálgico para la organización social de los barrios y pueblos.",
+                questions: [
+                    "¿Qué asignaturas te gustaría estudiar en la universidad?",
+                    "¿Es tu instituto más moderno que tu escuela primaria?",
+                    "¿Cómo es un día típico en tu organización escolar?"
+                ]
+            },
+            5: {
+                title: "Compartir el Planeta",
+                subtitle: "Medio ambiente y sostenibilidad.",
+                image: "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Gente clasificando residuos en contenedores de reciclaje para proteger el planeta.",
+                vocab: [
+                    { sp: "El reciclaje", en: "Recycling" },
+                    { sp: "Proteger el entorno", en: "To protect the environment" },
+                    { sp: "El cambio climático", en: "Climate change" },
+                    { sp: "Malgastar agua", en: "To waste water" },
+                    { sp: "Sostenible", en: "Sustainable" }
+                ],
+                grammar: ["Subjuntivo Básico (Es necesario que...)", "Imperativo"],
+                culture: "Costa Rica es un modelo hispano de sostenibilidad, con más del 98% de su energía proveniente de fuentes renovables.",
+                questions: [
+                    "¿Qué medidas tomas en tu casa para ayudar al planeta?",
+                    "¿Es necesario que los gobiernos prohíban el plástico?",
+                    "¿Cómo podemos educar a los niños sobre el reciclaje?"
+                ]
+            }
+        };
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function loadUnit(num) {
+            const u = units[num];
+            const content = document.getElementById('unit-content');
+            
+            document.querySelectorAll('#unidades button').forEach(b => b.classList.remove('tab-active', 'text-indigo-600'));
+            document.getElementById('tab' + num).classList.add('tab-active');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div class="img-container shadow-2xl">
+                            <img src="${u.image}" alt="${u.title}" class="w-full h-[400px] object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <p class="text-sm font-medium opacity-90">${u.imageCaption}</p>
+                                <h3 class="text-2xl font-bold">Estímulo Visual U${num}</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-indigo-600 text-white p-8 rounded-3xl shadow-lg">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-microphone"></i> Preguntas de Seguimiento
+                            </h4>
+                            <ul class="space-y-3">
+                                ${u.questions.map(q => `<li class="bg-white/10 p-3 rounded-xl border border-white/20 text-sm hover:bg-white/20 transition cursor-default">${q}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+                            <h2 class="text-4xl font-black text-slate-900">${u.title}</h2>
+                            <p class="text-slate-500 mt-2 text-lg">${u.subtitle}</p>
+                            
+                            <div class="mt-8">
+                                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-language text-indigo-500"></i> Vocabulario Flashcards</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    ${u.vocab.map(v => `
+                                        <div class="card-flip h-16 w-full perspective-1000">
+                                            <div class="card-inner relative w-full h-full text-center">
+                                                <div class="card-front bg-slate-50 rounded-2xl flex items-center justify-between px-4 font-bold text-slate-700 border border-slate-200">
+                                                    <span>${v.sp}</span>
+                                                    <i class="fa-solid fa-rotate text-slate-300 text-xs"></i>
+                                                </div>
+                                                <div class="card-back bg-indigo-600 text-white rounded-2xl flex items-center justify-center font-black text-sm px-4">
+                                                    ${v.en}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="mt-8 bg-emerald-50 p-6 rounded-3xl border border-emerald-100">
+                                <h4 class="font-bold text-emerald-800 flex items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-earth-americas"></i> El Vínculo Cultural
+                                </h4>
+                                <p class="text-emerald-900 text-sm leading-relaxed">${u.culture}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = () => loadUnit(1);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

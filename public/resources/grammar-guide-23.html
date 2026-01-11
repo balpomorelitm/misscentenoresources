@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 23</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .text-type-box {
+            background-color: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 23: El Condicional</h1>
+            <p class="text-indigo-200 mt-2">The Conditional Tense & Text Types</p>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. GramÃ¡tica: El Condicional</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. PrÃ¡ctica: Ejercicios</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('carta')">3. Texto: La Carta Formal</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('folleto')">4. Texto: El Folleto</div>
+            </div>
+
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Â¿QuÃ© es el Condicional?</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            <div class="highlight-box">
+                                <p class="text-lg">
+                                    The conditional is used to express what <strong>would</strong> happen, polite requests, or advice.
+                                    <br><strong>Formation:</strong> Infinitive + Endings (Same endings for -AR, -ER, -IR).
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">ConjugaciÃ³n Regular</h3>
+                                    <p class="text-sm mb-2 text-blue-900">Add directly to the infinitive (e.g., <em>Viajar</em>):</p>
+                                    <ul class="text-sm list-none space-y-1 text-blue-900 font-mono">
+                                        <li>Yo viajar<strong>Ã­a</strong></li>
+                                        <li>TÃº viajar<strong>Ã­as</strong></li>
+                                        <li>Ã‰l/Ella/Usted viajar<strong>Ã­a</strong></li>
+                                        <li>Nosotros viajar<strong>Ã­amos</strong></li>
+                                        <li>Vosotros viajar<strong>Ã­ais</strong></li>
+                                        <li>Ellos/Ellas/Ustedes viajar<strong>Ã­an</strong></li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-red-50 p-4 rounded border border-red-200">
+                                    <h3 class="font-bold text-red-800 text-lg mb-2">Verbos Irregulares</h3>
+                                    <p class="text-sm mb-2 text-red-900">They share the same stems as the Future tense:</p>
+                                    <ul class="text-sm grid grid-cols-2 gap-2 text-red-900">
+                                        <li><strong>Decir:</strong> dir-</li>
+                                        <li><strong>Hacer:</strong> har-</li>
+                                        <li><strong>Poder:</strong> podr-</li>
+                                        <li><strong>Poner:</strong> pondr-</li>
+                                        <li><strong>Querer:</strong> querr-</li>
+                                        <li><strong>Saber:</strong> sabr-</li>
+                                        <li><strong>Salir:</strong> saldr-</li>
+                                        <li><strong>Tener:</strong> tendr-</li>
+                                        <li><strong>Venir:</strong> vendr-</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="practice" class="tab-content space-y-8">
+                
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Ejercicios</h2>
+                        <p class="text-gray-600 mt-2">
+                            Practica la formaciÃ³n de los verbos irregulares y el uso en oraciones.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Ejercicio 1: Futuro vs Condicional
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">The irregular stems are the same. Convert the Future form to Conditional (yo form).</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex1-container">
+                             </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Ejercicio 2: ConjugaciÃ³n en contexto
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Conjuga el verbo entre parÃ©ntesis en el condicional.</p>
+
+                        <div class="space-y-4" id="ex2-container">
+                            </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="carta" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-teal-50">
+                        <h2 class="text-2xl font-bold text-teal-900">3. Tipo de Texto: La Carta Formal</h2>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="text-type-box">
+                                <h3 class="font-bold text-teal-800 mb-3"><i class="fas fa-list-ul mr-2"></i>Formato y Convenciones</h3>
+                                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                    <li><strong>Remitente:</strong> Nombre y direcciÃ³n (arriba).</li>
+                                    <li><strong>Destinatario:</strong> Nombre y direcciÃ³n.</li>
+                                    <li><strong>Fecha y Lugar:</strong> "Barcelona, 18 de noviembre..."</li>
+                                    <li><strong>Asunto:</strong> Tema de la carta.</li>
+                                    <li><strong>Saludo Formal:</strong> "Estimado Sr..." (usar dos puntos :).</li>
+                                    <li><strong>Uso de 'Usted':</strong> Lenguaje formal.</li>
+                                    <li><strong>Firma:</strong> Al final.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="text-type-box bg-teal-50 border-teal-200">
+                                <h3 class="font-bold text-teal-800 mb-3"><i class="fas fa-star mr-2"></i>Frases Ãštiles</h3>
+                                <div class="text-sm text-gray-700 space-y-3">
+                                    <div>
+                                        <span class="font-semibold text-teal-700">Saludos:</span>
+                                        <p>Estimado SeÃ±or / Distinguida SeÃ±ora / Muy seÃ±ores mÃ­os</p>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-teal-700">IntroducciÃ³n:</span>
+                                        <p>Me dirijo a usted para informarle... / Le escribo con referencia a...</p>
+                                    </div>
+                                    <div>
+                                        <span class="font-semibold text-teal-700">Despedida:</span>
+                                        <p>Atentamente, / Saludos cordiales, / En espera de su respuesta,</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t pt-6">
+                            <h3 class="font-bold text-gray-800 mb-2">Tarea Escrita (Ejercicio 3)</h3>
+                            <p class="mb-4 text-gray-600 bg-gray-50 p-4 rounded border-l-4 border-teal-500">
+                                <strong>Contexto:</strong> Quieres crear una asociaciÃ³n caritativa en tu colegio.
+                                <br><strong>Tarea:</strong> Escribe una carta formal al director de tu colegio (120 palabras).
+                                <br><strong>Incluye:</strong> PropÃ³sito, dos razones, posibilidades y permisos necesarios.
+                            </p>
+                            
+                            <div class="bg-gray-100 p-4 rounded">
+                                <h4 class="font-bold text-sm text-gray-700 mb-2">Lista de verificaciÃ³n (Self-Check):</h4>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿IncluÃ­ mi direcciÃ³n y la del director?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿Puse la fecha y el asunto?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿UsÃ© "Estimado Sr. Director:"?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿UsÃ© el registro formal (Usted)?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿ExpliquÃ© las razones y pedÃ­ permiso?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿CerrÃ© con "Atentamente" y firma?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="folleto" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-pink-50">
+                        <h2 class="text-2xl font-bold text-pink-900">4. Tipo de Texto: El Folleto</h2>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <div class="text-type-box bg-pink-50 border-pink-200">
+                            <h3 class="font-bold text-pink-800 mb-3"><i class="fas fa-file-alt mr-2"></i>CaracterÃ­sticas del Folleto (Brochure)</h3>
+                            <p class="text-sm text-gray-700 mb-4">Se utiliza para dar consejos, informaciÃ³n o promover algo. Similar a un pÃ³ster pero con mÃ¡s texto organizado.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                    <li><strong>TÃ­tulos atractivos:</strong> Para despertar interÃ©s.</li>
+                                    <li><strong>Estructura:</strong> TrÃ­ptico (3 partes) o pÃ¡rrafos claros.</li>
+                                    <li><strong>OrganizaciÃ³n:</strong> ViÃ±etas (Bullet points).</li>
+                                </ul>
+                                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                                    <li><strong>Lenguaje:</strong> Persuasivo. Usa Â¡Exclamaciones! e Â¿Interrogaciones?</li>
+                                    <li><strong>GramÃ¡tica:</strong> Imperativo (Â¡Ahorra!), Infinitivo o Condicional.</li>
+                                    <li><strong>Contacto:</strong> Web, telÃ©fono o direcciÃ³n al final.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="border-t pt-6">
+                            <h3 class="font-bold text-gray-800 mb-2">Tarea Escrita (Ejercicio 4)</h3>
+                            <p class="mb-4 text-gray-600 bg-gray-50 p-4 rounded border-l-4 border-pink-500">
+                                <strong>Contexto:</strong> Quieres promover el ahorro de energÃ­a.
+                                <br><strong>Tarea:</strong> Escribe un folleto para dar consejos para ahorrar energÃ­a en la vida cotidiana (120 palabras).
+                                <br><strong>Estructura sugerida:</strong> Transportes, EnergÃ­a en casa, Ahorro diario.
+                            </p>
+                            
+                            <div class="bg-gray-100 p-4 rounded">
+                                <h4 class="font-bold text-sm text-gray-700 mb-2">Lista de verificaciÃ³n (Self-Check):</h4>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿Tiene un tÃ­tulo llamativo?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿EstÃ¡ dividido en secciones/subtÃ­tulos?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿UsÃ© viÃ±etas para listar consejos?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿UsÃ© el Imperativo (Apaga, Usa...) o Condicional (DeberÃ­as...)?</li>
+                                    <li class="flex items-center"><input type="checkbox" class="mr-2"> Â¿IncluÃ­ informaciÃ³n de contacto/web ficticia?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Future to Conditional
+        // Based on page 78 Exercise 1
+        const ex1Data = [
+            { verb: "decir", future: "dirÃ©", ans: "dirÃ­a" },
+            { verb: "hacer", future: "harÃ©", ans: "harÃ­a" },
+            { verb: "poder", future: "podrÃ©", ans: "podrÃ­a" },
+            { verb: "poner", future: "pondrÃ©", ans: "pondrÃ­a" },
+            { verb: "saber", future: "sabrÃ©", ans: "sabrÃ­a" },
+            { verb: "querer", future: "querrÃ©", ans: "querrÃ­a" },
+            { verb: "salir", future: "saldrÃ©", ans: "saldrÃ­a" },
+            { verb: "caber", future: "cabrÃ©", ans: "cabrÃ­a" },
+            { verb: "valer", future: "valdrÃ©", ans: "valdrÃ­a" },
+            { verb: "venir", future: "vendrÃ©", ans: "vendrÃ­a" },
+            { verb: "tener", future: "tendrÃ©", ans: "tendrÃ­a" }
+        ];
+
+        // Ex 2: Conjugation sentences
+        // Based on page 78 Exercise 2 and Answer key page 44-45
+        const ex2Data = [
+            { q: "(querer, yo) estar en su puesto.", ans: "querrÃ­a", hint: "I would like" },
+            { q: "(Gustar, a mÃ­) viajar por toda la LatinoamÃ©rica.", ans: "gustarÃ­a", hint: "I would like" }, // Book answer key says "Me gustarÃ­a", prompting for full phrase if needed, but verb is gustar.
+            { q: "Â¿Me (poder, tÃº) ayudar a limpiar?", ans: "podrÃ­as", hint: "Could you...?" },
+            { q: "Yo en tu lugar, no les (decir) toda la verdad.", ans: "dirÃ­a", hint: "I wouldn't tell" },
+            { q: "Â¿QuÃ© (hacer, vosotros) en este caso?", ans: "harÃ­ais", hint: "What would you do?" },
+            { q: "Creo que no (llegar, tÃº) a tiempo.", ans: "llegarÃ­as", hint: "You wouldn't arrive" },
+            { q: "QuizÃ¡s (tener, Ã©l) fiebre.", ans: "tendrÃ­a", hint: "He might have" },
+            { q: "Â¿(Venir, tÃº) a la fiesta de mi cumpleaÃ±os?", ans: "vendrÃ­as", hint: "Would you come?" },
+            { q: "Â¿Crees que (caber, nosotros) en este coche?", ans: "cabrÃ­amos", hint: "Would we fit?" },
+            { q: "Yo que tÃº, no (comprar) este vestido.", ans: "comprarÃ­a", hint: "I wouldn't buy" }
+        ];
+
+        // --- TABS LOGIC ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-3 rounded border border-gray-200 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs text-gray-500 block uppercase font-bold">${item.verb}</span>
+                        <span class="text-sm text-gray-400">Fut: ${item.future}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-400 text-sm"><i class="fas fa-arrow-right"></i></span>
+                        <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-white px-2 py-1 w-24 text-center focus:border-indigo-500 outline-none text-indigo-700 font-bold" placeholder="Cond...">
+                    </div>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-md text-gray-800 mb-2 leading-relaxed">
+                        ${item.q.replace(/\(.*\)/, `<input type="text" id="ex2-${i}" class="inline-block border-b-2 border-gray-400 bg-white px-2 py-0 mx-1 w-32 text-center focus:border-indigo-500 outline-none text-indigo-700 font-bold placeholder-gray-300" placeholder="verbo">`)}
+                        <span class="vocab-hint ml-2 text-xs" data-en="${item.hint}"><i class="fas fa-info-circle"></i></span>
+                    </p>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                const val = el.value.trim().toLowerCase();
+                const parent = el.parentElement.parentElement;
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (val === item.ans || val === "me " + item.ans) { // handle "me gustarÃ­a" case loosely
+                    parent.classList.add('correct-answer');
+                    s++;
+                } else {
+                    parent.classList.add('incorrect-answer');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                const val = el.value.trim().toLowerCase();
+                const parent = el.parentElement; // p tag
+                
+                // Allow "me gustarÃ­a" or just "gustarÃ­a" for the first/second item logic
+                let cleanAns = item.ans.toLowerCase();
+                
+                // Simple logic for removing accents for lenient checking if desired, 
+                // but for grammar strict check is better.
+                
+                if (val.includes(cleanAns)) {
+                    el.classList.add('border-green-500', 'text-green-700');
+                    el.classList.remove('border-red-500', 'text-red-700');
+                    s++;
+                } else {
+                    el.classList.add('border-red-500', 'text-red-700');
+                    el.classList.remove('border-green-500', 'text-green-700');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `PuntuaciÃ³n: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                el.value = "";
+                el.parentElement.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+             ex2Data.forEach((_, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                el.value = "";
+                el.classList.remove('border-green-500', 'text-green-700', 'border-red-500', 'text-red-700');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html
+
+
+
+

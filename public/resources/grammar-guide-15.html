@@ -1,0 +1,541 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 15</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .matching-item {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .matching-item.selected {
+            background-color: #e0e7ff;
+            border-color: #4f46e5;
+        }
+        .matching-item.matched {
+            background-color: #d1fae5;
+            border-color: #10b981;
+            cursor: default;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 15: Indefinite Adjectives & Pronouns</h1>
+            <p class="text-indigo-200 mt-2">Referring to non-specific people and things</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Indefinites</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Indefinite Words (Palabras Indefinidas)</h2>
+                        
+                        <div class="mt-4 space-y-4 text-gray-700">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">Adjectives (Before Noun)</h3>
+                                    <p class="text-sm mb-3">They describe a noun and must agree in gender/number.</p>
+                                    <ul class="text-sm list-disc pl-5 space-y-2 text-blue-900">
+                                        <li><strong>AlgÃºn / Alguno(a)(s):</strong> Some / Any
+                                            <br><span class="text-xs text-gray-500 italic">Ex: <span class="vocab-hint" data-en="Some book">AlgÃºn libro</span> / <span class="vocab-hint" data-en="Some friends">Algunos amigos</span></span>
+                                        </li>
+                                        <li><strong>NingÃºn / Ninguno(a):</strong> No / Not any
+                                            <br><span class="text-xs text-gray-500 italic">Ex: <span class="vocab-hint" data-en="No problem">NingÃºn problema</span></span>
+                                        </li>
+                                        <li><strong>Otro(a)(s):</strong> Other / Another</li>
+                                        <li><strong>Todo(a)(s):</strong> All / Every</li>
+                                        <li><strong>Cada:</strong> Each / Every (invariable)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-purple-50 p-4 rounded border border-purple-200">
+                                    <h3 class="font-bold text-purple-800 text-lg mb-2">Pronouns (Replace Noun)</h3>
+                                    <p class="text-sm mb-3">They stand alone. They do not change form (invariable) except for Alguno/Ninguno.</p>
+                                    <ul class="text-sm list-disc pl-5 space-y-2 text-purple-900">
+                                        <li><strong>Algo:</strong> Something / Anything</li>
+                                        <li><strong>Nada:</strong> Nothing / Anything</li>
+                                        <li><strong>Alguien:</strong> Someone / Anyone</li>
+                                        <li><strong>Nadie:</strong> No one / Anyone</li>
+                                        <li><strong>Alguno/Ninguno:</strong> Some/None (of them)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">Important Rules:</h3>
+                                <ul class="list-disc pl-5 text-sm mt-1 space-y-1">
+                                    <li><strong>Apocope:</strong> Before a <em>masculine singular noun</em>, <strong>alguno</strong> becomes <strong>algÃºn</strong> and <strong>ninguno</strong> becomes <strong>ningÃºn</strong>.</li>
+                                    <li><strong>Double Negative:</strong> If <em>nada, nadie, ninguno</em> go <strong>after</strong> the verb, you must use <strong>NO</strong> before the verb.
+                                        <br><span class="italic text-indigo-600">No tengo nada. (I don't have anything.)</span> vs <span class="italic text-indigo-600">Nada es imposible. (Nothing is impossible.)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                
+                <!-- Exercise 1: Selection -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Select the correct indefinite word.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: AlgÃºn vs NingÃºn (and variations)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Pay attention to gender and number!</p>
+
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+                
+                <!-- Exercise 2: Opposites Matching -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Match the Opposites (AntÃ³nimos)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">Click a word on the left, then its opposite on the right.</p>
+
+                        <div class="grid grid-cols-2 gap-8" id="ex2-container">
+                            <div id="col-left" class="space-y-2">
+                                <!-- Left column items -->
+                            </div>
+                            <div id="col-right" class="space-y-2">
+                                <!-- Right column items -->
+                            </div>
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 3: Complete sentences -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Complete with Something, Someone, Nothing, No one
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex3-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Adjectives (AlgÃºn/NingÃºn)
+        const ex1Data = [
+            { q: "No tengo ______ libro de espaÃ±ol.", options: ["algÃºn", "ningÃºn", "ninguno"], ans: "ningÃºn", hint: "I don't have ANY Spanish book." },
+            { q: "Â¿Tienes ______ pregunta?", options: ["alguna", "algÃºn", "ninguna"], ans: "alguna", hint: "Do you have ANY question?" },
+            { q: "No veo a ______ chico aquÃ­.", options: ["ningÃºn", "ninguno", "algÃºn"], ans: "ningÃºn", hint: "I don't see ANY boy here." },
+            { q: "He comprado ______ manzanas.", options: ["algunas", "algÃºn", "ninguna"], ans: "algunas", hint: "I have bought SOME apples." },
+            { q: "No hay ______ problema.", options: ["ninguno", "ningÃºn", "algÃºn"], ans: "ningÃºn", hint: "There is NO problem." }
+        ];
+
+        // Ex 2: Opposites (Matching)
+        const ex2Pairs = [
+            { a: "Algo", b: "Nada", hintA: "Something", hintB: "Nothing" },
+            { a: "Alguien", b: "Nadie", hintA: "Someone", hintB: "No one" },
+            { a: "Siempre", b: "Nunca", hintA: "Always", hintB: "Never" },
+            { a: "Alguno", b: "Ninguno", hintA: "Some", hintB: "None" },
+            { a: "TambiÃ©n", b: "Tampoco", hintA: "Also", hintB: "Neither" }
+        ];
+
+        // Ex 3: Pronouns (Algo/Nada/Alguien/Nadie)
+        const ex3Data = [
+            { q: "Â¿Hay ______ en la puerta?", options: ["algo", "alguien"], ans: "alguien", hint: "Is there SOMEONE at the door?" },
+            { q: "No, no hay ______.", options: ["nadie", "nada"], ans: "nadie", hint: "No, there is NO ONE." },
+            { q: "Â¿Quieres comer ______?", options: ["algo", "alguien"], ans: "algo", hint: "Do you want to eat SOMETHING?" },
+            { q: "No gracias, no quiero ______.", options: ["nada", "nadie"], ans: "nada", hint: "No thanks, I don't want ANYTHING." },
+            { q: "Busco a ______ que hable inglÃ©s.", options: ["algo", "alguien"], ans: "alguien", hint: "I'm looking for SOMEONE who speaks English." }
+        ];
+
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-wrap gap-4">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex1-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        let selectedLeft = null;
+        let matchedPairs = 0;
+
+        function renderEx2() {
+            const colLeft = document.getElementById('col-left');
+            const colRight = document.getElementById('col-right');
+            colLeft.innerHTML = '';
+            colRight.innerHTML = '';
+            matchedPairs = 0;
+            selectedLeft = null;
+            document.getElementById('feedback2').textContent = '';
+
+            // Randomize right column
+            const rightItems = [...ex2Pairs].sort(() => Math.random() - 0.5);
+
+            ex2Pairs.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'matching-item p-3 bg-white border border-gray-300 rounded text-center shadow-sm hover:bg-blue-50';
+                div.textContent = item.a;
+                div.dataset.pair = item.a; // ID
+                div.title = item.hintA;
+                div.onclick = () => selectLeft(div);
+                colLeft.appendChild(div);
+            });
+
+            rightItems.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'matching-item p-3 bg-white border border-gray-300 rounded text-center shadow-sm hover:bg-blue-50';
+                div.textContent = item.b;
+                div.dataset.pair = item.a; // Match ID to A
+                div.title = item.hintB;
+                div.onclick = () => selectRight(div);
+                colRight.appendChild(div);
+            });
+        }
+
+        function selectLeft(elem) {
+            if (elem.classList.contains('matched')) return;
+            // Deselect previous
+            const prev = document.querySelector('#col-left .selected');
+            if (prev) prev.classList.remove('selected');
+            
+            elem.classList.add('selected');
+            selectedLeft = elem;
+        }
+
+        function selectRight(elem) {
+            if (elem.classList.contains('matched') || !selectedLeft) return;
+
+            if (elem.dataset.pair === selectedLeft.dataset.pair) {
+                // Match!
+                elem.classList.add('matched');
+                selectedLeft.classList.add('matched');
+                elem.classList.remove('selected'); // Just in case
+                selectedLeft.classList.remove('selected');
+                selectedLeft = null;
+                matchedPairs++;
+                if (matchedPairs === ex2Pairs.length) {
+                    const fb = document.getElementById('feedback2');
+                    fb.textContent = "Great job! All matched.";
+                    fb.className = "feedback-msg text-green-600";
+                }
+            } else {
+                // Wrong
+                elem.classList.add('bg-red-100');
+                setTimeout(() => elem.classList.remove('bg-red-100'), 500);
+            }
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('ex3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-wrap gap-4">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex3-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex1-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex1-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex3-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex3-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex1-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+            renderEx2();
+        }
+
+        function resetEx3() {
+             ex3Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex3-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

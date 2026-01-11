@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Types Guide: Unit 19</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .tab-btn {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: #64748b;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+            background-color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .feature-box {
+            border-left: 4px solid #4f46e5;
+            background-color: #eef2ff;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-5xl mx-auto flex items-center gap-4">
+            <div class="bg-indigo-700 p-3 rounded-lg">
+                <i class="fas fa-pen-nib text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold">Unit 19: Text Types Deep Dive</h1>
+                <p class="text-indigo-200 mt-1">Mastering Informal Writing & Ads</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden min-h-[600px]">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 bg-gray-50 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('sms')">
+                    <i class="fas fa-comment-dots mr-2"></i> 1. Message / Note
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('invitation')">
+                    <i class="fas fa-envelope-open-text mr-2"></i> 2. Invitation
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('ad')">
+                    <i class="fas fa-ad mr-2"></i> 3. Advertisement
+                </div>
+            </div>
+
+            <!-- TAB 1: MESSAGE / NOTE -->
+            <div id="sms" class="tab-content active p-8 space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Theory Column -->
+                    <div class="space-y-6">
+                        <div class="feature-box">
+                            <h3 class="font-bold text-indigo-800 text-lg mb-2">Structure & Tone</h3>
+                            <p class="text-sm text-gray-700 mb-2"><strong>Purpose:</strong> Quick communication with friends/family.</p>
+                            <p class="text-sm text-gray-700 mb-2"><strong>Tone:</strong> Very Informal (TÃº).</p>
+                            <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1">
+                                <li>Use abbreviations (optional but common).</li>
+                                <li>Omit formal openings ("Estimado seÃ±or" is WRONG).</li>
+                                <li>Use exclamations and emojis!</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-gray-700 mb-3">Useful Phrases (Frases Ãštiles)</h4>
+                            <ul class="text-sm space-y-2">
+                                <li><span class="vocab-hint" data-en="Hey / Hi">Hola / Oye</span></li>
+                                <li><span class="vocab-hint" data-en="How are you?">Â¿QuÃ© tal? / Â¿CÃ³mo estÃ¡s?</span></li>
+                                <li><span class="vocab-hint" data-en="I'm going to be late">Voy a llegar tarde</span></li>
+                                <li><span class="vocab-hint" data-en="Do you want to come?">Â¿Quieres venir?</span></li>
+                                <li><span class="vocab-hint" data-en="See you later">Nos vemos / Hasta luego</span></li>
+                                <li><span class="vocab-hint" data-en="Kisses / Hugs">Besos / Un abrazo</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Practice Column -->
+                    <div class="bg-gray-100 p-6 rounded-3xl border-4 border-gray-300 relative max-w-sm mx-auto shadow-inner">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-4 bg-gray-300 rounded-b-lg"></div>
+                        <h4 class="text-center font-bold text-gray-500 mb-4 mt-2">WhatsApp / SMS</h4>
+                        
+                        <!-- Chat Bubbles -->
+                        <div class="flex flex-col space-y-4 mb-4 text-sm">
+                            <div class="bg-white p-3 rounded-lg rounded-tl-none self-start shadow-sm max-w-[80%]">
+                                <p class="text-indigo-900 font-bold text-xs mb-1">Marta</p>
+                                Hola, Â¿quÃ© haces esta tarde?
+                            </div>
+                            
+                            <div class="bg-green-100 p-3 rounded-lg rounded-tr-none self-end shadow-sm max-w-[80%] border border-green-200">
+                                <p class="text-xs text-gray-500 mb-1 italic">Write a reply: "I will study, but later I will go to the park."</p>
+                                <textarea id="sms-reply" class="w-full bg-transparent border-b border-green-300 focus:outline-none resize-none h-16 text-gray-800" placeholder="Escribe aquÃ­..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <button onclick="checkSMS()" class="w-full bg-green-500 text-white font-bold py-2 rounded-full hover:bg-green-600 transition">Send Reply</button>
+                        <div id="fb-sms" class="mt-2 text-xs text-center font-bold h-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: INVITATION -->
+            <div id="invitation" class="tab-content p-8 space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Theory -->
+                    <div class="space-y-6">
+                        <div class="feature-box border-l-pink-500 bg-pink-50">
+                            <h3 class="font-bold text-pink-800 text-lg mb-2">The 5 W's of Invitations</h3>
+                            <p class="text-sm text-gray-700">An invitation must always answer these questions:</p>
+                            <ul class="list-none pl-0 text-sm text-gray-600 space-y-2 mt-2">
+                                <li>ðŸŽ‰ <strong>Â¿QuÃ©?</strong> (What is the event?)</li>
+                                <li>ðŸ‘¤ <strong>Â¿Para quiÃ©n?</strong> (Who is invited?)</li>
+                                <li>ðŸ“… <strong>Â¿CuÃ¡ndo?</strong> (Date and Time)</li>
+                                <li>ðŸ“ <strong>Â¿DÃ³nde?</strong> (Location/Address)</li>
+                                <li>ðŸ“ž <strong>RSVP</strong> (Confirm attendance)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-gray-700 mb-3">Verbs for Inviting</h4>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="p-2 bg-white rounded border text-center"><span class="vocab-hint" data-en="To invite">Invitar</span></div>
+                                <div class="p-2 bg-white rounded border text-center"><span class="vocab-hint" data-en="To celebrate">Celebrar</span></div>
+                                <div class="p-2 bg-white rounded border text-center"><span class="vocab-hint" data-en="To confirm">Confirmar</span></div>
+                                <div class="p-2 bg-white rounded border text-center"><span class="vocab-hint" data-en="To attend">Asistir</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practice: Builder -->
+                    <div class="bg-pink-100 p-6 rounded-xl border border-pink-200 shadow-md">
+                        <h4 class="text-center font-serif text-2xl text-pink-700 mb-6 font-bold">DiseÃ±a tu InvitaciÃ³n</h4>
+                        
+                        <div class="space-y-4 bg-white p-6 rounded-lg shadow-sm">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase">TÃ­tulo del Evento</label>
+                                <input type="text" id="inv-title" class="w-full border-b-2 border-pink-200 focus:border-pink-500 outline-none py-1 text-lg font-bold text-gray-800" placeholder="Â¡Fiesta de...!">
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="w-1/2">
+                                    <label class="block text-xs font-bold text-gray-500 uppercase">DÃ­a</label>
+                                    <input type="text" id="inv-date" class="w-full border-b border-gray-300 focus:border-pink-500 outline-none py-1" placeholder="SÃ¡bado 12...">
+                                </div>
+                                <div class="w-1/2">
+                                    <label class="block text-xs font-bold text-gray-500 uppercase">Hora</label>
+                                    <input type="text" id="inv-time" class="w-full border-b border-gray-300 focus:border-pink-500 outline-none py-1" placeholder="18:00 h">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase">Lugar</label>
+                                <input type="text" id="inv-place" class="w-full border-b border-gray-300 focus:border-pink-500 outline-none py-1" placeholder="Mi casa / El restaurante...">
+                            </div>
+
+                            <div class="pt-2 border-t border-gray-100 mt-4">
+                                <label class="block text-xs font-bold text-gray-500 uppercase">Mensaje (Futuro: Vamos a...)</label>
+                                <textarea id="inv-msg" class="w-full bg-gray-50 rounded p-2 text-sm mt-1 focus:ring-1 focus:ring-pink-300 outline-none" rows="2" placeholder="Vamos a bailar y comer pastel..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 text-center">
+                            <button onclick="checkInvite()" class="bg-pink-600 text-white px-6 py-2 rounded-full font-bold hover:bg-pink-700 transition shadow">Check Format</button>
+                            <p id="fb-invite" class="mt-2 text-sm font-bold h-4"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: ADVERTISEMENT -->
+            <div id="ad" class="tab-content p-8 space-y-8">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Theory -->
+                    <div class="space-y-6">
+                        <div class="feature-box border-l-yellow-500 bg-yellow-50">
+                            <h3 class="font-bold text-yellow-800 text-lg mb-2">Persuasive Language</h3>
+                            <p class="text-sm text-gray-700 mb-2">Ads use short sentences, questions, and imperatives to convince you.</p>
+                            <div class="bg-white p-3 rounded mt-2 shadow-sm">
+                                <p class="font-bold text-sm text-gray-800 border-b pb-1 mb-2">Key Adjectives:</p>
+                                <ul class="text-sm text-gray-600 grid grid-cols-2 gap-1">
+                                    <li>Gratis (Free)</li>
+                                    <li>Nuevo (New)</li>
+                                    <li>Barato (Cheap)</li>
+                                    <li>Ãšnico (Unique)</li>
+                                    <li>Mejor (Best)</li>
+                                    <li>IncreÃ­ble (Incredible)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-gray-700 mb-3">Call to Action (Imperativo)</h4>
+                            <p class="text-sm mb-2">Tell people what to do!</p>
+                            <ul class="text-sm space-y-1 font-mono text-indigo-700">
+                                <li>Â¡Compra ahora! (Buy now!)</li>
+                                <li>Â¡Llama ya! (Call already!)</li>
+                                <li>Â¡Visita nuestra web! (Visit our site!)</li>
+                                <li>Â¡No pierdas la oportunidad! (Don't miss the chance!)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Practice: Analysis -->
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-lg">
+                        <div class="relative bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-6 rounded-lg mb-6 transform -rotate-1 shadow-md">
+                            <div class="absolute top-2 right-2 bg-white text-red-600 font-bold text-xs px-2 py-1 rounded-full animate-pulse">Â¡OFERTA!</div>
+                            <h3 class="text-2xl font-bold mb-2">Â¿Quieres hablar espaÃ±ol?</h3>
+                            <p class="mb-4">Â¡Aprende rÃ¡pido con nuestro nuevo mÃ©todo online!</p>
+                            <ul class="text-sm list-disc pl-5 mb-4 space-y-1">
+                                <li>Clases divertidas</li>
+                                <li>Profesores expertos</li>
+                                <li>Primera clase GRATIS</li>
+                            </ul>
+                            <div class="bg-white text-orange-600 font-bold text-center py-2 rounded">
+                                Â¡RegÃ­strate hoy!
+                            </div>
+                        </div>
+
+                        <h4 class="font-bold text-gray-700 mb-3">Analyze this Ad:</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                                <span>1. What is the "Call to Action"?</span>
+                                <select id="ad-q1" class="border rounded p-1 bg-white">
+                                    <option value="">Select...</option>
+                                    <option value="A">Â¿Quieres hablar espaÃ±ol?</option>
+                                    <option value="B">Â¡RegÃ­strate hoy!</option>
+                                    <option value="C">Clases divertidas</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                                <span>2. Find the "Persuasive Adjective":</span>
+                                <select id="ad-q2" class="border rounded p-1 bg-white">
+                                    <option value="">Select...</option>
+                                    <option value="A">EspaÃ±ol</option>
+                                    <option value="B">Online</option>
+                                    <option value="C">Gratis</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 flex gap-2">
+                            <button onclick="checkAd()" class="btn-primary text-sm w-full">Check Analysis</button>
+                        </div>
+                        <div id="fb-ad" class="mt-2 text-center font-bold text-sm h-4"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // TABS LOGIC
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // SMS CHECK
+        function checkSMS() {
+            const input = document.getElementById('sms-reply').value.toLowerCase();
+            const feedback = document.getElementById('fb-sms');
+            
+            // Keywords to look for: estudiarÃ© (or voy a estudiar), irÃ© (or voy a ir), parque
+            const hasStudy = input.includes('estudiar') || input.includes('estudio');
+            const hasPark = input.includes('parque');
+            const hasFuture = input.includes('Ã©') || input.includes('voy a'); // Simple check for future tense markers
+
+            if (hasStudy && hasPark && hasFuture) {
+                feedback.textContent = "Excelente! Good use of future tense and vocabulary.";
+                feedback.className = "mt-2 text-xs text-center font-bold h-4 text-green-600";
+            } else {
+                feedback.textContent = "Try again. Did you mention studying, the park, and use future tense?";
+                feedback.className = "mt-2 text-xs text-center font-bold h-4 text-red-500";
+            }
+        }
+
+        // INVITE CHECK
+        function checkInvite() {
+            const ids = ['inv-title', 'inv-date', 'inv-time', 'inv-place', 'inv-msg'];
+            let filled = 0;
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if(el.value.trim().length > 0) {
+                    el.classList.remove('border-red-400');
+                    el.classList.add('border-green-400');
+                    filled++;
+                } else {
+                    el.classList.add('border-red-400');
+                }
+            });
+
+            const fb = document.getElementById('fb-invite');
+            if(filled === 5) {
+                fb.textContent = "Perfect! Your invitation has all key elements.";
+                fb.className = "mt-2 text-sm font-bold h-4 text-green-600";
+            } else {
+                fb.textContent = "Please fill in all details to complete the invitation.";
+                fb.className = "mt-2 text-sm font-bold h-4 text-red-500";
+            }
+        }
+
+        // AD CHECK
+        function checkAd() {
+            const q1 = document.getElementById('ad-q1');
+            const q2 = document.getElementById('ad-q2');
+            let score = 0;
+
+            if(q1.value === "B") { // RegÃ­strate hoy
+                q1.classList.add('bg-green-100', 'border-green-500');
+                score++;
+            } else {
+                q1.classList.add('bg-red-100');
+            }
+
+            if(q2.value === "C") { // Gratis
+                q2.classList.add('bg-green-100', 'border-green-500');
+                score++;
+            } else {
+                q2.classList.add('bg-red-100');
+            }
+
+            const fb = document.getElementById('fb-ad');
+            if(score === 2) {
+                fb.textContent = "Correct! You identified the persuasive elements.";
+                fb.className = "mt-2 text-center font-bold text-sm h-4 text-green-600";
+            } else {
+                fb.textContent = "Review the definitions above.";
+                fb.className = "mt-2 text-center font-bold text-sm h-4 text-red-500";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+

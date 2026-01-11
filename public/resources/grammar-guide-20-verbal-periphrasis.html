@@ -1,0 +1,500 @@
+﻿
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 20</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 20: Verbal Periphrasis</h1>
+            <p class="text-indigo-200 mt-2">Combinations of Verbs (PerÃ­frasis Verbales)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Types & Uses</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. What is a Verbal Periphrasis?</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            <div class="highlight-box">
+                                <p class="text-lg">
+                                    It is a combination of two verbs that function as one single meaning.
+                                    <br><strong>Structure:</strong> Verb 1 (Conjugated) + (Link: a/de/que) + Verb 2 (Infinitive/Gerund)
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Infinitive Periphrasis -->
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">With Infinitive (To do)</h3>
+                                    <ul class="text-sm list-none space-y-3 text-blue-900">
+                                        <li>
+                                            <span class="font-bold">Ir a + Inf:</span> Future / Plan.
+                                            <br><span class="italic text-gray-600">Voy a comer. (I am going to eat.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Tener que + Inf:</span> Obligation.
+                                            <br><span class="italic text-gray-600">Tengo que estudiar. (I have to study.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Empezar a + Inf:</span> Start action.
+                                            <br><span class="italic text-gray-600">Empiezo a leer. (I start to read.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Volver a + Inf:</span> Repetition (Again).
+                                            <br><span class="italic text-gray-600">Vuelvo a ver la peli. (I watch the movie again.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Dejar de + Inf:</span> Stop action.
+                                            <br><span class="italic text-gray-600">Dejo de fumar. (I stop smoking.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Acabar de + Inf:</span> Recent past.
+                                            <br><span class="italic text-gray-600">Acabo de llegar. (I have just arrived.)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Gerund Periphrasis -->
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h3 class="font-bold text-green-800 text-lg mb-2">With Gerund (-ing)</h3>
+                                    <ul class="text-sm list-none space-y-3 text-green-900">
+                                        <li>
+                                            <span class="font-bold">Estar + Gerundio:</span> Ongoing action.
+                                            <br><span class="italic text-gray-600">Estoy comiendo. (I am eating.)</span>
+                                        </li>
+                                        <li>
+                                            <span class="font-bold">Seguir + Gerundio:</span> Continuity (Still doing).
+                                            <br><span class="italic text-gray-600">Sigo trabajando. (I am still working / keep working.)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                
+                <!-- Exercise 1: Identify Meaning -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Match the periphrasis with its meaning.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Meaning Check
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 2: Complete sentences -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Complete with the correct preposition
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Some verbs need 'a', 'de', 'que' or nothing.</p>
+
+                        <div class="space-y-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 3: Transformation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-t border-gray-100">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Rewrite using the cue
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex3-container">
+                            <!-- Generated by JS -->
+                        </div>
+                        
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Meaning
+        const ex1Data = [
+            { q: "Voy a estudiar.", options: ["Obligation", "Future Plan", "Repetition"], ans: "Future Plan", hint: "Ir a + Inf" },
+            { q: "Tengo que comer.", options: ["Obligation", "Start action", "Ongoing action"], ans: "Obligation", hint: "Tener que + Inf" },
+            { q: "Vuelvo a leer el libro.", options: ["Stop action", "Repetition", "Recent past"], ans: "Repetition", hint: "Volver a + Inf" },
+            { q: "Acabo de llegar.", options: ["Future Plan", "Recent past", "Continuity"], ans: "Recent past", hint: "Acabar de + Inf" },
+            { q: "Sigo estudiando.", options: ["Start action", "Stop action", "Continuity"], ans: "Continuity", hint: "Seguir + Gerund" }
+        ];
+
+        // Ex 2: Prepositions (a, de, que, -)
+        const ex2Data = [
+            { q: "Voy ______ comprar pan.", ans: "a", hint: "Ir ... (place/action)" },
+            { q: "Tengo ______ estudiar mÃ¡s.", ans: "que", hint: "Tener ... (obligation)" },
+            { q: "Acabo ______ terminar.", ans: "de", hint: "Acabar ... (recent)" },
+            { q: "Empiezo ______ trabajar hoy.", ans: "a", hint: "Empezar ... (start)" },
+            { q: "Dejo ______ fumar.", ans: "de", hint: "Dejar ... (stop)" },
+            { q: "Sigo ______ (speak) hablando.", ans: "-", hint: "Seguir ... (no prep)" }
+        ];
+
+        // Ex 3: Transformation
+        const ex3Data = [
+            { q: "Como pizza. (Plan future)", ans: "Voy a comer pizza", hint: "Use 'Ir a'" },
+            { q: "Estudio espaÃ±ol. (Obligation)", ans: "Tengo que estudiar espaÃ±ol", hint: "Use 'Tener que'" },
+            { q: "Leo el libro. (Again)", ans: "Vuelvo a leer el libro", hint: "Use 'Volver a'" },
+            { q: "Hablo con Ana. (Just now)", ans: "Acabo de hablar con Ana", hint: "Use 'Acabar de'" }
+        ];
+
+        // --- TABS LOGIC ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-col sm:flex-row gap-4">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="ex1-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
+                    <span class="vocab-hint font-medium text-gray-700" data-en="${item.hint}">${item.q.split('______')[0]}</span>
+                    <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-16 text-center focus:border-indigo-500 outline-none text-indigo-700 font-bold" placeholder="...">
+                    <span class="text-gray-700">${item.q.split('______')[1]}</span>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('ex3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-2"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <input type="text" id="ex3-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full focus:border-indigo-500 outline-none text-indigo-700" placeholder="Type the full sentence...">
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex1-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex1-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                const val = el.value.trim().toLowerCase();
+                const parent = el.parentElement;
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+                
+                // Handle empty input for "no prep" case
+                if(item.ans === "-" && val === "") {
+                     parent.classList.add('correct-answer');
+                     s++;
+                } else if (val === item.ans) {
+                    parent.classList.add('correct-answer');
+                    s++;
+                } else {
+                    parent.classList.add('incorrect-answer');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Data.forEach((item, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                // Simple check: removing case and extra spaces. Punctuation might be tricky, so let's be lenient.
+                // Ideally, regex or robust string comparison.
+                const val = el.value.trim().toLowerCase().replace('.', '');
+                const ans = item.ans.toLowerCase().replace('.', '');
+                
+                const parent = el.parentElement;
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (val === ans) {
+                    parent.classList.add('correct-answer');
+                    s++;
+                } else {
+                    parent.classList.add('incorrect-answer');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex1-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+             ex2Data.forEach((_, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                el.value = "";
+                el.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+             ex3Data.forEach((_, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                el.value = "";
+                el.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

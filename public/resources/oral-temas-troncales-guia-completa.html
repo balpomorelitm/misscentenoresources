@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Pro Oral IB - Spanish Ab Initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideIn 0.3s ease-out; }
+        .help-section { scroll-behavior: smooth; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .bg-pattern { background-color: #f8fafc; background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px); background-size: 10px 10px; }
+    </style>
+</head>
+<body class="bg-pattern min-h-screen text-slate-800">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Header & Timer Section -->
+    <header class="bg-indigo-950 text-white p-6 sticky top-0 z-50 border-b border-indigo-800 shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-3 mb-1">
+                    <span class="bg-amber-500 text-indigo-950 text-[10px] font-black px-2 py-0.5 rounded uppercase">Material Oficial IB</span>
+                    <h1 class="text-2xl font-extrabold tracking-tight">Simulador <span class="text-indigo-400">Oral Individual</span></h1>
+                </div>
+                <p class="text-xs text-indigo-300/80 font-medium">Guía Interactiva Basada en el Dosier de Preparación</p>
+            </div>
+
+            <!-- Timer Panel -->
+            <div class="flex items-center gap-4 bg-indigo-900/50 p-4 rounded-3xl border border-indigo-700/50 backdrop-blur-md">
+                <div class="text-center pr-4 border-r border-indigo-800">
+                    <span class="block text-[10px] uppercase font-bold text-indigo-400 mb-1">Cronómetro</span>
+                    <span class="text-3xl font-mono text-amber-400 font-bold" id="timer">15:00</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="startTimer(15)" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all shadow-lg active:scale-95">Preparar (15')</button>
+                    <button onclick="startTimer(2)" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all shadow-lg active:scale-95">Hablar (2')</button>
+                    <button onclick="resetTimer()" class="col-span-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-1.5 rounded-xl text-[10px] font-bold uppercase transition-all">Resetear</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Theme Navigation -->
+    <nav class="bg-white border-b sticky top-[148px] lg:top-[112px] z-40 overflow-x-auto no-scrollbar shadow-sm">
+        <div class="max-w-7xl mx-auto flex">
+            <button onclick="showTheme('identidades')" id="btn-identidades" class="tab-btn active px-8 py-5 text-xs font-bold uppercase tracking-widest border-b-4 border-transparent transition-all whitespace-nowrap">1. Identidades (Salud)</button>
+            <button onclick="showTheme('experiencias')" id="btn-experiencias" class="tab-btn px-8 py-5 text-xs font-bold uppercase tracking-widest border-b-4 border-transparent transition-all whitespace-nowrap">2. Experiencias (Vacaciones)</button>
+            <button onclick="showTheme('ingenio')" id="btn-ingenio" class="tab-btn px-8 py-5 text-xs font-bold uppercase tracking-widest border-b-4 border-transparent transition-all whitespace-nowrap">3. Ingenio (Tecnología)</button>
+            <button onclick="showTheme('organizacion')" id="btn-organizacion" class="tab-btn px-8 py-5 text-xs font-bold uppercase tracking-widest border-b-4 border-transparent transition-all whitespace-nowrap">4. Org. Social (Educación)</button>
+            <button onclick="showTheme('planeta')" id="btn-planeta" class="tab-btn px-8 py-5 text-xs font-bold uppercase tracking-widest border-b-4 border-transparent transition-all whitespace-nowrap">5. Planeta (Ambiente)</button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Main Content Area: Stimulus and Questions -->
+        <div class="lg:col-span-8 space-y-8">
+            
+            <!-- SECCIÓN: IDENTIDADES -->
+            <div id="identidades" class="tab-content active space-y-6">
+                <div class="bg-white p-6 rounded-[3rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800'" alt="" class="w-full h-[450px] object-cover rounded-[2.5rem] mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center">Identidades: Salud Física y Deporte</p>
+                </div>
+                <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-extrabold mb-8 text-indigo-950 flex items-center gap-3">
+                        <span class="bg-indigo-100 p-2 rounded-xl">?</span> Preguntas de Seguimiento:
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100"><p class="font-semibold italic">"¿Cómo se puede mantener uno en forma hoy en día?"</p></div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100"><p class="font-semibold italic">"¿Crees que los jóvenes hoy en día tienen una vida sedentaria? ¿Por qué?"</p></div>
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100"><p class="font-semibold italic">"En tu opinión, ¿cuál es la relación entre el deporte y la salud mental?"</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- (Otras secciones de temas se cargan aquí) -->
+            <!-- SECCIÓN: EXPERIENCIAS -->
+            <div id="experiencias" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-[3rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" alt="" class="w-full h-[450px] object-cover rounded-[2.5rem] mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center">Experiencias: Vacaciones y Viajes</p>
+                </div>
+                <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-extrabold mb-8 text-orange-600">Preguntas:</h3>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-orange-50/50 rounded-2xl border border-orange-100"><p class="font-semibold">"¿Adónde fuiste de vacaciones la última vez? ¿Qué hiciste?"</p></div>
+                        <div class="p-5 bg-orange-50/50 rounded-2xl border border-orange-100"><p class="font-semibold">"¿Prefieres ir de vacaciones con tus amigos o con tu familia? ¿Por qué?"</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: INGENIO -->
+            <div id="ingenio" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-[3rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200" alt="" class="w-full h-[450px] object-cover rounded-[2.5rem] mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center">Ingenio Humano: Tecnologías de Comunicación</p>
+                </div>
+                <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-extrabold mb-8 text-purple-600">Preguntas:</h3>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100"><p class="font-semibold">"¿Crees que hoy en día dependemos demasiado de los ordenadores?"</p></div>
+                        <div class="p-5 bg-purple-50 rounded-2xl border border-purple-100"><p class="font-semibold">"¿Te puedes imaginar tu vida sin un teléfono móvil? ¿Cómo sería?"</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: ORGANIZACION -->
+            <div id="organizacion" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-[3rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1523050337442-17666632c2d7?auto=format&fit=crop&q=80&w=1200" alt="" class="w-full h-[450px] object-cover rounded-[2.5rem] mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center">Org. Social: Educación y Trabajo</p>
+                </div>
+                <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-extrabold mb-8 text-blue-600">Preguntas:</h3>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100"><p class="font-semibold">"¿Qué es lo que más te gusta de tu colegio? ¿Por qué?"</p></div>
+                        <div class="p-5 bg-blue-50 rounded-2xl border border-blue-100"><p class="font-semibold">"¿Crees que necesitas estudiar en una buena universidad para obtener un buen trabajo?"</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: PLANETA -->
+            <div id="planeta" class="tab-content space-y-6">
+                <div class="bg-white p-6 rounded-[3rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb773b09?auto=format&fit=crop&q=80&w=1200" alt="" class="w-full h-[450px] object-cover rounded-[2.5rem] mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] text-center">Planeta: El Medio Ambiente</p>
+                </div>
+                <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-extrabold mb-8 text-emerald-600">Preguntas:</h3>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-100"><p class="font-semibold">"¿Qué debería hacer el gobierno para proteger el medio ambiente?"</p></div>
+                        <div class="p-5 bg-emerald-50 rounded-2xl border border-emerald-100"><p class="font-semibold">"¿Cómo podemos ahorrar energía en nuestra casa día a día?"</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar: AYUDA PARA ESTUDIANTES (The specific requested section) -->
+        <div class="lg:col-span-4 space-y-6">
+            
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border-t-8 border-amber-500 sticky top-[240px]">
+                <h4 class="font-black text-indigo-950 uppercase text-sm tracking-widest mb-6 flex items-center gap-2">
+                    <span class="bg-amber-100 p-2 rounded-lg">💡</span> BANCO DE AYUDAS
+                </h4>
+                
+                <!-- Acordeón de Ayuda -->
+                <div class="space-y-4">
+                    
+                    <!-- PARTE 1: LA PRESENTACIÓN -->
+                    <div class="border-b pb-4">
+                        <button onclick="toggleHelp('help1')" class="flex justify-between items-center w-full text-left font-bold text-slate-700 hover:text-indigo-600">
+                            <span>1. Cómo empezar (Parte 1)</span>
+                            <span id="icon-help1">?</span>
+                        </button>
+                        <div id="help1" class="hidden mt-3 text-xs text-slate-500 space-y-2 leading-relaxed">
+                            <p class="bg-slate-50 p-2 rounded"><strong>Inicio:</strong> "He elegido la foto número X: [Título]. El tema es [Tema]."</p>
+                            <p class="bg-slate-50 p-2 rounded"><strong>Ubicación:</strong> "En primer plano se puede ver...", "Al fondo hay...", "A la derecha..."</p>
+                        </div>
+                    </div>
+
+                    <!-- PARTE 2: DESCRIBIR PERSONAS -->
+                    <div class="border-b pb-4">
+                        <button onclick="toggleHelp('help2')" class="flex justify-between items-center w-full text-left font-bold text-slate-700 hover:text-indigo-600">
+                            <span>2. Describir personas</span>
+                            <span id="icon-help2">?</span>
+                        </button>
+                        <div id="help2" class="hidden mt-3 text-xs text-slate-500 space-y-2">
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li><strong>Físico:</strong> "Es alto/a, lleva ropa de deporte..."</li>
+                                <li><strong>Emociones:</strong> "Parece que está contento/a, harto/a, preocupado/a..."</li>
+                                <li><strong>Acción:</strong> "Está [verbo + ando/iendo]..."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PARTE 3: DAR OPINIONES (CONECTORES) -->
+                    <div class="border-b pb-4">
+                        <button onclick="toggleHelp('help3')" class="flex justify-between items-center w-full text-left font-bold text-slate-700 hover:text-indigo-600">
+                            <span>3. Conectores para opinar</span>
+                            <span id="icon-help3">?</span>
+                        </button>
+                        <div id="help3" class="hidden mt-3 text-xs text-slate-500 space-y-2">
+                            <div class="grid grid-cols-2 gap-2">
+                                <span class="bg-indigo-50 text-indigo-700 p-2 rounded text-center">Me parece que...</span>
+                                <span class="bg-indigo-50 text-indigo-700 p-2 rounded text-center">Desde mi punto de vista...</span>
+                                <span class="bg-indigo-50 text-indigo-700 p-2 rounded text-center">Por un lado...</span>
+                                <span class="bg-indigo-50 text-indigo-700 p-2 rounded text-center">Sin embargo...</span>
+                            </div>
+                            <p class="pt-2 italic">Tip: Usa "Aunque" o "A pesar de" para subir al Nivel 7-10.</p>
+                        </div>
+                    </div>
+
+                    <!-- ESTRUCTURA PARA RESPONDER -->
+                    <div>
+                        <button onclick="toggleHelp('help4')" class="flex justify-between items-center w-full text-left font-bold text-slate-700 hover:text-indigo-600">
+                            <span>4. Fórmula de Respuesta</span>
+                            <span id="icon-help4">?</span>
+                        </button>
+                        <div id="help4" class="hidden mt-3 text-xs text-slate-500 space-y-3">
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-bold">A. Respuesta Directa</p>
+                                <p>"Creo que el reciclaje es vital..."</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-bold">B. Justificación (Porque)</p>
+                                <p>"...ya que el plástico tarda años en degradarse."</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-bold">C. Ejemplo Personal</p>
+                                <p>"En mi colegio, nosotros reciclamos papel y vidrio."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Rubric Quick View -->
+            <div class="bg-indigo-900 text-white p-6 rounded-[2rem] shadow-lg">
+                <h4 class="text-xs font-black uppercase tracking-widest mb-4 opacity-70 italic">Recordatorio Criterio B</h4>
+                <p class="text-xs leading-relaxed">"Debes ser capaz de mantener una conversación fluida y responder de forma apropiada a las preguntas del profesor."</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab System
+        function showTheme(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Help Accordion logic
+        function toggleHelp(id) {
+            const el = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if(el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                icon.innerText = '?';
+            } else {
+                el.classList.add('hidden');
+                icon.innerText = '?';
+            }
+        }
+
+        // Professional Timer Logic
+        let timerInterval;
+        function startTimer(minutes) {
+            clearInterval(timerInterval);
+            let seconds = minutes * 60;
+            const display = document.getElementById('timer');
+            display.classList.remove('animate-pulse', 'text-amber-400');
+            display.classList.add('text-amber-400');
+            
+            timerInterval = setInterval(() => {
+                let m = Math.floor(seconds / 60);
+                let s = seconds % 60;
+                display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                
+                if (seconds <= 30 && seconds > 0) {
+                    display.classList.add('text-red-500');
+                }
+
+                if (seconds <= 0) {
+                    clearInterval(timerInterval);
+                    display.innerText = "¡TIEMPO!";
+                    display.classList.add('animate-pulse');
+                    display.classList.remove('text-amber-400');
+                    display.classList.add('text-red-500');
+                }
+                seconds--;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            const display = document.getElementById('timer');
+            display.innerText = "15:00";
+            display.classList.remove('animate-pulse', 'text-red-500');
+            display.classList.add('text-amber-400');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

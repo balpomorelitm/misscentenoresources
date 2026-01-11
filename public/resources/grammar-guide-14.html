@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 14</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 14: Relative Clauses</h1>
+            <p class="text-indigo-200 mt-2">Connecting ideas with Que, Donde, Quien</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Relative Pronouns</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Relative Pronouns (Pronombres Relativos)</h2>
+                        
+                        <div class="mt-4 space-y-4 text-gray-700">
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">What are they?</h3>
+                                <p class="text-lg mt-1">
+                                    Relative pronouns connect sentences to give more information about a noun (person, place, or thing) mentioned before.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h4 class="font-bold text-blue-800 mb-2">QUE (That / Which / Who)</h4>
+                                    <p class="text-sm text-gray-600 mb-2">The most common. Use it for people OR things.</p>
+                                    <p class="text-sm italic text-blue-900">El libro <span class="font-bold">que</span> leo es bueno.<br>(The book <strong>that</strong> I read...)</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h4 class="font-bold text-green-800 mb-2">DONDE (Where)</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Use it only for places / locations.</p>
+                                    <p class="text-sm italic text-green-900">La casa <span class="font-bold">donde</span> vivo.<br>(The house <strong>where</strong> I live.)</p>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded border border-purple-200">
+                                    <h4 class="font-bold text-purple-800 mb-2">QUIEN / QUIENES (Who)</h4>
+                                    <p class="text-sm text-gray-600 mb-2">Use it only for people, usually after a preposition (a, con, de...) or commas.</p>
+                                    <p class="text-sm italic text-purple-900">La chica con <span class="font-bold">quien</span> hablo.<br>(The girl with <strong>whom</strong> I speak.)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Choose the correct relative pronoun to connect the ideas.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Que, Donde, or Quien?
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+                
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Combine the Sentences
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Example: Tengo un amigo. El amigo vive en PerÃº. -> Tengo un amigo <strong>que</strong> vive en PerÃº.</p>
+
+                        <div class="space-y-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Multiple Choice
+        const ex1Data = [
+            { q: "El libro ______ comprÃ© es interesante.", options: ["que", "donde", "quien"], ans: "que", hint: "The book (that) I bought..." },
+            { q: "Esta es la ciudad ______ nacÃ­.", options: ["que", "donde", "quien"], ans: "donde", hint: "This is the city (where) I was born." },
+            { q: "El profesor con ______ hablÃ© es simpÃ¡tico.", options: ["que", "donde", "quien"], ans: "quien", hint: "The teacher with (whom) I spoke..." },
+            { q: "Los amigos ______ viven aquÃ­ son espaÃ±oles.", options: ["que", "donde", "quien"], ans: "que", hint: "The friends (who/that) live here..." },
+            { q: "El restaurante ______ comimos es caro.", options: ["que", "donde", "quien"], ans: "donde", hint: "The restaurant (where) we ate..." }
+        ];
+
+        // Ex 2: Combine Sentences (Simplified matching for clearer logic)
+        const ex2Data = [
+            { start: "Esa es la chica", end: "juega al tenis.", ans: "que", hint: "That is the girl (who) plays tennis." },
+            { start: "Este es el parque", end: "jugamos fÃºtbol.", ans: "donde", hint: "This is the park (where) we play soccer." },
+            { start: "Tengo un coche", end: "es muy rÃ¡pido.", ans: "que", hint: "I have a car (that) is very fast." },
+            { start: "Los alumnos con", end: "estudio son amables.", ans: "quienes", hint: "The students with (whom) I study are nice." }
+        ];
+
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-row gap-4">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex1-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="bg-gray-50 p-4 rounded border border-gray-200 flex flex-col sm:flex-row items-center gap-2">
+                        <span class="text-sm font-bold text-gray-700">${item.start}</span>
+                        <input type="text" id="ex2-${i}" class="border-b-2 border-indigo-300 bg-transparent px-2 py-1 w-24 text-center focus:outline-none focus:border-indigo-600 font-bold text-indigo-700" placeholder="...">
+                        <span class="text-sm font-bold text-gray-700">${item.end}</span>
+                         <span class="ml-2 text-xs text-gray-400 italic">(${item.hint})</span>
+                    </div>`;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex1-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex1-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const input = document.getElementById(`ex2-${i}`);
+                const parent = input.parentElement;
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (input.value.trim().toLowerCase() === item.ans) {
+                    parent.classList.add('correct-answer');
+                    s++;
+                } else {
+                    parent.classList.add('incorrect-answer');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex1-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+            ex2Data.forEach((_, i) => {
+                const input = document.getElementById(`ex2-${i}`);
+                input.value = "";
+                input.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

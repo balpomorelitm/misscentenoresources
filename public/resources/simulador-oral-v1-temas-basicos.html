@@ -1,0 +1,223 @@
+﻿!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Examen Oral - IB Spanish Ab Initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-bottom: 3px solid #ef4444; color: #ef4444; font-weight: 800; }
+        .sticky-tabs { position: sticky; top: 0; z-index: 50; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-900">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Header con Cronómetro -->
+    <header class="bg-slate-900 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <h1 class="text-xl font-bold">Simulador: Prueba Oral Individual</h1>
+                <p class="text-xs text-slate-400 uppercase tracking-widest">Preparación 15' | Presentación 1-2' | Conversación 2-3'</p>
+            </div>
+            <div class="flex items-center space-x-4 bg-slate-800 p-2 rounded-xl">
+                <span class="text-2xl font-mono text-red-400" id="timer">15:00</span>
+                <div class="flex space-x-2">
+                    <button onclick="startTimer(15)" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-xs font-bold uppercase transition">Preparar</button>
+                    <button onclick="startTimer(2)" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-xs font-bold uppercase transition">Hablar</button>
+                    <button onclick="resetTimer()" class="bg-gray-600 px-3 py-1 rounded text-xs font-bold uppercase transition">Reset</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación de Temas -->
+    <nav class="bg-white shadow-sm border-b sticky top-[76px] md:top-[68px] z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex space-x-6 overflow-x-auto no-scrollbar">
+                <button onclick="showTheme('identidades')" id="btn-identidades" class="tab-btn active py-4 text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">1. Identidades</button>
+                <button onclick="showTheme('experiencias')" id="btn-experiencias" class="tab-btn py-4 text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">2. Experiencias</button>
+                <button onclick="showTheme('ingenio')" id="btn-ingenio" class="tab-btn py-4 text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">3. Ingenio Humano</button>
+                <button onclick="showTheme('organizacion')" id="btn-organizacion" class="tab-btn py-4 text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">4. Org. Social</button>
+                <button onclick="showTheme('planeta')" id="btn-planeta" class="tab-btn py-4 text-[10px] md:text-xs uppercase tracking-widest whitespace-nowrap">5. Planeta</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Columna del Estímulo (Imagen) -->
+        <div class="lg:col-span-2 space-y-6">
+            
+            <!-- CONTENIDO IDENTIDADES -->
+            <div id="identidades" class="tab-content active space-y-4">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
+                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800" alt="Familia comiendo" class="w-full h-[400px] object-cover rounded-xl mb-4">
+                    <p class="text-xs text-gray-400 italic">Estímulo 1: La dieta mediterránea y la familia.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 text-red-600">Preguntas del Profesor:</h3>
+                    <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                        <li>¿Qué comida típica hay en tu país?</li>
+                        <li>¿Prefieres comer en casa o en un restaurante? ¿Por qué?</li>
+                        <li>¿Crees que los jóvenes hoy en día tienen una vida saludable?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDO EXPERIENCIAS -->
+            <div id="experiencias" class="tab-content space-y-4">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-200">
+                    <img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&q=80&w=800" alt="Feria tradicional" class="w-full h-[400px] object-cover rounded-xl mb-4">
+                    <p class="text-xs text-gray-400 italic">Estímulo 2: Las tradiciones y el tiempo libre.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 text-orange-600">Preguntas del Profesor:</h3>
+                    <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                        <li>¿Cuál es tu festival favorito en tu ciudad?</li>
+                        <li>Háblame de un viaje especial que hiciste en el pasado.</li>
+                        <li>¿Qué planes tienes para las próximas vacaciones de verano?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDO INGENIO -->
+            <div id="ingenio" class="tab-content space-y-4">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="Estudiante con tablet" class="w-full h-[400px] object-cover rounded-xl mb-4">
+                    <p class="text-xs text-gray-400 italic">Estímulo 3: Tecnología en la educación.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 text-purple-600">Preguntas del Profesor:</h3>
+                    <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                        <li>¿Qué ventajas tienen las tabletas en el colegio?</li>
+                        <li>¿Usas mucho las redes sociales? ¿Para qué?</li>
+                        <li>¿Cómo crees que será la educación en el futuro?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDO ORGANIZACION SOCIAL -->
+            <div id="organizacion" class="tab-content space-y-4">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                    <!-- Nueva imagen añadida para el punto 4 -->
+                    <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&q=80&w=800" alt="Comunidad trabajando junta" class="w-full h-[400px] object-cover rounded-xl mb-4">
+                    <p class="text-xs text-gray-400 italic">Estímulo 4: Organización social y vida en comunidad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 text-blue-600">Preguntas del Profesor:</h3>
+                    <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                        <li>¿Te gustaría trabajar como voluntario en tu barrio?</li>
+                        <li>¿Cuáles son los problemas más importantes en tu comunidad?</li>
+                        <li>¿Qué servicios públicos son mejores en tu país?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CONTENIDO PLANETA -->
+            <div id="planeta" class="tab-content space-y-4">
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&q=80&w=800" alt="Reciclaje" class="w-full h-[400px] object-cover rounded-xl mb-4">
+                    <p class="text-xs text-gray-400 italic">Estímulo 5: Medio ambiente y sostenibilidad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="font-bold text-lg mb-4 text-green-600">Preguntas del Profesor:</h3>
+                    <ul class="space-y-3 text-gray-700 list-disc pl-5">
+                        <li>¿Qué haces tú para proteger el planeta?</li>
+                        <li>¿Por qué es importante reciclar en casa?</li>
+                        <li>¿Crees que el cambio climático es el mayor desafío actual?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra Lateral: Consejos y Rúbrica -->
+        <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                <h4 class="font-black text-gray-400 uppercase text-[10px] tracking-widest mb-4 italic">Guía de Presentación</h4>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-red-100 text-red-600 p-2 rounded-lg font-bold">1</div>
+                        <p class="text-sm"><strong>Descripción:</strong> ¿Quién/qué hay en la foto? ¿Dónde están? Usa "A la derecha", "Al fondo".</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg font-bold">2</div>
+                        <p class="text-sm"><strong>Relación:</strong> ¿Cómo se conecta la foto con el tema (ej. Experiencias) y la cultura hispana?</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="bg-green-100 text-green-600 p-2 rounded-lg font-bold">3</div>
+                        <p class="text-sm"><strong>Opinión:</strong> Expresa tu punto de vista personal sobre la situación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl">
+                <h4 class="font-bold text-sm mb-4 border-b border-slate-700 pb-2 uppercase tracking-widest text-slate-400">Rúbrica IB (Criterios)</h4>
+                <div class="space-y-4 text-xs">
+                    <div>
+                        <p class="font-bold text-yellow-500">A: Lengua (12 pts)</p>
+                        <p class="text-slate-400">Vocabulario variado, gramática correcta (tiempos verbales) y buena pronunciación.</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-yellow-500">B: Mensaje (12 pts)</p>
+                        <p class="text-slate-400">Ideas claras, relevancia de la información y profundidad en la presentación.</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-yellow-500">C: Interacción (6 pts)</p>
+                        <p class="text-slate-400">Respuesta fluida a las preguntas del profesor. Capacidad de mantener la conversación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Lógica de Tabs
+        function showTheme(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('active');
+        }
+
+        // Lógica de Cronómetro
+        let timerInterval;
+        function startTimer(minutes) {
+            clearInterval(timerInterval);
+            let seconds = minutes * 60;
+            const display = document.getElementById('timer');
+            
+            timerInterval = setInterval(() => {
+                let m = Math.floor(seconds / 60);
+                let s = seconds % 60;
+                display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                
+                if (seconds <= 0) {
+                    clearInterval(timerInterval);
+                    display.innerText = "¡TIEMPO!";
+                    display.classList.add('animate-pulse');
+                }
+                seconds--;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerText = "15:00";
+            document.getElementById('timer').classList.remove('animate-pulse');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

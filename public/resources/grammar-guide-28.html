@@ -1,0 +1,383 @@
+﻿
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno de Repaso: Unidad 28</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fffbeb; /* Amber-50 background */
+            color: #78350f; /* Amber-900 text */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* --- TABS --- */
+        .tab-btn {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: #92400e;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            color: #d97706; /* Amber-600 */
+            background-color: rgba(217, 119, 6, 0.05);
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #d97706;
+            color: #d97706;
+            background-color: rgba(217, 119, 6, 0.1);
+        }
+
+        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in; }
+        .tab-content.active { display: block; opacity: 1; }
+
+        /* --- INTERACTIVE ELEMENTS --- */
+        select, input {
+            border: 1px solid #fcd34d;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: #92400e;
+            background-color: #fff;
+            font-weight: 600;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #d97706;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+        }
+
+        .gap-fill-box {
+            line-height: 2.5;
+            font-size: 1.1rem;
+        }
+
+        .correct {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+        .incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        /* --- VOCAB LIST STYLE --- */
+        .vocab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #fde68a;
+            padding: 8px 0;
+        }
+        .vocab-es { font-weight: 700; color: #78350f; }
+        .vocab-en { font-size: 0.85rem; color: #b45309; font-style: italic; }
+
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-amber-600 text-white p-6 shadow-lg">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-graduation-cap text-2xl text-amber-200"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-amber-200">EspaÃ±ol Ab Initio</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unidad 28: Repaso General</h1>
+            <p class="text-amber-100 mt-2">Consolidando conocimientos.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-xl min-h-[600px] border border-gray-100">
+
+            <!-- Tabs Navigation -->
+            <div class="flex border-b border-gray-200 overflow-x-auto bg-gray-50 rounded-t-xl">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('buenosaires')">
+                    <i class="fas fa-city mr-2"></i>1. Texto: Buenos Aires
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('grammar')">
+                    <i class="fas fa-spell-check mr-2"></i>2. GramÃ¡tica y Conectores
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('culture')">
+                    <i class="fas fa-globe-americas mr-2"></i>3. Cultura y ComprensiÃ³n
+                </div>
+            </div>
+
+            <!-- TAB 1: BUENOS AIRES (TEXTO 2) -->
+            <div id="buenosaires" class="tab-content active p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b pb-2">Argentina: Una Capital Cultural</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Vocab Bank -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-amber-50 p-5 rounded-lg border border-amber-200 sticky top-4">
+                            <h3 class="font-bold text-amber-800 mb-4"><i class="fas fa-list mr-2"></i>Banco de Palabras</h3>
+                            <div class="flex flex-col gap-2">
+                                <div class="vocab-item"><span class="vocab-es">Conocida</span><span class="vocab-en">Known/Famous</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Recreativa</span><span class="vocab-en">Recreational</span></div>
+                                <div class="vocab-item"><span class="vocab-es">LibrerÃ­as</span><span class="vocab-en">Bookstores</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Centros comerciales</span><span class="vocab-en">Shopping malls</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Estilos</span><span class="vocab-en">Styles</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Encuentran</span><span class="vocab-en">They find</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Recorrer</span><span class="vocab-en">To travel through</span></div>
+                                <div class="vocab-item"><span class="vocab-es">Hasta</span><span class="vocab-en">Until / Even</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Text -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm gap-fill-box">
+                            <p class="mb-4 text-justify">
+                                La gran capital de Argentina es 
+                                <select id="ba-1" class="inline-block w-32"><option value="">---</option><option value="conocida">conocida</option><option value="recreativa">recreativa</option><option value="librerÃ­as">librerÃ­as</option></select> 
+                                por su vasta oferta cultural y 
+                                <select id="ba-2" class="inline-block w-32"><option value="">---</option><option value="recreativa">recreativa</option><option value="estilos">estilos</option><option value="hasta">hasta</option></select> 
+                                que agita los barrios los 365 dÃ­as del aÃ±o.
+                            </p>
+                            <p class="mb-4 text-justify">
+                                Hay antiguas 
+                                <select id="ba-3" class="inline-block w-32"><option value="">---</option><option value="librerÃ­as">librerÃ­as</option><option value="centros comerciales">centros comerciales</option></select> 
+                                y nuevos centros culturales; mÃ¡s de 100 museos y enormes ferias artesanales y modernos 
+                                <select id="ba-4" class="inline-block w-48"><option value="">---</option><option value="centros comerciales">centros comerciales</option><option value="recorrer">recorrer</option></select>.
+                            </p>
+                            <p class="mb-4 text-justify">
+                                Restaurantes de todos los 
+                                <select id="ba-5" class="inline-block w-32"><option value="">---</option><option value="estilos">estilos</option><option value="encuentran">encuentran</option></select>, 
+                                casinos y los mÃ¡s apasionados partidos de fÃºtbol; todos 
+                                <select id="ba-6" class="inline-block w-32"><option value="">---</option><option value="encuentran">encuentran</option><option value="hasta">hasta</option></select> 
+                                su lugar en esta gran metrÃ³polis.
+                            </p>
+                            <p class="text-justify">
+                                Se puede 
+                                <select id="ba-7" class="inline-block w-32"><option value="">---</option><option value="recorrer">recorrer</option><option value="conocida">conocida</option></select> 
+                                la ciudad caminando sus barrios, yendo desde los mÃ¡s tradicionales 
+                                <select id="ba-8" class="inline-block w-32"><option value="">---</option><option value="hasta">hasta</option><option value="recreativa">recreativa</option></select> 
+                                los mÃ¡s modernos como Puerto Madero.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-6 flex justify-end gap-3">
+                            <button onclick="checkBA()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded shadow transition">Comprobar</button>
+                            <button onclick="resetBA()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded shadow transition">Reiniciar</button>
+                        </div>
+                        <div id="feedback-ba" class="mt-2 text-right font-bold text-amber-800"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: GRAMÃTICA Y CONECTORES -->
+            <div id="grammar" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b pb-2">Repaso de Conectores (Textos 6 y 7)</h2>
+                <p class="text-gray-600 mb-4">Selecciona el conector o la palabra gramatical correcta para completar las frases.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Exercise Set A (Text 7 Style) -->
+                    <div class="bg-orange-50 p-6 rounded-lg border border-orange-200">
+                        <h3 class="font-bold text-orange-900 mb-4">Set A: Conectores LÃ³gicos</h3>
+                        <div class="space-y-4">
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">1. ________ llueva, irÃ© al parque.</label>
+                                <select id="gr-1" class="w-full"><option value="">Selecciona...</option><option value="Aunque">Aunque (Although)</option><option value="Por lo tanto">Por lo tanto (Therefore)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">2. No quiero tÃ©, ________ cafÃ©.</label>
+                                <select id="gr-2" class="w-full"><option value="">Selecciona...</option><option value="sino">sino (but rather)</option><option value="pero">pero (but)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">3. Estudio mucho, ________ saco buenas notas.</label>
+                                <select id="gr-3" class="w-full"><option value="">Selecciona...</option><option value="por lo tanto">por lo tanto (therefore)</option><option value="aunque">aunque (although)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">4. Hago ejercicio ________.</label>
+                                <select id="gr-4" class="w-full"><option value="">Selecciona...</option><option value="diariamente">diariamente (daily)</option><option value="fuente">fuente (source)</option></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exercise Set B (Text 6/8 Style) -->
+                    <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200">
+                        <h3 class="font-bold text-yellow-900 mb-4">Set B: Vocabulario AcadÃ©mico</h3>
+                        <div class="space-y-4">
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">5. Las ciudades estÃ¡n muy ________.</label>
+                                <select id="gr-5" class="w-full"><option value="">Selecciona...</option><option value="pobladas">pobladas (populated)</option><option value="barreras">barreras (barriers)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">6. El sol es una ________ de energÃ­a.</label>
+                                <select id="gr-6" class="w-full"><option value="">Selecciona...</option><option value="fuente">fuente (source)</option><option value="paisaje">paisaje (landscape)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">7. Debemos romper las ________ culturales.</label>
+                                <select id="gr-7" class="w-full"><option value="">Selecciona...</option><option value="barreras">barreras (barriers)</option><option value="carrera">carrera (race/career)</option></select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-sm font-bold text-gray-700 mb-1">8. SofÃ­a Vergara es muy ________.</label>
+                                <select id="gr-8" class="w-full"><option value="">Selecciona...</option><option value="conocida">conocida (known)</option><option value="recaudar">recaudar (to fundraise)</option></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-center">
+                    <button onclick="checkGrammar()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-8 rounded shadow transition">Comprobar GramÃ¡tica</button>
+                </div>
+                <div id="feedback-grammar" class="mt-2 text-center font-bold text-amber-800"></div>
+            </div>
+
+            <!-- TAB 3: CULTURA Y COMPRENSIÃ“N -->
+            <div id="culture" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b pb-2">Temas Culturales (Textos 8 y 9)</h2>
+                
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+                    <table class="w-full text-left">
+                        <thead class="bg-amber-100 text-amber-900">
+                            <tr>
+                                <th class="p-4 border-b border-amber-200">Tema</th>
+                                <th class="p-4 border-b border-amber-200">Pregunta de Repaso</th>
+                                <th class="p-4 border-b border-amber-200">Tu Respuesta</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-gray-100">
+                            <tr>
+                                <td class="p-4 font-bold text-amber-800">SofÃ­a Vergara</td>
+                                <td class="p-4">Â¿QuÃ© enfermedad superÃ³ SofÃ­a Vergara? (Texto 8)</td>
+                                <td class="p-4">
+                                    <select id="cul-1" class="w-full"><option value="">---</option><option value="CÃ¡ncer">CÃ¡ncer</option><option value="Diabetes">Diabetes</option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-amber-800">Caridad</td>
+                                <td class="p-4">Â¿CuÃ¡l es el objetivo de un evento benÃ©fico?</td>
+                                <td class="p-4">
+                                    <select id="cul-2" class="w-full"><option value="">---</option><option value="Recaudar fondos">Recaudar fondos (Fundraise)</option><option value="Hacer deporte">Hacer deporte</option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-amber-800">Esther Meneses</td>
+                                <td class="p-4">Â¿A quÃ© grupo ayuda el programa "Aulas en Paz"? (Texto 9)</td>
+                                <td class="p-4">
+                                    <select id="cul-3" class="w-full"><option value="">---</option><option value="Estudiantes">Estudiantes</option><option value="Turistas">Turistas</option></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-amber-800">SinÃ³nimos</td>
+                                <td class="p-4">SinÃ³nimo de "EnseÃ±ar" mencionado en el texto.</td>
+                                <td class="p-4">
+                                    <select id="cul-4" class="w-full"><option value="">---</option><option value="Dictar">Dictar</option><option value="Aprender">Aprender</option></select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button onclick="checkCulture()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded shadow transition">Comprobar Cultura</button>
+                </div>
+                <div id="feedback-culture" class="mt-2 text-right font-bold text-amber-800"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-amber-800 text-white p-6 mt-8 text-center text-sm">
+        <p>EspaÃ±ol Ab Initio | Unidad 28: Repaso General | Fin del Libro</p>
+    </footer>
+
+    <script>
+        // --- DATA ---
+        const baData = [
+            { id: "ba-1", ans: "conocida" },
+            { id: "ba-2", ans: "recreativa" },
+            { id: "ba-3", ans: "librerÃ­as" },
+            { id: "ba-4", ans: "centros comerciales" },
+            { id: "ba-5", ans: "estilos" },
+            { id: "ba-6", ans: "encuentran" },
+            { id: "ba-7", ans: "recorrer" },
+            { id: "ba-8", ans: "hasta" }
+        ];
+
+        const grData = [
+            { id: "gr-1", ans: "Aunque" },
+            { id: "gr-2", ans: "sino" },
+            { id: "gr-3", ans: "por lo tanto" },
+            { id: "gr-4", ans: "diariamente" },
+            { id: "gr-5", ans: "pobladas" },
+            { id: "gr-6", ans: "fuente" },
+            { id: "gr-7", ans: "barreras" },
+            { id: "gr-8", ans: "conocida" }
+        ];
+
+        const culData = [
+            { id: "cul-1", ans: "CÃ¡ncer" },
+            { id: "cul-2", ans: "Recaudar fondos" },
+            { id: "cul-3", ans: "Estudiantes" },
+            { id: "cul-4", ans: "Dictar" }
+        ];
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkGeneric(data, feedbackId) {
+            let s = 0;
+            data.forEach(item => {
+                const el = document.getElementById(item.id);
+                if (el.value === item.ans) {
+                    el.classList.add('correct');
+                    el.classList.remove('incorrect');
+                    s++;
+                } else {
+                    el.classList.add('incorrect');
+                    el.classList.remove('correct');
+                }
+            });
+            const fb = document.getElementById(feedbackId);
+            fb.textContent = `PuntuaciÃ³n: ${s} / ${data.length}`;
+            fb.className = s === data.length ? "mt-2 text-right font-bold text-green-600" : "mt-2 text-right font-bold text-amber-800";
+        }
+
+        function checkBA() { checkGeneric(baData, 'feedback-ba'); }
+        function checkGrammar() { checkGeneric(grData, 'feedback-grammar'); }
+        function checkCulture() { checkGeneric(culData, 'feedback-culture'); }
+
+        function resetBA() {
+            baData.forEach(item => {
+                const el = document.getElementById(item.id);
+                el.value = "";
+                el.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('feedback-ba').textContent = "";
+        }
+
+        // --- TABS LOGIC ---
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Highlight button
+            const map = { 'buenosaires': 0, 'grammar': 1, 'culture': 2 };
+            document.querySelectorAll('.tab-btn')[map[tabId]].classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Español Ab Initio - Prep Oral</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .card-flip:hover .card-inner { transform: rotateY(180deg); }
+        .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+        .card-front, .card-back { backface-visibility: hidden; position: absolute; inset: 0; }
+        .card-back { transform: rotateY(180deg); }
+        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 700; }
+        .img-container { position: relative; cursor: zoom-in; overflow: hidden; border-radius: 1.5rem; }
+        .img-container img { transition: transform 0.5s ease; }
+        .img-container:hover img { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-indigo-600 text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">IB Ab Initio Master</span>
+                </div>
+                <div class="hidden md:flex space-x-4">
+                    <button onclick="showSection('home')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600">Inicio</button>
+                    <button onclick="showSection('estrategia')" class="px-3 py-2 text-sm font-medium hover:text-indigo-600">Estrategia Oral</button>
+                    <button onclick="showSection('unidades')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition">Estudiar Unidades</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Section: Home -->
+        <section id="home" class="space-y-12">
+            <div class="text-center py-12">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 mb-4 tracking-tight">Dominando el <span class="text-indigo-600">Español Ab Initio</span></h1>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Tu ecosistema interactivo para dominar el oral de Español Ab Initio. Imágenes reales, estructuras de oro y vínculos culturales.</p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="showSection('unidades')" class="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all">Empezar a Practicar</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-image-portrait text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Imágenes de Examen</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Selección de estímulos visuales con diferentes niveles de dificultad para simular el examen real.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-comments text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Puntos de Discusión</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Preguntas de seguimiento diseñadas para cada imagen para practicar la parte de conversación.</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-landmark text-xl"></i></div>
+                    <h3 class="font-bold text-xl mb-2">Contexto Cultural</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Vínculos directos con la cultura hispana para demostrar conocimientos socioculturales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Estrategia -->
+        <section id="estrategia" class="hidden space-y-8">
+            <div class="bg-indigo-900 text-white p-10 rounded-[2.5rem] relative overflow-hidden shadow-xl shadow-indigo-100">
+                <div class="relative z-10">
+                    <h2 class="text-4xl font-black mb-4">El Método de los 4 Pasos</h2>
+                    <p class="text-indigo-100 text-lg max-w-xl">No te quedes en silencio. Usa esta estructura para organizar tu presentación de 1-2 minutos de forma profesional.</p>
+                </div>
+                <i class="fa-solid fa-bullseye absolute bottom-[-40px] right-[-40px] text-white opacity-10 text-[240px]"></i>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 1</span>
+                    <h4 class="font-bold text-2xl mt-2">Identificar</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"Esta imagen pertenece al tema de identidades y trata sobre la familia..."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 2</span>
+                    <h4 class="font-bold text-2xl mt-2">Describir</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"En el primer plano hay un grupo de personas. Al fondo se ve un edificio..."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 3</span>
+                    <h4 class="font-bold text-2xl mt-2">Interpretar</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"Parece que están celebrando algo porque hay globos y están felices."</p>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border-t-8 border-indigo-500 shadow-sm hover:shadow-md transition">
+                    <span class="text-xs font-black text-indigo-500 uppercase tracking-widest">Paso 4</span>
+                    <h4 class="font-bold text-2xl mt-2">Vínculo</h4>
+                    <p class="text-sm text-slate-500 mt-4 italic">"En los países hispanos, la familia es fundamental para la identidad..."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Unidades -->
+        <section id="unidades" class="hidden space-y-8">
+            <div class="flex overflow-x-auto border-b border-slate-200 pb-2 space-x-6 no-scrollbar">
+                <button onclick="loadUnit(1)" id="tab1" class="tab-active whitespace-nowrap px-1 pb-4 transition-all">U1: Identidades</button>
+                <button onclick="loadUnit(2)" id="tab2" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U2: Experiencias</button>
+                <button onclick="loadUnit(3)" id="tab3" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U3: Ingenio Humano</button>
+                <button onclick="loadUnit(4)" id="tab4" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U4: Org. Social</button>
+                <button onclick="loadUnit(5)" id="tab5" class="whitespace-nowrap px-1 pb-4 text-slate-400 hover:text-slate-600 transition-all">U5: Compartir Planeta</button>
+            </div>
+
+            <div id="unit-content" class="animate-in fade-in duration-700">
+                <!-- Content injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const units = {
+            1: {
+                title: "Identidades",
+                subtitle: "Familia, relaciones y estilo de vida.",
+                image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Una familia compartiendo una comida tradicional.",
+                vocab: [
+                    { sp: "Los parientes", en: "Relatives" },
+                    { sp: "Llevarse bien", en: "To get along" },
+                    { sp: "Sano / Saludable", en: "Healthy" },
+                    { sp: "La sobremesa", en: "Post-meal chat" },
+                    { sp: "Tradición", en: "Tradition" }
+                ],
+                grammar: ["Ser vs Estar", "Verbo Gustar"],
+                culture: "La familia extendida es el núcleo de la sociedad hispana. La comida es el momento principal de socialización (la sobremesa).",
+                questions: [
+                    "¿Cómo es tu relación con tu familia?",
+                    "¿Qué importancia tiene la comida en tu cultura?",
+                    "¿Crees que los jóvenes hoy en día tienen una vida sana?"
+                ]
+            },
+            2: {
+                title: "Experiencias",
+                subtitle: "Viajes, vacaciones y festividades.",
+                image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Gente celebrando un festival en la calle.",
+                vocab: [
+                    { sp: "El festival", en: "Festival / Fair" },
+                    { sp: "Viajar al extranjero", en: "To travel abroad" },
+                    { sp: "Inolvidable", en: "Unforgettable" },
+                    { sp: "Alojarse", en: "To stay (at)" },
+                    { sp: "Probar", en: "To try / To taste" }
+                ],
+                grammar: ["Pretérito Indefinido", "Pretérito Imperfecto"],
+                culture: "Festivales como las Fallas o el Día de Muertos muestran la rica historia y la alegría de vivir de los pueblos hispanos.",
+                questions: [
+                    "¿Cuál fue el mejor viaje de tu vida?",
+                    "¿Qué hiciste en tus últimas vacaciones?",
+                    "¿Has participado alguna vez en un festival tradicional?"
+                ]
+            },
+            3: {
+                title: "Ingenio Humano",
+                subtitle: "Tecnología, ciencia e innovación.",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Jóvenes colaborando con tecnología moderna.",
+                vocab: [
+                    { sp: "El dispositivo", en: "Device" },
+                    { sp: "Redes sociales", en: "Social media" },
+                    { sp: "Mejorar", en: "To improve" },
+                    { sp: "La desventaja", en: "Disadvantage" },
+                    { sp: "Descargar", en: "To download" }
+                ],
+                grammar: ["Futuro Simple", "Imperativo"],
+                culture: "Muchos países hispanos están a la vanguardia de la energía renovable y el uso de tecnología móvil para el desarrollo social.",
+                questions: [
+                    "¿Crees que somos dependientes de la tecnología?",
+                    "¿Cómo cambiará internet nuestra vida en 10 años?",
+                    "¿Qué invento es el más importante para ti?"
+                ]
+            },
+            4: {
+                title: "Organización Social",
+                subtitle: "Educación, trabajo y comunidad.",
+                image: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Un entorno de trabajo moderno y colaborativo.",
+                vocab: [
+                    { sp: "La empresa", en: "Company" },
+                    { sp: "El sueldo", en: "Salary" },
+                    { sp: "La beca", en: "Scholarship" },
+                    { sp: "El voluntariado", en: "Volunteering" },
+                    { sp: "Aprobar", en: "To pass" }
+                ],
+                grammar: ["Comparativos", "Condicional Simple"],
+                culture: "La vida gira en torno a la Plaza Mayor. El trabajo se ve como un medio para disfrutar de la vida social, no solo como un fin.",
+                questions: [
+                    "¿Te gustaría trabajar en otro país en el futuro?",
+                    "¿Es mejor estudiar en una universidad pública o privada?",
+                    "¿Qué problemas hay en tu barrio?"
+                ]
+            },
+            5: {
+                title: "Compartir el Planeta",
+                subtitle: "Medio ambiente, paz y globalización.",
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1200&auto=format&fit=crop",
+                imageCaption: "Reciclaje y cuidado del medio ambiente.",
+                vocab: [
+                    { sp: "El calentamiento", en: "Global warming" },
+                    { sp: "Reciclar", en: "To recycle" },
+                    { sp: "La escasez", en: "Scarcity / Shortage" },
+                    { sp: "Cuidar", en: "To take care of" },
+                    { sp: "El medio ambiente", en: "The environment" }
+                ],
+                grammar: ["Subjuntivo Básico", "Debería"],
+                culture: "Países como Costa Rica son líderes mundiales en ecoturismo y sostenibilidad, protegiendo su inmensa biodiversidad.",
+                questions: [
+                    "¿Qué haces tú para proteger el planeta?",
+                    "¿Es el cambio climático el mayor problema actual?",
+                    "¿Cómo podemos reducir el uso del plástico?"
+                ]
+            }
+        };
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function loadUnit(num) {
+            const u = units[num];
+            const content = document.getElementById('unit-content');
+            
+            document.querySelectorAll('#unidades button').forEach(b => b.classList.remove('tab-active', 'text-indigo-600'));
+            document.getElementById('tab' + num).classList.add('tab-active');
+
+            content.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Columna izquierda: Media y práctica -->
+                    <div class="space-y-6">
+                        <div class="img-container shadow-2xl">
+                            <img src="${u.image}" alt="${u.title}" class="w-full h-[400px] object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                                <p class="text-sm font-medium opacity-90">${u.imageCaption}</p>
+                                <h3 class="text-2xl font-bold">Estímulo Visual U${num}</h3>
+                            </div>
+                        </div>
+
+                        <div class="bg-indigo-600 text-white p-8 rounded-3xl shadow-lg">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-microphone"></i> Preguntas de Seguimiento
+                            </h4>
+                            <ul class="space-y-3">
+                                ${u.questions.map(q => `<li class="bg-white/10 p-3 rounded-xl border border-white/20 text-sm hover:bg-white/20 transition cursor-default">${q}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: Material de estudio -->
+                    <div class="space-y-6">
+                        <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+                            <h2 class="text-4xl font-black text-slate-900">${u.title}</h2>
+                            <p class="text-slate-500 mt-2 text-lg">${u.subtitle}</p>
+                            
+                            <div class="mt-8">
+                                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-language text-indigo-500"></i> Vocabulario Flashcards</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    ${u.vocab.map(v => `
+                                        <div class="card-flip h-16 w-full perspective-1000">
+                                            <div class="card-inner relative w-full h-full text-center">
+                                                <div class="card-front bg-slate-50 rounded-2xl flex items-center justify-between px-4 font-bold text-slate-700 border border-slate-200">
+                                                    <span>${v.sp}</span>
+                                                    <i class="fa-solid fa-rotate text-slate-300 text-xs"></i>
+                                                </div>
+                                                <div class="card-back bg-indigo-600 text-white rounded-2xl flex items-center justify-center font-black text-sm px-4">
+                                                    ${v.en}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <div class="mt-8 bg-emerald-50 p-6 rounded-3xl border border-emerald-100">
+                                <h4 class="font-bold text-emerald-800 flex items-center gap-2 mb-2">
+                                    <i class="fa-solid fa-earth-americas"></i> El Vínculo Cultural
+                                </h4>
+                                <p class="text-emerald-900 text-sm leading-relaxed">${u.culture}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.onload = () => loadUnit(1);
+    </script>
+</body>
+</html>
+
+
+
+
+
+

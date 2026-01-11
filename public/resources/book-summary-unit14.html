@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 14: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light slate background for "Peace/Ethics" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 110px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #cbd5e1;
+        }
+
+        .vocab-card-back {
+            background-color: #475569; /* Slate-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #475569;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #f1f5f9; /* Slate-100 */
+            color: #1e293b; /* Slate-900 */
+            border-left: 4px solid #475569;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #475569;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-800 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 14</h1>
+                <p class="text-xs text-slate-300">Digital Study Guide (Pages 303 - 330)</p>
+            </div>
+            <div class="text-sm bg-slate-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_peace')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Peace & Conflict</button>
+                <button onclick="scrollToSection('human_rights')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Human Rights</button>
+                <button onclick="scrollToSection('grammar_past')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Past Tense Contrast</button>
+                <button onclick="scrollToSection('ngos')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. NGOs & Cooperation</button>
+                <button onclick="scrollToSection('imperative_review')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Grammar: Advanced Commands</button>
+                <button onclick="scrollToSection('global_challenges')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Global Challenges</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-slate-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-slate-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Social Organization / Peace and Conflict.<br>
+                    <strong>Focus:</strong> In Unit 14, "Â¿CÃ³mo podemos crear un mundo mÃ¡s pacÃ­fico?" (How can we create a more peaceful world?), you will analyze global issues, discuss human rights, and master the use of past tenses to narrate events and historical changes.
+                </div>
+            </section>
+
+            <!-- Section 2: Peace and Conflict Vocab -->
+            <section id="vocab_peace" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Peace & Conflict (Paz y Conflicto)</h2>
+                <p class="mb-4 text-sm text-gray-600">Essential vocabulary for discussing global safety. Click cards to reveal English translation.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La paz</div>
+                            <div class="vocab-card-back">Peace</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La guerra</div>
+                            <div class="vocab-card-back">War</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El diÃ¡logo</div>
+                            <div class="vocab-card-back">Dialogue</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La violencia</div>
+                            <div class="vocab-card-back">Violence</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El acuerdo</div>
+                            <div class="vocab-card-back">Agreement</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La seguridad</div>
+                            <div class="vocab-card-back">Security / Safety</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El ejÃ©rcito</div>
+                            <div class="vocab-card-back">The army</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La justicia</div>
+                            <div class="vocab-card-back">Justice</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Human Rights -->
+            <section id="human_rights" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Human Rights (Derechos Humanos)</h2>
+                <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-slate-700 mb-3 text-sm uppercase">Fundamental Rights:</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <li>ðŸ•Šï¸ <span class="hover-translation font-medium" data-en="The right to freedom">El derecho a la libertad</span></li>
+                        <li>âš–ï¸ <span class="hover-translation font-medium" data-en="Equality">La igualdad</span></li>
+                        <li>ðŸ“š <span class="hover-translation font-medium" data-en="The right to education">El derecho a la educaciÃ³n</span></li>
+                        <li>ðŸ  <span class="hover-translation font-medium" data-en="Decent housing">Una vivienda digna</span></li>
+                        <li>ðŸ—£ï¸ <span class="hover-translation font-medium" data-en="Freedom of expression">Libertad de expresiÃ³n</span></li>
+                        <li>ðŸ¤ <span class="hover-translation font-medium" data-en="Human dignity">La dignidad humana</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Past Tense Contrast -->
+            <section id="grammar_past" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Preterite vs. Imperfect</h2>
+                
+                <div class="bg-blue-100 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-900 mb-2">When to use which?</h3>
+                    <p class="text-sm mb-4">This is the key contrast for narrating stories or history in Spanish. Use this guide to decide:</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-4 rounded border border-blue-200">
+                            <h4 class="font-bold text-blue-700 mb-2 underline text-center">IMPERFECTO (The Background)</h4>
+                            <ul class="text-xs space-y-2 list-disc pl-4">
+                                <li>Descriptions (Age, Weather, Emotions).</li>
+                                <li>Habitual actions ("Used to").</li>
+                                <li>Ongoing actions ("Was ...-ing").</li>
+                            </ul>
+                            <p class="text-sm italic mt-2"><span class="hover-translation" data-en="It was a sunny day."><strong>HacÃ­a</strong> sol.</span></p>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-blue-200">
+                            <h4 class="font-bold text-red-700 mb-2 underline text-center">INDEFINITO (The Action)</h4>
+                            <ul class="text-xs space-y-2 list-disc pl-4">
+                                <li>Finished events.</li>
+                                <li>Specific time (Yesterday, 1945).</li>
+                                <li>Sudden interruptions.</li>
+                            </ul>
+                            <p class="text-sm italic mt-2"><span class="hover-translation" data-en="The conflict started in 1936.">El conflicto <strong>empezÃ³</strong> en 1936.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: NGOs & Cooperation -->
+            <section id="ngos" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. NGOs & Cooperation (ONGs y CooperaciÃ³n)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Helping Others:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ¥ <span class="hover-translation" data-en="Humanitarian aid">La ayuda humanitaria</span></li>
+                            <li>ðŸ™‹ <span class="hover-translation" data-en="Volunteer work">El voluntariado</span></li>
+                            <li>ðŸ—³ï¸ <span class="hover-translation" data-en="The non-profit organization">La organizaciÃ³n sin fines de lucro</span></li>
+                            <li>ðŸ¤ <span class="hover-translation" data-en="To collaborate">Colaborar / Cooperar</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Social Action:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ’° <span class="hover-translation" data-en="To donate money">Donar dinero</span></li>
+                            <li>ðŸ“¢ <span class="hover-translation" data-en="Awareness campaign">La campaÃ±a de concienciaciÃ³n</span></li>
+                            <li>âœŠ <span class="hover-translation" data-en="To fight for a cause">Luchar por una causa</span></li>
+                            <li>ðŸŒ <span class="hover-translation" data-en="Global solidarity">Solidaridad global</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Advanced Commands -->
+            <section id="imperative_review" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Grammar: Commands Review (Imperativo)</h2>
+                <p class="mb-4 text-sm text-gray-600">Reviewing how to give advice or orders to people in formal and informal settings.</p>
+                
+                <div class="bg-white p-5 rounded border border-gray-200 shadow-sm overflow-x-auto">
+                    <table class="min-w-full text-sm text-center">
+                        <thead class="bg-slate-700 text-white">
+                            <tr>
+                                <th class="p-2">Verb</th>
+                                <th class="p-2">TÃº (Informal)</th>
+                                <th class="p-2">Usted (Formal)</th>
+                                <th class="p-2">Ustedes (Plural)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr><td class="p-3 italic">Ayudar</td><td class="font-bold">Ayuda</td><td>Ayude</td><td>Ayuden</td></tr>
+                            <tr><td class="p-3 italic">Compartir</td><td class="font-bold">Comparte</td><td>Comparta</td><td>Compartan</td></tr>
+                            <tr><td class="p-3 italic">Hacer</td><td class="font-bold text-red-600">Haz (Irreg)</td><td>Haga</td><td>Hagan</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs mt-3 text-slate-500 italic">Tip: For campaigns, usually "Usted" or "Ustedes" is used to show respect and reach the public.</p>
+            </section>
+
+            <!-- Section 7: Global Challenges -->
+            <section id="global_challenges" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Global Challenges (Retos Globales)</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <p class="font-bold text-red-400">Problemas:</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Poverty">La pobreza</span></li>
+                                <li><span class="hover-translation" data-en="Discrimination">La discriminaciÃ³n</span></li>
+                                <li><span class="hover-translation" data-en="Social inequality">La desigualdad social</span></li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <p class="font-bold text-green-400">Propuestas (Solutions):</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Promote peace">Promover la paz</span></li>
+                                <li><span class="hover-translation" data-en="Respect differences">Respetar las diferencias</span></li>
+                                <li><span class="hover-translation" data-en="Work together">Trabajar juntos</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Past Tense Choice (Self-Check):</h4>
+                    <div class="space-y-4 text-sm">
+                        <p>1. <span class="hover-translation" data-en="Last year I worked in an NGO.">El aÃ±o pasado (yo) ______ (trabajar) en una ONG.</span> <span class="text-gray-400 italic">(Answer: trabajÃ© - specific event)</span></p>
+                        <p>2. <span class="hover-translation" data-en="When I was young, there were fewer conflicts.">Cuando (yo) ______ (ser) joven, ______ (haber) menos conflictos.</span> <span class="text-gray-400 italic">(Answers: era, habÃ­a - description)</span></p>
+                        <p>3. <span class="hover-translation" data-en="It's important that we help.">Es importante que nosotros ______ (ayudar).</span> <span class="text-gray-400 italic">(Answer: ayudemos - subjunctive)</span></p>
+                        <p>4. <span class="hover-translation" data-en="The government signed the peace agreement yesterday.">Ayer el gobierno ______ (firmar) el acuerdo de paz.</span> <span class="text-gray-400 italic">(Answer: firmÃ³ - completed action)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

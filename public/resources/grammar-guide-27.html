@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno de GramÃ¡tica: Unidad 27</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc; /* Slate-50 background */
+            color: #334155; /* Slate-700 text */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* --- TABS --- */
+        .tab-btn {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: #64748b;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            color: #2563eb; /* Blue-600 */
+            background-color: #eff6ff;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            background-color: #dbeafe;
+        }
+
+        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in; }
+        .tab-content.active { display: block; opacity: 1; }
+
+        /* --- VOCABULARY TAGS --- */
+        .vocab-tag {
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+            border-left: 3px solid #3b82f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.9rem;
+        }
+        .vocab-word {
+            font-weight: 700;
+            color: #1e293b;
+            display: block;
+        }
+        .vocab-trans {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* --- WRITING AREA --- */
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* --- CHECKLIST --- */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        .checklist-item input {
+            margin-right: 0.5rem;
+            accent-color: #2563eb;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-800 text-white p-6 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-pen-nib text-2xl text-blue-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-blue-300">EspaÃ±ol Ab Initio</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unidad 27: MÃ¡s Tareas Escritas</h1>
+            <p class="text-slate-300 mt-2">PrÃ¡ctica intensiva de diferentes tipos de textos.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-xl min-h-[600px] border border-gray-100 flex flex-col">
+
+            <!-- Tabs Navigation -->
+            <div class="flex border-b border-gray-200 overflow-x-auto bg-gray-50 rounded-t-xl">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('personal')">
+                    <i class="fas fa-envelope mr-2"></i>1. Personal e Informal
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('social')">
+                    <i class="fas fa-globe mr-2"></i>2. Temas Sociales
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('creative')">
+                    <i class="fas fa-lightbulb mr-2"></i>3. Creatividad
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('school')">
+                    <i class="fas fa-school mr-2"></i>4. Vida Escolar
+                </div>
+            </div>
+
+            <!-- TAB 1: PERSONAL E INFORMAL -->
+            <div id="personal" class="tab-content active p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">ComunicaciÃ³n Personal</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Task 1: Email to Mom -->
+                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-blue-900 text-lg"><i class="fas fa-at mr-2"></i>1. Correo a tu madre</h3>
+                            <span class="text-xs font-bold bg-blue-200 text-blue-800 px-2 py-1 rounded">Informal</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            EstÃ¡s estudiando en el extranjero. Escribe un correo a tu madre contÃ¡ndole:
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>CÃ³mo es tu nueva rutina.</li>
+                                <li>Algo sorprendente que te ha pasado (usa el PretÃ©rito).</li>
+                                <li>Pregunta cÃ³mo estÃ¡n todos en casa.</li>
+                            </ul>
+                        </p>
+                        
+                        <!-- Vocab Bank -->
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Echar de menos</span><span class="vocab-trans">To miss (someone)</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Alojamiento</span><span class="vocab-trans">Accommodation</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Costumbres</span><span class="vocab-trans">Customs/Habits</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Dar recuerdos</span><span class="vocab-trans">To give regards</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="Asunto: Â¡Hola mamÃ¡!&#10;&#10;Querida mamÃ¡:&#10;Â¿CÃ³mo estÃ¡s? Te escribo porque..."></textarea>
+                    </div>
+
+                    <!-- Task 2: Postcard -->
+                    <div class="bg-orange-50 p-6 rounded-lg border border-orange-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-orange-900 text-lg"><i class="fas fa-image mr-2"></i>7. Postal para un amigo</h3>
+                            <span class="text-xs font-bold bg-orange-200 text-orange-800 px-2 py-1 rounded">Informal</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            EstÃ¡s de vacaciones en un lugar exÃ³tico. Escribe una postal (60-80 palabras):
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Describe el clima y el lugar.</li>
+                                <li>Menciona una actividad que hiciste ayer.</li>
+                                <li>Di cuÃ¡ndo vuelves.</li>
+                            </ul>
+                        </p>
+
+                         <!-- Vocab Bank -->
+                         <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Paisaje</span><span class="vocab-trans">Landscape</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Inolvidable</span><span class="vocab-trans">Unforgettable</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Hacer turismo</span><span class="vocab-trans">To go sightseeing</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Â¡OjalÃ¡ estuvieras aquÃ­!</span><span class="vocab-trans">Wish you were here!</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="Â¡Hola [Nombre]!&#10;Te escribo desde..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: TEMAS SOCIALES -->
+            <div id="social" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">OpiniÃ³n y Temas Sociales</h2>
+                <p class="text-slate-600 mb-6">Para estos textos (ArtÃ­culos, Blogs), recuerda usar conectores lÃ³gicos.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Task: Social Media/Cyberbullying -->
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-slate-900 text-lg"><i class="fas fa-hashtag mr-2"></i>5/8. Redes Sociales y Ciberacoso</h3>
+                            <span class="text-xs font-bold bg-slate-200 text-slate-800 px-2 py-1 rounded">ArtÃ­culo</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Escribe un artÃ­culo para la revista escolar sobre los peligros y beneficios de las redes sociales.
+                            <br><strong>Debes incluir:</strong> Tu opiniÃ³n personal, ejemplos de ciberacoso y consejos para navegar seguro.
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Usuario</span><span class="vocab-trans">User</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">ContraseÃ±a</span><span class="vocab-trans">Password</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Acosar</span><span class="vocab-trans">To bully/harass</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Privacidad</span><span class="vocab-trans">Privacy</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Riesgo</span><span class="vocab-trans">Risk</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Subir una foto</span><span class="vocab-trans">Upload a photo</span></div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3 rounded border border-gray-200 mb-3 text-sm">
+                            <strong>Checklist ArtÃ­culo:</strong>
+                            <div class="checklist-item"><input type="checkbox"> TÃ­tulo llamativo</div>
+                            <div class="checklist-item"><input type="checkbox"> Nombre del autor</div>
+                            <div class="checklist-item"><input type="checkbox"> IntroducciÃ³n, Desarrollo, ConclusiÃ³n</div>
+                        </div>
+
+                        <textarea placeholder="CONECTADOS PERO SOLOS&#10;Por [Tu Nombre]&#10;&#10;Hoy en dÃ­a, casi todos los jÃ³venes tienen un perfil en..."></textarea>
+                    </div>
+
+                    <!-- Task: Social Injustice -->
+                    <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-slate-900 text-lg"><i class="fas fa-fist-raised mr-2"></i>14. Injusticias Sociales</h3>
+                            <span class="text-xs font-bold bg-slate-200 text-slate-800 px-2 py-1 rounded">Blog / Ensayo</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Escribe una entrada de blog expresando tu preocupaciÃ³n por una injusticia social (pobreza, racismo, desigualdad). PropÃ³n una soluciÃ³n pequeÃ±a que los estudiantes pueden hacer.
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Derechos humanos</span><span class="vocab-trans">Human rights</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Desigualdad</span><span class="vocab-trans">Inequality</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Luchar contra</span><span class="vocab-trans">To fight against</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Concienciar</span><span class="vocab-trans">To raise awareness</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Solidaridad</span><span class="vocab-trans">Solidarity</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="MI BLOG PERSONAL&#10;Fecha: Hoy | Tema: Cambiar el mundo&#10;&#10;A veces pensamos que no podemos hacer nada, pero..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: CREATIVIDAD -->
+            <div id="creative" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">Escritura Creativa y Descriptiva</h2>
+
+                <div class="space-y-8">
+                    <!-- Task: House of the Future -->
+                    <div class="bg-purple-50 p-6 rounded-lg border border-purple-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-purple-900 text-lg"><i class="fas fa-home mr-2"></i>11. La casa del futuro</h3>
+                            <span class="text-xs font-bold bg-purple-200 text-purple-800 px-2 py-1 rounded">Folleto / DescripciÃ³n</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Imagina cÃ³mo serÃ¡n las casas en el aÃ±o 2050. Usa el <strong>Futuro Simple</strong>.
+                            Describe: TecnologÃ­a, ecologÃ­a, muebles inteligentes y ubicaciÃ³n.
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Sostenible</span><span class="vocab-trans">Sustainable</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Dispositivos</span><span class="vocab-trans">Devices</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">EnergÃ­a solar</span><span class="vocab-trans">Solar energy</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">AutomÃ¡tico</span><span class="vocab-trans">Automatic</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Robot</span><span class="vocab-trans">Robot</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="BIENVENIDOS AL 2050&#10;&#10;En el futuro, las casas tendrÃ¡n... SerÃ¡n espacios donde..."></textarea>
+                    </div>
+
+                    <!-- Task: Favorite Band -->
+                    <div class="bg-purple-50 p-6 rounded-lg border border-purple-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-purple-900 text-lg"><i class="fas fa-music mr-2"></i>13. Tu grupo favorito</h3>
+                            <span class="text-xs font-bold bg-purple-200 text-purple-800 px-2 py-1 rounded">ReseÃ±a / Review</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Escribe una reseÃ±a de tu grupo o cantante favorito para un foro de mÃºsica.
+                            Describe su estilo, tu canciÃ³n favorita y por quÃ© te gusta tanto.
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Letra</span><span class="vocab-trans">Lyrics</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Ritmo</span><span class="vocab-trans">Rhythm</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Pegadizo</span><span class="vocab-trans">Catchy</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Escenario</span><span class="vocab-trans">Stage</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Gira mundial</span><span class="vocab-trans">World tour</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="ReseÃ±a: [Nombre del Grupo]&#10;Estrellas: â˜…â˜…â˜…â˜…â˜…&#10;&#10;Este grupo es increÃ­ble porque..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: VIDA ESCOLAR -->
+            <div id="school" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">Vida Escolar y Formal</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Task: Student Council -->
+                    <div class="bg-teal-50 p-6 rounded-lg border border-teal-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-teal-900 text-lg"><i class="fas fa-users mr-2"></i>2. El consejo estudiantil</h3>
+                            <span class="text-xs font-bold bg-teal-200 text-teal-800 px-2 py-1 rounded">Carta Formal / Propuesta</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            Quieres formar parte del consejo estudiantil. Escribe una carta al director explicando por quÃ© eres el candidato ideal. Usa un registro formal (Usted).
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Liderazgo</span><span class="vocab-trans">Leadership</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Mejorar</span><span class="vocab-trans">To improve</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Proponer</span><span class="vocab-trans">To propose</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Responsable</span><span class="vocab-trans">Responsible</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Representar</span><span class="vocab-trans">To represent</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="Estimado Sr. Director:&#10;&#10;Me dirijo a usted para presentar mi candidatura..."></textarea>
+                    </div>
+
+                    <!-- Task: Contest -->
+                    <div class="bg-teal-50 p-6 rounded-lg border border-teal-100">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="font-bold text-teal-900 text-lg"><i class="fas fa-trophy mr-2"></i>3. Un concurso</h3>
+                            <span class="text-xs font-bold bg-teal-200 text-teal-800 px-2 py-1 rounded">Anuncio / Folleto</span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-4">
+                            DiseÃ±a un anuncio para un concurso de talentos en tu escuela.
+                            Incluye: Fechas, premios, categorÃ­as y cÃ³mo inscribirse. Â¡Usa exclamaciones e imperativos!
+                        </p>
+
+                        <div class="mb-4">
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">Vocabulario Ãštil:</p>
+                            <div class="flex flex-wrap">
+                                <div class="vocab-tag"><span class="vocab-word">Â¡Participa!</span><span class="vocab-trans">Participate!</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Premio</span><span class="vocab-trans">Prize</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Ganador</span><span class="vocab-trans">Winner</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">InscripciÃ³n</span><span class="vocab-trans">Registration</span></div>
+                                <div class="vocab-tag"><span class="vocab-word">Fecha lÃ­mite</span><span class="vocab-trans">Deadline</span></div>
+                            </div>
+                        </div>
+
+                        <textarea placeholder="Â¡GRAN CONCURSO DE TALENTOS!&#10;&#10;Â¿Sabes cantar o bailar? Â¡DemuÃ©stralo!&#10;&#10;CuÃ¡ndo: ...&#10;DÃ³nde: ..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white p-6 mt-8 text-center text-sm">
+        <p>EspaÃ±ol Ab Initio | Unidad 27 | Tareas Escritas</p>
+    </footer>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Map tabId to index for button highlight
+            const maps = { 'personal': 0, 'social': 1, 'creative': 2, 'school': 3 };
+            const btns = document.querySelectorAll('.tab-btn');
+            if(btns[maps[tabId]]) btns[maps[tabId]].classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Digital: Partículas Interrogativas</title>
+    <style>
+        :root {
+            --interrogative-color: #d35400; /* Color naranja oscuro para interrogativos */
+            --secondary-color: #f39c12;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notebook {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Sistema de Pestañas */
+        .tabs-header {
+            display: flex;
+            background: #eee;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #777;
+            transition: all 0.3s;
+            background: #e0e0e0;
+        }
+
+        .tab-btn.active[data-tab="grammar"] {
+            background: white;
+            color: var(--interrogative-color);
+            border-bottom: 4px solid var(--interrogative-color);
+        }
+
+        .tab-btn.active[data-tab="exercises"] {
+            background: white;
+            color: var(--interrogative-color);
+            border-bottom: 4px solid var(--interrogative-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed #ddd;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .english-note {
+            background: #fff9db;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.95em;
+            margin: 10px 0 20px 0;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        .vocab {
+            font-weight: bold;
+            color: var(--interrogative-color);
+            text-decoration: underline dotted;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vocab::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #34495e;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .vocab:hover::after { opacity: 1; visibility: visible; }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .grammar-table th { 
+            background-color: var(--interrogative-color); 
+            color: white;
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ddd;
+        }
+
+        .text-fill-container {
+            line-height: 2.2;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1.1em;
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95em;
+            width: 130px;
+            transition: all 0.3s;
+        }
+
+        input.inline-input { width: 110px; display: inline-block; margin: 0 4px; }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 15px; }
+        .btn { color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; flex: 1; }
+        .btn-check { background-color: var(--interrogative-color); }
+        .btn-reset { background-color: #95a5a6; }
+        .btn:hover { filter: brightness(1.1); }
+
+        .feedback { margin-top: 15px; display: none; padding: 12px; border-radius: 6px; font-weight: bold; text-align: center; }
+        .correct-box { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-box { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+
+        .hint {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-style: italic;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+<div class="score-display">Puntos: <span id="total-score">0</span></div>
+
+<div class="notebook">
+    <div class="tabs-header">
+        <button class="tab-btn active" data-tab="grammar">Gramática</button>
+        <button class="tab-btn" data-tab="exercises">Ejercicios</button>
+    </div>
+
+    <!-- PESTAÑA 1: GRAMÁTICA -->
+    <div id="grammar" class="tab-content active">
+        <header>
+            <h1>Partículas Interrogativas</h1>
+            <p>Asking questions in Spanish (Question Words).</p>
+        </header>
+
+        <div class="section">
+            <h2>💡 Explicación</h2>
+            <div class="english-note">
+                In Spanish, all question words have an <strong>accent mark</strong>. Also, remember to use the <strong>opening question mark (¿)</strong> at the beginning of the sentence. 
+                <br><em>Hover over the words for translations!</em>
+            </div>
+            
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>Partícula</th>
+                        <th>English Meaning</th>
+                        <th>Ejemplo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="What?">¿Qué?</span></td>
+                        <td>Used for objects or definitions.</td>
+                        <td>¿Qué es esto?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="Who?">¿Quién?</span></td>
+                        <td>Used for people (singular).</td>
+                        <td>¿Quién es él?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="Where?">¿Dónde?</span></td>
+                        <td>Used for places/location.</td>
+                        <td>¿Dónde vives?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="When?">¿Cuándo?</span></td>
+                        <td>Used for time.</td>
+                        <td>¿Cuándo es tu cumple?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="How?">¿Cómo?</span></td>
+                        <td>Used for manner or description.</td>
+                        <td>¿Cómo estás?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="Why?">¿Por qué?</span></td>
+                        <td>Used for reasons.</td>
+                        <td>¿Por qué estudias español?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="Which?">¿Cuál?</span></td>
+                        <td>Used for choice among options.</td>
+                        <td>¿Cuál es tu color favorito?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="vocab" data-tooltip="How much? / How many?">¿Cuánto/a/os/as?</span></td>
+                        <td>Used for quantity.</td>
+                        <td>¿Cuántos años tienes?</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>📌 Tips Rápidos</h2>
+            <div class="english-note">
+                <strong>¿Cuál? vs ¿Qué?:</strong> 
+                <br>Use <span class="vocab" data-tooltip="What?">¿Qué?</span> + noun to ask "what (thing)".
+                <br>Use <span class="vocab" data-tooltip="Which?">¿Cuál?</span> when you have to pick from a list or ask about your "favorite" anything.
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 2: EJERCICIOS -->
+    <div id="exercises" class="tab-content">
+        <header>
+            <h1>Práctica de Interrogativos</h1>
+            <p>Pon a prueba tus conocimientos.</p>
+        </header>
+
+        <div class="section">
+            <h2>Ejercicio 1: Elige la partícula correcta</h2>
+            <div class="english-note">Complete the questions based on the answers provided. Remember the accents!</div>
+            <div class="exercise-block" id="ex1">
+                <div class="exercise-grid">
+                    <div class="question">
+                        1. ¿<input type="text" data-ans="Cómo"> estás? <br>
+                        <span class="hint">- Estoy muy bien, gracias.</span>
+                    </div>
+                    <div class="question">
+                        2. ¿<input type="text" data-ans="Dónde"> está mi libro? <br>
+                        <span class="hint">- Está en la mesa.</span>
+                    </div>
+                    <div class="question">
+                        3. ¿<input type="text" data-ans="Quién"> es tu profesor? <br>
+                        <span class="hint">- Es el señor Martínez.</span>
+                    </div>
+                    <div class="question">
+                        4. ¿<input type="text" data-ans="Cuándo"> es el examen? <br>
+                        <span class="hint">- El próximo lunes.</span>
+                    </div>
+                    <div class="question">
+                        5. ¿<input type="text" data-ans="Por qué"> estás triste? <br>
+                        <span class="hint">- Porque mi gato está enfermo.</span>
+                    </div>
+                    <div class="question">
+                        6. ¿<input type="text" data-ans="Cuántos"> hermanos tienes? <br>
+                        <span class="hint">- Tengo tres hermanos.</span>
+                    </div>
+                    <div class="question">
+                        7. ¿<input type="text" data-ans="Cuál"> es tu película favorita? <br>
+                        <span class="hint">- Mi película favorita es Avatar.</span>
+                    </div>
+                    <div class="question">
+                        8. ¿<input type="text" data-ans="Qué"> hora es? <br>
+                        <span class="hint">- Son las tres de la tarde.</span>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex1')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex1')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex1" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 2: El Diálogo de la Fiesta</h2>
+            <div class="english-note">Complete the dialogue using the interrogative words from the bank: <strong>Quién, Qué, Dónde, Cuándo, Por qué</strong>.</div>
+            <div class="exercise-block" id="ex2">
+                <div class="text-fill-container" style="padding: 20px;">
+                    <strong>Pablo:</strong> ¡Hola Ana! ¿<input type="text" class="inline-input" data-ans="Qué"> planes tienes para hoy?<br>
+                    <strong>Ana:</strong> Voy a una fiesta. <br>
+                    <strong>Pablo:</strong> ¿Ah sí? ¿<input type="text" class="inline-input" data-ans="Dónde"> es la fiesta?<br>
+                    <strong>Ana:</strong> Es en la casa de Marta. <br>
+                    <strong>Pablo:</strong> ¿Y <input type="text" class="inline-input" data-ans="Cuándo"> empieza?<br>
+                    <strong>Ana:</strong> A las nueve de la noche. <br>
+                    <strong>Pablo:</strong> ¿<input type="text" class="inline-input" data-ans="Quién"> más va a ir?<br>
+                    <strong>Ana:</strong> Todos nuestros amigos. ¿Quieres venir? <br>
+                    <strong>Pablo:</strong> Sí, pero ¿<input type="text" class="inline-input" data-ans="Por qué"> no me invitaste antes?<br>
+                    <strong>Ana:</strong> ¡Pensé que estabas ocupado!
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex2')">Corregir Diálogo</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex2')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex2" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 3: Preguntas Personales</h2>
+            <div class="english-note">Read the sentence and write the correct question word that matches the underlined part.</div>
+            <div class="exercise-block" id="ex3">
+                <div class="exercise-grid">
+                    <div class="question">1. Vivo <u>en Madrid</u>. -> ¿<input type="text" data-ans="Dónde"> vives?</div>
+                    <div class="question">2. Me llamo <u>Luis</u>. -> ¿<input type="text" data-ans="Cómo"> te llamas?</div>
+                    <div class="question">3. Tengo <u>15 años</u>. -> ¿<input type="text" data-ans="Cuántos"> años tienes?</div>
+                    <div class="question">4. Es <u>el tres de mayo</u>. -> ¿<input type="text" data-ans="Cuándo"> es tu cumpleaños?</div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-check" onclick="checkExercise('ex3')">Corregir</button>
+                    <button class="btn btn-reset" onclick="resetExercise('ex3')">Reiniciar</button>
+                </div>
+                <div id="feedback-ex3" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let globalScore = 0;
+    const completedBlocks = new Set();
+
+    // Lógica de Pestañas
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    function checkExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input[type="text"]');
+        const feedback = document.getElementById('feedback-' + id);
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const correctAns = input.getAttribute('data-ans').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // Allow for matches even if they forgot the opening question mark in the input (though prompts don't ask for it inside the box)
+            if (userAns === correctAns) {
+                input.style.borderColor = "#27ae60";
+                input.style.backgroundColor = "#e8f5e9";
+                correctCount++;
+            } else {
+                input.style.borderColor = "#e74c3c";
+                input.style.backgroundColor = "#ffebee";
+            }
+        });
+
+        feedback.style.display = "block";
+        if (correctCount === inputs.length) {
+            feedback.className = "feedback correct-box";
+            feedback.innerHTML = "¡Excelente trabajo! Has acertado todas las partículas. ";
+            if (!completedBlocks.has(id)) {
+                globalScore += correctCount;
+                completedBlocks.add(id);
+                document.getElementById('total-score').innerText = globalScore;
+            }
+        } else {
+            feedback.className = "feedback incorrect-box";
+            feedback.innerHTML = `Has acertado ${correctCount} de ${inputs.length}. ¡Revisa los acentos!`;
+        }
+    }
+
+    function resetExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input');
+        const feedback = document.getElementById('feedback-' + id);
+        inputs.forEach(input => {
+            input.value = "";
+            input.style.borderColor = "#ddd";
+            input.style.backgroundColor = "white";
+        });
+        feedback.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

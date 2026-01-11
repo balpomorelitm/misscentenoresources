@@ -1,0 +1,471 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdf2f8; /* Light pink background for "Shopping" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .vocab-card-back {
+            background-color: #db2777; /* Pink-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #db2777;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #fce7f3; /* Pink-100 */
+            color: #9d174d; /* Pink-800 */
+            border-left: 4px solid #9d174d;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #db2777;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 6</h1>
+                <p class="text-xs text-slate-300">Digital Study Guide (Pages 119 - 141)</p>
+            </div>
+            <div class="text-sm bg-pink-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_clothes')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Clothing</button>
+                <button onclick="scrollToSection('vocab_colors')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Vocab: Colors & Materials</button>
+                <button onclick="scrollToSection('numbers_prices')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Numbers 100+ & Prices</button>
+                <button onclick="scrollToSection('demonstratives')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Demonstratives</button>
+                <button onclick="scrollToSection('comparisons')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Grammar: Comparisons</button>
+                <button onclick="scrollToSection('shopping')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. In the Shop (Dialogues)</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice: Buying Clothes</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-pink-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-pink-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Human Ingenuity & Social Organization.<br>
+                    <strong>Focus:</strong> In Unit 6, "Â¿En quÃ© gastamos nuestro dinero?" (What do we spend our money on?), you will learn to describe clothing, talk about prices, use demonstrative adjectives (this/that), and compare products.
+                </div>
+            </section>
+
+            <!-- Section 2: Vocab Clothing -->
+            <section id="vocab_clothes" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Clothing (La Ropa)</h2>
+                <p class="mb-4 text-sm">Essential vocabulary for shopping. Click to reveal the translation.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <!-- Card 1 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La camisa</div>
+                            <div class="vocab-card-back">Shirt (Button-down)</div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La camiseta</div>
+                            <div class="vocab-card-back">T-shirt</div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Los pantalones</div>
+                            <div class="vocab-card-back">Pants / Trousers</div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El vestido</div>
+                            <div class="vocab-card-back">Dress</div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La falda</div>
+                            <div class="vocab-card-back">Skirt</div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Los zapatos</div>
+                            <div class="vocab-card-back">Shoes</div>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El abrigo</div>
+                            <div class="vocab-card-back">Coat</div>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La chaqueta</div>
+                            <div class="vocab-card-back">Jacket</div>
+                        </div>
+                    </div>
+                    <!-- Card 9 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Los calcetines</div>
+                            <div class="vocab-card-back">Socks</div>
+                        </div>
+                    </div>
+                    <!-- Card 10 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El jersey / SuÃ©ter</div>
+                            <div class="vocab-card-back">Sweater / Jumper</div>
+                        </div>
+                    </div>
+                    <!-- Card 11 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Las zapatillas</div>
+                            <div class="vocab-card-back">Sneakers / Trainers</div>
+                        </div>
+                    </div>
+                    <!-- Card 12 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El traje</div>
+                            <div class="vocab-card-back">Suit</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Vocab Colors -->
+            <section id="vocab_colors" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Vocab: Colors & Materials</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-pink-200">
+                        <h4 class="font-bold text-pink-700 mb-2">Colors (Agreement!)</h4>
+                        <p class="text-xs text-gray-500 mb-2">Colors are adjectives and must agree in gender/number with the clothes.</p>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="inline-block w-4 h-4 bg-red-600 rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="Red">Rojo/a/os/as</span></li>
+                            <li><span class="inline-block w-4 h-4 bg-blue-600 rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="Blue">Azul/es</span></li>
+                            <li><span class="inline-block w-4 h-4 bg-green-600 rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="Green">Verde/s</span></li>
+                            <li><span class="inline-block w-4 h-4 bg-black rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="Black">Negro/a/os/as</span></li>
+                            <li><span class="inline-block w-4 h-4 bg-white border border-gray-300 rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="White">Blanco/a/os/as</span></li>
+                            <li><span class="inline-block w-4 h-4 bg-yellow-400 rounded-full mr-2 align-middle"></span><span class="hover-translation font-medium" data-en="Yellow">Amarillo/a/os/as</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-pink-200">
+                        <h4 class="font-bold text-pink-700 mb-2">Materials & Sizes</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation font-medium" data-en="Of cotton">De algodÃ³n</span></li>
+                            <li><span class="hover-translation font-medium" data-en="Of wool">De lana</span></li>
+                            <li><span class="hover-translation font-medium" data-en="Of leather">De cuero / piel</span></li>
+                            <li><span class="hover-translation font-medium" data-en="Of silk">De seda</span></li>
+                            <li class="mt-4 border-t pt-2"><span class="hover-translation font-medium" data-en="Size (clothes)">La talla</span> (S, M, L, XL)</li>
+                            <li><span class="hover-translation font-medium" data-en="Size (shoes)">El nÃºmero</span> (38, 40, 42)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Numbers 100+ -->
+            <section id="numbers_prices" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Numbers 100+ & Prices</h2>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400 mb-6">
+                    <h3 class="font-bold text-yellow-800 mb-2">Talking about Prices</h3>
+                    <p class="text-sm mb-4">To ask for the price, we say: <span class="font-bold text-slate-800 hover-translation" data-en="How much does it cost?">Â¿CuÃ¡nto cuesta?</span> (Singular) or <span class="font-bold text-slate-800 hover-translation" data-en="How much do they cost?">Â¿CuÃ¡nto cuestan?</span> (Plural).</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+                        <div class="bg-white p-2 rounded">100: <span class="font-bold hover-translation" data-en="One hundred">Cien</span></div>
+                        <div class="bg-white p-2 rounded">101: <span class="font-bold hover-translation" data-en="One hundred and one">Ciento uno</span></div>
+                        <div class="bg-white p-2 rounded">200: <span class="font-bold hover-translation" data-en="Two hundred">Doscientos</span></div>
+                        <div class="bg-white p-2 rounded">500: <span class="font-bold hover-translation" data-en="Five hundred">Quinientos</span></div>
+                        <div class="bg-white p-2 rounded">700: <span class="font-bold hover-translation" data-en="Seven hundred">Setecientos</span></div>
+                        <div class="bg-white p-2 rounded">900: <span class="font-bold hover-translation" data-en="Nine hundred">Novecientos</span></div>
+                        <div class="bg-white p-2 rounded">1.000: <span class="font-bold hover-translation" data-en="One thousand">Mil</span></div>
+                        <div class="bg-white p-2 rounded">1.000.000: <span class="font-bold hover-translation" data-en="One million">Un millÃ³n</span></div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-4 rounded shadow text-sm">
+                    <p><strong>Note:</strong> Numbers like 200, 300, etc. agree in gender.</p>
+                    <ul class="list-disc pl-5 mt-2">
+                        <li>200 euros = <span class="hover-translation" data-en="Two hundred euros">Doscient<strong>os</strong> euros</span></li>
+                        <li>500 personas = <span class="hover-translation" data-en="Five hundred people">Quinient<strong>as</strong> personas</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 5: Demonstratives -->
+            <section id="demonstratives" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Demonstrative Adjectives</h2>
+                
+                <p class="mb-4">These words point out specific items (This, That, That over there).</p>
+
+                <div class="overflow-x-auto bg-white rounded shadow border border-gray-200">
+                    <table class="min-w-full text-sm text-center">
+                        <thead class="bg-pink-700 text-white font-bold">
+                            <tr>
+                                <th class="p-3">Distance</th>
+                                <th class="p-3">Masculine (Sing/Pl)</th>
+                                <th class="p-3">Feminine (Sing/Pl)</th>
+                                <th class="p-3">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-700"><span class="hover-translation" data-en="Here">AquÃ­</span><br><span class="text-xs font-normal">This / These</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="This / These (Masc)">Este / Estos</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="This / These (Fem)">Esta / Estas</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="This shirt">Esta camisa</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-700"><span class="hover-translation" data-en="There">AhÃ­</span><br><span class="text-xs font-normal">That / Those</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="That / Those (Masc)">Ese / Esos</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="That / Those (Fem)">Esa / Esas</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="That dress">Ese vestido</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-700"><span class="hover-translation" data-en="Over there">AllÃ­</span><br><span class="text-xs font-normal">That / Those (far)</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="That / Those far (Masc)">Aquel / Aquellos</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="That / Those far (Fem)">Aquella / Aquellas</span></td>
+                                <td class="p-3"><span class="hover-translation" data-en="Those shoes over there">Aquellos zapatos</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-2 text-xs text-gray-500 italic">
+                    Tip: "This and These have T's" (Este, Esta). "That and Those don't" (Ese, Esa).
+                </div>
+            </section>
+
+            <!-- Section 6: Comparisons -->
+            <section id="comparisons" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Grammar: Comparisons</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Regular Comparisons</h4>
+                        <ul class="text-sm space-y-3">
+                            <li><strong>MÃ¡s ... que</strong> (More ... than)<br>
+                                <em>La seda es <span class="hover-translation text-pink-600" data-en="more expensive than">mÃ¡s cara que</span> el algodÃ³n.</em>
+                            </li>
+                            <li><strong>Menos ... que</strong> (Less ... than)<br>
+                                <em>Esta tienda es <span class="hover-translation text-pink-600" data-en="less big than">menos grande que</span> la otra.</em>
+                            </li>
+                            <li><strong>Tan ... como</strong> (As ... as)<br>
+                                <em>El azul es <span class="hover-translation text-pink-600" data-en="as pretty as">tan bonito como</span> el rojo.</em>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Irregular Comparisons</h4>
+                        <ul class="text-sm space-y-3">
+                            <li><strong>Mejor que</strong> (Better than)<br>
+                                <em>Este libro es <span class="hover-translation text-blue-600" data-en="better than">mejor que</span> la pelÃ­cula.</em>
+                            </li>
+                            <li><strong>Peor que</strong> (Worse than)<br>
+                                <em>El trÃ¡fico es <span class="hover-translation text-blue-600" data-en="worse than">peor que</span> ayer.</em>
+                            </li>
+                            <li><strong>Mayor / Menor que</strong> (Older / Younger)<br>
+                                <em>Soy <span class="hover-translation text-blue-600" data-en="older than">mayor que</span> mi hermano.</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: In the Shop -->
+            <section id="shopping" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. In the Shop (En la Tienda)</h2>
+                
+                <div class="bg-pink-100 p-6 rounded-lg border border-pink-300">
+                    <h4 class="font-bold text-pink-800 mb-3">Useful Phrases</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div class="space-y-2">
+                            <p><strong>Clerk (Dependiente):</strong></p>
+                            <ul class="list-disc pl-5">
+                                <li><span class="hover-translation" data-en="Can I help you?">Â¿Puedo ayudarle?</span></li>
+                                <li><span class="hover-translation" data-en="What size do you wear?">Â¿QuÃ© talla usa?</span></li>
+                                <li><span class="hover-translation" data-en="How does it fit?">Â¿CÃ³mo le queda?</span></li>
+                                <li><span class="hover-translation" data-en="The changing rooms are there">Los probadores estÃ¡n allÃ­.</span></li>
+                            </ul>
+                        </div>
+                        <div class="space-y-2">
+                            <p><strong>Customer (Cliente):</strong></p>
+                            <ul class="list-disc pl-5">
+                                <li><span class="hover-translation" data-en="I am just looking">Solo estoy mirando.</span></li>
+                                <li><span class="hover-translation" data-en="I want to buy a shirt">Quiero comprar una camisa.</span></li>
+                                <li><span class="hover-translation" data-en="Can I try it on?">Â¿Puedo probÃ¡rmelo?</span></li>
+                                <li><span class="hover-translation" data-en="It fits me well/bad">Me queda bien / mal.</span></li>
+                                <li><span class="hover-translation" data-en="It is too expensive">Es demasiado caro.</span></li>
+                                <li><span class="hover-translation" data-en="I'll take it">Me lo llevo.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice: Buying Clothes</h2>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-800 mb-3">Dialogue Practice</h3>
+                    <div class="space-y-4 text-sm">
+                        <p><strong>Dependiente:</strong> <span class="hover-translation" data-en="Hello, can I help you?">Hola, Â¿puedo ayudarle?</span></p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="Yes, I am looking for blue pants.">SÃ­, busco unos pantalones azules.</span></p>
+                        <p><strong>Dependiente:</strong> <span class="hover-translation" data-en="We have these. Do you like them?">Tenemos estos. Â¿Le gustan?</span></p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="Yes, they are very pretty. Can I try them on?">SÃ­, son muy bonitos. Â¿Puedo probÃ¡rmelos?</span></p>
+                        <p><strong>Dependiente:</strong> <span class="hover-translation" data-en="Of course.">Claro que sÃ­.</span></p>
+                        <p class="text-gray-400 italic">... (Later) ...</p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="They fit me well. How much are they?">Me quedan bien. Â¿CuÃ¡nto cuestan?</span></p>
+                        <p><strong>Dependiente:</strong> <span class="hover-translation" data-en="They cost 45 euros.">Cuestan 45 euros.</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick').includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

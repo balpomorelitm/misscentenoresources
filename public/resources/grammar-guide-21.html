@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unidad 21</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Styles for inputs */
+        input.grammar-input {
+            border-bottom: 2px solid #d1d5db;
+            background-color: transparent;
+            padding: 0.25rem 0.5rem;
+            width: 100%;
+            max-width: 200px;
+            color: #4338ca;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        input.grammar-input:focus {
+            border-color: #4f46e5;
+        }
+        
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        /* Feedback */
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Tabs */
+        .tab-btn {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Highlight Box */
+        .rule-box {
+            background-color: #ffffff;
+            border-left: 5px solid;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-crown text-2xl text-yellow-400"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unidad 21: El Imperativo Formal</h1>
+            <p class="text-indigo-200 mt-2">Dando Ã³rdenes y consejos usando <em>Usted</em> y <em>Ustedes</em> (PÃ¡ginas 64-69)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-5xl mx-auto space-y-8">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 overflow-x-auto bg-white rounded-t-lg shadow-sm">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('regulares')">1. Regulares</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('cambios')">2. Cambios VocÃ¡licos</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('irregulares')">3. Irregulares</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('ortografia')">4. OrtografÃ­a (-car/zar/gar)</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('reflexivos')">5. Reflexivos</div>
+            </div>
+
+            <!-- TAB 1: REGULARES -->
+            <div id="regulares" class="tab-content active space-y-6">
+                <div class="rule-box border-indigo-500">
+                    <h2 class="text-xl font-bold text-indigo-900 mb-3"><i class="fas fa-info-circle mr-2"></i>Regla: Verbos Regulares</h2>
+                    <p class="mb-4 text-gray-700">Para formar el imperativo formal (Usted/Ustedes), usamos la raÃ­z del presente de indicativo ("yo") y cambiamos la vocal final (switch the vowel):</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-indigo-50 p-4 rounded-lg">
+                            <h3 class="font-bold text-indigo-700 border-b border-indigo-200 pb-2 mb-2">-AR Verbs (Hablar)</h3>
+                            <ul class="space-y-1 text-sm text-gray-800">
+                                <li>Usted: <strong>-e</strong> (Habl<strong>e</strong>)</li>
+                                <li>Ustedes: <strong>-en</strong> (Habl<strong>en</strong>)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h3 class="font-bold text-green-700 border-b border-green-200 pb-2 mb-2">-ER / -IR Verbs (Comer / Escribir)</h3>
+                            <ul class="space-y-1 text-sm text-gray-800">
+                                <li>Usted: <strong>-a</strong> (Com<strong>a</strong> / Escrib<strong>a</strong>)</li>
+                                <li>Ustedes: <strong>-an</strong> (Com<strong>an</strong> / Escrib<strong>an</strong>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">1</span>
+                        Ejercicio 1: Conjuga los verbos regulares
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-6 italic">Ejemplo: (Hablar, usted) -> Hable</p>
+                    <div id="ex1-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex1')" class="btn-primary">Verificar</button>
+                        <button onclick="resetExercise('ex1')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex1" class="feedback-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: CAMBIOS VOCÃLICOS -->
+            <div id="cambios" class="tab-content space-y-6">
+                <div class="rule-box border-yellow-500">
+                    <h2 class="text-xl font-bold text-yellow-900 mb-3"><i class="fas fa-sync-alt mr-2"></i>Regla: Cambios VocÃ¡licos</h2>
+                    <p class="mb-2 text-gray-700">Los verbos con cambio de raÃ­z en el presente (Stem-changing verbs) mantienen ese cambio en el imperativo.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                        <li><strong>e â†’ ie</strong> (Pensar â†’ Piense)</li>
+                        <li><strong>o â†’ ue</strong> (Volver â†’ Vuelva)</li>
+                        <li><strong>e â†’ i</strong> (Pedir â†’ Pida)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-yellow-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">2</span>
+                        Ejercicio 2: Verbos con cambios vocÃ¡licos
+                    </h3>
+                    <div id="ex2-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex2')" class="btn-primary">Verificar</button>
+                        <button onclick="resetExercise('ex2')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex2" class="feedback-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: IRREGULARES -->
+            <div id="irregulares" class="tab-content space-y-6">
+                <div class="rule-box border-red-500">
+                    <h2 class="text-xl font-bold text-red-900 mb-3"><i class="fas fa-exclamation-triangle mr-2"></i>Regla: Irregulares "Yo"</h2>
+                    <p class="mb-2 text-gray-700">Si la forma "Yo" del presente es irregular (tengo, hago, salgo), el imperativo mantiene esa irregularidad.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 text-sm">
+                        <div class="bg-red-50 p-2 rounded text-center">Tener (tengo) â†’ <strong>Tenga</strong></div>
+                        <div class="bg-red-50 p-2 rounded text-center">Hacer (hago) â†’ <strong>Haga</strong></div>
+                        <div class="bg-red-50 p-2 rounded text-center">Salir (salgo) â†’ <strong>Salga</strong></div>
+                    </div>
+                    <p class="mb-2 text-gray-700 mt-4"><strong>Excepciones Totales (DISES):</strong></p>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-sm">
+                        <div class="bg-gray-100 p-2 rounded text-center">Dar â†’ <strong>DÃ© / Den</strong></div>
+                        <div class="bg-gray-100 p-2 rounded text-center">Ir â†’ <strong>Vaya / Vayan</strong></div>
+                        <div class="bg-gray-100 p-2 rounded text-center">Ser â†’ <strong>Sea / Sean</strong></div>
+                        <div class="bg-gray-100 p-2 rounded text-center">Saber â†’ <strong>Sepa / Sepan</strong></div>
+                    </div>
+                </div>
+
+                <!-- Exercise 3: Table -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">3</span>
+                        Ejercicio 3: Completa la tabla de irregulares
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm text-left text-gray-600">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-2">Verbo</th>
+                                    <th class="px-4 py-2">Presente (Yo)</th>
+                                    <th class="px-4 py-2">Usted (Imperativo)</th>
+                                    <th class="px-4 py-2">Ustedes (Imperativo)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ex3-container">
+                                <!-- Generated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex3')" class="btn-primary">Verificar Tabla</button>
+                        <button onclick="resetExercise('ex3')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex3" class="feedback-msg"></span>
+                    </div>
+                </div>
+
+                <!-- Exercise 4: Sentences -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">4</span>
+                        Ejercicio 4: PrÃ¡ctica Mixta de Irregulares
+                    </h3>
+                    <div id="ex4-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex4')" class="btn-primary">Verificar</button>
+                        <button onclick="resetExercise('ex4')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex4" class="feedback-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: ORTOGRAFÃA -->
+            <div id="ortografia" class="tab-content space-y-6">
+                <div class="rule-box border-purple-500">
+                    <h2 class="text-xl font-bold text-purple-900 mb-3"><i class="fas fa-pen-fancy mr-2"></i>Regla: Cambios OrtogrÃ¡ficos</h2>
+                    <p class="mb-4 text-gray-700">Para mantener el sonido original del verbo, ocurren los siguientes cambios (igual que en el pretÃ©rito indefinido 'yo'):</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-purple-50 p-3 rounded border border-purple-100">
+                            <strong class="text-purple-700">-CAR â†’ -QUE</strong><br>
+                            <span class="text-sm">Buscar â†’ Bus<strong>que</strong></span>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded border border-purple-100">
+                            <strong class="text-purple-700">-GAR â†’ -GUE</strong><br>
+                            <span class="text-sm">Llegar â†’ Lle<strong>gue</strong></span>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded border border-purple-100">
+                            <strong class="text-purple-700">-ZAR â†’ -CE</strong><br>
+                            <span class="text-sm">Empezar â†’ Empie<strong>ce</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">5</span>
+                        Ejercicio 5: Verbos -car, -gar, -zar
+                    </h3>
+                    <div id="ex5-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex5')" class="btn-primary">Verificar</button>
+                        <button onclick="resetExercise('ex5')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex5" class="feedback-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: REFLEXIVOS -->
+            <div id="reflexivos" class="tab-content space-y-6">
+                <div class="rule-box border-pink-500">
+                    <h2 class="text-xl font-bold text-pink-900 mb-3"><i class="fas fa-user-circle mr-2"></i>Regla: Verbos Reflexivos</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-bold text-green-700 mb-2">Afirmativo (Â¡Hazlo!)</h4>
+                            <p class="text-sm mb-2">El pronombre va <strong>al final</strong> y unido al verbo. Se aÃ±ade tilde.</p>
+                            <div class="bg-green-50 p-2 rounded text-sm font-mono">
+                                Levantarse (usted) â†’ Â¡LevÃ¡ntese!<br>
+                                Sentarse (ustedes) â†’ Â¡SiÃ©ntense!
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-red-700 mb-2">Negativo (Â¡No lo hagas!)</h4>
+                            <p class="text-sm mb-2">El pronombre va <strong>antes</strong> del verbo.</p>
+                            <div class="bg-red-50 p-2 rounded text-sm font-mono">
+                                No levantarse â†’ Â¡No se levante!<br>
+                                No sentarse â†’ Â¡No se sienten!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center">
+                        <span class="bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">6</span>
+                        Ejercicio 6: Verbos Reflexivos
+                    </h3>
+                    <div id="ex6-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- Generated by JS -->
+                    </div>
+                    <div class="mt-6 flex flex-wrap items-center gap-4">
+                        <button onclick="checkAnswers('ex6')" class="btn-primary">Verificar</button>
+                        <button onclick="resetExercise('ex6')" class="btn-secondary">Reiniciar</button>
+                        <span id="feedback-ex6" class="feedback-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Workbook - Unidad 21 (PÃ¡ginas 64-69) | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Exercise 1: Regulars
+        const ex1Data = [
+            { q: "(Beber, usted) 2 litros de agua cada dÃ­a.", ans: ["beba"] },
+            { q: "No (hablar, ustedes) en inglÃ©s en clase.", ans: ["hablen"] },
+            { q: "(Esperar, usted) el autobÃºs aquÃ­.", ans: ["espere"] },
+            { q: "(Abrir, usted) la ventana.", ans: ["abra"] },
+            { q: "No (subir, ustedes) el volumen tanto.", ans: ["suban"] },
+            { q: "(Completar, ustedes) todos los ejercicios.", ans: ["completen"] },
+            { q: "No (comprar, ustedes) cosas tan caras.", ans: ["compren"] },
+            { q: "(Trabajar, usted) duro para tener Ã©xito.", ans: ["trabaje"] },
+            { q: "No (olvidar, ustedes) las llaves.", ans: ["olviden"] },
+            { q: "No (leer, usted) esta revista.", ans: ["lea"] }
+        ];
+
+        // Exercise 2: Vowel Changes
+        const ex2Data = [
+            { q: "No le (pedir, ustedes) ningÃºn favor.", ans: ["pidan"] },
+            { q: "(Pensar, usted) antes de decidir.", ans: ["piense"] },
+            { q: "(Resolver, usted) el problema pronto.", ans: ["resuelva"] },
+            { q: "(Volver, ustedes) a hacer los ejercicios.", ans: ["vuelvan"] },
+            { q: "No (mentir, usted) nunca a nadie.", ans: ["mienta"] },
+            { q: "(Cerrar, usted) la puerta.", ans: ["cierre"] },
+            { q: "NiÃ±os, no (repetir, ustedes) este error.", ans: ["repitan"] },
+            { q: "(Dormir, usted) bien esta noche.", ans: ["duerma"] },
+            { q: "No (encender, usted) la luz.", ans: ["encienda"] },
+            { q: "No (hervir, ustedes) mucho las patatas.", ans: ["hiervan"] }
+        ];
+
+        // Exercise 3: Irregular Table
+        // Note: The structure here is different, we generate table rows
+        const ex3Data = [
+            { verb: "Tener", pres: "Tengo", ud: "Tenga", uds: "Tengan" },
+            { verb: "Ir", pres: "Voy", ud: "Vaya", uds: "Vayan" },
+            { verb: "Ver", pres: "Veo", ud: "Vea", uds: "Vean" },
+            { verb: "Poner", pres: "Pongo", ud: "Ponga", uds: "Pongan" },
+            { verb: "Venir", pres: "Vengo", ud: "Venga", uds: "Vengan" },
+            { verb: "Valer", pres: "Valgo", ud: "Valga", uds: "Valgan" },
+            { verb: "Decir", pres: "Digo", ud: "Diga", uds: "Digan" },
+            { verb: "Seguir", pres: "Sigo", ud: "Siga", uds: "Sigan" },
+            { verb: "Coger", pres: "Cojo", ud: "Coja", uds: "Cojan" },
+            { verb: "Corregir", pres: "Corrijo", ud: "Corrija", uds: "Corrijan" },
+            { verb: "Conducir", pres: "Conduzco", ud: "Conduzca", uds: "Conduzcan" }
+        ];
+
+        // Exercise 4: Irregulars Sentences
+        const ex4Data = [
+            { q: "(Recoger, usted) la basura.", ans: ["recoja"] },
+            { q: "(Tener, ustedes) mÃ¡s paciencia.", ans: ["tengan"] },
+            { q: "No (salir, usted) tan tarde.", ans: ["salga"] },
+            { q: "No (ser, ustedes) tan perezosos.", ans: ["sean"] },
+            { q: "(Venir, usted) a tiempo.", ans: ["venga"] },
+            { q: "No (ir, ustedes) a EspaÃ±a en agosto.", ans: ["vayan"] },
+            { q: "(Reducir, usted) la temperatura.", ans: ["reduzca"] },
+            { q: "(Seguir, ustedes) las instrucciones.", ans: ["sigan"] },
+            { q: "No (dar, ustedes) tanta importancia a eso.", ans: ["den"] },
+            { q: "(Hacer, usted) la transferencia.", ans: ["haga"] },
+            { q: "(Conducir, ustedes) con cuidado.", ans: ["conduzcan"] },
+            { q: "No (elegir, usted) este vestido.", ans: ["elija"] },
+            { q: "(Corregir, usted) nuestros errores.", ans: ["corrija"] },
+            { q: "(Poner, usted) los libros aquÃ­.", ans: ["ponga"] },
+            { q: "No (dar, usted) dulces a los niÃ±os.", ans: ["de", "dÃ©"] } // Accepting both due to workbook variation
+        ];
+
+        // Exercise 5: -car, -zar, -gar
+        const ex5Data = [
+            { q: "No (apagar, usted) el aire.", ans: ["apague"] },
+            { q: "(Cargar, ustedes) los mÃ³viles.", ans: ["carguen"] },
+            { q: "No (comenzar, ustedes) antes.", ans: ["comiencen"] },
+            { q: "No (tocar, ustedes) las flores.", ans: ["toquen"] },
+            { q: "(Cruzar, usted) la calle.", ans: ["cruce"] },
+            { q: "No (colgar, ustedes) fotos.", ans: ["cuelguen"] },
+            { q: "(Buscar, usted) el lÃ¡piz.", ans: ["busque"] },
+            { q: "(Rezar, usted) cada dÃ­a.", ans: ["rece"] },
+            { q: "(Explicar, ustedes) su propuesta.", ans: ["expliquen"] },
+            { q: "No (aparcar, usted) el coche aquÃ­.", ans: ["aparque"] }
+        ];
+
+        // Exercise 6: Reflexives
+        const ex6Data = [
+            { q: "No (despertarse, ustedes) tarde.", ans: ["se despierten"] },
+            { q: "(Quitarse, usted) los zapatos.", ans: ["quÃ­tese"] },
+            { q: "(Vestirse, ustedes) apropiadamente.", ans: ["vÃ­stanse"] },
+            { q: "No (secarse, ustedes) el pelo.", ans: ["se sequen"] },
+            { q: "No (enfadarse, usted) tanto.", ans: ["se enfade"] },
+            { q: "(Sentarse, ustedes) aquÃ­ por favor.", ans: ["siÃ©ntense"] },
+            { q: "No (reÃ­rse, ustedes) de ella.", ans: ["se rÃ­an"] },
+            { q: "No (sentirse, usted) mal.", ans: ["se sienta"] },
+            { q: "(Divertirse, ustedes) mucho.", ans: ["diviÃ©rtanse"] },
+            { q: "(Ponerse, usted) el abrigo.", ans: ["pÃ³ngase"] }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+        
+        function renderStandardExercise(containerId, data, prefix) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="flex flex-col gap-2">
+                        <label class="text-gray-700 font-medium">${i + 1}. ${item.q}</label>
+                        <input type="text" id="${prefix}-${i}" class="grammar-input" placeholder="Respuesta..." autocomplete="off">
+                    </div>`;
+            });
+        }
+
+        function renderTableExercise() {
+            const tbody = document.getElementById('ex3-container');
+            tbody.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                tbody.innerHTML += `
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <td class="px-4 py-3 font-bold text-gray-800">${item.verb}</td>
+                        <td class="px-4 py-3 text-gray-500 italic">${item.pres}</td>
+                        <td class="px-4 py-3"><input type="text" id="ex3-ud-${i}" class="grammar-input" style="max-width: 120px;"></td>
+                        <td class="px-4 py-3"><input type="text" id="ex3-uds-${i}" class="grammar-input" style="max-width: 120px;"></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // --- INIT ---
+        function init() {
+            renderStandardExercise('ex1-container', ex1Data, 'ex1');
+            renderStandardExercise('ex2-container', ex2Data, 'ex2');
+            renderTableExercise();
+            renderStandardExercise('ex4-container', ex4Data, 'ex4');
+            renderStandardExercise('ex5-container', ex5Data, 'ex5');
+            renderStandardExercise('ex6-container', ex6Data, 'ex6');
+        }
+
+        // --- CHECKING LOGIC ---
+
+        function normalizeText(text) {
+            return text.trim().toLowerCase().replace(/\s+/g, ' ');
+        }
+
+        function checkAnswers(exId) {
+            let correctCount = 0;
+            let total = 0;
+
+            if (exId === 'ex3') {
+                // Special handling for the table
+                total = ex3Data.length * 2;
+                ex3Data.forEach((item, i) => {
+                    const udInput = document.getElementById(`ex3-ud-${i}`);
+                    const udsInput = document.getElementById(`ex3-uds-${i}`);
+
+                    // Check Ud
+                    if (normalizeText(udInput.value) === normalizeText(item.ud)) {
+                        udInput.classList.add('correct-answer');
+                        udInput.classList.remove('incorrect-answer');
+                        correctCount++;
+                    } else {
+                        udInput.classList.add('incorrect-answer');
+                        udInput.classList.remove('correct-answer');
+                    }
+
+                    // Check Uds
+                    if (normalizeText(udsInput.value) === normalizeText(item.uds)) {
+                        udsInput.classList.add('correct-answer');
+                        udsInput.classList.remove('incorrect-answer');
+                        correctCount++;
+                    } else {
+                        udsInput.classList.add('incorrect-answer');
+                        udsInput.classList.remove('correct-answer');
+                    }
+                });
+            } else {
+                // Standard sentence exercises
+                const dataMap = {
+                    'ex1': ex1Data,
+                    'ex2': ex2Data,
+                    'ex4': ex4Data,
+                    'ex5': ex5Data,
+                    'ex6': ex6Data
+                };
+                const data = dataMap[exId];
+                total = data.length;
+
+                data.forEach((item, i) => {
+                    const input = document.getElementById(`${exId}-${i}`);
+                    const userVal = normalizeText(input.value);
+                    
+                    // Check against array of possible answers
+                    const isCorrect = item.ans.some(a => normalizeText(a) === userVal);
+
+                    if (isCorrect) {
+                        input.classList.add('correct-answer');
+                        input.classList.remove('incorrect-answer');
+                        correctCount++;
+                    } else {
+                        input.classList.add('incorrect-answer');
+                        input.classList.remove('correct-answer');
+                    }
+                });
+            }
+
+            // Feedback Message
+            const feedbackEl = document.getElementById(`feedback-${exId}`);
+            feedbackEl.textContent = `PuntuaciÃ³n: ${correctCount} / ${total}`;
+            feedbackEl.className = correctCount === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        function resetExercise(exId) {
+            const feedbackEl = document.getElementById(`feedback-${exId}`);
+            feedbackEl.textContent = "";
+
+            if (exId === 'ex3') {
+                ex3Data.forEach((_, i) => {
+                    ['ud', 'uds'].forEach(suffix => {
+                        const el = document.getElementById(`ex3-${suffix}-${i}`);
+                        el.value = "";
+                        el.classList.remove('correct-answer', 'incorrect-answer');
+                    });
+                });
+            } else {
+                const dataMap = {
+                    'ex1': ex1Data,
+                    'ex2': ex2Data,
+                    'ex4': ex4Data,
+                    'ex5': ex5Data,
+                    'ex6': ex6Data
+                };
+                dataMap[exId].forEach((_, i) => {
+                    const el = document.getElementById(`${exId}-${i}`);
+                    el.value = "";
+                    el.classList.remove('correct-answer', 'incorrect-answer');
+                });
+            }
+        }
+
+        // --- TABS LOGIC ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize on load
+        init();
+
+    </script>
+</body>
+</html>
+
+
+
+

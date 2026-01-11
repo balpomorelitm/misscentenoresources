@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 9: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f3ff; /* Light violet background for "Education/Work" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #ddd6fe;
+        }
+
+        .vocab-card-back {
+            background-color: #7c3aed; /* Violet-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #7c3aed;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #ede9fe; /* Violet-100 */
+            color: #5b21b6; /* Violet-800 */
+            border-left: 4px solid #7c3aed;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #7c3aed;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-violet-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 9</h1>
+                <p class="text-xs text-violet-200">Digital Study Guide (Pages 194 - 218)</p>
+            </div>
+            <div class="text-sm bg-violet-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_edu')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Education System</button>
+                <button onclick="scrollToSection('vocab_uni')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Vocab: University & Careers</button>
+                <button onclick="scrollToSection('grammar_future')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Future Tense</button>
+                <button onclick="scrollToSection('grammar_conditional')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Conditional Tense</button>
+                <button onclick="scrollToSection('vocab_work')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Vocab: Jobs & Workplace</button>
+                <button onclick="scrollToSection('aspirations')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Talking about Aspirations</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-violet-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-violet-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Social Organization / Education and the Workplace.<br>
+                    <strong>Focus:</strong> In Unit 9, "Â¿CÃ³mo influye mi educaciÃ³n en mi futuro?" (How does my education influence my future?), you will explore the link between studies and career goals. You will learn to use the future and conditional tenses.
+                </div>
+            </section>
+
+            <!-- Section 2: Education System -->
+            <section id="vocab_edu" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: The School System (La EducaciÃ³n)</h2>
+                <p class="mb-4 text-sm text-gray-600">Reviewing levels of education. Click cards to reveal English translation.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La escuela primaria</div>
+                            <div class="vocab-card-back">Primary school</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La escuela secundaria</div>
+                            <div class="vocab-card-back">Secondary school</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El bachillerato</div>
+                            <div class="vocab-card-back">High school (IB/A-Levels)</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Las asignaturas</div>
+                            <div class="vocab-card-back">School subjects</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Sacar buenas notas</div>
+                            <div class="vocab-card-back">To get good grades</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Aprobar un examen</div>
+                            <div class="vocab-card-back">To pass an exam</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Suspender un examen</div>
+                            <div class="vocab-card-back">To fail an exam</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La beca</div>
+                            <div class="vocab-card-back">Scholarship</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: University & Careers -->
+            <section id="vocab_uni" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Vocab: Higher Education (La Universidad)</h2>
+                <div class="bg-white p-4 rounded shadow-sm border border-violet-200">
+                    <h4 class="font-bold text-violet-700 mb-2 text-sm uppercase">Planning for College:</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                        <li><span class="hover-translation font-medium" data-en="Degree">La carrera / El tÃ­tulo</span></li>
+                        <li><span class="hover-translation font-medium" data-en="To graduate">Graduarse</span></li>
+                        <li><span class="hover-translation font-medium" data-en="To study medicine">Estudiar medicina</span></li>
+                        <li><span class="hover-translation font-medium" data-en="To study law">Estudiar derecho</span></li>
+                        <li><span class="hover-translation font-medium" data-en="To study engineering">Estudiar ingenierÃ­a</span></li>
+                        <li><span class="hover-translation font-medium" data-en="Application">La solicitud</span></li>
+                        <li><span class="hover-translation font-medium" data-en="Student life">La vida estudiantil</span></li>
+                        <li><span class="hover-translation font-medium" data-en="To choose a profession">Elegir una profesiÃ³n</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Future Tense -->
+            <section id="grammar_future" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Future Tense (El Futuro Simple)</h2>
+                
+                <div class="bg-violet-100 p-6 rounded-lg border-l-4 border-violet-500 mb-6">
+                    <h3 class="font-bold text-violet-900 mb-2">How to form it:</h3>
+                    <p class="text-sm mb-4">The easiest tense! Keep the whole verb (Infinitive) and add the endings. Endings are the SAME for -AR, -ER, and -IR verbs.</p>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm border border-violet-200 overflow-x-auto">
+                        <table class="min-w-full text-sm text-center">
+                            <thead class="bg-violet-700 text-white">
+                                <tr>
+                                    <th class="p-2">Subject</th>
+                                    <th class="p-2">Ending</th>
+                                    <th class="p-2">Example (Trabajar)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr><td>Yo</td><td class="font-bold text-violet-600">-Ã©</td><td><span class="hover-translation" data-en="I will work">Trabajar<strong>Ã©</strong></span></td></tr>
+                                <tr><td>TÃº</td><td class="font-bold text-violet-600">-Ã¡s</td><td><span class="hover-translation" data-en="You will work">Trabajar<strong>Ã¡s</strong></span></td></tr>
+                                <tr><td>Ã‰l/Ella/Ud.</td><td class="font-bold text-violet-600">-Ã¡</td><td><span class="hover-translation" data-en="He/She will work">Trabajar<strong>Ã¡</strong></span></td></tr>
+                                <tr><td>Nosotros</td><td class="font-bold text-violet-600">-emos</td><td><span class="hover-translation" data-en="We will work">Trabajar<strong>emos</strong></span></td></tr>
+                                <tr><td>Ellos/Ellas/Uds.</td><td class="font-bold text-violet-600">-Ã¡n</td><td><span class="hover-translation" data-en="They will work">Trabajar<strong>Ã¡n</strong></span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-violet-800 mt-4 italic"><strong>Irregular Stems:</strong> Some verbs change their stem (e.g., Hacer -> har-, Tener -> tendr-), but use the same endings!</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Conditional Tense -->
+            <section id="grammar_conditional" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Conditional Tense (El Condicional)</h2>
+                <p class="mb-4 text-sm">Used for dreams, hypothetical situations, or polite requests ("I would...").</p>
+                
+                <div class="bg-white p-5 rounded border border-gray-200 shadow-sm">
+                    <h3 class="font-bold text-slate-700 mb-2">Structure: Infinitive + Endings</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><span class="hover-translation font-bold text-violet-700" data-en="I would like to be a doctor">Me <strong>gustarÃ­a</strong> ser mÃ©dico.</span></li>
+                        <li><span class="hover-translation font-bold text-violet-700" data-en="What would you do?">Â¿QuÃ© <strong>harÃ­as</strong> tÃº?</span></li>
+                        <li><span class="hover-translation font-bold text-violet-700" data-en="We would study more"><strong>EstudiarÃ­amos</strong> mÃ¡s.</span></li>
+                    </ul>
+                    <div class="mt-4 p-2 bg-slate-100 rounded text-xs">
+                        <strong>Endings:</strong> -Ã­a, -Ã­as, -Ã­a, -Ã­amos, -Ã­ais, -Ã­an. (Same for all verbs!)
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Jobs & Workplace -->
+            <section id="vocab_work" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Vocab: Jobs & Workplace (El Trabajo)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-violet-700 mb-2">Professions (Las Profesiones)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ‘¨â€âš•ï¸ <span class="hover-translation" data-en="Doctor">MÃ©dico/a</span></li>
+                            <li>âš–ï¸ <span class="hover-translation" data-en="Lawyer">Abogado/a</span></li>
+                            <li>ðŸ—ï¸ <span class="hover-translation" data-en="Engineer">Ingeniero/a</span></li>
+                            <li>ðŸ‘¨â€ðŸ« <span class="hover-translation" data-en="Teacher">Profesor/a</span></li>
+                            <li>ðŸŽ¨ <span class="hover-translation" data-en="Artist">Artista</span></li>
+                            <li>ðŸ’¼ <span class="hover-translation" data-en="Manager">Gerente</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-violet-700 mb-2">The Office (El lugar de trabajo)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ’¼ <span class="hover-translation" data-en="The job/work">El empleo / El puesto</span></li>
+                            <li>ðŸ“ˆ <span class="hover-translation" data-en="The company">La empresa</span></li>
+                            <li>ðŸ’° <span class="hover-translation" data-en="The salary">El sueldo / El salario</span></li>
+                            <li>ðŸ¤ <span class="hover-translation" data-en="The boss">El jefe / La jefa</span></li>
+                            <li>ðŸ“… <span class="hover-translation" data-en="The schedule">El horario</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Aspirations -->
+            <section id="aspirations" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Talking about Aspirations</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="font-bold text-violet-400">Question:</p>
+                            <p class="italic"><span class="hover-translation" data-en="What do you want to be in the future?">Â¿QuÃ© quieres ser en el futuro?</span></p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-blue-400">Answer:</p>
+                            <p class="italic"><span class="hover-translation" data-en="In the future, I will be an engineer and I will work in a large company.">En el futuro, <strong>serÃ©</strong> ingeniero y <strong>trabajarÃ©</strong> en una empresa grande.</span></p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-600">
+                            <p class="font-bold text-violet-400 text-xs uppercase">Hypothetical dreams:</p>
+                            <p class="mt-1"><span class="hover-translation" data-en="I would like to win a scholarship to study in Spain.">Me <strong>gustarÃ­a</strong> ganar una beca para estudiar en EspaÃ±a.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Complete the future tense (Self-Check):</h4>
+                    <div class="space-y-3 text-sm">
+                        <p>1. <span class="hover-translation" data-en="Next year I will study law.">El prÃ³ximo aÃ±o (yo) ______ (estudiar) derecho.</span> <span class="text-gray-400 italic">(Answer: estudiarÃ©)</span></p>
+                        <p>2. <span class="hover-translation" data-en="In five years you will have a job.">En cinco aÃ±os (tÃº) ______ (tener) un empleo.</span> <span class="text-gray-400 italic">(Answer: tendrÃ¡s - irregular)</span></p>
+                        <p>3. <span class="hover-translation" data-en="My parents will be very happy.">Mis padres ______ (estar) muy contentos.</span> <span class="text-gray-400 italic">(Answer: estarÃ¡n)</span></p>
+                        <p>4. <span class="hover-translation" data-en="I would like to travel to Peru.">Me ______ (gustar) viajar a PerÃº.</span> <span class="text-gray-400 italic">(Answer: gustarÃ­a)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

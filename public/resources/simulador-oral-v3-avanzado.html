@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Examen Oral V4 - IB Spanish Ab Initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.3s ease-out; }
+        .tab-btn.active { background-color: #fef2f2; color: #dc2626; border-color: #dc2626; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .glass-effect { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen text-slate-800">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- Header con Panel de Control -->
+    <header class="bg-slate-900 text-white p-6 sticky top-0 z-50 border-b border-slate-700 shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div class="text-center lg:text-left">
+                <div class="flex items-center justify-center lg:justify-start gap-3 mb-1">
+                    <span class="bg-red-600 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter">V4 New Edition</span>
+                    <h1 class="text-2xl font-extrabold tracking-tight family-space">Simulador <span class="text-red-500">Oral IB</span></h1>
+                </div>
+                <p class="text-xs text-slate-400 font-medium uppercase tracking-widest">Temas Troncales: Spanish Ab Initio</p>
+            </div>
+
+            <!-- Cronómetro Inteligente -->
+            <div class="flex items-center gap-4 bg-slate-800 p-3 rounded-2xl border border-slate-700 shadow-inner">
+                <div class="px-4 py-1 border-r border-slate-700">
+                    <span class="text-3xl font-mono text-red-500 font-bold" id="timer">15:00</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="startTimer(15)" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all active:scale-95">Prep (15')</button>
+                    <button onclick="startTimer(2)" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all shadow-lg active:scale-95">Hablar (2')</button>
+                    <button onclick="resetTimer()" class="bg-slate-700 hover:bg-slate-600 px-3 py-2 rounded-xl text-[10px] font-bold uppercase transition-all">Reset</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menú de Navegación -->
+    <nav class="bg-white/80 glass-effect border-b sticky top-[128px] lg:top-[96px] z-40">
+        <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+            <div class="flex space-x-2 py-3">
+                <button onclick="showTheme('identidades')" id="btn-identidades" class="tab-btn active px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-transparent transition-all whitespace-nowrap">Identidades</button>
+                <button onclick="showTheme('experiencias')" id="btn-experiencias" class="tab-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-transparent transition-all whitespace-nowrap">Experiencias</button>
+                <button onclick="showTheme('ingenio')" id="btn-ingenio" class="tab-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-transparent transition-all whitespace-nowrap">Ingenio Humano</button>
+                <button onclick="showTheme('organizacion')" id="btn-organizacion" class="tab-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-transparent transition-all whitespace-nowrap">Org. Social</button>
+                <button onclick="showTheme('planeta')" id="btn-planeta" class="tab-btn px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border-2 border-transparent transition-all whitespace-nowrap">Planeta</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-4 gap-10">
+        
+        <!-- Área del Estímulo Visual (3 columnas) -->
+        <div class="lg:col-span-3 space-y-8">
+            
+            <!-- TEMA 1: IDENTIDADES -->
+            <div id="identidades" class="tab-content active space-y-6">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1521119989659-a83eee488004?w=800'" alt="" class="w-full h-[500px] object-cover rounded-[2rem] shadow-md mb-6">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Identidades | Identidad y Estilo de Vida</span>
+                        <span class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-[10px] font-bold">Estímulo 1</span>
+                    </div>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-extrabold mb-8 text-slate-900 border-b pb-4">Cuestionario de Evaluación:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                            <p class="text-slate-500 text-[10px] uppercase font-bold mb-2 tracking-widest">Pregunta 1</p>
+                            <p class="text-lg font-semibold">¿Cómo influye la vestimenta en la identidad de una persona?</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                            <p class="text-slate-500 text-[10px] uppercase font-bold mb-2 tracking-widest">Pregunta 2</p>
+                            <p class="text-lg font-semibold">¿Es importante preservar las lenguas indígenas en el mundo moderno?</p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-3xl border border-slate-100 md:col-span-2">
+                            <p class="text-slate-500 text-[10px] uppercase font-bold mb-2 tracking-widest">Pregunta 3</p>
+                            <p class="text-lg font-semibold">¿Crees que la globalización está haciendo que todas las culturas sean iguales?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMA 2: EXPERIENCIAS -->
+            <div id="experiencias" class="tab-content space-y-6">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800'" alt="" class="w-full h-[500px] object-cover rounded-[2rem] shadow-md mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] px-2">Experiencias | Estilo de Vida y Viajes</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-extrabold mb-6 text-orange-600 border-b pb-4">Preguntas:</h3>
+                    <ul class="space-y-6 text-lg text-slate-700 font-medium">
+                        <li class="flex gap-4"><span class="text-orange-300">#</span> ¿Por qué algunas personas prefieren los deportes de riesgo en sus vacaciones?</li>
+                        <li class="flex gap-4"><span class="text-orange-300">#</span> Describe una experiencia emocionante que hayas tenido al aire libre.</li>
+                        <li class="flex gap-4"><span class="text-orange-300">#</span> ¿Crees que viajar solo es mejor que viajar con amigos?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TEMA 3: INGENIO HUMANO -->
+            <div id="ingenio" class="tab-content space-y-6">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800'" alt="[Image of Inteligencia Artificial]" class="w-full h-[500px] object-cover rounded-[2rem] shadow-md mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] px-2">Ingenio Humano | Innovación Tecnológica</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-extrabold mb-6 text-purple-600 border-b pb-4">Preguntas:</h3>
+                    <ul class="space-y-6 text-lg text-slate-700 font-medium">
+                        <li class="flex gap-4"><span class="text-purple-300">#</span> ¿Cómo crees que la Inteligencia Artificial cambiará el mercado laboral?</li>
+                        <li class="flex gap-4"><span class="text-purple-300">#</span> ¿Qué invento de este siglo consideras que ha sido más beneficioso?</li>
+                        <li class="flex gap-4"><span class="text-purple-300">#</span> ¿Crees que la tecnología nos hace más solitarios o más conectados?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TEMA 4: ORGANIZACIÓN SOCIAL -->
+            <div id="organizacion" class="tab-content space-y-6">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800'" alt="" class="w-full h-[500px] object-cover rounded-[2rem] shadow-md mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] px-2">Organización Social | Vida en Comunidad</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-extrabold mb-6 text-blue-600 border-b pb-4">Preguntas:</h3>
+                    <ul class="space-y-6 text-lg text-slate-700 font-medium">
+                        <li class="flex gap-4"><span class="text-blue-300">#</span> ¿Por qué son importantes las manifestaciones pacíficas en una democracia?</li>
+                        <li class="flex gap-4"><span class="text-blue-300">#</span> ¿Qué papel juegan los jóvenes en los movimientos sociales actuales?</li>
+                        <li class="flex gap-4"><span class="text-blue-300">#</span> ¿Cómo ha cambiado el concepto de "familia" en el siglo XXI?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TEMA 5: PLANETA -->
+            <div id="planeta" class="tab-content space-y-6">
+                <div class="bg-white p-5 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=800'" alt="" class="w-full h-[500px] object-cover rounded-[2rem] shadow-md mb-6">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] px-2">Planeta | Ecología y Naturaleza</p>
+                </div>
+                <div class="bg-white p-10 rounded-[2.5rem] shadow-sm border border-slate-200">
+                    <h3 class="text-2xl font-extrabold mb-6 text-emerald-600 border-b pb-4">Preguntas:</h3>
+                    <ul class="space-y-6 text-lg text-slate-700 font-medium">
+                        <li class="flex gap-4"><span class="text-emerald-300">#</span> ¿Qué impacto tiene la deforestación en el clima global?</li>
+                        <li class="flex gap-4"><span class="text-emerald-300">#</span> ¿Crees que las leyes ambientales en tu país son suficientemente estrictas?</li>
+                        <li class="flex gap-4"><span class="text-emerald-300">#</span> ¿Qué puede hacer una persona individual para proteger los bosques?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (1 columna) -->
+        <div class="space-y-8">
+            <div class="bg-slate-900 text-white p-8 rounded-[2rem] shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-12 -left-12 w-32 h-32 bg-red-600/20 rounded-full blur-2xl"></div>
+                <h4 class="font-bold text-xs uppercase tracking-[0.3em] mb-8 text-slate-400 border-b border-slate-800 pb-4">Guía Rápida IB</h4>
+                <div class="space-y-8">
+                    <div class="flex gap-4">
+                        <span class="text-2xl">📸</span>
+                        <div>
+                            <p class="font-bold text-sm">Paso 1: Descripción</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Usa preposiciones de lugar: "Detrás de", "Al lado de".</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-2xl">🌍</span>
+                        <div>
+                            <p class="font-bold text-sm">Paso 2: Contexto</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Relaciona la foto con una tradición o problema en un país hispano.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-2xl">🗣️</span>
+                        <div>
+                            <p class="font-bold text-sm">Paso 3: Opinión</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Usa expresiones de duda: "Tal vez", "A lo mejor", "Yo diría que".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-200">
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-6 text-slate-400">Puntuación</h4>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl">
+                        <span class="text-xs font-bold">Vocabulario</span>
+                        <span class="text-xs bg-slate-200 px-2 py-0.5 rounded font-black">12 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl">
+                        <span class="text-xs font-bold">Ideas/Mensaje</span>
+                        <span class="text-xs bg-slate-200 px-2 py-0.5 rounded font-black">12 pts</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl">
+                        <span class="text-xs font-bold">Interacción</span>
+                        <span class="text-xs bg-slate-200 px-2 py-0.5 rounded font-black">6 pts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Navegación de Pestañas
+        function showTheme(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('btn-' + id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Lógica de Cronómetro
+        let timerInterval;
+        function startTimer(minutes) {
+            clearInterval(timerInterval);
+            let seconds = minutes * 60;
+            const display = document.getElementById('timer');
+            display.classList.remove('animate-pulse');
+            
+            timerInterval = setInterval(() => {
+                let m = Math.floor(seconds / 60);
+                let s = seconds % 60;
+                display.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                
+                if (seconds <= 0) {
+                    clearInterval(timerInterval);
+                    display.innerText = "¡FIN!";
+                    display.classList.add('animate-pulse');
+                }
+                seconds--;
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerText = "15:00";
+            document.getElementById('timer').classList.remove('animate-pulse');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

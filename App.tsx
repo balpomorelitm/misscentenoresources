@@ -49,6 +49,7 @@ const App: React.FC = () => {
             <a href="#skills" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-teal transition-colors">Skills & Ed</a>
             <a href="#tutoring" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-red transition-colors">Tutoring</a>
             <a href="#hobbies" className="text-gray-600 dark:text-gray-300 font-bold hover:text-orange-500 transition-colors">Creativity</a>
+            <a href="/resources.html" className="text-gray-600 dark:text-gray-300 font-bold hover:text-purple-500 transition-colors">Resources</a>
             
             <button 
               onClick={toggleDarkMode} 
@@ -87,6 +88,7 @@ const App: React.FC = () => {
             <a href="#skills" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Skills & Education</a>
             <a href="#tutoring" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Tutoring</a>
             <a href="#hobbies" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Creativity</a>
+            <a href="/resources.html" className="text-lg font-bold text-gray-700 dark:text-gray-200">Resources</a>
             <a href={`mailto:${personalInfo.contact.email}`} onClick={toggleMenu} className="bg-teacher-red text-white text-center py-3 rounded-xl font-bold mt-2">
               Hire me!
             </a>

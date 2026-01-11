@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 16</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 16: Object Pronouns</h1>
+            <p class="text-indigo-200 mt-2">Direct (OD) and Indirect (OI) Objects</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Pronouns</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Direct vs. Indirect Object</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">Direct Object (OD)</h3>
+                                    <p class="text-sm mb-2">Receives the action directly. Answers <strong>"What?"</strong> or <strong>"Who?"</strong></p>
+                                    <ul class="text-sm list-none space-y-1 text-blue-900 font-mono">
+                                        <li>Me (me)</li>
+                                        <li>Te (you)</li>
+                                        <li><strong>Lo / La</strong> (him, her, it)</li>
+                                        <li>Nos (us)</li>
+                                        <li>Os (you all)</li>
+                                        <li><strong>Los / Las</strong> (them)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h3 class="font-bold text-green-800 text-lg mb-2">Indirect Object (OI)</h3>
+                                    <p class="text-sm mb-2">Receives the action indirectly. Answers <strong>"To whom?"</strong> or <strong>"For whom?"</strong></p>
+                                    <ul class="text-sm list-none space-y-1 text-green-900 font-mono">
+                                        <li>Me (to me)</li>
+                                        <li>Te (to you)</li>
+                                        <li><strong>Le</strong> (to him, her, it)</li>
+                                        <li>Nos (to us)</li>
+                                        <li>Os (to you all)</li>
+                                        <li><strong>Les</strong> (to them)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">Placement Rules:</h3>
+                                <ul class="list-disc pl-5 text-sm mt-1 space-y-1">
+                                    <li><strong>Before</strong> conjugated verb: <span class="italic">Lo compro.</span></li>
+                                    <li><strong>Attached</strong> to Infinitive/Gerund: <span class="italic">Voy a comprarlo. / Estoy comprÃ¡ndolo.</span></li>
+                                    <li><strong>Order:</strong> Indirect comes first! <span class="italic font-bold">OI + OD</span> (Me lo das).</li>
+                                    <li><strong>The "Se" Rule:</strong> If both start with 'L' (le lo), change 'Le' to <strong>'Se'</strong>. <br><span class="italic text-red-600">Le lo doy -> Se lo doy.</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                
+                <!-- Exercise 1: Identify OD -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Replace the underlined words with the correct pronoun.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Direct Object (Lo, La, Los, Las)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Example: Compro <u>el pan</u> -> <strong>Lo</strong> compro.</p>
+
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+                
+                <!-- Exercise 2: Identify OI -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Indirect Object (Le, Les)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Example: Escribo <u>a Juan</u> -> <strong>Le</strong> escribo.</p>
+
+                        <div class="space-y-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 3: Double Pronouns -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Double Pronouns (OI + OD)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Remember: People first! (And Le->Se if needed). <br>Ex: Doy el libro a Ana -> <strong>Se lo</strong> doy.</p>
+                        
+                        <div class="space-y-4" id="ex3-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Direct Object
+        const ex1Data = [
+            { q: "Veo <u>la televisiÃ³n</u>.", ans: "La", hint: "I watch TV (fem)" },
+            { q: "Compro <u>los libros</u>.", ans: "Los", hint: "I buy the books (masc pl)" },
+            { q: "Llevo <u>las maletas</u>.", ans: "Las", hint: "I carry the suitcases (fem pl)" },
+            { q: "Como <u>el bocadillo</u>.", ans: "Lo", hint: "I eat the sandwich (masc)" },
+            { q: "Visito <u>a mis abuelos</u>.", ans: "Los", hint: "I visit my grandparents (masc pl)" }
+        ];
+
+        // Ex 2: Indirect Object
+        const ex2Data = [
+            { q: "Doy el regalo <u>a MarÃ­a</u>.", ans: "Le", hint: "I give the gift TO Maria" },
+            { q: "Escribo <u>a mis amigos</u>.", ans: "Les", hint: "I write TO my friends" },
+            { q: "Hablo <u>al profesor</u>.", ans: "Le", hint: "I speak TO the teacher" },
+            { q: "Mando una carta <u>a mis padres</u>.", ans: "Les", hint: "I send a letter TO my parents" },
+            { q: "Compro flores <u>a mi madre</u>.", ans: "Le", hint: "I buy flowers FOR my mother" }
+        ];
+
+        // Ex 3: Double Pronouns
+        const ex3Data = [
+            { q: "EnvÃ­o la carta a Juan.", ans: "Se la", hint: "I send IT TO HIM" },
+            { q: "Doy el libro a ti.", ans: "Te lo", hint: "I give IT TO YOU" },
+            { q: "Explicas la lecciÃ³n a nosotros.", ans: "Nos la", hint: "You explain IT TO US" },
+            { q: "Compras los regalos a ellos.", ans: "Se los", hint: "You buy THEM FOR THEM" },
+            { q: "Digo la verdad a ella.", ans: "Se la", hint: "I tell IT TO HER" }
+        ];
+
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
+                    <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
+                    <span class="text-gray-400">â†’</span>
+                    <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
+                    <span class="text-gray-600">${item.q.split(' ')[0]}</span>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
+                    <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
+                    <span class="text-gray-400">â†’</span>
+                    <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
+                    <span class="text-gray-600">${item.q.split(' ')[0] + (item.q.split(' ')[1] === 'una' || item.q.split(' ')[1] === 'el' ? ' ' + item.q.split(' ')[1] + ' ' + item.q.split(' ')[2] : ' ' + item.q.split(' ')[1])}</span> 
+                    <!-- Simplified display logic for demo, showing verb+object -->
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+        
+        function renderEx3() {
+             const container = document.getElementById('ex3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
+                    <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
+                    <span class="text-gray-400">â†’</span>
+                    <input type="text" id="ex3-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
+                    <span class="text-gray-600">${item.q.split(' ')[0]}</span>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Data.forEach((item, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center";
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+             ex2Data.forEach((_, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center";
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+             ex3Data.forEach((_, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center";
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

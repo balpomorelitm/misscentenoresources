@@ -1,0 +1,499 @@
+﻿!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario Maestro Bilingüe Nivel 7: Examen Oral IB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #003e6a;
+            --primary-light: #005088;
+            --secondary: #fdfbf4;
+            --accent: #0f9d58;
+            --accent-hover: #0b8043;
+            --text: #1e293b;
+            --bg: #f1f5f9;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .merriweather { font-family: 'Merriweather', serif; }
+
+        /* Estilos de Impresión / PDF */
+        @media print {
+            .sidebar, .modal-overlay, .copy-toast, .search-container, button { display: none !important; }
+            body { background: white; padding: 0; }
+            .slide-container { width: 100%; box-shadow: none; border: none; height: auto; display: block; }
+            main { padding: 0; overflow: visible; }
+            .vocab-card { break-inside: avoid; border: 1px solid #eee; margin-bottom: 20px; }
+            .term-chip { border: 1px solid #ccc; background: white; color: black; }
+            .term-chip::after { content: " (" attr(data-translation) ")"; position: static; background: none; color: #666; font-size: 10px; }
+            h2 { color: black !important; }
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1440px;
+            height: 95vh;
+            background-color: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .sidebar {
+            background-color: var(--secondary);
+            border-right: 1px solid #e2e8f0;
+            width: 360px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-item {
+            padding: 12px 32px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 5px solid transparent;
+            font-weight: 600;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-item:hover { background-color: rgba(255,255,255,0.5); color: var(--primary-light); }
+        .nav-item.active { background-color: white; border-left-color: var(--primary-light); color: var(--primary-light); font-weight: 800; }
+
+        /* Barra de Búsqueda */
+        .search-container {
+            padding: 20px 32px;
+            background: rgba(255,255,255,0.3);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .search-input:focus { border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(0,80,136,0.1); }
+
+        /* Chips y Tooltips */
+        .term-chip {
+            display: inline-flex;
+            align-items: center;
+            background: #f0fdf4;
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 12px;
+            margin: 5px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            font-weight: 700;
+            color: #166534;
+        }
+
+        .term-chip:hover {
+            background: var(--accent);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px -3px rgba(15, 157, 88, 0.3);
+        }
+
+        .term-chip:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 145%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 1000;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+
+        .term-chip:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #0f172a;
+            z-index: 1000;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: 32px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        .sub-chip {
+            display: inline-block;
+            background: #f8fafc;
+            border: 2px solid #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
+            position: relative;
+            cursor: default;
+            transition: all 0.2s;
+        }
+
+        .sub-chip:hover { border-color: var(--accent); background: white; color: var(--accent); }
+        .sub-chip:hover::after {
+            content: attr(data-translation);
+            position: absolute;
+            bottom: 130%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            white-space: nowrap;
+            z-index: 3000;
+        }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(15,157,88,0.2);
+            z-index: 5000;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <!-- MODAL DETALLES -->
+    <div id="vocabModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="bg-gradient-to-r from-[#003e6a] to-[#005088] p-12 text-white relative">
+                <div class="flex items-center gap-3 mb-2 opacity-80">
+                    <i class="fa-solid fa-star text-yellow-400"></i>
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em]">Diccionario de Excelencia IB</p>
+                </div>
+                <h3 id="modalTitle" class="merriweather text-5xl font-black">Título</h3>
+                <p id="modalTrans" class="text-xl font-bold text-emerald-300 mt-2 italic">Translation</p>
+                <button onclick="closeModal()" class="absolute top-10 right-12 text-white hover:text-emerald-300 transition-all text-4xl">&times;</button>
+            </div>
+            
+            <div class="p-12 overflow-y-auto">
+                <div class="mb-10">
+                    <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">Red de Conceptos Relacionados (Hover p/ Traducir)</h4>
+                    <div id="modalTerms" class="flex flex-wrap gap-4"></div>
+                </div>
+                
+                <div class="mb-10 bg-emerald-50 p-8 rounded-3xl border-l-[10px] border-accent shadow-inner">
+                    <h4 class="text-xs font-black text-emerald-800 uppercase mb-4 flex items-center">
+                        <i class="fa-solid fa-quote-left mr-3"></i> Ejemplo de Nivel 7 para tu Examen
+                    </h4>
+                    <p id="modalExample" class="text-lg italic text-emerald-950 leading-relaxed font-bold">...</p>
+                    <p id="modalExplanation" class="text-xs text-emerald-700 mt-4 font-medium uppercase tracking-tighter">Consejo: Usa este ejemplo para justificar tu opinión sobre la foto.</p>
+                </div>
+
+                <div class="flex gap-4">
+                    <button id="copyMainBtn" class="flex-grow bg-slate-100 text-slate-600 py-4 rounded-xl font-black hover:bg-slate-200 transition tracking-widest text-xs uppercase">Copiar Palabra</button>
+                    <button onclick="closeModal()" class="flex-grow bg-[#003e6a] text-white py-4 rounded-xl font-black hover:opacity-90 transition tracking-widest text-xs uppercase">Volver al Glosario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="p-10 border-b border-slate-200 text-center">
+                <h1 class="merriweather text-3xl font-black text-[#003e6a] leading-tight">Glosario Maestro</h1>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mt-3">IB Spanish Ab Initio</p>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar palabra (ej. salud)..." oninput="filterTerms()">
+            </div>
+            
+            <nav class="flex-grow overflow-y-auto pt-4">
+                <div class="px-10 py-2 text-[10px] font-black text-slate-300 uppercase tracking-widest">Ejes Temáticos</div>
+                <div class="nav-item active" onclick="showSection('identidades', this)">
+                    <i class="fa-solid fa-id-card mr-4"></i> Identidades
+                </div>
+                <div class="nav-item" onclick="showSection('experiencias', this)">
+                    <i class="fa-solid fa-plane-departure mr-4"></i> Experiencias
+                </div>
+                <div class="nav-item" onclick="showSection('ingenio', this)">
+                    <i class="fa-solid fa-lightbulb mr-4"></i> Ingenio Humano
+                </div>
+                <div class="nav-item" onclick="showSection('organizacion', this)">
+                    <i class="fa-solid fa-users-gear mr-4"></i> Organización Social
+                </div>
+                <div class="nav-item" onclick="showSection('planeta', this)">
+                    <i class="fa-solid fa-earth-americas mr-4"></i> El Planeta
+                </div>
+                <div class="nav-item mt-6 text-red-500 font-bold" onclick="showSection('conectores', this)">
+                    <i class="fa-solid fa-link mr-4"></i> Conectores Pro
+                </div>
+            </nav>
+
+            <div class="p-8 bg-[#fdfbf4] border-t border-slate-200">
+                <button onclick="window.print()" class="w-full bg-white border-2 border-[#003e6a] text-[#003e6a] py-3 rounded-xl font-black text-[11px] hover:bg-[#003e6a] hover:text-white transition uppercase">
+                    <i class="fa-solid fa-file-pdf mr-2"></i> Generar PDF de Repaso
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Area -->
+        <main class="flex-grow p-16 overflow-y-auto" id="main-content">
+            <!-- Dinámico -->
+        </main>
+    </div>
+
+    <script>
+        const contentData = {
+            identidades: {
+                title: "Identidades",
+                subtitle: "Salud física, mental y formación de la identidad",
+                cards: [
+                    {
+                        cat: "Salud y Nutrición",
+                        terms: [
+                            { term: "Dieta Mediterránea", trans: "Mediterranean Diet", sub: [{t:"Aceite de oliva", tr:"Olive oil"}, {t:"Legumbres", tr:"Pulses"}, {t:"Pescado azul", tr:"Oily fish"}, {t:"Prevención cardiovascular", tr:"Cardiovascular prevention"}], example: "La dieta mediterránea es un pilar fundamental de la cultura hispana y un modelo de salud mundial." },
+                            { term: "Trastornos Alimenticios", trans: "Eating Disorders", sub: [{t:"Autoimagen", tr:"Self-image"}, {t:"Estereotipos", tr:"Stereotypes"}, {t:"Anorexia", tr:"Anorexia"}, {t:"Presión social", tr:"Social pressure"}], example: "Los trastornos alimenticios son consecuencia directa de los cánones de belleza irreales en los medios." },
+                            { term: "Sedentarismo", trans: "Sedentary Lifestyle", sub: [{t:"Inactividad", tr:"Inactivity"}, {t:"Obesidad", tr:"Obesity"}, {t:"Falta de ejercicio", tr:"Lack of exercise"}], example: "El sedentarismo juvenil está estrechamente ligado a la adicción a los videojuegos y las redes sociales." },
+                            { term: "Grasas Saturadas", trans: "Saturated Fats", sub: [{t:"Comida basura", tr:"Junk food"}, {t:"Alimentos procesados", tr:"Processed foods"}], example: "Debemos concienciar a los niños sobre los peligros de consumir demasiadas grasas saturadas." }
+                        ]
+                    },
+                    {
+                        cat: "Bienestar Mental",
+                        terms: [
+                            { term: "Resiliencia", trans: "Resilience", sub: [{t:"Adaptabilidad", tr:"Adaptability"}, {t:"Fortaleza mental", tr:"Mental strength"}, {t:"Superación", tr:"Overcoming"}], example: "La resiliencia académica permite a los estudiantes gestionar el agobio del Bachillerato Internacional." },
+                            { term: "Estrés Académico", trans: "Academic Stress", sub: [{t:"Carga de trabajo", tr:"Workload"}, {t:"Ansiedad", tr:"Anxiety"}, {t:"Expectativas", tr:"Expectations"}], example: "Es innegable que el estrés académico afecta el equilibrio emocional de muchos jóvenes hoy en día." },
+                            { term: "Inteligencia Emocional", trans: "Emotional Intelligence", sub: [{t:"Empatía", tr:"Empathy"}, {t:"Autocontrol", tr:"Self-control"}, {t:"Conciencia", tr:"Awareness"}], example: "La inteligencia emocional es tan relevante para el éxito futuro como los conocimientos técnicos." }
+                        ]
+                    }
+                ]
+            },
+            experiencias: {
+                title: "Experiencias",
+                subtitle: "Turismo sostenible, cultura y migraciones",
+                cards: [
+                    {
+                        cat: "Turismo Crítico",
+                        terms: [
+                            { term: "Turismo Sostenible", trans: "Sustainable Tourism", sub: [{t:"Ecoturismo", tr:"Ecotourism"}, {t:"Respeto local", tr:"Local respect"}, {t:"Conservación", tr:"Conservation"}], example: "El turismo sostenible es vital para que las futuras generaciones disfruten de los parajes naturales." },
+                            { term: "Turismo de Masas", trans: "Mass Tourism", sub: [{t:"Masificación", tr:"Crowding"}, {t:"Gentrificación", tr:"Gentrification"}, {t:"Impacto ambiental", tr:"Environmental impact"}], example: "El turismo de masas está borrando la identidad auténtica de ciudades como Barcelona o Sevilla." }
+                        ]
+                    },
+                    {
+                        cat: "Inmigración",
+                        terms: [
+                            { term: "Choque Cultural", trans: "Culture Shock", sub: [{t:"Adaptación", tr:"Adaptation"}, {t:"Barrera lingüística", tr:"Language barrier"}, {t:"Malentendido", tr:"Misunderstanding"}], example: "Muchos inmigrantes sufren un choque cultural al enfrentarse a costumbres totalmente diferentes." },
+                            { term: "Multiculturalidad", trans: "Multiculturalism", sub: [{t:"Diversidad", tr:"Diversity"}, {t:"Inclusión", tr:"Inclusion"}, {t:"Integración", tr:"Integration"}], example: "La multiculturalidad enriquece nuestras sociedades al aportar nuevas perspectivas y tradiciones." }
+                        ]
+                    }
+                ]
+            },
+            ingenio: {
+                title: "Ingenio Humano",
+                subtitle: "Tecnología, ciencia y ética digital",
+                cards: [
+                    {
+                        cat: "Tecnología de Vanguardia",
+                        terms: [
+                            { term: "Inteligencia Artificial", trans: "Artificial Intelligence", sub: [{t:"Algoritmos", tr:"Algorithms"}, {t:"Automatización", tr:"Automation"}, {t:"Sustitución de empleo", tr:"Job replacement"}], example: "La inteligencia artificial plantea dilemas éticos sobre la privacidad y la autoría de la información." },
+                            { term: "Obsolescencia Programada", trans: "Planned Obsolescence", sub: [{t:"Consumismo", tr:"Consumerism"}, {t:"Basura electrónica", tr:"Electronic waste"}, {t:"Vida útil", tr:"Lifespan"}], example: "La obsolescencia programada es una estrategia comercial dañina para el medio ambiente." }
+                        ]
+                    }
+                ]
+            },
+            organizacion: {
+                title: "Organización Social",
+                subtitle: "El mundo laboral, leyes y educación",
+                cards: [
+                    {
+                        cat: "Trabajo y Oportunidades",
+                        terms: [
+                            { term: "Oportunidades Laborales", trans: "Job Opportunities", sub: [{t:"Mercado de trabajo", tr:"Job market"}, {t:"Estabilidad financiera", tr:"Financial stability"}, {t:"Ascenso", tr:"Promotion"}, {t:"Precariedad", tr:"Precariousness"}], example: "En la actualidad, las oportunidades laborales dependen enormemente del dominio de lenguas extranjeras." },
+                            { term: "Conciliación Laboral", trans: "Work-life Balance", sub: [{t:"Vida familiar", tr:"Family life"}, {t:"Teletrabajo", tr:"Teleworking"}, {t:"Horario flexible", tr:"Flexible schedule"}], example: "Promover la conciliación laboral reduce el estrés y mejora la calidad de vida de las familias." }
+                        ]
+                    }
+                ]
+            },
+            planeta: {
+                title: "El Planeta",
+                subtitle: "Ecología, sostenibilidad y retos globales",
+                cards: [
+                    {
+                        cat: "Sostenibilidad",
+                        terms: [
+                            { term: "Economía Circular", trans: "Circular Economy", sub: [{t:"Reutilizar", tr:"Reuse"}, {t:"Reparar", tr:"Repair"}, {t:"Reducción de residuos", tr:"Waste reduction"}], example: "La economía circular es la solución más eficaz contra la cultura del usar y tirar." },
+                            { term: "Huella Ecológica", trans: "Ecological Footprint", sub: [{t:"Emisiones de CO2", tr:"CO2 emissions"}, {t:"Consumo responsable", tr:"Responsible consumption"}], example: "Cada pequeña acción individual contribuye a reducir nuestra huella ecológica en el planeta." }
+                        ]
+                    }
+                ]
+            },
+            conectores: {
+                title: "Conectores Pro",
+                subtitle: "Estructuras para elevar el discurso (Criterio B)",
+                cards: [
+                    {
+                        cat: "Nivel Superior",
+                        terms: [
+                            { term: "No obstante", trans: "Nevertheless", sub: [{t:"Sin embargo", tr:"However"}, {t:"Pese a ello", tr:"Despite that"}], example: "La tecnología es útil; no obstante, debemos ser cautelosos con nuestra privacidad online." },
+                            { term: "Habida cuenta de", trans: "Bearing in mind", sub: [{t:"Teniendo en cuenta", tr:"Considering"}, {t:"Dado que", tr:"Given that"}], example: "Habida cuenta de los datos actuales, es primordial invertir en energías renovables inmediatamente." }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentSection = 'identidades';
+
+        function showSection(key, el) {
+            currentSection = key;
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            if(el) el.classList.add('active');
+
+            const section = contentData[key];
+            const main = document.getElementById('main-content');
+            
+            let html = `
+                <p class="text-accent font-black uppercase tracking-[0.4em] text-[11px] mb-3">${section.subtitle}</p>
+                <h2 class="merriweather text-7xl font-black text-[#003e6a] mb-14 tracking-tighter">${section.title}</h2>
+                <div class="grid grid-cols-1 gap-10">
+            `;
+
+            section.cards.forEach(card => {
+                html += `
+                    <div class="vocab-card bg-slate-50/50 p-8 rounded-[24px] border-none">
+                        <span class="category-badge mb-4">${card.cat}</span>
+                        <div class="flex flex-wrap">
+                            ${card.terms.map(t => `
+                                <span class="term-chip" data-translation="${t.trans}" onclick="openModal('${t.term}')">${t.term}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            main.innerHTML = html;
+        }
+
+        function openModal(termName) {
+            const section = contentData[currentSection];
+            let found = null;
+            section.cards.forEach(card => {
+                const term = card.terms.find(t => t.term === termName);
+                if(term) found = term;
+            });
+
+            if(found) {
+                document.getElementById('modalTitle').innerText = found.term;
+                document.getElementById('modalTrans').innerText = found.trans;
+                document.getElementById('modalExample').innerText = `"${found.example}"`;
+                
+                const termsDiv = document.getElementById('modalTerms');
+                termsDiv.innerHTML = found.sub.map(s => `
+                    <span class="sub-chip shadow-sm" data-translation="${s.tr}">${s.t}</span>
+                `).join('');
+                
+                document.getElementById('vocabModal').style.display = 'flex';
+                document.getElementById('copyMainBtn').onclick = () => copyText(found.term);
+            }
+        }
+
+        function closeModal() { document.getElementById('vocabModal').style.display = 'none'; }
+
+        function filterTerms() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const chips = document.querySelectorAll('.term-chip');
+            chips.forEach(chip => {
+                const text = chip.innerText.toLowerCase();
+                const trans = chip.getAttribute('data-translation').toLowerCase();
+                chip.style.display = (text.includes(query) || trans.includes(query)) ? 'inline-flex' : 'none';
+            });
+        }
+
+        function copyText(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.createElement('div');
+            toast.className = "copy-toast animate-bounce";
+            toast.innerHTML = `<i class="fa-solid fa-check mr-2"></i> ¡Copiado con éxito!`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        window.onload = () => showSection('identidades', document.querySelector('.nav-item'));
+    </script>
+</body>
+</html>
+
+
+
+
+
+

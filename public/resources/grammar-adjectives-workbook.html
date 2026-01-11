@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Digital: Posesivos</title>
+    <style>
+        :root {
+            --primary-color: #9b59b6; /* Morado para Adjetivos */
+            --pronoun-color: #3498db; /* Azul para Pronombres */
+            --secondary-color: #f39c12;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notebook {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Sistema de Pestañas */
+        .tabs-header {
+            display: flex;
+            background: #eee;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #777;
+            transition: all 0.3s;
+            background: #e0e0e0;
+        }
+
+        .tab-btn.active[data-tab="adjectives"] {
+            background: white;
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--primary-color);
+        }
+
+        .tab-btn.active[data-tab="pronouns"] {
+            background: white;
+            color: var(--pronoun-color);
+            border-bottom: 4px solid var(--pronoun-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #ddd;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .english-note {
+            background: #fff9db;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.95em;
+            margin: 10px 0 20px 0;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        /* Tooltip Styles */
+        .vocab {
+            color: var(--pronoun-color);
+            font-weight: bold;
+            text-decoration: underline dotted;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vocab::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #34495e;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .vocab:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .grammar-table th { color: white; }
+        .tab-adjectives .grammar-table th { background-color: var(--primary-color); }
+        .tab-pronouns .grammar-table th { background-color: var(--pronoun-color); }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ddd;
+        }
+
+        .text-fill-container {
+            line-height: 2.2;
+            background: #fdfdfd;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95em;
+            width: 140px;
+            transition: all 0.3s;
+        }
+
+        input.inline-input {
+            width: 100px;
+            display: inline-block;
+            margin: 0 4px;
+        }
+
+        .tab-adjectives input[type="text"]:focus { border-color: var(--primary-color); outline: none; }
+        .tab-pronouns input[type="text"]:focus { border-color: var(--pronoun-color); outline: none; }
+
+        .btn-check {
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .tab-adjectives .btn-check { background-color: var(--primary-color); }
+        .tab-pronouns .btn-check { background-color: var(--pronoun-color); }
+
+        .feedback {
+            margin-top: 15px;
+            display: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .correct-box { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-box { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+<div class="score-display">Puntos: <span id="total-score">0</span></div>
+
+<div class="notebook">
+    <div class="tabs-header">
+        <button class="tab-btn active" data-tab="adjectives">Adjetivos Posesivos</button>
+        <button class="tab-btn" data-tab="pronouns">Pronombres Posesivos</button>
+    </div>
+
+    <!-- PESTAÑA 1: ADJETIVOS -->
+    <div id="adjectives" class="tab-content tab-adjectives active">
+        <header>
+            <h1>Adjetivos Posesivos</h1>
+            <p>They go <strong>BEFORE</strong> the noun.</p>
+        </header>
+
+        <div class="section">
+            <h2>🌟 Reglas de Oro</h2>
+            <div class="english-note">
+                Use <span class="vocab" data-tooltip="my">mi</span>, <span class="vocab" data-tooltip="your">tu</span>, <span class="vocab" data-tooltip="his/her/your">su</span> for singular objects. Add an "s" if the object is plural (<span class="vocab" data-tooltip="my books">mis libros</span>).
+            </div>
+            <table class="grammar-table">
+                <thead>
+                    <tr><th>Persona</th><th>Singular</th><th>Plural</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Yo</td><td>mi</td><td>mis</td></tr>
+                    <tr><td>Tú</td><td>tu</td><td>tus</td></tr>
+                    <tr><td>Él/Ella/Ud</td><td>su</td><td>sus</td></tr>
+                    <tr><td>Nosotros/as</td><td>nuestro/a</td><td>nuestros/as</td></tr>
+                    <tr><td>Vosotros/as</td><td>vuestro/a</td><td>vuestros/as</td></tr>
+                    <tr><td>Ellos/as/Uds</td><td>su</td><td>sus</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 1: Práctica de Base (15 frases)</h2>
+            <div class="exercise-block" id="ex1">
+                <div class="exercise-grid">
+                    <div class="question">1. (Yo) <input type="text" data-ans="mi"> amigo.</div>
+                    <div class="question">2. (Tú) <input type="text" data-ans="tus"> libros.</div>
+                    <div class="question">3. (Él) <input type="text" data-ans="su"> casa.</div>
+                    <div class="question">4. (Nosotros) <input type="text" data-ans="nuestro"> coche.</div>
+                    <div class="question">5. (Vosotros) <input type="text" data-ans="vuestra"> madre.</div>
+                    <div class="question">6. (Ellos) <input type="text" data-ans="sus"> tíos.</div>
+                    <div class="question">7. (Yo) <input type="text" data-ans="mis"> abuelos.</div>
+                    <div class="question">8. (Tú) <input type="text" data-ans="tu"> hermana.</div>
+                    <div class="question">9. (Ella) <input type="text" data-ans="su"> cuaderno.</div>
+                    <div class="question">10. (Nosotros) <input type="text" data-ans="nuestra"> abuela.</div>
+                    <div class="question">11. (Vosotros) <input type="text" data-ans="vuestros"> hijos.</div>
+                    <div class="question">12. (Ustedes) <input type="text" data-ans="su"> profesor.</div>
+                    <div class="question">13. (Yo) <input type="text" data-ans="mi"> gata.</div>
+                    <div class="question">14. (Tú) <input type="text" data-ans="tus"> padres.</div>
+                    <div class="question">15. (Él) <input type="text" data-ans="su"> escuela.</div>
+                </div>
+                <button class="btn-check" onclick="checkExercise('ex1')">Corregir Ejercicio 1</button>
+                <div id="feedback-ex1" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 2: Nuestro y Vuestro (10 frases)</h2>
+            <div class="exercise-block" id="ex2">
+                <div class="exercise-grid">
+                    <div class="question">1. (Nosotros) <input type="text" data-ans="nuestra"> clase.</div>
+                    <div class="question">2. (Vosotros) <input type="text" data-ans="vuestro"> profesor.</div>
+                    <div class="question">3. (Nosotros) <input type="text" data-ans="nuestros"> amigos.</div>
+                    <div class="question">4. (Vosotros) <input type="text" data-ans="vuestras"> primas.</div>
+                    <div class="question">5. (Nosotros) <input type="text" data-ans="nuestro"> perro.</div>
+                    <div class="question">6. (Vosotros) <input type="text" data-ans="vuestra"> casa.</div>
+                    <div class="question">7. (Nosotros) <input type="text" data-ans="nuestras"> tareas.</div>
+                    <div class="question">8. (Vosotros) <input type="text" data-ans="vuestro"> gato.</div>
+                    <div class="question">9. (Nosotros) <input type="text" data-ans="nuestro"> instituto.</div>
+                    <div class="question">10. (Vosotros) <input type="text" data-ans="vuestras"> llaves.</div>
+                </div>
+                <button class="btn-check" onclick="checkExercise('ex2')">Corregir Ejercicio 2</button>
+                <div id="feedback-ex2" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 2: PRONOMBRES -->
+    <div id="pronouns" class="tab-content tab-pronouns">
+        <header>
+            <h1>Pronombres Posesivos</h1>
+            <p>They <strong>REPLACE</strong> the noun. Always use <em>el, la, los, las</em>.</p>
+        </header>
+
+        <div class="section">
+            <h2>🔍 La Diferencia</h2>
+            <div class="english-note">
+                Instead of saying "My house" (<span class="vocab" data-tooltip="Adjective">Mi casa</span>), you say "The mine" (<span class="vocab" data-tooltip="Pronoun">La mía</span>). 
+                The pronoun must match the object it replaces.
+            </div>
+            <table class="grammar-table">
+                <thead>
+                    <tr><th>Persona</th><th>Masc. Sing.</th><th>Fem. Sing.</th><th>Masc. Plu.</th><th>Fem. Plu.</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Yo</td><td>el mío</td><td>la mía</td><td>los míos</td><td>las mías</td></tr>
+                    <tr><td>Tú</td><td>el tuyo</td><td>la tuya</td><td>los tuyos</td><td>las tuyas</td></tr>
+                    <tr><td>Él/Ella/Ud</td><td>el suyo</td><td>la suya</td><td>los suyos</td><td>las suyas</td></tr>
+                    <tr><td>Nosotros/as</td><td>el nuestro</td><td>la nuestra</td><td>los nuestros</td><td>las nuestras</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 3: Sustitución Selectiva</h2>
+            <div class="english-note">Complete using the correct pronoun (Article + Pronoun). <em>Example: el mío, la suya...</em></div>
+            <div class="exercise-block" id="ex3">
+                <div class="exercise-grid">
+                    <div class="question">1. Mi libro es viejo, <input type="text" data-ans="el tuyo" placeholder="..."> es nuevo. (Tú)</div>
+                    <div class="question">2. Nuestra escuela es grande, <input type="text" data-ans="la suya" placeholder="..."> es pequeña. (Él)</div>
+                    <div class="question">3. Sus llaves están aquí, <input type="text" data-ans="las mías" placeholder="..."> están allí. (Yo)</div>
+                    <div class="question">4. Tu coche es rápido, <input type="text" data-ans="el nuestro" placeholder="..."> es lento. (Nosotros)</div>
+                    <div class="question">5. Mis padres son médicos, <input type="text" data-ans="los vuestros" placeholder="..."> son profesores. (Vosotros)</div>
+                    <div class="question">6. Tu gato es negro, <input type="text" data-ans="el mío" placeholder="..."> es blanco. (Yo)</div>
+                    <div class="question">7. Nuestras primas son altas, <input type="text" data-ans="las suyas" placeholder="..."> son bajas. (Ellos)</div>
+                    <div class="question">8. Mi mochila es azul, ¿es <input type="text" data-ans="la tuya" placeholder="..."> roja? (Tú)</div>
+                    <div class="question">9. Vuestro examen es fácil, <input type="text" data-ans="el nuestro" placeholder="..."> es difícil. (Nosotros)</div>
+                    <div class="question">10. Sus perros corren, <input type="text" data-ans="los nuestros" placeholder="..."> duermen. (Nosotros)</div>
+                </div>
+                <button class="btn-check" onclick="checkExercise('ex3')">Corregir Ejercicio 3</button>
+                <div id="feedback-ex3" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 4: Transformación Rápida</h2>
+            <div class="exercise-block" id="ex4">
+                <div class="exercise-grid">
+                    <div class="question">1. Es mi casa. -> Es <input type="text" data-ans="la mia">.</div>
+                    <div class="question">2. Son tus flores. -> Son <input type="text" data-ans="las tuyas">.</div>
+                    <div class="question">3. Es su cuaderno. (Él) -> Es <input type="text" data-ans="el suyo">.</div>
+                    <div class="question">4. Son nuestros tíos. -> Son <input type="text" data-ans="los nuestros">.</div>
+                    <div class="question">5. Es vuestra tarea. -> Es <input type="text" data-ans="la vuestra">.</div>
+                    <div class="question">6. Son sus maletas. (Ellos) -> Son <input type="text" data-ans="las suyas">.</div>
+                    <div class="question">7. Es mi secreto. -> Es <input type="text" data-ans="el mio">.</div>
+                    <div class="question">8. Son tus problemas. -> Son <input type="text" data-ans="los tuyos">.</div>
+                    <div class="question">9. Es nuestra ciudad. -> Es <input type="text" data-ans="la nuestra">.</div>
+                    <div class="question">10. Son vuestros amigos. -> Son <input type="text" data-ans="los vuestros">.</div>
+                </div>
+                <button class="btn-check" onclick="checkExercise('ex4')">Corregir Ejercicio 4</button>
+                <div id="feedback-ex4" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ejercicio 5: El correo de Pablo (Completa el texto)</h2>
+            <div class="english-note">Fill in the blanks with the correct possessive (Adjective or Pronoun). Pay attention to context!</div>
+            <div class="exercise-block" id="ex5">
+                <div class="text-fill-container">
+                    Querida Ana:<br>
+                    ¿Cómo estás? Te escribo para hablarte de <input type="text" class="inline-input" data-ans="mi"> (Yo) familia. Ahora vivimos en una casa nueva. 
+                    <input type="text" class="inline-input" data-ans="La nuestra"> (Nosotros) es muy grande y moderna. Pablo dice que <input type="text" class="inline-input" data-ans="su"> (Él) habitación es la mejor, 
+                    pero yo creo que <input type="text" class="inline-input" data-ans="la mia"> (Yo) es más bonita. Mis padres están felices porque <input type="text" class="inline-input" data-ans="sus"> (Ellos) amigos viven cerca. 
+                    ¿Y tú? ¿Cómo es <input type="text" class="inline-input" data-ans="tu"> (Tú) ciudad? ¿Es tan grande como <input type="text" class="inline-input" data-ans="la nuestra"> (Nosotros)?<br>
+                    ¡Besos!
+                </div>
+                <button class="btn-check" onclick="checkExercise('ex5')">Corregir Ejercicio 5</button>
+                <div id="feedback-ex5" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let globalScore = 0;
+    const completedBlocks = new Set();
+
+    // Lógica de Pestañas
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Lógica de Corrección
+    function checkExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input');
+        const feedback = document.getElementById('feedback-' + id);
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const correctAns = input.getAttribute('data-ans').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAns === correctAns) {
+                input.style.borderColor = "var(--success-color)";
+                input.style.backgroundColor = "#e8f5e9";
+                correctCount++;
+            } else {
+                input.style.borderColor = "var(--error-color)";
+                input.style.backgroundColor = "#ffebee";
+            }
+        });
+
+        feedback.style.display = "block";
+        if (correctCount === inputs.length) {
+            feedback.className = "feedback correct-box";
+            feedback.innerHTML = "¡Muy bien! Bloque completado correctamente. ";
+            if (!completedBlocks.has(id)) {
+                globalScore += correctCount;
+                completedBlocks.add(id);
+                document.getElementById('total-score').innerText = globalScore;
+            }
+        } else {
+            feedback.className = "feedback incorrect-box";
+            feedback.innerHTML = `Has acertado ${correctCount} de ${inputs.length}. ¡Sigue intentándolo!`;
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

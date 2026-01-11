@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Oral IB: La Ciudad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        @media print { .no-print { display: none; } }
+        @keyframes pulse-red { 0%, 100% { background-color: #ef4444; } 50% { background-color: #b91c1c; } }
+        .recording-active { animation: pulse-red 1.5s infinite; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen pb-12">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+    
+
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-8 no-print">
+            <h1 class="text-3xl font-bold text-slate-800">Práctica de Examen Oral: Ab Initio</h1>
+            <p class="text-slate-600 mt-2 font-medium">Bloque: La Ciudad y sus Servicios</p>
+            <div class="mt-4 flex justify-center gap-4">
+                <button onclick="window.print()" class="bg-white border border-slate-300 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition shadow-sm">
+                    🖨️ Imprimir Guía de Estudio
+                </button>
+            </div>
+        </header>
+
+        <!-- Ficha de Preparación -->
+        <section id="prep-section" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+            <h2 class="text-xl font-semibold text-slate-800 mb-6 flex items-center gap-2">
+                <span class="bg-blue-100 text-blue-600 p-1.5 rounded-md">📝</span>
+                1. Ficha de Notas Personales (La Ciudad)
+            </h2>
+            <div id="prep-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Preguntas cargadas dinámicamente -->
+            </div>
+        </section>
+
+        <!-- Modelos de Referencia -->
+        <section id="ref-section" class="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8">
+            <h2 class="text-xl font-semibold text-slate-800 mb-6 flex items-center gap-2">
+                <span class="bg-amber-100 text-amber-600 p-1.5 rounded-md">💡</span>
+                2. Modelos de Respuesta (Nivel 7)
+            </h2>
+            <div id="reference-guide" class="space-y-4"></div>
+        </section>
+
+        <!-- Simulador -->
+        <section id="sim-section" class="no-print bg-slate-900 rounded-2xl p-8 text-white shadow-2xl relative overflow-hidden min-h-[450px] flex flex-col justify-between">
+            <div class="relative z-10 w-full">
+                <!-- Progress & Timer -->
+                <div class="flex justify-between items-center mb-10">
+                    <span id="progress-text" class="bg-slate-800 text-slate-400 px-3 py-1 rounded-full text-xs font-mono uppercase">Pregunta 1 de 12</span>
+                    <div id="timer-display" class="text-4xl font-bold font-mono text-indigo-400">30s</div>
+                </div>
+
+                <!-- Main Content -->
+                <div id="sim-content" class="text-center">
+                    <div class="min-h-[140px] flex flex-col items-center justify-center">
+                        <h3 id="current-question" class="text-2xl font-semibold leading-relaxed mb-6 px-4">¿Listo para practicar el tema de la ciudad y los servicios?</h3>
+                        
+                        <div id="initial-controls">
+                            <button onclick="initApp()" class="bg-indigo-600 hover:bg-indigo-700 px-10 py-4 rounded-xl font-bold text-lg transition shadow-xl shadow-indigo-500/20">
+                                Empezar Práctica Real
+                            </button>
+                        </div>
+
+                        <div id="active-controls" class="hidden flex flex-col items-center gap-6 w-full">
+                            <button id="record-btn" onclick="toggleRecording()" class="bg-red-600 hover:bg-red-700 px-10 py-4 rounded-xl font-bold transition flex items-center gap-3 shadow-lg shadow-red-500/20">
+                                <span id="rec-dot" class="w-3 h-3 bg-white rounded-full"></span>
+                                <span id="rec-text">Grabar Respuesta</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Individual Feedback Area -->
+                    <div id="review-area" class="hidden mt-8 space-y-4 text-left w-full max-w-2xl mx-auto">
+                        <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Escucha tu respuesta</h4>
+                            <audio id="audio-playback" controls class="w-full mb-6 filter invert opacity-80"></audio>
+
+                            <!-- Mini Modelo en el simulador -->
+                            <div class="bg-indigo-900/30 rounded-xl p-6 border border-indigo-500/30">
+                                <div id="model-answer-content" class="text-sm text-indigo-100 leading-relaxed italic">
+                                    <!-- Se carga dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="nextQuestion()" class="w-full bg-white text-slate-900 py-3 rounded-lg font-bold hover:bg-slate-100 transition shadow-lg">Siguiente Pregunta ?</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reporte Final UI -->
+            <div id="final-report" class="hidden relative z-10 w-full max-w-2xl mx-auto text-left py-4">
+                <div class="bg-white rounded-2xl p-8 text-slate-900 shadow-2xl border-t-8 border-indigo-600">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-indigo-700">
+                        ¡Sección Completada! 🎉
+                    </h2>
+                    <p class="text-slate-600 text-sm mb-6 pb-4 border-b">Has practicado las 12 preguntas de <strong>La Ciudad y sus Servicios</strong>.</p>
+                    
+                    <div class="bg-slate-50 p-6 rounded-xl mb-6 border border-slate-100 italic text-slate-700 text-sm">
+                        "¡Excelente trabajo! Has cubierto todos los puntos esenciales sobre tu entorno y tus experiencias de viaje. Sigue perfeccionando el uso de conectores para mejorar tu fluidez."
+                    </div>
+
+                    <button onclick="location.reload()" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold hover:bg-indigo-700 transition">Reiniciar Práctica</button>
+                </div>
+            </div>
+
+            <!-- BG Pattern -->
+            <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
+        </section>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "¿Cómo es tu ciudad? Describe tu barrio.", model: "Vivo en una ciudad vibrante y cosmopolita. Mi barrio es muy pintoresco; cuenta con calles arboladas, edificios históricos y una gran variedad de tiendas locales que le dan mucho carácter." },
+            { q: "¿Te gusta tu ciudad? ¿Por qué / no?", model: "Me encanta mi ciudad debido a la inmensa oferta cultural y de ocio que ofrece. Sin embargo, a veces me molesta el ruido del tráfico y la contaminación, que son problemas comunes en las grandes capitales." },
+            { q: "¿Qué hay de interés en la región/barrio donde vives?", model: "En mi barrio hay varios puntos de interés, como un museo de arte contemporáneo y un parque inmenso donde la gente hace deporte. Además, tenemos una plaza central con fuentes preciosas." },
+            { q: "¿Qué hiciste en tu barrio el sábado pasado?", model: "El sábado pasado desayuné en una cafetería acogedora con mis amigos. Después, caminamos por el centro comercial y, por la tarde, asistimos a una pequeña feria de libros al aire libre." },
+            { q: "¿Qué vas a hacer en tu barrio el sábado que viene?", model: "El próximo sábado tengo la intención de visitar el nuevo mercado gastronómico que han inaugurado. Por la noche, probablemente iré al cine para ver el último estreno de mi director favorito." },
+            { q: "¿Prefieres vivir en la ciudad o en el campo? ¿Por qué?", model: "Desde mi punto de vista, prefiero vivir en la ciudad porque todo es más accesible y dinámico. No obstante, entiendo que el campo es mucho mejor para relajarse y disfrutar de la naturaleza en silencio." },
+            { q: "¿Qué tiempo hace hoy en tu región?", model: "Hoy el tiempo está bastante inestable. Por la mañana ha estado muy nublado y ventoso, pero ahora parece que el sol está empezando a salir y la temperatura está subiendo un poco." },
+            { q: "Si quieres ir de compras, ¿adónde vas?", model: "Si quiero comprar ropa de marca, suelo ir a los grandes almacenes del centro. Pero si busco algo más único o artesanal, prefiero explorar las pequeñas boutiques independientes de mi barrio." },
+            { q: "¿Prefieres quedarte en un hotel o en un camping? ¿Por qué?", model: "Prefiero alojarme en un hotel porque valoro mucho la comodidad y la privacidad. Aunque acampar puede ser una aventura divertida, me gusta tener un baño privado y un buen servicio de desayuno." },
+            { q: "¿Qué hiciste de vacaciones el año pasado?", model: "El año pasado viajé a España con mi familia durante dos semanas. Visitamos monumentos históricos en Madrid, probamos platos típicos exquisitos y practicamos nuestro español con los habitantes locales." },
+            { q: "¿Qué vas a hacer en Navidad / este verano?", model: "Este próximo verano tengo planeado participar en un campamento de voluntariado en el extranjero. Me parece una oportunidad fantástica para conocer gente nueva y contribuir a una causa social importante." },
+            { q: "¿Has visitado España? ¿Cómo es en tu opinión?", model: "Sí, he visitado España en varias ocasiones. En mi opinión, es un país maravilloso con una cultura muy rica, una gastronomía excelente y una gente muy abierta que te hace sentir bienvenido." }
+        ];
+
+        let currentIdx = 0;
+        let timer, timeLeft = 30;
+        let mediaRecorder, chunks = [];
+        let isRecording = false;
+        let userStream = null;
+
+        // 1. Initial Render
+        const prepList = document.getElementById('prep-list');
+        const refGuide = document.getElementById('reference-guide');
+        questions.forEach((q, i) => {
+            prepList.innerHTML += `<div class="border-b border-slate-100 pb-4"><label class="block text-slate-700 font-semibold mb-2">${i+1}. ${q.q}</label><textarea class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="Vocabulario clave (ej. lugares, adjetivos)..."></textarea></div>`;
+            refGuide.innerHTML += `<div class="p-4 border border-slate-100 rounded-lg bg-slate-50"><p class="font-bold text-slate-800 text-sm mb-2">${i+1}. ${q.q}</p><p class="text-xs text-slate-600 bg-white p-3 rounded border border-slate-200 border-l-4 border-l-amber-400 italic">${q.model}</p></div>`;
+        });
+
+        // 2. Core Functions
+        async function initApp() {
+            try {
+                userStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                document.getElementById('initial-controls').classList.add('hidden');
+                document.getElementById('active-controls').classList.remove('hidden');
+                loadQuestion();
+            } catch (err) { alert("Necesitas permitir el acceso al micrófono para grabar tus respuestas."); }
+        }
+
+        function loadQuestion() {
+            const q = questions[currentIdx];
+            document.getElementById('current-question').innerText = q.q;
+            document.getElementById('progress-text').innerText = `Pregunta ${currentIdx + 1} de ${questions.length}`;
+            document.getElementById('review-area').classList.add('hidden');
+            document.getElementById('active-controls').classList.remove('hidden');
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(timer); timeLeft = 30; updateTimerUI();
+            timer = setInterval(() => { 
+                timeLeft--; updateTimerUI(); 
+                if (timeLeft <= 0) { clearInterval(timer); if(isRecording) toggleRecording(); }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            const el = document.getElementById('timer-display');
+            el.innerText = timeLeft + "s";
+            el.classList.toggle('text-red-500', timeLeft <= 5);
+        }
+
+        async function toggleRecording() {
+            const btn = document.getElementById('record-btn');
+            const txt = document.getElementById('rec-text');
+            if (!isRecording) {
+                mediaRecorder = new MediaRecorder(userStream);
+                chunks = [];
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'audio/webm' });
+                    document.getElementById('audio-playback').src = URL.createObjectURL(blob);
+                    document.getElementById('model-answer-content').innerHTML = `<strong>Modelo Sugerido:</strong><br>${questions[currentIdx].model}`;
+                    document.getElementById('review-area').classList.remove('hidden');
+                    document.getElementById('active-controls').classList.add('hidden');
+                };
+                mediaRecorder.start(); isRecording = true;
+                btn.classList.add('recording-active'); txt.innerText = "Detener Grabación";
+            } else {
+                mediaRecorder.stop(); isRecording = false;
+                btn.classList.remove('recording-active'); txt.innerText = "Grabar Respuesta";
+                clearInterval(timer);
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIdx < questions.length - 1) { currentIdx++; loadQuestion(); } 
+            else { showFinalReport(); }
+        }
+
+        function showFinalReport() {
+            document.getElementById('sim-content').classList.add('hidden');
+            document.getElementById('timer-display').classList.add('hidden');
+            document.getElementById('progress-text').innerText = "Simulacro Finalizado";
+            document.getElementById('final-report').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

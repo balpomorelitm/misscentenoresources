@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 12: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fffbeb; /* Light yellow/gold for "Celebrations" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #fde68a;
+        }
+
+        .vocab-card-back {
+            background-color: #f59e0b; /* Amber-500 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #fef3c7; /* Amber-100 */
+            color: #92400e; /* Amber-800 */
+            border-left: 4px solid #f59e0b;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #f59e0b;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-amber-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 12</h1>
+                <p class="text-xs text-amber-200">Digital Study Guide (Pages 262 - 282)</p>
+            </div>
+            <div class="text-sm bg-amber-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_festivals')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Celebrations & Festivals</button>
+                <button onclick="scrollToSection('cultural_events')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Key Hispanic Traditions</button>
+                <button onclick="scrollToSection('grammar_perfecto')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Present Perfect</button>
+                <button onclick="scrollToSection('perfecto_irreg')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Irregular Participles</button>
+                <button onclick="scrollToSection('feelings')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Expressing Feelings</button>
+                <button onclick="scrollToSection('cultural_context')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Phrases: Describing an Event</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-amber-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-amber-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Experiences / Identities.<br>
+                    <strong>Focus:</strong> In Unit 12, "Â¿CÃ³mo influyen las celebraciones en mi identidad?" (How do celebrations influence my identity?), you will learn to describe cultural traditions, talk about personal experiences using the Present Perfect tense, and express opinions about events.
+                </div>
+            </section>
+
+            <!-- Section 2: Celebrations & Festivals -->
+            <section id="vocab_festivals" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Celebrations (Las Celebraciones)</h2>
+                <p class="mb-4 text-sm text-gray-600">Essential vocabulary for parties and events. Click to flip!</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La fiesta</div>
+                            <div class="vocab-card-back">Party / Festival</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El regalo</div>
+                            <div class="vocab-card-back">Gift / Present</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Los fuegos artificiales</div>
+                            <div class="vocab-card-back">Fireworks</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El desfile</div>
+                            <div class="vocab-card-back">Parade</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La tradiciÃ³n</div>
+                            <div class="vocab-card-back">Tradition</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La procesiÃ³n</div>
+                            <div class="vocab-card-back">Procession</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Divertirse</div>
+                            <div class="vocab-card-back">To have fun</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">Celebrar</div>
+                            <div class="vocab-card-back">To celebrate</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Key Traditions -->
+            <section id="cultural_events" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Key Hispanic Traditions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                        <h4 class="font-bold text-amber-700 mb-2">Festivals:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ’€ <span class="hover-translation font-bold" data-en="Day of the Dead (Mexico)">El DÃ­a de los Muertos</span></li>
+                            <li>ðŸ… <span class="hover-translation font-bold" data-en="La Tomatina (Tomato fight, Spain)">La Tomatina</span></li>
+                            <li>ðŸ”¥ <span class="hover-translation font-bold" data-en="Las Fallas (Valencia, Spain)">Las Fallas</span></li>
+                            <li>ðŸŽ… <span class="hover-translation font-bold" data-en="Christmas">La Navidad</span></li>
+                            <li>ðŸ‘‘ <span class="hover-translation font-bold" data-en="Three Kings Day">El DÃ­a de Reyes</span></li>
+                            <li>ðŸ¥š <span class="hover-translation font-bold" data-en="Easter / Holy Week">La Semana Santa</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                        <h4 class="font-bold text-amber-700 mb-2">Religious & Secular:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>â›ª <span class="hover-translation" data-en="Religious festival">La fiesta religiosa</span></li>
+                            <li>ðŸ’ƒ <span class="hover-translation" data-en="Popular/Folk festival">La fiesta popular</span></li>
+                            <li>ðŸŽ‚ <span class="hover-translation" data-en="Birthday">El cumpleaÃ±os</span></li>
+                            <li>ðŸ’ <span class="hover-translation" data-en="Wedding">La boda</span></li>
+                            <li>ðŸ– <span class="hover-translation" data-en="Custom / Habit">La costumbre</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Present Perfect -->
+            <section id="grammar_perfecto" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Present Perfect (PretÃ©rito Perfecto)</h2>
+                
+                <div class="bg-amber-100 p-6 rounded-lg border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-900 mb-2">When to use it:</h3>
+                    <p class="text-sm mb-4">Use it to talk about actions that have happened recently or have a connection to the present. In English: "I have eaten", "She has traveled".</p>
+                    
+                    <h4 class="font-bold text-slate-700 mb-2">Formula: HABER + Participle</h4>
+                    <div class="bg-white p-4 rounded shadow-sm border border-amber-200 mb-4">
+                        <div class="grid grid-cols-2 gap-4 text-sm text-center">
+                            <div class="border-r border-gray-200">
+                                <p class="font-bold text-blue-600 mb-2">HABER (To have - auxiliary)</p>
+                                <ul class="space-y-1">
+                                    <li>Yo <strong>he</strong></li>
+                                    <li>TÃº <strong>has</strong></li>
+                                    <li>Ã‰l/Ella/Ud. <strong>ha</strong></li>
+                                    <li>Nosotros <strong>hemos</strong></li>
+                                    <li>Ellos/Ellas/Uds. <strong>han</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-bold text-green-600 mb-2">PARTICIPLE</p>
+                                <ul class="space-y-1">
+                                    <li>-AR â†’ <strong>-ado</strong></li>
+                                    <li>-ER / -IR â†’ <strong>-ido</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm italic"><span class="hover-translation" data-en="Today I have celebrated my birthday.">Hoy <strong>he celebrado</strong> mi cumpleaÃ±os.</span></p>
+                </div>
+            </section>
+
+            <!-- Section 5: Irregular Participles -->
+            <section id="perfecto_irreg" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Irregular Participles</h2>
+                <p class="mb-4 text-sm italic">These verbs do not end in -ado or -ido. Memorize these!</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                    <div class="p-3 bg-white border rounded shadow-sm">Abrir â†’ <strong>Abierto</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Decir â†’ <strong>Dicho</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Escribir â†’ <strong>Escrito</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Hacer â†’ <strong>Hecho</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Morir â†’ <strong>Muerto</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Poner â†’ <strong>Puesto</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Ver â†’ <strong>Visto</strong></div>
+                    <div class="p-3 bg-white border rounded shadow-sm">Volver â†’ <strong>Vuelto</strong></div>
+                </div>
+            </section>
+
+            <!-- Section 6: Expressing Feelings -->
+            <section id="feelings" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Expressing Feelings & Opinions</h2>
+                <div class="bg-white p-4 rounded shadow-sm border border-amber-200">
+                    <h4 class="font-bold text-amber-700 mb-2">How was the celebration?</h4>
+                    <ul class="text-sm space-y-3">
+                        <li><span class="hover-translation font-medium" data-en="I think it is very exciting">Creo que es muy emocionante.</span></li>
+                        <li><span class="hover-translation font-medium" data-en="I am happy that people participate">Me alegra que la gente participe.</span></li>
+                        <li><span class="hover-translation font-medium" data-en="In my opinion, it is an important tradition">En mi opiniÃ³n, es una tradiciÃ³n importante.</span></li>
+                        <li><span class="hover-translation font-medium" data-en="It was a unique experience">Fue una experiencia Ãºnica.</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 7: Describing an Event -->
+            <section id="cultural_context" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Phrases: Describing a Cultural Event</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="font-bold text-amber-400">Describing a Festival:</p>
+                            <p class="italic"><span class="hover-translation" data-en="The 'Fallas' are celebrated in Valencia in March.">Las Fallas se <strong>celebran</strong> en Valencia en marzo.</span></p>
+                            <p class="italic"><span class="hover-translation" data-en="People build large sculptures of wood and paper.">La gente <strong>construye</strong> grandes esculturas de madera y papel.</span></p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-600">
+                            <p class="font-bold text-amber-400 text-xs uppercase">Recent Experiences:</p>
+                            <p class="mt-1"><span class="hover-translation" data-en="This morning I have seen a beautiful parade.">Esta maÃ±ana <strong>he visto</strong> un desfile muy bonito.</span></p>
+                            <p class="mt-1"><span class="hover-translation" data-en="Have you ever eaten 'pan de muerto'?">Â¿Alguna vez <strong>has comido</strong> pan de muerto?</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Complete in the PretÃ©rito Perfecto (Self-Check):</h4>
+                    <div class="space-y-3 text-sm">
+                        <p>1. <span class="hover-translation" data-en="Today we have decorated the house.">Hoy nosotros ______ (decorar) la casa.</span> <span class="text-gray-400 italic">(Answer: hemos decorado)</span></p>
+                        <p>2. <span class="hover-translation" data-en="My parents have bought the gifts.">Mis padres ______ (comprar) los regalos.</span> <span class="text-gray-400 italic">(Answer: han comprado)</span></p>
+                        <p>3. <span class="hover-translation" data-en="I have written a card to my grandmother.">Yo ______ (escribir) una tarjeta a mi abuela.</span> <span class="text-gray-400 italic">(Answer: he escrito - irregular)</span></p>
+                        <p>4. <span class="hover-translation" data-en="What have you done this weekend?">Â¿QuÃ© ______ (hacer) tÃº este fin de semana?</span> <span class="text-gray-400 italic">(Answer: has hecho - irregular)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

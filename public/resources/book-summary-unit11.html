@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 11: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2ff; /* Light indigo background for "Experiences" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #c7d2fe;
+        }
+
+        .vocab-card-back {
+            background-color: #4f46e5; /* Indigo-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #e0e7ff; /* Indigo-100 */
+            color: #3730a3; /* Indigo-800 */
+            border-left: 4px solid #4f46e5;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #4f46e5;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 11</h1>
+                <p class="text-xs text-indigo-200">Digital Study Guide (Pages 242 - 261)</p>
+            </div>
+            <div class="text-sm bg-indigo-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_transport')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Means of Transport</button>
+                <button onclick="scrollToSection('airport')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. At the Airport & Station</button>
+                <button onclick="scrollToSection('grammar_indefinito')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Past Simple (Regular)</button>
+                <button onclick="scrollToSection('indefinito_irreg')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Past Simple (Irregular)</button>
+                <button onclick="scrollToSection('accommodation')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Vocab: Accommodation</button>
+                <button onclick="scrollToSection('travel_planning')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Phrases: Planning a Trip</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-indigo-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-indigo-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Experiences (Experiencias).<br>
+                    <strong>Focus:</strong> In Unit 11, "Â¿CÃ³mo influye el transporte en mis viajes?" (How does transport influence my travels?), you will learn to navigate travel scenarios, discuss transport choices, and report past trips using the PretÃ©rito Indefinito.
+                </div>
+            </section>
+
+            <!-- Section 2: Means of Transport -->
+            <section id="vocab_transport" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Means of Transport (Medios de transporte)</h2>
+                <p class="mb-4 text-sm text-gray-600">Click the cards to see the English name.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El aviÃ³n</div>
+                            <div class="vocab-card-back">Plane</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El tren</div>
+                            <div class="vocab-card-back">Train</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El coche / carro</div>
+                            <div class="vocab-card-back">Car</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El barco</div>
+                            <div class="vocab-card-back">Ship / Boat</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El autobÃºs / bus</div>
+                            <div class="vocab-card-back">Bus</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La bicicleta / bici</div>
+                            <div class="vocab-card-back">Bicycle</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El metro</div>
+                            <div class="vocab-card-back">Subway / Underground</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">A pie</div>
+                            <div class="vocab-card-back">On foot / Walking</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Airport & Station -->
+            <section id="airport" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. At the Airport & Station</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-indigo-200">
+                        <h4 class="font-bold text-indigo-700 mb-2">Places & Objects</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>âœˆï¸ <span class="hover-translation" data-en="The airport">El aeropuerto</span></li>
+                            <li>ðŸš‰ <span class="hover-translation" data-en="The train station">La estaciÃ³n de tren</span></li>
+                            <li>ðŸŽ« <span class="hover-translation" data-en="The ticket">El billete / boleto</span></li>
+                            <li>ðŸ§³ <span class="hover-translation" data-en="The suitcase">La maleta</span></li>
+                            <li>ðŸ›‚ <span class="hover-translation" data-en="The passport">El pasaporte</span></li>
+                            <li>ðŸ›¡ï¸ <span class="hover-translation" data-en="The security check">El control de seguridad</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-indigo-200">
+                        <h4 class="font-bold text-indigo-700 mb-2">Actions (Verbos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ›„ <span class="hover-translation" data-en="To check in baggage">Facturar el equipaje</span></li>
+                            <li>ðŸ›« <span class="hover-translation" data-en="To take off">Despegar</span></li>
+                            <li>ðŸ›¬ <span class="hover-translation" data-en="To land">Aterrizar</span></li>
+                            <li>ðŸš— <span class="hover-translation" data-en="To rent a car">Alquilar un coche</span></li>
+                            <li>ðŸŽ’ <span class="hover-translation" data-en="To pack the suitcase">Hacer la maleta</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Past Simple Regular -->
+            <section id="grammar_indefinito" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Past Simple (PretÃ©rito Indefinito)</h2>
+                
+                <div class="bg-indigo-100 p-6 rounded-lg border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-900 mb-2">When to use it:</h3>
+                    <p class="text-sm mb-4">Use it to talk about actions completed in the past at a specific time (Yesterday, last year, during a trip). <strong>Note:</strong> -ER and -IR verbs share the same endings!</p>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm border border-indigo-200 overflow-x-auto">
+                        <table class="min-w-full text-sm text-center">
+                            <thead class="bg-indigo-700 text-white">
+                                <tr>
+                                    <th class="p-2">Subject</th>
+                                    <th class="p-2">-AR (Viajar)</th>
+                                    <th class="p-2">-ER/-IR (Comer/Vivir)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr><td>Yo</td><td class="font-bold text-indigo-600">-Ã©</td><td class="font-bold text-indigo-600">-Ã­</td></tr>
+                                <tr><td>TÃº</td><td class="font-bold text-indigo-600">-aste</td><td class="font-bold text-indigo-600">-iste</td></tr>
+                                <tr><td>Ã‰l/Ella/Ud.</td><td class="font-bold text-indigo-600">-Ã³</td><td class="font-bold text-indigo-600">-iÃ³</td></tr>
+                                <tr><td>Nosotros</td><td class="font-bold text-indigo-600">-amos</td><td class="font-bold text-indigo-600">-imos</td></tr>
+                                <tr><td>Ellos/Ellas/Uds.</td><td class="font-bold text-indigo-600">-aron</td><td class="font-bold text-indigo-600">-ieron</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Irregular Past -->
+            <section id="indefinito_irreg" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Key Irregulars in the Past</h2>
+                <p class="mb-4 text-sm italic">These verbs are extremely common when telling a story about a trip.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-red-500">
+                        <h4 class="font-bold text-red-700 mb-2">IR / SER (Went / Was)</h4>
+                        <p class="text-xs text-gray-500 mb-2">They are identical in this tense!</p>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>fui</strong></li>
+                            <li>TÃº <strong>fuiste</strong></li>
+                            <li>Ã‰l/Ella <strong>fue</strong></li>
+                            <li>Nosotros <strong>fuimos</strong></li>
+                            <li>Ellos <strong>fueron</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-blue-500">
+                        <h4 class="font-bold text-blue-700 mb-2">HACER (Did / Made)</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>hice</strong></li>
+                            <li>TÃº <strong>hiciste</strong></li>
+                            <li>Ã‰l/Ella <strong>hizo</strong></li>
+                            <li>Nosotros <strong>hicimos</strong></li>
+                            <li>Ellos <strong>hicieron</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-green-500">
+                        <h4 class="font-bold text-green-700 mb-2">TENER (Had)</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>tuve</strong></li>
+                            <li>TÃº <strong>tuviste</strong></li>
+                            <li>Ã‰l/Ella <strong>tuvo</strong></li>
+                            <li>Nosotros <strong>tuvimos</strong></li>
+                            <li>Ellos <strong>tuvieron</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Accommodation -->
+            <section id="accommodation" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Vocab: Accommodation (El Alojamiento)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-indigo-200">
+                        <h4 class="font-bold text-indigo-700 mb-2">Types:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ¨ <span class="hover-translation" data-en="Hotel">El hotel</span></li>
+                            <li>ðŸ›Œ <span class="hover-translation" data-en="Youth hostel">El albergue juvenil</span></li>
+                            <li>ðŸ•ï¸ <span class="hover-translation" data-en="Camping site">El camping</span></li>
+                            <li>ðŸ  <span class="hover-translation" data-en="Apartment">El apartamento</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-indigo-200">
+                        <h4 class="font-bold text-indigo-700 mb-2">Details:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ”‘ <span class="hover-translation" data-en="To reserve">Reservar</span></li>
+                            <li>ðŸ›ï¸ <span class="hover-translation" data-en="Single/Double room">HabitaciÃ³n individual / doble</span></li>
+                            <li>ðŸ³ <span class="hover-translation" data-en="Breakfast included">Desayuno incluido</span></li>
+                            <li>ðŸ™ï¸ <span class="hover-translation" data-en="View (sea/mountain)">Vistas (al mar / a la montaÃ±a)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Travel Planning -->
+            <section id="travel_planning" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Phrases: Planning & Telling a Trip</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="font-bold text-indigo-400">Past Experience:</p>
+                            <p class="italic"><span class="hover-translation" data-en="Last year I traveled to Spain by plane.">El aÃ±o pasado <strong>viajÃ©</strong> a EspaÃ±a en aviÃ³n.</span></p>
+                            <p class="italic"><span class="hover-translation" data-en="It was a wonderful experience."><strong>Fue</strong> una experiencia maravillosa.</span></p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-600">
+                            <p class="font-bold text-indigo-400 text-xs uppercase">Asking for information:</p>
+                            <p class="mt-1"><span class="hover-translation" data-en="I would like to book a room.">Quisiera reservar una habitaciÃ³n.</span></p>
+                            <p class="mt-1"><span class="hover-translation" data-en="At what time does the train leave?">Â¿A quÃ© hora <strong>sale</strong> el tren?</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Conjugate the verbs in the PretÃ©rito Indefinito (Self-Check):</h4>
+                    <div class="space-y-3 text-sm">
+                        <p>1. <span class="hover-translation" data-en="Yesterday I bought the plane tickets.">Ayer (yo) ______ (comprar) los billetes de aviÃ³n.</span> <span class="text-gray-400 italic">(Answer: comprÃ©)</span></p>
+                        <p>2. <span class="hover-translation" data-en="Last week they went to Mexico.">La semana pasada ellos ______ (ir) a MÃ©xico.</span> <span class="text-gray-400 italic">(Answer: fueron - irregular)</span></p>
+                        <p>3. <span class="hover-translation" data-en="We visited many interesting museums.">Nosotros ______ (visitar) muchos museos interesantes.</span> <span class="text-gray-400 italic">(Answer: visitamos)</span></p>
+                        <p>4. <span class="hover-translation" data-en="Did you (plural) eat in a restaurant?">Â¿Ustedes ______ (comer) en un restaurante?</span> <span class="text-gray-400 italic">(Answer: comieron)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

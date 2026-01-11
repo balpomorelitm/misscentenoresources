@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno de GramÃ¡tica: Unidad 26</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f5f3ff; /* Violet-50 background */
+            color: #4c1d95; /* Violet-900 text */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* --- TABS --- */
+        .tab-btn {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: #6b7280;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            color: #7c3aed; /* Violet-600 */
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #7c3aed;
+            color: #7c3aed;
+            background-color: rgba(124, 58, 237, 0.1);
+        }
+
+        .tab-content { display: none; opacity: 0; transition: opacity 0.3s ease-in; }
+        .tab-content.active { display: block; opacity: 1; }
+
+        /* --- ESTILOS DE LISTA --- */
+        .idiom-card {
+            background: white;
+            border: 1px solid #ddd6fe;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: transform 0.2s;
+        }
+        .idiom-card:hover {
+            transform: translateY(-2px);
+            border-color: #8b5cf6;
+            box-shadow: 0 4px 6px rgba(139, 92, 246, 0.1);
+        }
+
+        /* --- INPUTS --- */
+        select, input {
+            border: 1px solid #c4b5fd;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: #5b21b6;
+            background-color: #fff;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        /* --- FEEDBACK --- */
+        .correct {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+        .incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .translation {
+            color: #6b7280;
+            font-size: 0.85em;
+            font-style: italic;
+            margin-left: 6px;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-violet-800 text-white p-6 shadow-lg">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-comments text-2xl text-violet-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-violet-300">EspaÃ±ol Ab Initio</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unidad 26: Expresiones y Falsos Amigos</h1>
+            <p class="text-violet-100 mt-2">Frases hechas y palabras confusas.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-xl min-h-[600px] border border-gray-100">
+
+            <!-- Tabs Navigation -->
+            <div class="flex border-b border-gray-200 overflow-x-auto bg-gray-50 rounded-t-xl">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('ir')">
+                    <i class="fas fa-walking mr-2"></i>1. Verbo IR
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('tematicas')">
+                    <i class="fas fa-shapes mr-2"></i>2. TemÃ¡ticas
+                </div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('falsos')">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>3. Falsos Amigos
+                </div>
+            </div>
+
+            <!-- TAB 1: EXPRESIONES CON IR -->
+            <div id="ir" class="tab-content active p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b pb-2">Expresiones con el verbo IR</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Study List -->
+                    <div class="bg-violet-50 p-6 rounded-lg border border-violet-100">
+                        <h3 class="font-bold text-violet-800 mb-4"><i class="fas fa-book-open mr-2"></i>Lista de Estudio</h3>
+                        <ul class="space-y-3">
+                            <li class="flex flex-col">
+                                <span class="font-bold text-violet-900">Ir al grano</span>
+                                <span class="translation">To get straight to the point</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="font-bold text-violet-900">Irse por las ramas</span>
+                                <span class="translation">To beat around the bush / Go off topic</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="font-bold text-violet-900">Ir sobre ruedas</span>
+                                <span class="translation">To go smoothly / go perfectly</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="font-bold text-violet-900">Â¡QuÃ© va!</span>
+                                <span class="translation">No way! / Nonsense!</span>
+                            </li>
+                            <li class="flex flex-col">
+                                <span class="font-bold text-violet-900">Ir tirando</span>
+                                <span class="translation">Getting by / Hanging in there</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Match Exercise -->
+                    <div>
+                        <h3 class="font-bold text-gray-700 mb-4">Ejercicio 1: Relaciona</h3>
+                        <p class="text-sm text-gray-500 mb-4">Selecciona el significado correcto para cada frase.</p>
+                        
+                        <div class="space-y-4" id="ex-ir">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <button onclick="checkExIr()" class="mt-6 bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-6 rounded shadow transition">Comprobar</button>
+                        <div id="feedback-ir" class="mt-2 text-right font-bold text-violet-800"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: EXPRESIONES TEMÃTICAS -->
+            <div id="tematicas" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b pb-2">Modismos por Tema</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <!-- Health -->
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                        <h4 class="font-bold text-green-800 mb-2"><i class="fas fa-heartbeat mr-2"></i>Salud</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Estar sano como una manzana</strong><br><span class="translation">Fit as a fiddle</span></li>
+                            <li><strong>Tener mala cara</strong><br><span class="translation">To look sick/pale</span></li>
+                        </ul>
+                    </div>
+                    <!-- Animals -->
+                    <div class="bg-orange-50 p-4 rounded-lg border border-orange-100">
+                        <h4 class="font-bold text-orange-800 mb-2"><i class="fas fa-paw mr-2"></i>Animales</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Ser un lince</strong><br><span class="translation">To be very sharp/clever</span></li>
+                            <li><strong>Estar como una cabra</strong><br><span class="translation">To be crazy (like a goat)</span></li>
+                        </ul>
+                    </div>
+                    <!-- Colors -->
+                    <div class="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                        <h4 class="font-bold text-pink-800 mb-2"><i class="fas fa-palette mr-2"></i>Colores</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Ponerse rojo</strong><br><span class="translation">To blush / get embarrassed</span></li>
+                            <li><strong>Ver la vida de color rosa</strong><br><span class="translation">To be optimistic</span></li>
+                        </ul>
+                    </div>
+                    <!-- Work -->
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-briefcase mr-2"></i>Trabajo</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Manos a la obra</strong><br><span class="translation">Let's get to work</span></li>
+                            <li><strong>Sudar la gota gorda</strong><br><span class="translation">To sweat bullets / work hard</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exercise Mixed -->
+                <div class="bg-white p-6 border border-gray-200 rounded-lg">
+                    <h3 class="font-bold text-gray-700 mb-4">Ejercicio 2: Â¿QuÃ© significan?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex-mix">
+                        <!-- Generated by JS -->
+                    </div>
+                    <button onclick="checkExMix()" class="mt-6 bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-6 rounded shadow transition">Comprobar</button>
+                    <div id="feedback-mix" class="mt-2 text-right font-bold text-violet-800"></div>
+                </div>
+            </div>
+
+            <!-- TAB 3: FALSOS AMIGOS -->
+            <div id="falsos" class="tab-content p-6 md:p-10">
+                <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b pb-2">Falsos Amigos (False Friends)</h2>
+                <p class="mb-4 text-gray-600">Estas palabras se parecen al inglÃ©s, Â¡pero significan otra cosa!</p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-violet-100 text-violet-900">
+                                <th class="p-3 border-b-2 border-violet-200">Palabra EspaÃ±ola</th>
+                                <th class="p-3 border-b-2 border-violet-200">Se confunde con... (InglÃ©s)</th>
+                                <th class="p-3 border-b-2 border-violet-200">Significado Real (Selecciona)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="false-friends-table" class="text-sm">
+                            <!-- JS Generated -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-6 flex justify-end">
+                    <button onclick="checkFalseFriends()" class="bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-6 rounded shadow transition">Comprobar Tabla</button>
+                </div>
+                <div id="feedback-ff" class="mt-2 text-right font-bold text-violet-800"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-violet-900 text-white p-6 mt-8 text-center text-sm">
+        <p>PrÃ¡ctica de GramÃ¡tica | Unidad 26</p>
+    </footer>
+
+    <script>
+        // --- DATA ---
+
+        const irData = [
+            { q: "Ir al grano", options: ["To eat grain", "To get to the point", "To go to the farm"], ans: "To get to the point" },
+            { q: "Irse por las ramas", options: ["To climb trees", "To leave quickly", "To beat around the bush"], ans: "To beat around the bush" },
+            { q: "Ir sobre ruedas", options: ["To go smoothly", "To drive a car", "To skate"], ans: "To go smoothly" },
+            { q: "Â¡QuÃ© va!", options: ["Where are you going?", "No way! / Nonsense!", "How cool!"], ans: "No way! / Nonsense!" },
+            { q: "Ir tirando", options: ["Throwing things", "Getting by / Hanging in there", "Pulling something"], ans: "Getting by / Hanging in there" }
+        ];
+
+        const mixData = [
+            { q: "Estar sano como una manzana", ans: "Fit as a fiddle / Very healthy" },
+            { q: "Estar como una cabra", ans: "To be crazy" },
+            { q: "Ponerse rojo", ans: "To blush / be embarrassed" },
+            { q: "Manos a la obra", ans: "Let's get to work" },
+            { q: "Ser un lince", ans: "To be very clever/sharp" },
+            { q: "Sudar la gota gorda", ans: "To work extremely hard" }
+        ];
+
+        // False Friends Data (Based on Answer Key)
+        // Format: { word: "actualmente", confuse: "actually", options: ["currently", "truly", "recently"], correct: "currently" }
+        const ffData = [
+            { word: "Actualmente", confuse: "Actually", correct: "Currently (Hoy en dÃ­a)", options: ["Actually (En realidad)", "Currently (Hoy en dÃ­a)"] },
+            { word: "Asistir", confuse: "Assist", correct: "Attend (Ir a un lugar)", options: ["Help (Ayudar)", "Attend (Ir a un lugar)"] },
+            { word: "Suceso", confuse: "Success", correct: "Event (Evento)", options: ["Success (Ã‰xito)", "Event (Evento)"] },
+            { word: "Ropa", confuse: "Rope", correct: "Clothes (Vestido)", options: ["Rope (Cuerda)", "Clothes (Vestido)"] },
+            { word: "Realizar", confuse: "Realize", correct: "Make/Perform (Hacer)", options: ["Realize (Darse cuenta)", "Make/Perform (Hacer)"] },
+            { word: "Embarazada", confuse: "Embarrassed", correct: "Pregnant (Gestante)", options: ["Embarrassed (Avergonzada)", "Pregnant (Gestante)"] },
+            { word: "Soportar", confuse: "Support", correct: "Tolerate (Aguantar)", options: ["Support (Apoyar)", "Tolerate (Aguantar)"] },
+            { word: "Largo", confuse: "Large", correct: "Long (Longitud)", options: ["Large (Grande)", "Long (Longitud)"] },
+            { word: "Ã‰xito", confuse: "Exit", correct: "Success (Triunfo)", options: ["Exit (Salida)", "Success (Triunfo)"] },
+            { word: "LibrerÃ­a", confuse: "Library", correct: "Bookstore (Tienda)", options: ["Library (Biblioteca)", "Bookstore (Tienda)"] },
+             { word: "Carpeta", confuse: "Carpet", correct: "Folder", options: ["Rug (Alfombra)", "Folder"] } // Extra common one
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function init() {
+            renderIr();
+            renderMix();
+            renderFF();
+        }
+
+        function renderIr() {
+            const container = document.getElementById('ex-ir');
+            irData.forEach((item, i) => {
+                let html = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-gray-50 p-3 rounded border border-gray-200">
+                        <span class="font-bold text-violet-800 mb-2 sm:mb-0 w-1/3">${item.q}</span>
+                        <select id="ir-${i}" class="w-full sm:w-2/3 border-gray-300">
+                            <option value="">Selecciona...</option>
+                            ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderMix() {
+            const container = document.getElementById('ex-mix');
+            // Shuffle mixData for randomization? Let's keep it simple for now, just random options logic is needed?
+            // Actually, let's make it a multiple choice or just matching. Let's do simple dropdown matching again but mixed.
+            // Creating a common pool of answers for the dropdown to make it harder.
+            const allAnswers = mixData.map(d => d.ans).sort();
+            
+            mixData.forEach((item, i) => {
+                let html = `
+                    <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                        <div class="font-bold text-violet-800 mb-2">${item.q}</div>
+                        <select id="mix-${i}" class="w-full">
+                            <option value="">Â¿QuÃ© significa?</option>
+                            ${allAnswers.map(a => `<option value="${a}">${a}</option>`).join('')}
+                        </select>
+                    </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderFF() {
+            const container = document.getElementById('false-friends-table');
+            ffData.forEach((item, i) => {
+                let html = `
+                    <tr class="border-b border-gray-100 hover:bg-violet-50 transition">
+                        <td class="p-3 font-bold text-violet-900">${item.word}</td>
+                        <td class="p-3 text-gray-500 italic">Sounds like: ${item.confuse}</td>
+                        <td class="p-3">
+                            <select id="ff-${i}" class="w-full border-gray-200 bg-white">
+                                <option value="">Selecciona significado...</option>
+                                ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                            </select>
+                        </td>
+                    </tr>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkExIr() {
+            let s = 0;
+            irData.forEach((item, i) => {
+                const el = document.getElementById(`ir-${i}`);
+                if (el.value === item.ans) {
+                    el.classList.add('correct');
+                    el.classList.remove('incorrect');
+                    s++;
+                } else {
+                    el.classList.add('incorrect');
+                    el.classList.remove('correct');
+                }
+            });
+            document.getElementById('feedback-ir').textContent = `PuntuaciÃ³n: ${s} / ${irData.length}`;
+        }
+
+        function checkExMix() {
+            let s = 0;
+            mixData.forEach((item, i) => {
+                const el = document.getElementById(`mix-${i}`);
+                if (el.value === item.ans) {
+                    el.classList.add('correct');
+                    el.classList.remove('incorrect');
+                    s++;
+                } else {
+                    el.classList.add('incorrect');
+                    el.classList.remove('correct');
+                }
+            });
+            document.getElementById('feedback-mix').textContent = `PuntuaciÃ³n: ${s} / ${mixData.length}`;
+        }
+
+        function checkFalseFriends() {
+            let s = 0;
+            ffData.forEach((item, i) => {
+                const el = document.getElementById(`ff-${i}`);
+                if (el.value === item.correct) {
+                    el.classList.add('correct');
+                    el.classList.remove('incorrect');
+                    s++;
+                } else {
+                    el.classList.add('incorrect');
+                    el.classList.remove('correct');
+                }
+            });
+            document.getElementById('feedback-ff').textContent = `PuntuaciÃ³n: ${s} / ${ffData.length}`;
+        }
+
+        // --- TABS LOGIC ---
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Highlight button
+            const map = { 'ir': 0, 'tematicas': 1, 'falsos': 2 };
+            document.querySelectorAll('.tab-btn')[map[tabId]].classList.add('active');
+        }
+
+        window.onload = init;
+
+    </script>
+</body>
+</html>
+
+
+
+

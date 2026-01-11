@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 18</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Drag and drop styles */
+        .draggable-item {
+            cursor: grab;
+            user-select: none;
+            background-color: white;
+            border: 1px solid #cbd5e1;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            margin: 0.25rem;
+            display: inline-block;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+        .drop-zone {
+            min-height: 100px;
+            background-color: #f9fafb;
+            border: 2px dashed #9ca3af;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            transition: background-color 0.2s;
+        }
+        .drop-zone.drag-over {
+            background-color: #e0e7ff;
+            border-color: #4f46e5;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 18: Adverbs</h1>
+            <p class="text-indigo-200 mt-2">Describing How, When, and Where (Los Adverbios)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Types of Adverbs</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. Types of Adverbs</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            
+                            <!-- Adverbs of Quantity -->
+                            <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                <h3 class="font-bold text-blue-800 text-lg mb-2">1. Quantity (Cantidad)</h3>
+                                <p class="text-sm mb-3">They answer "How much?".</p>
+                                <ul class="text-sm list-disc pl-5 space-y-1 text-blue-900">
+                                    <li><span class="vocab-hint" data-en="A lot / Much">Mucho</span></li>
+                                    <li><span class="vocab-hint" data-en="A little">Poco</span></li>
+                                    <li><span class="vocab-hint" data-en="Too much">Demasiado</span></li>
+                                    <li><span class="vocab-hint" data-en="Enough">Bastante</span></li>
+                                    <li><span class="vocab-hint" data-en="Very">Muy</span> (Only with adjectives/adverbs!)</li>
+                                </ul>
+                                <div class="mt-3 p-3 bg-white rounded text-sm italic border border-blue-100">
+                                    <p class="font-bold text-indigo-700 not-italic mb-1">âš ï¸ Muy vs. Mucho:</p>
+                                    <p>â€¢ <strong>Muy</strong> + Adjective: Es <span class="text-green-600">muy</span> alto. (Very tall)</p>
+                                    <p>â€¢ Verb + <strong>Mucho</strong>: Come <span class="text-green-600">mucho</span>. (Eats a lot)</p>
+                                    <p>â€¢ <strong>Mucho</strong> + Noun: Tengo <span class="text-green-600">mucho</span> dinero. (A lot of money)</p>
+                                </div>
+                            </div>
+
+                            <!-- Adverbs of Manner -->
+                            <div class="bg-green-50 p-4 rounded border border-green-200">
+                                <h3 class="font-bold text-green-800 text-lg mb-2">2. Manner (Modo) - The "-MENTE" rule</h3>
+                                <p class="text-sm mb-3">They answer "How?". In English, these often end in <strong>-ly</strong> (Quickly, Slowly).</p>
+                                <div class="text-sm bg-white p-3 rounded border border-green-100">
+                                    <p class="font-bold mb-2">Formula:</p>
+                                    <p>Adjective (Feminine form) + <span class="font-bold text-green-600">-mente</span></p>
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-green-900">
+                                        <li>RÃ¡pido -> RÃ¡pida -> <strong>RÃ¡pidamente</strong> (Quickly)</li>
+                                        <li>Lento -> Lenta -> <strong>Lentamente</strong> (Slowly)</li>
+                                        <li>FÃ¡cil -> <strong>FÃ¡cilmente</strong> (Easily)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Adverbs of Place & Time -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-purple-50 p-4 rounded border border-purple-200">
+                                    <h3 class="font-bold text-purple-800 text-lg mb-2">3. Place (Lugar)</h3>
+                                    <ul class="text-sm list-disc pl-5 space-y-1 text-purple-900">
+                                        <li><span class="vocab-hint" data-en="Here">AquÃ­</span></li>
+                                        <li><span class="vocab-hint" data-en="There">AllÃ­</span></li>
+                                        <li><span class="vocab-hint" data-en="Near">Cerca</span></li>
+                                        <li><span class="vocab-hint" data-en="Far">Lejos</span></li>
+                                        <li><span class="vocab-hint" data-en="Inside">Dentro</span></li>
+                                        <li><span class="vocab-hint" data-en="Outside">Fuera</span></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded border border-yellow-200">
+                                    <h3 class="font-bold text-yellow-800 text-lg mb-2">4. Time (Tiempo)</h3>
+                                    <ul class="text-sm list-disc pl-5 space-y-1 text-yellow-900">
+                                        <li><span class="vocab-hint" data-en="Today">Hoy</span></li>
+                                        <li><span class="vocab-hint" data-en="Yesterday">Ayer</span></li>
+                                        <li><span class="vocab-hint" data-en="Tomorrow">MaÃ±ana</span></li>
+                                        <li><span class="vocab-hint" data-en="Now">Ahora</span></li>
+                                        <li><span class="vocab-hint" data-en="Always">Siempre</span></li>
+                                        <li><span class="vocab-hint" data-en="Never">Nunca</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                
+                <!-- Exercise 1: Muy vs Mucho -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Practice the difference between adjectives and adverbs.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Muy vs. Mucho
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 2: Forming Adverbs -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Make it an Adverb (-mente)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Convert the adjective. Example: RÃ¡pido -> RÃ¡pidamente</p>
+                        
+                        <div class="space-y-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 3: Categorization -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Categorize the Adverbs
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">Drag the adverbs to the correct category.</p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <!-- Drop Zones -->
+                            <div class="drop-zone" ondrop="drop(event, 'lugar')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-purple-700 text-center mb-2">Lugar (Place)</h4>
+                                <div id="zone-lugar" class="flex flex-wrap gap-2 justify-center"></div>
+                            </div>
+                            <div class="drop-zone" ondrop="drop(event, 'tiempo')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-yellow-700 text-center mb-2">Tiempo (Time)</h4>
+                                <div id="zone-tiempo" class="flex flex-wrap gap-2 justify-center"></div>
+                            </div>
+                            <div class="drop-zone" ondrop="drop(event, 'cantidad')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-blue-700 text-center mb-2">Cantidad (Quantity)</h4>
+                                <div id="zone-cantidad" class="flex flex-wrap gap-2 justify-center"></div>
+                            </div>
+                            <div class="drop-zone" ondrop="drop(event, 'modo')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-green-700 text-center mb-2">Modo (Manner)</h4>
+                                <div id="zone-modo" class="flex flex-wrap gap-2 justify-center"></div>
+                            </div>
+                        </div>
+
+                        <!-- Draggable Items -->
+                        <div id="drag-items" class="flex flex-wrap gap-2 bg-gray-100 p-4 rounded border border-gray-300 min-h-[60px]">
+                            <!-- JS Generated -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Sorting</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Muy vs Mucho
+        const ex1Data = [
+            { q: "El coche es ______ rÃ¡pido.", options: ["muy", "mucho"], ans: "muy", hint: "The car is VERY fast." },
+            { q: "Yo tengo ______ hambre.", options: ["muy", "mucha"], ans: "mucha", hint: "I have A LOT OF hunger." },
+            { q: "Ella habla ______.", options: ["muy", "mucho"], ans: "mucho", hint: "She speaks A LOT." },
+            { q: "Nosotros estamos ______ cansados.", options: ["muy", "muchos"], ans: "muy", hint: "We are VERY tired." },
+            { q: "Hay ______ personas aquÃ­.", options: ["muy", "muchas"], ans: "muchas", hint: "There are MANY people here." }
+        ];
+
+        // Ex 2: Adverbs from Adjectives
+        const ex2Data = [
+            { q: "Lento (Slow)", ans: "lentamente" },
+            { q: "Feliz (Happy)", ans: "felizmente" },
+            { q: "Perfecto (Perfect)", ans: "perfectamente" },
+            { q: "Triste (Sad)", ans: "tristemente" },
+            { q: "Claro (Clear)", ans: "claramente" }
+        ];
+
+        // Ex 3: Drag & Drop
+        const ex3Data = [
+            { text: "AquÃ­", type: "lugar" },
+            { text: "Ayer", type: "tiempo" },
+            { text: "Bastante", type: "cantidad" },
+            { text: "Bien", type: "modo" },
+            { text: "Lejos", type: "lugar" },
+            { text: "MaÃ±ana", type: "tiempo" },
+            { text: "Poco", type: "cantidad" },
+            { text: "Mal", type: "modo" }
+        ];
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-row gap-4">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex1-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex flex-col sm:flex-row items-center gap-3">
+                    <span class="text-gray-700 font-bold w-full sm:w-1/3 text-left sm:text-right">${item.q}</span>
+                    <span class="text-gray-400 hidden sm:block">â†’</span>
+                    <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold" placeholder="...">
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('drag-items');
+            container.innerHTML = '';
+            document.getElementById('zone-lugar').innerHTML = '';
+            document.getElementById('zone-tiempo').innerHTML = '';
+            document.getElementById('zone-cantidad').innerHTML = '';
+            document.getElementById('zone-modo').innerHTML = '';
+            
+            // Shuffle
+            const shuffled = [...ex3Data].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach((item, i) => {
+                const el = document.createElement('div');
+                el.className = "draggable-item";
+                el.draggable = true;
+                el.id = `drag-${i}`;
+                el.textContent = item.text;
+                el.dataset.type = item.type;
+                el.ondragstart = drag;
+                container.appendChild(el);
+            });
+        }
+
+        // --- DRAG & DROP LOGIC ---
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('drag-over');
+        }
+        
+        // Remove hover effect when leaving
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            zone.addEventListener('dragleave', (e) => {
+                e.currentTarget.classList.remove('drag-over');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.currentTarget.classList.remove('drag-over');
+            });
+        });
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev, zoneType) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedEl = document.getElementById(data);
+            
+            if(ev.target.id === `zone-${zoneType}`) {
+                ev.target.appendChild(draggedEl);
+            } else if (ev.target.closest(`#zone-${zoneType}`)) {
+                 ev.target.closest(`#zone-${zoneType}`).appendChild(draggedEl);
+            }
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex1-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex1-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            const items = document.querySelectorAll('[id^="drag-"]');
+            
+            items.forEach(item => {
+                const parentId = item.parentElement.id;
+                const correctType = item.dataset.type;
+                
+                item.classList.remove('bg-green-200', 'bg-red-200', 'bg-white');
+
+                if (parentId === `zone-${correctType}`) {
+                    item.classList.add('bg-green-200');
+                    s++;
+                } else if (parentId === 'drag-items') {
+                    item.classList.add('bg-white');
+                } else {
+                    item.classList.add('bg-red-200');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex1-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+             ex2Data.forEach((_, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold";
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+            renderEx3();
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

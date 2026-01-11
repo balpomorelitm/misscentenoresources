@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fffbeb; /* Light yellow background for "Food/Health" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px; /* Fixed height for cards */
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .vocab-card-back {
+            background-color: #eab308; /* Yellow-500 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #eab308;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #fef9c3; /* Yellow-100 */
+            color: #854d0e; /* Yellow-800 */
+            border-left: 4px solid #854d0e;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #eab308;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 5</h1>
+                <p class="text-xs text-slate-300">Digital Study Guide (Pages 94 - 118)</p>
+            </div>
+            <div class="text-sm bg-yellow-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_food')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Food Groups</button>
+                <button onclick="scrollToSection('vocab_meals')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Vocab: Meals of the Day</button>
+                <button onclick="scrollToSection('grammar_dop')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Direct Object Pronouns</button>
+                <button onclick="scrollToSection('grammar_quantities')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Talking about Quantities</button>
+                <button onclick="scrollToSection('restaurant')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. At the Restaurant</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Practice: Ordering Food</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-yellow-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-yellow-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Identities & Experiences.<br>
+                    <strong>Focus:</strong> In Unit 5, "Â¿Utilizamos nuestro conocimiento para decidir quÃ© comemos?" (Do we use our knowledge to decide what we eat?), you will learn to talk about food, healthy habits, ordering in a restaurant, and describing dishes.
+                </div>
+            </section>
+
+            <!-- Section 2: Vocab Food -->
+            <section id="vocab_food" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Food Groups (Los Alimentos)</h2>
+                <p class="mb-4 text-sm">Essential vocabulary for food and drink. Click to reveal the translation.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <!-- Card 1 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Las frutas</div>
+                            <div class="vocab-card-back">Fruits</div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Las verduras</div>
+                            <div class="vocab-card-back">Vegetables</div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La carne</div>
+                            <div class="vocab-card-back">Meat</div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El pescado</div>
+                            <div class="vocab-card-back">Fish</div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El pollo</div>
+                            <div class="vocab-card-back">Chicken</div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El arroz</div>
+                            <div class="vocab-card-back">Rice</div>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El pan</div>
+                            <div class="vocab-card-back">Bread</div>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Los huevos</div>
+                            <div class="vocab-card-back">Eggs</div>
+                        </div>
+                    </div>
+                    <!-- Card 9 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">La leche</div>
+                            <div class="vocab-card-back">Milk</div>
+                        </div>
+                    </div>
+                    <!-- Card 10 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El agua</div>
+                            <div class="vocab-card-back">Water</div>
+                        </div>
+                    </div>
+                    <!-- Card 11 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El jugo / Zumo</div>
+                            <div class="vocab-card-back">Juice</div>
+                        </div>
+                    </div>
+                    <!-- Card 12 -->
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">El postre</div>
+                            <div class="vocab-card-back">Dessert</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Vocab Meals -->
+            <section id="vocab_meals" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Vocab: Meals of the Day (Las Comidas)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-orange-200">
+                        <h4 class="font-bold text-orange-700 mb-2">Meals (Sustantivos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation font-medium" data-en="Breakfast">El desayuno</span> (Morning)</li>
+                            <li><span class="hover-translation font-medium" data-en="Lunch">El almuerzo / La comida</span> (Midday)</li>
+                            <li><span class="hover-translation font-medium" data-en="Afternoon snack">La merienda</span> (Afternoon)</li>
+                            <li><span class="hover-translation font-medium" data-en="Dinner">La cena</span> (Evening)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-orange-200">
+                        <h4 class="font-bold text-orange-700 mb-2">Actions (Verbos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation font-medium" data-en="To eat breakfast">Desayunar</span></li>
+                            <li><span class="hover-translation font-medium" data-en="To eat lunch">Almorzar (o>ue)</span> / <span class="hover-translation font-medium" data-en="To eat (general)">Comer</span></li>
+                            <li><span class="hover-translation font-medium" data-en="To have a snack">Merendar (e>ie)</span></li>
+                            <li><span class="hover-translation font-medium" data-en="To eat dinner">Cenar</span></li>
+                            <li><span class="hover-translation font-medium" data-en="To drink">Beber</span> / <span class="hover-translation font-medium" data-en="To take/drink/eat">Tomar</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Grammar DOP -->
+            <section id="grammar_dop" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Direct Object Pronouns (DOP)</h2>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400 mb-6">
+                    <h3 class="font-bold text-yellow-800 mb-2">What are they?</h3>
+                    <p class="text-sm mb-2">DOPs replace the noun (the object) to avoid repetition. They answer "What?" or "Who?" regarding the verb.</p>
+                    <p class="text-sm mb-4"><em>Example:</em> "I eat <strong>the apple</strong>" -> "I eat <strong>it</strong>".</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-white p-2 rounded border border-yellow-200">
+                            <div class="font-bold text-blue-600">Masculine</div>
+                            <div class="text-sm">Singular: <strong>Lo</strong> (it/him)</div>
+                            <div class="text-sm">Plural: <strong>Los</strong> (them)</div>
+                        </div>
+                        <div class="bg-white p-2 rounded border border-yellow-200">
+                            <div class="font-bold text-pink-600">Feminine</div>
+                            <div class="text-sm">Singular: <strong>La</strong> (it/her)</div>
+                            <div class="text-sm">Plural: <strong>Las</strong> (them)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded shadow">
+                    <h4 class="font-bold text-slate-700 mb-2">Examples:</h4>
+                    <ul class="text-sm space-y-3">
+                        <li>Â¿Comes <strong class="text-green-600">pescado</strong>? (Do you eat fish?)<br>â†’ SÃ­, <strong class="text-blue-600">lo</strong> como. (Yes, I eat it.)</li>
+                        <li>Â¿Compras <strong class="text-green-600">las manzanas</strong>? (Do you buy the apples?)<br>â†’ No, no <strong class="text-pink-600">las</strong> compro. (No, I don't buy them.)</li>
+                        <li>Â¿Preparas <strong class="text-green-600">la cena</strong>? (Do you prepare dinner?)<br>â†’ SÃ­, <strong class="text-pink-600">la</strong> preparo. (Yes, I prepare it.)</li>
+                    </ul>
+                    <p class="text-xs text-gray-500 mt-2">*Note: The pronoun usually goes <strong>before</strong> the conjugated verb.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Grammar Quantities -->
+            <section id="grammar_quantities" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Talking about Quantities</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Indefinite Quantities</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation font-medium" data-en="A lot of / Much">Mucho/a/os/as</span></li>
+                            <li><span class="hover-translation font-medium" data-en="A little / Some">Poco/a/os/as</span></li>
+                            <li><span class="hover-translation font-medium" data-en="Too much">Demasiado/a/os/as</span></li>
+                            <li><span class="hover-translation font-medium" data-en="Enough">Bastante/s</span></li>
+                        </ul>
+                        <p class="text-xs text-gray-500 mt-2">*These must agree in gender and number with the noun.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-slate-700 mb-2">Specific Measures</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation font-medium" data-en="A kilo of">Un kilo de...</span></li>
+                            <li><span class="hover-translation font-medium" data-en="A liter of">Un litro de...</span></li>
+                            <li><span class="hover-translation font-medium" data-en="A bottle of">Una botella de...</span></li>
+                            <li><span class="hover-translation font-medium" data-en="A packet of">Un paquete de...</span></li>
+                            <li><span class="hover-translation font-medium" data-en="A slice of">Una rebanada de...</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Restaurant -->
+            <section id="restaurant" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. At the Restaurant (En el Restaurante)</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-center text-sm mb-6">
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="The menu">El menÃº / La carta</div>
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="The waiter / waitress">El camarero / La camarera</div>
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="The bill">La cuenta</div>
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="First course / Starter">El primer plato</div>
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="Main course">El plato principal</div>
+                    <div class="bg-orange-100 p-3 rounded hover:bg-orange-200 transition hover-translation" data-en="Drink">La bebida</div>
+                </div>
+
+                <div class="bg-white p-4 rounded border border-gray-200">
+                    <h4 class="font-bold mb-2 text-orange-800">Useful Phrases</h4>
+                    <ul class="text-sm space-y-2 list-disc pl-5">
+                        <li><span class="hover-translation" data-en="I would like...">Me gustarÃ­a...</span> / <span class="hover-translation" data-en="I want...">Quiero...</span></li>
+                        <li><span class="hover-translation" data-en="What do you recommend?">Â¿QuÃ© me recomienda?</span></li>
+                        <li><span class="hover-translation" data-en="For me...">Para mÃ­...</span></li>
+                        <li><span class="hover-translation" data-en="The bill, please">La cuenta, por favor.</span></li>
+                        <li><span class="hover-translation" data-en="It is delicious">EstÃ¡ delicioso / rico.</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 7: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Practice: Ordering Food</h2>
+                
+                <div class="bg-orange-50 p-6 rounded-lg border border-orange-300">
+                    <h3 class="font-bold text-orange-800 mb-3">Dialogue: In a Restaurant</h3>
+                    <div class="space-y-4 text-sm">
+                        <p><strong>Camarero:</strong> <span class="hover-translation" data-en="Good afternoon. What are you going to order?">Buenas tardes. Â¿QuÃ© van a pedir?</span></p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="For starter, I want a salad.">De primero, quiero una ensalada.</span></p>
+                        <p><strong>Camarero:</strong> <span class="hover-translation" data-en="And for the main course?">Â¿Y de plato principal?</span></p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="I would like the chicken with rice.">Me gustarÃ­a el pollo con arroz.</span></p>
+                        <p><strong>Camarero:</strong> <span class="hover-translation" data-en="Something to drink?">Â¿Algo para beber?</span></p>
+                        <p><strong>Cliente:</strong> <span class="hover-translation" data-en="A bottle of water, please.">Una botella de agua, por favor.</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick').includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

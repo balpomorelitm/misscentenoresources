@@ -1,0 +1,562 @@
+﻿
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Arrow for tooltip */
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 1: The Noun (El Sustantivo)</h1>
+            <p class="text-indigo-200 mt-2">Gender, Number, and Articles</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- CONCEPT 1: GENDER -->
+            <section id="section-gender" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">1. Masculine or Feminine?</h2>
+                    <p class="text-gray-600 mt-2">
+                        In Spanish, all nouns have a gender.
+                        <br>â€¢ Usually, words ending in <strong>-o</strong> are <span class="text-blue-600 font-bold">Masculine</span>.
+                        <br>â€¢ Usually, words ending in <strong>-a</strong> are <span class="text-pink-600 font-bold">Feminine</span>.
+                        <br>â€¢ Words ending in <strong>-e</strong> or consonants can be either; you have to memorize them!
+                    </p>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                        Exercise: Identify the gender (m/f)
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4 italic">Hover over the words to see the meaning.</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="exercise1-container">
+                        <!-- Items generated by JS based on the book -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise1()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise1()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback1" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- CONCEPT 2: INDEFINITE ARTICLES -->
+            <section id="section-indefinite-articles" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">2. Indefinite Articles (A / An / Some)</h2>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-green-800">Indefinite Articles</h4>
+                        <ul class="text-sm text-gray-700 list-disc pl-5">
+                            <li>Masculine Singular: <strong>Un</strong> (e.g., Un libro)</li>
+                            <li>Feminine Singular: <strong>Una</strong> (e.g., Una casa)</li>
+                            <li>Masculine Plural: <strong>Unos</strong> (e.g., Unos libros)</li>
+                            <li>Feminine Plural: <strong>Unas</strong> (e.g., Unas casas)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2a</span>
+                        Exercise: Complete with un / una / unos / unas
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4 italic">Look at the word to decide the correct indefinite article.</p>
+
+                    <div class="space-y-3" id="exercise2a-container">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise2a()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise2a()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback2a" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- CONCEPT 3: DEFINITE ARTICLES -->
+            <section id="section-definite-articles" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">3. Definite Articles (The)</h2>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-blue-800">Definite Articles</h4>
+                        <ul class="text-sm text-gray-700 list-disc pl-5">
+                            <li>Masculine Singular: <strong>El</strong> (e.g., El libro)</li>
+                            <li>Feminine Singular: <strong>La</strong> (e.g., La casa)</li>
+                            <li>Masculine Plural: <strong>Los</strong> (e.g., Los libros)</li>
+                            <li>Feminine Plural: <strong>Las</strong> (e.g., Las casas)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2b</span>
+                        Exercise: Complete with el / la / los / las
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4 italic">Look at the word to decide the correct definite article.</p>
+
+                    <div class="space-y-3" id="exercise2b-container">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise2b()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise2b()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback2b" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- CONCEPT 4: PLURALS & GENDER SWAP -->
+            <section id="section-plurals" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">4. Gender & Number</h2>
+                    <p class="text-gray-600 mt-2">
+                        <strong>To make it plural:</strong> Add <strong>-s</strong> if it ends in a vowel, add <strong>-es</strong> if it ends in a consonant.<br>
+                        <strong>To switch gender:</strong> Many nouns ending in -o change to -a (niÃ±o -> niÃ±a). Some words change completely (hombre -> mujer).
+                    </p>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                        Exercise: Complete the table
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm text-left border rounded-lg">
+                            <thead class="bg-gray-100 text-gray-700 font-bold uppercase">
+                                <tr>
+                                    <th class="p-3 border">Masc. Singular</th>
+                                    <th class="p-3 border">Fem. Singular</th>
+                                    <th class="p-3 border">Masc. Plural</th>
+                                    <th class="p-3 border">Fem. Plural</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exercise3-container" class="divide-y divide-gray-200">
+                                <!-- Rows generated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise3()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise3()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback3" class="feedback-msg"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA FROM THE BOOK ---
+        
+        // Exercise 1 Data: Identify Gender (m/f)
+        const ex1Data = [
+            { word: "el cuaderno", en: "notebook", ans: "m" },
+            { word: "el libro", en: "book", ans: "m" },
+            { word: "el bolÃ­grafo", en: "pen", ans: "m" },
+            { word: "la goma", en: "eraser", ans: "f" },
+            { word: "la carpeta", en: "folder", ans: "f" },
+            { word: "la mochila", en: "backpack", ans: "f" },
+            { word: "el estuche", en: "pencil case", ans: "m" },
+            { word: "la regla", en: "ruler", ans: "f" },
+            { word: "el lÃ¡piz", en: "pencil", ans: "m" },
+            { word: "el sacapuntas", en: "sharpener", ans: "m" },
+            { word: "el diccionario", en: "dictionary", ans: "m" },
+            { word: "el profesor", en: "teacher (male)", ans: "m" },
+            { word: "el alumno", en: "student (male)", ans: "m" },
+            { word: "el estudiante", en: "student (male)", ans: "m" },
+            { word: "la profesora", en: "teacher (female)", ans: "f" },
+            { word: "el pupitre", en: "student desk", ans: "m" },
+            { word: "el mapa", en: "map", ans: "m" }, // Exception!
+            { word: "el ordenador", en: "computer", ans: "m" },
+            { word: "la pizarra", en: "whiteboard", ans: "f" },
+            { word: "el papel", en: "paper", ans: "m" },
+            { word: "la papelera", en: "wastebasket", ans: "f" },
+            { word: "el reloj", en: "clock/watch", ans: "m" },
+            { word: "el calendario", en: "calendar", ans: "m" },
+            { word: "la mesa", en: "table", ans: "f" }
+        ];
+
+        // Exercise 2a Data: Indefinite Articles (un, una, unos, unas)
+        const ex2aData = [
+            { q: "______ chico (a boy)", ans: ["un", "Un"] },
+            { q: "______ dÃ­a (a day)", ans: ["un", "Un"] }, // Exception
+            { q: "______ estudiante (a student - m)", ans: ["un", "Un"] },
+            { q: "______ cuadernos (some notebooks)", ans: ["unos", "Unos"] },
+            { q: "______ mapa (a map)", ans: ["un", "Un"] }, // Exception
+            { q: "______ lecciÃ³n (a lesson)", ans: ["una", "Una"] }
+        ];
+
+        // Exercise 2b Data: Definite Articles (el, la, los, las)
+        const ex2bData = [
+            { q: "______ hombre (The man)", ans: ["el", "El"] },
+            { q: "______ mujeres (the women)", ans: ["las", "Las"] },
+            { q: "______ problema (the problem)", ans: ["el", "El"] }, // Exception
+            { q: "______ mano (the hand)", ans: ["la", "La"] } // Exception
+        ];
+
+        // Exercise 3 Data: Table Completion
+        // Format: [MS, FS, MP, FP] - null means user must fill it
+        const ex3Data = [
+            { ms: "hombre", fs: null, mp: null, fp: null, en: "man/woman", key: ["mujer", "hombres", "mujeres"] },
+            { ms: null, fs: "madre", mp: null, fp: null, en: "father/mother", key: ["padre", "padres", "madres"] },
+            { ms: "niÃ±o", fs: null, mp: null, fp: null, en: "boy/girl", key: ["niÃ±a", "niÃ±os", "niÃ±as"] },
+            { ms: null, fs: null, mp: "tÃ­os", fp: null, en: "uncle/aunt", key: ["tÃ­o", "tÃ­a", "tÃ­as"] },
+            { ms: "chico", fs: null, mp: null, fp: null, en: "boy/girl (teen)", key: ["chica", "chicos", "chicas"] },
+            { ms: null, fs: "abuela", mp: null, fp: null, en: "grandfather/mother", key: ["abuelo", "abuelos", "abuelas"] }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function init() {
+            renderEx1();
+            renderEx2a();
+            renderEx2b();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('exercise1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-3 bg-gray-50 rounded border border-gray-200";
+                div.innerHTML = `
+                    <span class="vocab-hint" data-en="${item.en}">${item.word}</span>
+                    <select id="ex1-${index}" class="border rounded p-1 text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="">?</option>
+                        <option value="m">Masc (m)</option>
+                        <option value="f">Fem (f)</option>
+                    </select>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEx2a() {
+            const container = document.getElementById('exercise2a-container');
+            container.innerHTML = '';
+            ex2aData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-2";
+                
+                const parts = item.q.split('______');
+                div.innerHTML = `
+                    <span>${parts[0]}</span>
+                    <input type="text" id="ex2a-${index}" class="border-b-2 border-gray-300 focus:border-indigo-500 outline-none w-24 text-center px-1 py-1" placeholder="...">
+                    <span class="text-gray-700">${parts[1]}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEx2b() {
+            const container = document.getElementById('exercise2b-container');
+            container.innerHTML = '';
+            ex2bData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-2";
+                
+                const parts = item.q.split('______');
+                div.innerHTML = `
+                    <span>${parts[0]}</span>
+                    <input type="text" id="ex2b-${index}" class="border-b-2 border-gray-300 focus:border-indigo-500 outline-none w-24 text-center px-1 py-1" placeholder="...">
+                    <span class="text-gray-700">${parts[1]}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('exercise3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((row, rowIndex) => {
+                const tr = document.createElement('tr');
+                
+                // Helper to create cell
+                const createCell = (val, colIndex) => {
+                    const td = document.createElement('td');
+                    td.className = "p-3 border";
+                    if (val) {
+                        td.innerHTML = `<span class="font-bold text-indigo-900 vocab-hint" data-en="${row.en}">${val}</span>`;
+                    } else {
+                        let type = "";
+                        if(colIndex === 0) type = "ms";
+                        if(colIndex === 1) type = "fs";
+                        if(colIndex === 2) type = "mp";
+                        if(colIndex === 3) type = "fp";
+                        td.innerHTML = `<input type="text" id="ex3-${rowIndex}-${type}" class="w-full border rounded p-1 focus:ring-2 focus:ring-indigo-500 outline-none">`;
+                    }
+                    return td;
+                };
+
+                tr.appendChild(createCell(row.ms, 0));
+                tr.appendChild(createCell(row.fs, 1));
+                tr.appendChild(createCell(row.mp, 2));
+                tr.appendChild(createCell(row.fp, 3));
+                container.appendChild(tr);
+            });
+        }
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkExercise1() {
+            let score = 0;
+            ex1Data.forEach((item, index) => {
+                const select = document.getElementById(`ex1-${index}`);
+                const userVal = select.value;
+                if (userVal === item.ans) {
+                    select.parentElement.classList.add('correct-answer');
+                    select.parentElement.classList.remove('incorrect-answer');
+                    score++;
+                } else {
+                    select.parentElement.classList.add('incorrect-answer');
+                    select.parentElement.classList.remove('correct-answer');
+                }
+            });
+            const feedback = document.getElementById('feedback1');
+            feedback.textContent = `Score: ${score} / ${ex1Data.length}`;
+            feedback.className = score === ex1Data.length ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        function checkExercise2a() {
+            let score = 0;
+            ex2aData.forEach((item, index) => {
+                const input = document.getElementById(`ex2a-${index}`);
+                const userVal = input.value.trim();
+                if (item.ans.includes(userVal)) {
+                    input.classList.add('bg-green-100', 'border-green-500');
+                    input.classList.remove('bg-red-100', 'border-red-500');
+                    score++;
+                } else {
+                    input.classList.add('bg-red-100', 'border-red-500');
+                    input.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            const feedback = document.getElementById('feedback2a');
+            feedback.textContent = `Score: ${score} / ${ex2aData.length}`;
+            feedback.className = score === ex2aData.length ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        function checkExercise2b() {
+            let score = 0;
+            ex2bData.forEach((item, index) => {
+                const input = document.getElementById(`ex2b-${index}`);
+                const userVal = input.value.trim();
+                if (item.ans.includes(userVal)) {
+                    input.classList.add('bg-green-100', 'border-green-500');
+                    input.classList.remove('bg-red-100', 'border-red-500');
+                    score++;
+                } else {
+                    input.classList.add('bg-red-100', 'border-red-500');
+                    input.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            const feedback = document.getElementById('feedback2b');
+            feedback.textContent = `Score: ${score} / ${ex2bData.length}`;
+            feedback.className = score === ex2bData.length ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        function checkExercise3() {
+            let correctCount = 0;
+            let totalInputs = 0;
+
+            ex3Data.forEach((row, rowIndex) => {
+                const answers = [
+                    { ms: "hombre", fs: "mujer", mp: "hombres", fp: "mujeres" },
+                    { ms: "padre", fs: "madre", mp: "padres", fp: "madres" },
+                    { ms: "niÃ±o", fs: "niÃ±a", mp: "niÃ±os", fp: "niÃ±as" },
+                    { ms: "tÃ­o", fs: "tÃ­a", mp: "tÃ­os", fp: "tÃ­as" },
+                    { ms: "chico", fs: "chica", mp: "chicos", fp: "chicas" },
+                    { ms: "abuelo", fs: "abuela", mp: "abuelos", fp: "abuelas" }
+                ];
+
+                ['ms', 'fs', 'mp', 'fp'].forEach(type => {
+                    const input = document.getElementById(`ex3-${rowIndex}-${type}`);
+                    if (input) {
+                        totalInputs++;
+                        const userVal = input.value.trim().toLowerCase();
+                        const correctVal = answers[rowIndex][type];
+                        
+                        if (userVal === correctVal) {
+                            input.classList.add('bg-green-100', 'border-green-500');
+                            input.classList.remove('bg-red-100', 'border-red-500');
+                            correctCount++;
+                        } else {
+                            input.classList.add('bg-red-100', 'border-red-500');
+                            input.classList.remove('bg-green-100', 'border-green-500');
+                        }
+                    }
+                });
+            });
+
+            const feedback = document.getElementById('feedback3');
+            feedback.textContent = `Score: ${correctCount} / ${totalInputs}`;
+            feedback.className = correctCount === totalInputs ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET FUNCTIONS ---
+
+        function resetExercise1() {
+            ex1Data.forEach((_, index) => {
+                const select = document.getElementById(`ex1-${index}`);
+                select.value = "";
+                select.parentElement.classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+
+        function resetExercise2a() {
+            ex2aData.forEach((_, index) => {
+                const input = document.getElementById(`ex2a-${index}`);
+                input.value = "";
+                input.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback2a').textContent = "";
+        }
+
+        function resetExercise2b() {
+            ex2bData.forEach((_, index) => {
+                const input = document.getElementById(`ex2b-${index}`);
+                input.value = "";
+                input.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback2b').textContent = "";
+        }
+
+        function resetExercise3() {
+            const inputs = document.querySelectorAll('#exercise3-container input');
+            inputs.forEach(input => {
+                input.value = "";
+                input.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+</html>
+
+
+
+

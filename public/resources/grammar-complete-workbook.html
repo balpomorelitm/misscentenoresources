@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar: Cuaderno Completo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .correct { border-color: #10b981 !important; background-color: #ecfdf5; }
+        .incorrect { border-color: #ef4444 !important; background-color: #fef2f2; }
+        .tab-active { border-bottom: 3px solid #1e40af; color: #1e40af; font-weight: bold; }
+        .tab-inactive { color: #64748b; }
+        .hidden-content { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+    <div class="max-w-4xl mx-auto p-4 md:p-12">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-2">Cuaderno de Gramática</h1>
+            <p class="text-lg text-slate-600">Spanish ab initio - Interactive Workbook</p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <nav class="flex border-b border-slate-200 mb-8 overflow-x-auto">
+            <button onclick="switchTab('sustantivos')" id="tab-sustantivos" class="px-6 py-3 tab-active whitespace-nowrap transition-all focus:outline-none">
+                1. Los Sustantivos
+            </button>
+            <button onclick="switchTab('adjetivos')" id="tab-adjetivos" class="px-6 py-3 tab-inactive whitespace-nowrap transition-all focus:outline-none">
+                2. Adjetivos, Pronombres e Indefinidos
+            </button>
+            <button onclick="switchTab('ejercicios')" id="tab-ejercicios" class="px-6 py-3 tab-inactive whitespace-nowrap transition-all focus:outline-none">
+                Ejercicios Interactivos
+            </button>
+        </nav>
+
+        <!-- Tab: Sustantivos (Grammar) -->
+        <div id="content-sustantivos">
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                    <span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2-0 01-2-2V5a2 2-0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2-0 01-2 2z" />
+                        </svg>
+                    </span>
+                    Gramática: Los Sustantivos <span class="text-slate-400 font-normal ml-2">(Nouns)</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-blue-700 mb-2 uppercase tracking-wide">Género <span class="text-xs text-slate-500 normal-case">(Gender)</span></h3>
+                        <ul class="space-y-2">
+                            <li>• <strong>Masculino:</strong> Suelen terminar en <strong>-o</strong> <span class="text-xs text-slate-500 italic">(Most nouns ending in -o are masculine)</span>.</li>
+                            <li>• <strong>Femenino:</strong> Suelen terminar en <strong>-a</strong> <span class="text-xs text-slate-500 italic">(Most nouns ending in -a are feminine)</span>.</li>
+                            <li>• <strong>Femenino:</strong> <strong>-ción, -dad, -tud</strong> <span class="text-xs text-slate-500 italic">(Almost always feminine: la ciudad)</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <h3 class="font-bold text-blue-700 mb-2 uppercase tracking-wide">Artículos <span class="text-xs text-slate-500 normal-case">(Articles)</span></h3>
+                        <p class="mb-2"><strong>Definidos <span class="text-xs text-slate-400 italic">(The)</span>:</strong> el, la, los, las.</p>
+                        <p><strong>Indefinidos <span class="text-xs text-slate-400 italic">(A, An, Some)</span>:</strong> un, una, unos, unas.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 md:col-span-2">
+                        <h3 class="font-bold text-blue-700 mb-3 uppercase tracking-wide">Formación del Plural <span class="text-xs text-slate-500 normal-case">(Plurals)</span></h3>
+                        <div class="grid sm:grid-cols-3 gap-4 text-xs">
+                            <div class="p-3 bg-white rounded border">
+                                <p class="font-bold text-slate-800">Ends in Vocal</p>
+                                <p>Add <strong>-s</strong> (niño &rarr; niños)</p>
+                            </div>
+                            <div class="p-3 bg-white rounded border">
+                                <p class="font-bold text-slate-800">Ends in Consonante</p>
+                                <p>Add <strong>-es</strong> (papel &rarr; papeles)</p>
+                            </div>
+                            <div class="p-3 bg-white rounded border">
+                                <p class="font-bold text-slate-800">Final en <strong>-z</strong></p>
+                                <p>Change to <strong>-ces</strong> (lápiz &rarr; lápices)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-blue-50 p-6 rounded-xl border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-4 uppercase tracking-wide text-sm">Casos Especiales <span class="text-xs text-blue-600 normal-case ml-2">(Exceptions)</span></h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-xs text-slate-700">
+                        <div><strong>-ista / -ante:</strong> el/la periodista (word stays same).</div>
+                        <div><strong>Masc. en -a:</strong> el mapa, el problema, el idioma.</div>
+                        <div><strong>Fem. en -o:</strong> la mano, la foto, la moto.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab: Adjetivos, Posesivos, Demostrativos e Indefinidos -->
+        <div id="content-adjetivos" class="hidden-content">
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                    <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                        </svg>
+                    </span>
+                    Gramática: Adjetivos y Pronombres
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Comparación -->
+                    <div class="p-5 bg-indigo-50 rounded-xl border border-indigo-100">
+                        <h3 class="font-bold text-indigo-800 mb-4 uppercase text-xs tracking-wider">Comparación <span class="text-[10px] text-slate-500 normal-case">(Comparison)</span></h3>
+                        <ul class="text-xs space-y-2 text-slate-700">
+                            <li>• más ... que <span class="text-slate-400">(more)</span></li>
+                            <li>• menos ... que <span class="text-slate-400">(less)</span></li>
+                            <li>• tan ... como <span class="text-slate-400">(as...as)</span></li>
+                        </ul>
+                        <div class="mt-4 p-2 bg-white rounded text-[10px]">
+                            <p class="font-bold mb-1">Irregulares:</p>
+                            Mejor (better), Peor (worse), Mayor (older), Menor (younger).
+                        </div>
+                    </div>
+
+                    <!-- Posesivos -->
+                    <div class="p-5 bg-blue-50 rounded-xl border border-blue-100">
+                        <h3 class="font-bold text-blue-800 mb-4 uppercase text-xs tracking-wider">Posesivos <span class="text-[10px] text-slate-500 normal-case">(Possessives)</span></h3>
+                        <div class="text-[11px] text-slate-700 leading-relaxed">
+                            <p>mi(s) (my), tu(s) (your), su(s) (his/her/its/their)</p>
+                            <p>nuestro/a(s) (our), vuestro/a(s) (your-pl)</p>
+                            <p class="mt-2 italic text-slate-400 text-[10px]">They agree in number with the thing possessed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demostrativos -->
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-8">
+                    <h3 class="font-bold text-slate-800 mb-4 uppercase tracking-wide text-sm">Demostrativos <span class="text-xs text-slate-500 normal-case ml-2">(this, that, those)</span></h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs bg-white rounded-lg shadow-sm border-collapse">
+                            <thead>
+                                <tr class="bg-slate-800 text-white text-left">
+                                    <th class="p-2 border border-slate-700">Distancia</th>
+                                    <th class="p-2 border border-slate-700">Masc. Sing.</th>
+                                    <th class="p-2 border border-slate-700">Fem. Sing.</th>
+                                    <th class="p-2 border border-slate-700">Masc. Plur.</th>
+                                    <th class="p-2 border border-slate-700">Fem. Plur.</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-700">
+                                <tr><td class="p-2 border font-bold">Cerca (aquí)</td><td class="p-2 border italic">este</td><td class="p-2 border italic">esta</td><td class="p-2 border">estos</td><td class="p-2 border">estas</td></tr>
+                                <tr class="bg-slate-50"><td class="p-2 border font-bold">Media (ahí)</td><td class="p-2 border italic">ese</td><td class="p-2 border italic">esa</td><td class="p-2 border">esos</td><td class="p-2 border">esas</td></tr>
+                                <tr><td class="p-2 border font-bold">Lejos (allí)</td><td class="p-2 border italic">aquel</td><td class="p-2 border italic">aquella</td><td class="p-2 border">aquellos</td><td class="p-2 border">aquellas</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Cuantificadores e Indefinidos -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-amber-50 p-6 rounded-xl border border-amber-200">
+                        <h3 class="font-bold text-amber-800 mb-4 uppercase tracking-wide text-sm">Cuantificadores <span class="text-xs text-amber-500 normal-case ml-2">(Quantifiers)</span></h3>
+                        <p class="text-[10px] text-slate-500 mb-3 italic">Agreement in gender and number (except "bastante").</p>
+                        <ul class="text-xs space-y-2 text-slate-700">
+                            <li>• mucho/a(s), poco/a(s), todo/a(s)</li>
+                            <li>• demasiado/a(s), bastante(s)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                        <h3 class="font-bold text-green-800 mb-4 uppercase tracking-wide text-sm">Indefinidos <span class="text-xs text-green-500 normal-case ml-2">(Indefinites)</span></h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div><strong>Personas:</strong><br>Alguien / Nadie</div>
+                            <div><strong>Cosas:</strong><br>Algo / Nada</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Tab: Ejercicios -->
+        <div id="content-ejercicios" class="hidden-content">
+            <div class="space-y-12 pb-20">
+                
+                <!-- BLOQUE SUSTANTIVOS -->
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h2 class="text-2xl font-bold text-blue-900 mb-6 uppercase tracking-tight">Bloque: Sustantivos</h2>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">1. Identifica el género (M/F)</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="ex1-container"></div>
+                        <button onclick="checkEx1()" class="mt-4 px-4 py-2 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700">Verificar</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">2. Artículos Determinados (el, la, los, las)</h3>
+                        <div class="space-y-3" id="ex2-container"></div>
+                        <button onclick="checkEx2()" class="mt-4 px-4 py-2 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700">Verificar</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">3. Artículos Indeterminados (un, una, unos, unas)</h3>
+                        <div class="space-y-3" id="ex3-container"></div>
+                        <button onclick="checkEx3()" class="mt-4 px-4 py-2 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700">Verificar</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">4. Completa la tabla de plurales</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs border-collapse">
+                                <thead class="bg-slate-50">
+                                    <tr><th class="p-2 border">Masc. Sing.</th><th class="p-2 border">Fem. Sing.</th><th class="p-2 border">Masc. Plur.</th><th class="p-2 border">Fem. Plur.</th></tr>
+                                </thead>
+                                <tbody id="ex4-body"></tbody>
+                            </table>
+                        </div>
+                        <button onclick="checkEx4()" class="mt-4 px-4 py-2 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700">Verificar Tabla</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-blue-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">5. Casos Especiales (Escribe el artículo el/la)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="ex5-container"></div>
+                        <button onclick="checkEx5()" class="mt-4 px-4 py-2 bg-blue-600 text-white text-xs rounded-lg hover:bg-blue-700">Verificar</button>
+                    </section>
+                </div>
+
+                <!-- BLOQUE ADJETIVOS -->
+                <div class="border-l-4 border-indigo-500 pl-4">
+                    <h2 class="text-2xl font-bold text-indigo-900 mb-6 uppercase tracking-tight">Bloque: Adjetivos e Indefinidos</h2>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">6. Tabla de Nacionalidades</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs border-collapse text-left">
+                                <thead class="bg-slate-50">
+                                    <tr><th class="p-2 border">País</th><th class="p-2 border">Masc. Sing.</th><th class="p-2 border">Fem. Sing.</th></tr>
+                                </thead>
+                                <tbody id="ex6-body"></tbody>
+                            </table>
+                        </div>
+                        <button onclick="checkEx6()" class="mt-4 px-4 py-2 bg-indigo-600 text-white text-xs rounded-lg hover:bg-indigo-700">Verificar Nacionalidades</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-indigo-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">7. Comparaciones: Completa con la palabra adecuada</h3>
+                        <div class="space-y-4 text-xs" id="ex8-container"></div>
+                        <button onclick="checkEx8()" class="mt-4 px-4 py-2 bg-indigo-600 text-white text-xs rounded-lg hover:bg-indigo-700">Verificar</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-amber-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">8. Elige la opción correcta (Comparativo o Superlativo)</h3>
+                        <div class="space-y-4" id="ex9-container"></div>
+                        <button onclick="checkEx9()" class="mt-4 px-4 py-2 bg-amber-600 text-white text-xs rounded-lg hover:bg-amber-700">Verificar Opciones</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-300 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">9. Los Demostrativos (Selecciona según distancia)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex10-container"></div>
+                        <button onclick="checkEx10()" class="mt-4 px-4 py-2 bg-slate-800 text-white text-xs rounded-lg hover:bg-black">Verificar Distancias</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-300 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4">10. Los Demostrativos (Escribe la palabra correcta)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex11-container"></div>
+                        <button onclick="checkEx11()" class="mt-4 px-4 py-2 bg-slate-800 text-white text-xs rounded-lg hover:bg-black">Verificar Palabras</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-amber-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4 text-amber-800">11. Cuantificadores: Concordancia</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex12-container"></div>
+                        <button onclick="checkEx12()" class="mt-4 px-4 py-2 bg-amber-600 text-white text-xs rounded-lg hover:bg-amber-700">Verificar Cuantificadores</button>
+                    </section>
+
+                    <section class="bg-white rounded-xl shadow-sm border border-green-200 p-6 mb-6">
+                        <h3 class="text-sm font-bold mb-4 text-green-800">12. Indefinidos: Alguien, Nadie, Algo, Nada</h3>
+                        <div class="space-y-3" id="ex13-container"></div>
+                        <button onclick="checkEx13()" class="mt-4 px-4 py-2 bg-green-600 text-white text-xs rounded-lg hover:bg-green-700">Verificar Indefinidos</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            const tabs = ['sustantivos', 'adjetivos', 'ejercicios'];
+            tabs.forEach(id => {
+                const btn = document.getElementById('tab-' + id);
+                const content = document.getElementById('content-' + id);
+                if (id === tabId) {
+                    btn.className = 'px-6 py-3 tab-active whitespace-nowrap focus:outline-none';
+                    content.classList.remove('hidden-content');
+                } else {
+                    btn.className = 'px-6 py-3 tab-inactive whitespace-nowrap focus:outline-none';
+                    content.classList.add('hidden-content');
+                }
+            });
+        }
+
+        // --- DATOS DE EJERCICIOS ---
+        const ex1Words = [{ w: "Libro", a: "m" }, { w: "Mesa", a: "f" }, { w: "Reloj", a: "m" }, { w: "Silla", a: "f" }, { w: "Puerta", a: "f" }, { w: "Lápiz", a: "m" }, { w: "Ventana", a: "f" }, { w: "Cuaderno", a: "m" }];
+        const defData = [{ p: "____ profesor es bueno.", a: "el" }, { p: "____ ventanas están abiertas.", a: "las" }, { p: "____ museo está cerrado.", a: "el" }, { p: "____ libros son azules.", a: "los" }];
+        const indData = [{ p: "Tengo ____ libro nuevo.", a: "un" }, { p: "Es ____ chica simpática.", a: "una" }, { p: "Hay ____ cuadros.", a: "unos" }, { p: "Compro ____ manzanas.", a: "unas" }];
+        const ex4Data = [["hombre", "mujer", "hombres", "mujeres"], ["padre", "madre", "padres", "madres"], ["niño", "niña", "niños", "niñas"]];
+        const ex5Data = [{ w: "problema", a: "el" }, { w: "mapa", a: "el" }, { w: "mano", a: "la" }, { w: "foto", a: "la" }, { w: "periodista (m)", a: "el" }, { w: "estudiante (f)", a: "la" }];
+        const nacData = [{ p: "Francia", m: "francés", f: "francesa" }, { p: "España", m: "español", f: "española" }, { p: "China", m: "chino", f: "china" }, { p: "Estados Unidos", m: "americano", f: "americana" }];
+        const ex8Data = [{ p: "Su novio estudia ____ que su amiga. (-)", a: "menos" }, { p: "Este libro es ____ bueno que el otro. (+)", a: "mejor" }, { p: "La chica es ____ guapa como su madre. (=)", a: "tan" }, { p: "Mi hermano es ____ que yo. (old)", a: "mayor" }];
+        const ex9Data = [{ q: "Mi amiga Carmen es ____ de nuestro grupo.", opts: ["la más baja", "más baja", "tan baja"], a: "la más baja" }, { q: "Los ratones son ____ que el gato.", opts: ["más pequeños", "el más pequeño", "tan pequeño"], a: "más pequeños" }];
+        const ex10Data = [{ q: "____ (Cerca) libros son interesantes.", opts: ["Estos", "Esos", "Aquellos"], a: "Estos" }, { q: "Mira ____ (Lejos) montañas allí.", opts: ["estas", "esas", "aquellas"], a: "aquellas" }, { q: "____ (Media) silla en la que estás.", opts: ["Esta", "Esa", "Aquella"], a: "Esa" }];
+        const ex11Data = [{ q: "Dame ____ (this) bolígrafo.", a: "este" }, { q: "Pásame ____ (that) sal.", a: "esa" }, { q: "Mira ____ (those - far) árboles.", a: "aquellos" }, { q: "Me gustan ____ (these) flores.", a: "estas" }];
+        const ex12Data = [{ q: "Tengo ____ (mucho) trabajo.", a: "mucho" }, { q: "Hay ____ (poco) personas.", a: "pocas" }, { q: "____ (todo) las mañanas corro.", a: "todas" }, { q: "Come ____ (demasiado) dulces.", a: "demasiados" }];
+        const ex13Data = [{ q: "¿Hay ____ en la cocina? (Someone)", opts: ["alguien", "nadie", "algo", "nada"], a: "alguien" }, { q: "No hay ____ en la caja. (Nothing)", opts: ["alguien", "nadie", "algo", "nada"], a: "nada" }, { q: "Tengo ____ importante. (Something)", opts: ["alguien", "nadie", "algo", "nada"], a: "algo" }];
+
+        window.onload = () => {
+            const c1 = document.getElementById('ex1-container');
+            ex1Words.forEach((it, i) => { c1.innerHTML += `<div class="flex items-center justify-between p-2 bg-slate-50 rounded border text-xs"><span>${it.w}</span><select id="ex1-${i}" class="p-1 rounded border outline-none"><option value="">-</option><option value="m">M</option><option value="f">F</option></select></div>`; });
+
+            const popSent = (id, data) => { const c = document.getElementById(id); data.forEach((it, i) => { const pts = it.p.split('____'); c.innerHTML += `<div class="p-2 bg-slate-50 rounded border text-xs italic">${i+1}. <input type="text" id="${id}-${i}" class="w-12 p-1 text-center rounded border outline-none" placeholder="..."> ${pts[1]}</div>`; }); };
+            popSent('ex2-container', defData);
+            popSent('ex3-container', indData);
+
+            const b4 = document.getElementById('ex4-body');
+            ex4Data.forEach((row, r) => { let tr = `<tr>`; row.forEach((cell, c) => { if ((r + c) % 2 === 0) tr += `<td class="p-2 border"><input type="text" id="ex4-${r}-${c}" class="w-full p-1 text-blue-600 outline-none text-[10px]" placeholder="..."></td>`; else tr += `<td class="p-2 border bg-slate-50 font-medium text-[10px]">${cell}</td>`; }); b4.innerHTML += tr + `</tr>`; });
+
+            const c5 = document.getElementById('ex5-container');
+            ex5Data.forEach((it, i) => { c5.innerHTML += `<div class="flex items-center p-2 bg-slate-50 rounded border text-xs"><input type="text" id="ex5-${i}" class="w-10 p-1 text-center rounded border outline-none mr-2" placeholder="..."><span class="font-bold">${it.w}</span></div>`; });
+
+            const b6 = document.getElementById('ex6-body');
+            nacData.forEach((it, i) => { b6.innerHTML += `<tr><td class="p-2 border font-medium text-xs">${it.p}</td><td class="p-2 border"><input type="text" id="ex6-m-${i}" class="w-full p-1 outline-none text-xs" placeholder="..."></td><td class="p-2 border"><input type="text" id="ex6-f-${i}" class="w-full p-1 outline-none text-xs" placeholder="..."></td></tr>`; });
+
+            const c8 = document.getElementById('ex8-container');
+            ex8Data.forEach((it, i) => { const pts = it.p.split('____'); c8.innerHTML += `<div class="p-2 bg-slate-50 rounded border text-xs">${i+1}. ${pts[0]} <input type="text" id="ex8-${i}" class="w-16 p-1 text-center rounded border outline-none" placeholder="..."> ${pts[1]}</div>`; });
+
+            const popSelect = (id, data) => { const c = document.getElementById(id); data.forEach((it, i) => { const pts = it.q.split('____'); let sel = `<select id="${id}-${i}" class="mx-1 p-1 rounded border text-xs bg-white"><option value="">-</option>`; it.opts.forEach(opt => sel += `<option value="${opt}">${opt}</option>`); sel += `</select>`; c.innerHTML += `<div class="p-3 bg-slate-50 rounded border text-xs">${i+1}. ${pts[0]} ${sel} ${pts[1]}</div>`; }); };
+            popSelect('ex9-container', ex9Data);
+            popSelect('ex10-container', ex10Data);
+
+            const popSentSimple = (id, data) => { const c = document.getElementById(id); data.forEach((it, i) => { const pts = it.q.split('____'); c.innerHTML += `<div class="flex items-center p-2 bg-white rounded border text-xs italic"><span class="mr-2">${i+1}.</span> ${pts[0]} <input type="text" id="${id}-${i}" class="w-16 mx-1 p-1 text-center rounded border outline-none" placeholder="..."> ${pts[1]}</div>`; }); };
+            popSentSimple('ex11-container', ex11Data);
+            popSentSimple('ex12-container', ex12Data);
+
+            const c13 = document.getElementById('ex13-container');
+            ex13Data.forEach((it, i) => { const pts = it.q.split('____'); let sel = `<select id="ex13-${i}" class="mx-1 p-1 rounded border text-xs bg-white"><option value="">-</option>`; it.opts.forEach(opt => sel += `<option value="${opt}">${opt}</option>`); sel += `</select>`; c13.innerHTML += `<div class="p-2 bg-slate-50 rounded border text-xs italic">${i+1}. ${pts[0]} ${sel} ${pts[1]}</div>`; });
+        };
+
+        // --- CHECKERS ---
+        const checkEx1 = () => ex1Words.forEach((it, i) => { const el = document.getElementById(`ex1-${i}`); el.className = `p-1 rounded border-2 ${el.value === it.a ? 'correct' : 'incorrect'}`; });
+        const checkEx2 = () => defData.forEach((it, i) => { const el = document.getElementById(`ex2-container-${i}`); el.className = `w-12 p-1 text-center rounded border-2 ${el.value.trim().toLowerCase() === it.a ? 'correct' : 'incorrect'}`; });
+        const checkEx3 = () => indData.forEach((it, i) => { const el = document.getElementById(`ex3-container-${i}`); el.className = `w-12 p-1 text-center rounded border-2 ${el.value.trim().toLowerCase() === it.a ? 'correct' : 'incorrect'}`; });
+        const checkEx4 = () => ex4Data.forEach((row, r) => row.forEach((cell, c) => { const el = document.getElementById(`ex4-${r}-${c}`); if (el) el.className = `w-full p-1 outline-none border-2 text-[10px] ${el.value.trim().toLowerCase() === cell.toLowerCase() ? 'correct' : 'incorrect'}`; }));
+        const checkEx5 = () => ex5Data.forEach((it, i) => { const el = document.getElementById(`ex5-${i}`); el.className = `w-10 p-1 text-center rounded border-2 text-xs ${el.value.trim().toLowerCase() === it.a.toLowerCase() ? 'correct' : 'incorrect'} mr-2`; });
+        const checkEx6 = () => nacData.forEach((it, i) => { const m = document.getElementById(`ex6-m-${i}`); const f = document.getElementById(`ex6-f-${i}`); m.className = `w-full p-1 outline-none border-2 text-xs ${m.value.trim().toLowerCase() === it.m ? 'correct' : 'incorrect'}`; f.className = `w-full p-1 outline-none border-2 text-xs ${f.value.trim().toLowerCase() === it.f ? 'correct' : 'incorrect'}`; });
+        const checkEx8 = () => ex8Data.forEach((it, i) => { const el = document.getElementById(`ex8-${i}`); el.className = `w-16 p-1 text-center rounded border-2 text-xs ${el.value.trim().toLowerCase() === it.a.toLowerCase() ? 'correct' : 'incorrect'}`; });
+        const checkEx9 = () => ex9Data.forEach((it, i) => { const el = document.getElementById(`ex9-${i}`); el.className = `mx-1 p-1 rounded border-2 outline-none text-xs ${el.value === it.a ? 'correct' : 'incorrect'}`; });
+        const checkEx10 = () => ex10Data.forEach((it, i) => { const el = document.getElementById(`ex10-${i}`); el.className = `mx-1 p-1 rounded border-2 outline-none text-xs ${el.value === it.a ? 'correct' : 'incorrect'}`; });
+        const checkEx11 = () => ex11Data.forEach((it, i) => { const el = document.getElementById(`ex11-container-${i}`); el.className = `w-16 mx-1 p-1 text-center rounded border-2 text-xs ${el.value.trim().toLowerCase() === it.a.toLowerCase() ? 'correct' : 'incorrect'}`; });
+        const checkEx12 = () => ex12Data.forEach((it, i) => { const el = document.getElementById(`ex12-container-${i}`); el.className = `w-16 mx-1 p-1 text-center rounded border-2 text-xs ${el.value.trim().toLowerCase() === it.a.toLowerCase() ? 'correct' : 'incorrect'}`; });
+        const checkEx13 = () => ex13Data.forEach((it, i) => { const el = document.getElementById(`ex13-${i}`); el.className = `mx-1 p-1 rounded border-2 outline-none text-xs ${el.value === it.a ? 'correct' : 'incorrect'}`; });
+    </script>
+</body>
+</html>
+
+
+
+
+

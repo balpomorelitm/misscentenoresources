@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 8</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 8: Present Perfect & Postcards</h1>
+            <p class="text-indigo-200 mt-2">Talking about experiences & writing postcards</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Present Perfect</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('postcard')">2. Text Type: Postcard</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. The Present Perfect (PretÃ©rito Perfecto)</h2>
+                        
+                        <div class="mt-4 space-y-4 text-gray-700">
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">Formula:</h3>
+                                <p class="text-lg mt-1">
+                                    Verb <strong>HABER</strong> (present) + <strong>PARTICIPLE</strong>
+                                </p>
+                                <p class="text-sm text-gray-500 mt-1 italic">Example: Yo he hablado (I have spoken).</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-blue-800 mb-2">Step 1: Conjugate HABER</h4>
+                                    <ul class="text-sm list-disc pl-5 space-y-1">
+                                        <li>Yo <strong>he</strong></li>
+                                        <li>TÃº <strong>has</strong></li>
+                                        <li>Ã‰l/Ella <strong>ha</strong></li>
+                                        <li>Nosotros <strong>hemos</strong></li>
+                                        <li>Vosotros <strong>habÃ©is</strong></li>
+                                        <li>Ellos/Ellas <strong>han</strong></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-green-800 mb-2">Step 2: Form the Participle</h4>
+                                    <ul class="text-sm list-disc pl-5 space-y-1">
+                                        <li><strong>-AR verbs:</strong> Remove -ar, add <span class="font-bold text-green-600">-ado</span> (Habl<strong>ado</strong>)</li>
+                                        <li><strong>-ER/-IR verbs:</strong> Remove -er/-ir, add <span class="font-bold text-green-600">-ido</span> (Com<strong>ido</strong>, Viv<strong>ido</strong>)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded border border-red-200 mt-4">
+                                <h4 class="font-bold text-red-800 text-sm uppercase">âš ï¸ Irregular Participles to Memorize:</h4>
+                                <ul class="text-sm text-gray-700 mt-2 grid grid-cols-2 gap-2">
+                                    <li>Abrir -> <strong>Abierto</strong> (Opened)</li>
+                                    <li>Decir -> <strong>Dicho</strong> (Said)</li>
+                                    <li>Escribir -> <strong>Escrito</strong> (Written)</li>
+                                    <li>Hacer -> <strong>Hecho</strong> (Done/Made)</li>
+                                    <li>Poner -> <strong>Puesto</strong> (Put)</li>
+                                    <li>Romper -> <strong>Roto</strong> (Broken)</li>
+                                    <li>Ver -> <strong>Visto</strong> (Seen)</li>
+                                    <li>Volver -> <strong>Vuelto</strong> (Returned)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Write the correct form (Haber + Participle)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Example: (yo / hablar) -> he hablado</p>
+
+                        <div class="space-y-4" id="ex1-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Choose the correct irregular participle form
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="ex2-container">
+                            <!-- Generated by JS -->
+                        </div>
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: POSTCARD -->
+            <div id="postcard" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-green-50">
+                        <h2 class="text-2xl font-bold text-green-900">Text Type: The Postcard (La Postal)</h2>
+                        <p class="text-gray-600 mt-2">
+                            A postcard is a brief message sent by mail without an envelope, usually from a holiday destination.
+                        </p>
+                        <div class="mt-4 bg-white p-4 rounded border border-green-200">
+                            <h4 class="font-bold text-green-700 mb-2">Key Features (CaracterÃ­sticas):</h4>
+                            <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
+                                <li><strong>Location & Date:</strong> Top right corner (e.g., Madrid, 15 de julio).</li>
+                                <li><strong>Greeting:</strong> Informal (e.g., Â¡Hola!, Querido/a...).</li>
+                                <li><strong>Body:</strong> Brief description of activities, weather, feelings.</li>
+                                <li><strong>Closing:</strong> Informal (e.g., Un abrazo, Besos).</li>
+                                <li><strong>Signature:</strong> Your name.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Complete the Postcard
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-6 italic">Fill in the blanks with the correct form of the Present Perfect (e.g., 'he visitado').</p>
+                        
+                        <!-- Simulated Postcard -->
+                        <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6 max-w-2xl mx-auto shadow-sm relative">
+                            <!-- Stamp -->
+                            <div class="absolute top-4 right-4 w-16 h-20 border-2 border-gray-400 bg-white flex items-center justify-center text-xs text-gray-400">Stamp</div>
+                            
+                            <!-- Postcard Content -->
+                            <div class="flex flex-col md:flex-row gap-8">
+                                <div class="w-full md:w-1/2 space-y-4 text-gray-800 leading-relaxed font-handwriting">
+                                    <p class="text-right text-sm">Barcelona, 10 de agosto</p>
+                                    <p>Â¡Hola, Juan!</p>
+                                    <p>
+                                        Â¿QuÃ© tal estÃ¡s? Yo lo estoy pasando genial en Barcelona.
+                                    </p>
+                                    <p>
+                                        Esta semana, (nosotros / visitar) 
+                                        <input type="text" id="ex3-0" class="border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32" placeholder="...">
+                                        la Sagrada Familia. Â¡Es impresionante!
+                                    </p>
+                                    <p>
+                                        TambiÃ©n (yo / comer) 
+                                        <input type="text" id="ex3-1" class="border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32" placeholder="...">
+                                        paella y (beber) 
+                                        <input type="text" id="ex3-2" class="border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32" placeholder="...">
+                                        horchata.
+                                    </p>
+                                    <p>
+                                        Mi hermana (hacer) 
+                                        <input type="text" id="ex3-3" class="border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32" placeholder="...">
+                                        muchas fotos.
+                                    </p>
+                                    <p>
+                                        (Nosotros / ver) 
+                                        <input type="text" id="ex3-4" class="border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32" placeholder="...">
+                                        cosas maravillosas.
+                                    </p>
+                                    <p>Â¡Hasta pronto!</p>
+                                    <p>Un abrazo,</p>
+                                    <p>Ana</p>
+                                </div>
+                                <div class="hidden md:block w-1/2 border-l-2 border-gray-300 pl-8 flex flex-col justify-center">
+                                    <div class="border-b border-gray-400 mb-8 pb-1">Juan PÃ©rez</div>
+                                    <div class="border-b border-gray-400 mb-8 pb-1">C/ Mayor, 12</div>
+                                    <div class="border-b border-gray-400 mb-8 pb-1">28001 Madrid</div>
+                                    <div class="border-b border-gray-400 pb-1">EspaÃ±a</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Form Present Perfect
+        const ex1Data = [
+            { q: "(Yo / hablar) con mi amigo.", ans: "he hablado", hint: "I have spoken" },
+            { q: "(TÃº / comer) pizza.", ans: "has comido", hint: "You have eaten" },
+            { q: "(Ella / vivir) en Londres.", ans: "ha vivido", hint: "She has lived" },
+            { q: "(Nosotros / estudiar) mucho.", ans: "hemos estudiado", hint: "We have studied" },
+            { q: "(Ellos / beber) agua.", ans: "han bebido", hint: "They have drunk" }
+        ];
+
+        // Ex 2: Irregular Participles
+        const ex2Data = [
+            { q: "Yo (escribir) una carta.", options: ["he escribido", "he escrito"], ans: "he escrito" },
+            { q: "TÃº (ver) la pelÃ­cula.", options: ["has visto", "has vido"], ans: "has visto" },
+            { q: "Nosotros (hacer) la tarea.", options: ["hemos hacido", "hemos hecho"], ans: "hemos hecho" },
+            { q: "Ellos (decir) la verdad.", options: ["han dicho", "han decido"], ans: "han dicho" },
+            { q: "Ella (poner) la mesa.", options: ["ha puesto", "ha ponido"], ans: "ha puesto" }
+        ];
+
+        // Ex 3: Postcard Answers
+        const ex3Answers = ["hemos visitado", "he comido", "he bebido", "ha hecho", "hemos visto"];
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2 bg-white p-3 rounded border border-gray-200">
+                        <span class="vocab-hint font-medium text-gray-700 min-w-[200px]" data-en="${item.hint}">${item.q}</span>
+                        <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-indigo-700 font-medium" placeholder="Answer here...">
+                    </div>`;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3">${item.q}</p>
+                    <div class="flex flex-col gap-2">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex2-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex2-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex2-${i}`)[0].closest('.bg-gray-50');
+                
+                // Reset visual state
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Answers.forEach((ans, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                if(el.value.trim().toLowerCase() === ans) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback3', s, ex3Answers.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() { 
+            ex1Data.forEach((_, i) => { 
+                const el = document.getElementById(`ex1-${i}`); 
+                el.value = ""; 
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-indigo-700 font-medium"; 
+            }); 
+            document.getElementById('feedback1').textContent = ""; 
+        }
+        
+        function resetEx2() {
+            ex2Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex2-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+            ex3Answers.forEach((_, i) => {
+                const el = document.getElementById(`ex3-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-indigo-300 bg-transparent text-center px-1 py-0.5 focus:outline-none focus:border-indigo-600 w-32";
+                el.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

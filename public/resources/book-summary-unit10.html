@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 10: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0fdfa; /* Light teal background for "Technology" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #99f6e4;
+        }
+
+        .vocab-card-back {
+            background-color: #0d9488; /* Teal-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #0d9488;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #ccfbf1; /* Teal-100 */
+            color: #0f766e; /* Teal-700 */
+            border-left: 4px solid #0d9488;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #0d9488;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-teal-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 10</h1>
+                <p class="text-xs text-teal-200">Digital Study Guide (Pages 219 - 241)</p>
+            </div>
+            <div class="text-sm bg-teal-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_tech')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Technology & Devices</button>
+                <button onclick="scrollToSection('grammar_imperfect')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Grammar: Imperfect Tense</button>
+                <button onclick="scrollToSection('imperfect_irreg')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Grammar: Irregular Imperfect</button>
+                <button onclick="scrollToSection('antes_ahora')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Before vs. Now</button>
+                <button onclick="scrollToSection('vocab_internet')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Vocab: Internet & Social Media</button>
+                <button onclick="scrollToSection('pros_cons')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Pros & Cons of Tech</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-teal-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-teal-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Human Ingenuity (Ingenio Humano).<br>
+                    <strong>Focus:</strong> In Unit 10, "Â¿CÃ³mo influye la tecnologÃ­a en nuestras vidas?" (How does technology influence our lives?), you will learn to talk about gadgets, the history of inventions, and describe habits in the past using the Imperfect tense.
+                </div>
+            </section>
+
+            <!-- Section 2: Vocab Tech -->
+            <section id="vocab_tech" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Technology & Devices (Los Aparatos)</h2>
+                <p class="mb-4 text-sm text-gray-600">Common gadgets we use every day. Click to flip!</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El telÃ©fono mÃ³vil / celular</div>
+                            <div class="vocab-card-back">Mobile / Cell phone</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El ordenador / La computadora</div>
+                            <div class="vocab-card-back">Computer</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La tableta</div>
+                            <div class="vocab-card-back">Tablet</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El portÃ¡til</div>
+                            <div class="vocab-card-back">Laptop</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La pantalla</div>
+                            <div class="vocab-card-back">Screen</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El ratÃ³n</div>
+                            <div class="vocab-card-back">Mouse</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El teclado</div>
+                            <div class="vocab-card-back">Keyboard</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La impresora</div>
+                            <div class="vocab-card-back">Printer</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Imperfect Tense -->
+            <section id="grammar_imperfect" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Grammar: Imperfect Tense (Habits in the Past)</h2>
+                
+                <div class="bg-teal-100 p-6 rounded-lg border-l-4 border-teal-500 mb-6">
+                    <h3 class="font-bold text-teal-900 mb-2">When to use it:</h3>
+                    <p class="text-sm mb-4">Use the <strong>PretÃ©rito Imperfecto</strong> to talk about actions that happened repeatedly in the past (habits) or to describe people, places, and situations in the past ("Used to" or "Was/Were ...-ing").</p>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm border border-teal-200 overflow-x-auto">
+                        <table class="min-w-full text-sm text-center">
+                            <thead class="bg-teal-700 text-white">
+                                <tr>
+                                    <th class="p-2">Subject</th>
+                                    <th class="p-2">-AR (Hablar)</th>
+                                    <th class="p-2">-ER/-IR (Comer/Vivir)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr><td>Yo</td><td class="font-bold text-teal-600">-aba</td><td class="font-bold text-teal-600">-Ã­a</td></tr>
+                                <tr><td>TÃº</td><td class="font-bold text-teal-600">-abas</td><td class="font-bold text-teal-600">-Ã­as</td></tr>
+                                <tr><td>Ã‰l/Ella/Ud.</td><td class="font-bold text-teal-600">-aba</td><td class="font-bold text-teal-600">-Ã­a</td></tr>
+                                <tr><td>Nosotros</td><td class="font-bold text-teal-600">-Ã¡bamos</td><td class="font-bold text-teal-600">-Ã­amos</td></tr>
+                                <tr><td>Ellos/Ellas/Uds.</td><td class="font-bold text-teal-600">-aban</td><td class="font-bold text-teal-600">-Ã­an</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Irregular Imperfect -->
+            <section id="imperfect_irreg" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Grammar: Only 3 Irregulars!</h2>
+                <p class="mb-4 text-sm">Great news! Only three verbs are irregular in the Imperfect tense.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-red-500">
+                        <h4 class="font-bold text-red-700 mb-2">SER (To be)</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>era</strong></li>
+                            <li>TÃº <strong>eras</strong></li>
+                            <li>Ã‰l/Ella <strong>era</strong></li>
+                            <li>Nosotros <strong>Ã©ramos</strong></li>
+                            <li>Ellos <strong>eran</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-blue-500">
+                        <h4 class="font-bold text-blue-700 mb-2">IR (To go)</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>iba</strong></li>
+                            <li>TÃº <strong>ibas</strong></li>
+                            <li>Ã‰l/Ella <strong>iba</strong></li>
+                            <li>Nosotros <strong>Ã­bamos</strong></li>
+                            <li>Ellos <strong>iban</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow border-t-4 border-green-500">
+                        <h4 class="font-bold text-green-700 mb-2">VER (To see)</h4>
+                        <ul class="text-xs space-y-1">
+                            <li>Yo <strong>veÃ­a</strong></li>
+                            <li>TÃº <strong>veÃ­as</strong></li>
+                            <li>Ã‰l/Ella <strong>veÃ­a</strong></li>
+                            <li>Nosotros <strong>veÃ­amos</strong></li>
+                            <li>Ellos <strong>veÃ­an</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Before vs Now -->
+            <section id="antes_ahora" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Before vs. Now (Antes vs. Ahora)</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-teal-200">
+                    <h3 class="font-bold text-teal-700 mb-4">Comparing generations</h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p class="font-bold text-slate-600 mb-1">In the past:</p>
+                            <p><span class="hover-translation" data-en="Before, people used to write letters by hand.">Antes, la gente <strong>escribÃ­a</strong> cartas a mano.</span></p>
+                            <p><span class="hover-translation" data-en="Children used to play in the street more.">Los niÃ±os <strong>jugaban</strong> mÃ¡s en la calle.</span></p>
+                        </div>
+                        <div class="p-3 bg-teal-50 rounded">
+                            <p class="font-bold text-teal-700 mb-1">Now:</p>
+                            <p><span class="hover-translation" data-en="Now, we send emails or messages.">Ahora, mandamos correos electrÃ³nicos o mensajes.</span></p>
+                            <p><span class="hover-translation" data-en="Now, children use tablets.">Ahora, los niÃ±os usan tabletas.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Internet & Social Media -->
+            <section id="vocab_internet" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Vocab: Internet & Social Media</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-teal-700 mb-2">Actions (Verbos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸ–±ï¸ <span class="hover-translation" data-en="To browse/surf the web">Navegar por la red</span></li>
+                            <li>ðŸ“¥ <span class="hover-translation" data-en="To download">Descargar</span></li>
+                            <li>ðŸ“¤ <span class="hover-translation" data-en="To upload">Subir</span></li>
+                            <li>ðŸ’¬ <span class="hover-translation" data-en="To chat">Chatear</span></li>
+                            <li>ðŸ”— <span class="hover-translation" data-en="To share">Compartir</span></li>
+                            <li>ðŸ“§ <span class="hover-translation" data-en="To send/check email">Enviar / Revisar el correo</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-teal-700 mb-2">Nouns (Sustantivos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>ðŸŒ <span class="hover-translation" data-en="The web page">La pÃ¡gina web</span></li>
+                            <li>ðŸ“± <span class="hover-translation" data-en="Social networks">Las redes sociales</span></li>
+                            <li>ðŸ‘¤ <span class="hover-translation" data-en="User / Profile">El usuario / El perfil</span></li>
+                            <li>ðŸ”‘ <span class="hover-translation" data-en="Password">La contraseÃ±a</span></li>
+                            <li>ðŸ‘¥ <span class="hover-translation" data-en="Followers">Los seguidores</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Pros & Cons -->
+            <section id="pros_cons" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Pros & Cons of Technology</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <p class="font-bold text-green-400">Ventajas (Pros):</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Information is immediate">La informaciÃ³n es inmediata.</span></li>
+                                <li><span class="hover-translation" data-en="Communication is easier">La comunicaciÃ³n es mÃ¡s fÃ¡cil.</span></li>
+                                <li><span class="hover-translation" data-en="It helps with studies">Ayuda con los estudios.</span></li>
+                            </ul>
+                        </div>
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <p class="font-bold text-red-400">Desventajas (Cons):</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="Cyberbullying">El ciberacoso.</span></li>
+                                <li><span class="hover-translation" data-en="Loss of privacy">La pÃ©rdida de privacidad.</span></li>
+                                <li><span class="hover-translation" data-en="Technology addiction">La adicciÃ³n a la tecnologÃ­a.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Complete in the Imperfect Tense (Self-Check):</h4>
+                    <div class="space-y-3 text-sm">
+                        <p>1. <span class="hover-translation" data-en="When I was a child, I used to live in a village.">Cuando (yo) ______ (ser) niÃ±o, ______ (vivir) en un pueblo.</span> <span class="text-gray-400 italic">(Answers: era, vivÃ­a)</span></p>
+                        <p>2. <span class="hover-translation" data-en="We used to play with cards.">Nosotros ______ (jugar) con cartas.</span> <span class="text-gray-400 italic">(Answer: jugÃ¡bamos)</span></p>
+                        <p>3. <span class="hover-translation" data-en="Before, phones were very big.">Antes, los telÃ©fonos ______ (ser) muy grandes.</span> <span class="text-gray-400 italic">(Answer: eran)</span></p>
+                        <p>4. <span class="hover-translation" data-en="Did you used to go to the park?">Â¿(TÃº) ______ (ir) al parque?</span> <span class="text-gray-400 italic">(Answer: ibas)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

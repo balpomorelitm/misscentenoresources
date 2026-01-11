@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Arrow for tooltip */
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 2: Adjectives & Pronouns</h1>
+            <p class="text-indigo-200 mt-2">Agreement, Subject Pronouns, and Possessives</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- CONCEPT 1: ADJECTIVE AGREEMENT -->
+            <section id="section-adj-agreement" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">1. Adjective Agreement (Concordancia)</h2>
+                    <p class="text-gray-600 mt-2">
+                        Adjectives describe nouns (people or things). In Spanish, they must <strong>match</strong> the noun in:
+                        <br>1. <strong>Gender</strong> (Masculine/Feminine)
+                        <br>2. <strong>Number</strong> (Singular/Plural)
+                        <br><br>
+                        <em>Example:</em> El chico <span class="text-blue-600 font-bold">alto</span> (The tall boy) vs. Las chicas <span class="text-pink-600 font-bold">altas</span> (The tall girls).
+                    </p>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                        Exercise: Match the adjective to the noun
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4 italic">Choose the correct form of the adjective in parentheses.</p>
+
+                    <div class="space-y-4" id="exercise1-container">
+                        <!-- Items generated by JS -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise1()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise1()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback1" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- CONCEPT 2: SUBJECT PRONOUNS -->
+            <section id="section-pronouns" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">2. Subject Pronouns</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        <div>
+                            <h4 class="font-bold text-blue-800">Singular</h4>
+                            <ul class="text-sm text-gray-700 list-disc pl-5 space-y-1">
+                                <li><strong>Yo</strong> (I)</li>
+                                <li><strong>TÃº</strong> (You - informal)</li>
+                                <li><strong>Ã‰l / Ella</strong> (He / She)</li>
+                                <li><strong>Usted</strong> (You - formal)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-green-800">Plural</h4>
+                            <ul class="text-sm text-gray-700 list-disc pl-5 space-y-1">
+                                <li><strong>Nosotros / Nosotras</strong> (We)</li>
+                                <li><strong>Vosotros / Vosotras</strong> (You all - Spain informal)</li>
+                                <li><strong>Ellos / Ellas</strong> (They)</li>
+                                <li><strong>Ustedes</strong> (You all - Latin Am. / Formal Spain)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                        Exercise: Replace the name with a pronoun
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4 italic">Example: "Juan" -> "Ã‰l"</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="exercise2-container">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise2()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise2()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback2" class="feedback-msg"></div>
+                </div>
+            </section>
+
+            <!-- CONCEPT 3: POSSESSIVE ADJECTIVES -->
+            <section id="section-possessives" class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                    <h2 class="text-2xl font-bold text-indigo-900">3. Possessive Adjectives (My, Your, His...)</h2>
+                    <p class="text-gray-600 mt-2 text-sm">
+                        Possessives show ownership. They agree in number (singular/plural) with the <strong>thing possessed</strong>, not the owner.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-4 text-sm font-semibold text-center">
+                        <div class="bg-white p-2 rounded border">Mi / Mis (My)</div>
+                        <div class="bg-white p-2 rounded border">Tu / Tus (Your)</div>
+                        <div class="bg-white p-2 rounded border">Su / Sus (His/Her/Their)</div>
+                        <div class="bg-white p-2 rounded border">Nuestro/a/os/as (Our)</div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                        <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                        Exercise: Translate the possessive phrase
+                    </h3>
+                    
+                    <div class="space-y-3" id="exercise3-container">
+                        <!-- Rows generated by JS -->
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button onclick="checkExercise3()" class="btn-primary">Check Answers</button>
+                        <button onclick="resetExercise3()" class="btn-secondary">Reset</button>
+                    </div>
+                    <div id="feedback3" class="feedback-msg"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Exercise 1: Adjective Agreement
+        // Based on workbook pg 5-6 (approx)
+        const ex1Data = [
+            { sentence: "El chico es", options: ["alto", "alta", "altos"], ans: "alto", context: "The boy is tall" },
+            { sentence: "Las casas son", options: ["pequeÃ±o", "pequeÃ±a", "pequeÃ±as"], ans: "pequeÃ±as", context: "The houses are small" },
+            { sentence: "Una mujer", options: ["inteligente", "inteligentes"], ans: "inteligente", context: "An intelligent woman" },
+            { sentence: "Los libros", options: ["rojo", "rojos", "rojas"], ans: "rojos", context: "The red books" },
+            { sentence: "La chica", options: ["guapo", "guapa"], ans: "guapa", context: "The pretty girl" },
+            { sentence: "Unos problemas", options: ["difÃ­cil", "difÃ­ciles"], ans: "difÃ­ciles", context: "Some difficult problems" }
+        ];
+
+        // Exercise 2: Subject Pronouns
+        // Based on workbook concepts
+        const ex2Data = [
+            { q: "Marta", ans: "Ella", hint: "She" },
+            { q: "Juan y yo", ans: "Nosotros", hint: "We" },
+            { q: "Pedro y tÃº (Spain)", ans: "Vosotros", hint: "You all (informal)" },
+            { q: "El profesor", ans: "Ã‰l", hint: "He" },
+            { q: "Las chicas", ans: "Ellas", hint: "They (fem)" },
+            { q: "Sr. GarcÃ­a (talking to him)", ans: "Usted", hint: "You (formal)" }
+        ];
+
+        // Exercise 3: Possessives
+        // Based on workbook concepts
+        const ex3Data = [
+            { q: "My book", ans: "Mi libro", hint: "libro (masc)" },
+            { q: "Your (informal) house", ans: "Tu casa", hint: "casa (fem)" },
+            { q: "Our friends (m)", ans: "Nuestros amigos", hint: "amigos (pl)" },
+            { q: "His pen", ans: "Su bolÃ­grafo", hint: "bolÃ­grafo (masc)" },
+            { q: "Their tables", ans: "Sus mesas", hint: "mesas (pl)" }
+        ];
+
+        // --- RENDER FUNCTIONS ---
+
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('exercise1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, index) => {
+                // Create select options
+                let optionsHtml = `<option value="">Select...</option>`;
+                item.options.forEach(opt => {
+                    optionsHtml += `<option value="${opt}">${opt}</option>`;
+                });
+
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-3 p-3 bg-white rounded border border-gray-200";
+                div.innerHTML = `
+                    <span class="vocab-hint flex-grow" data-en="${item.context}">${item.sentence}</span>
+                    <select id="ex1-${index}" class="border rounded p-1 text-sm bg-gray-50 focus:ring-2 focus:ring-indigo-500 outline-none w-32">
+                        ${optionsHtml}
+                    </select>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('exercise2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex flex-col p-3 bg-gray-50 rounded border border-gray-200";
+                div.innerHTML = `
+                    <label class="text-sm text-gray-600 mb-1 vocab-hint w-fit" data-en="${item.hint}">${item.q}</label>
+                    <input type="text" id="ex2-${index}" class="w-full border rounded p-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Type pronoun...">
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function renderEx3() {
+            const container = document.getElementById('exercise3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center gap-4 p-2";
+                div.innerHTML = `
+                    <span class="w-1/3 text-gray-700 text-sm font-bold text-right">${item.q}</span>
+                    <input type="text" id="ex3-${index}" class="flex-grow border-b-2 border-gray-300 focus:border-indigo-500 outline-none px-2 py-1" placeholder="Translate...">
+                    <span class="text-xs text-gray-400 italic w-24">(${item.hint})</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // --- CHECK FUNCTIONS ---
+
+        function checkExercise1() {
+            let score = 0;
+            ex1Data.forEach((item, index) => {
+                const select = document.getElementById(`ex1-${index}`);
+                if (select.value === item.ans) {
+                    select.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+                    select.classList.remove('bg-red-100', 'border-red-500', 'text-red-700');
+                    score++;
+                } else {
+                    select.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                    select.classList.remove('bg-green-100', 'border-green-500', 'text-green-700');
+                }
+            });
+            updateFeedback('feedback1', score, ex1Data.length);
+        }
+
+        function checkExercise2() {
+            let score = 0;
+            ex2Data.forEach((item, index) => {
+                const input = document.getElementById(`ex2-${index}`);
+                // Normalize: trim and lowercase for loose checking, but pronouns usually capitalized. 
+                // Let's accept both for robustness.
+                const val = input.value.trim().toLowerCase();
+                const ans = item.ans.toLowerCase();
+                
+                // Allow "nosotras" if ans is "nosotros" etc? For simplicity strict match on base form.
+                if (val === ans) {
+                    input.classList.add('bg-green-100', 'border-green-500');
+                    input.classList.remove('bg-red-100', 'border-red-500');
+                    score++;
+                } else {
+                    input.classList.add('bg-red-100', 'border-red-500');
+                    input.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback2', score, ex2Data.length);
+        }
+
+        function checkExercise3() {
+            let score = 0;
+            ex3Data.forEach((item, index) => {
+                const input = document.getElementById(`ex3-${index}`);
+                const val = input.value.trim().toLowerCase();
+                const ans = item.ans.toLowerCase();
+
+                if (val === ans) {
+                    input.classList.add('bg-green-50', 'border-green-500', 'text-green-700');
+                    input.classList.remove('bg-red-50', 'border-red-500', 'text-red-700');
+                    score++;
+                } else {
+                    input.classList.add('bg-red-50', 'border-red-500', 'text-red-700');
+                    input.classList.remove('bg-green-50', 'border-green-500', 'text-green-700');
+                }
+            });
+            updateFeedback('feedback3', score, ex3Data.length);
+        }
+
+        function updateFeedback(elementId, score, total) {
+            const feedback = document.getElementById(elementId);
+            feedback.textContent = `Score: ${score} / ${total}`;
+            feedback.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET FUNCTIONS ---
+
+        function resetExercise1() {
+            ex1Data.forEach((_, index) => {
+                const select = document.getElementById(`ex1-${index}`);
+                select.value = "";
+                select.classList.remove('bg-green-100', 'border-green-500', 'text-green-700', 'bg-red-100', 'border-red-500', 'text-red-700');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+
+        function resetExercise2() {
+            ex2Data.forEach((_, index) => {
+                const input = document.getElementById(`ex2-${index}`);
+                input.value = "";
+                input.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetExercise3() {
+            ex3Data.forEach((_, index) => {
+                const input = document.getElementById(`ex3-${index}`);
+                input.value = "";
+                input.classList.remove('bg-green-50', 'border-green-500', 'text-green-700', 'bg-red-50', 'border-red-500', 'text-red-700');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        // Start
+        init();
+
+    </script>
+</body>
+</html>
+
+
+
+

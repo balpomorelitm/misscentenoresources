@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen IB Interactivo - Spanish Ab Initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-btn.active { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 800; }
+        .sticky-tabs { position: sticky; top: 0; z-index: 50; }
+        .correct-answer { background-color: #dcfce7; border-color: #22c55e; }
+        .wrong-answer { background-color: #fee2e2; border-color: #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-900">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- NavegaciÃ³n de Textos -->
+    <nav class="sticky-tabs bg-white shadow-sm border-b">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex space-x-6 overflow-x-auto no-scrollbar">
+                <button onclick="showTab('textoA')" id="btnA" class="tab-btn active py-4 text-xs md:text-sm uppercase tracking-widest transition-all whitespace-nowrap">Texto A: Dieta MediterrÃ¡nea</button>
+                <button onclick="showTab('textoB')" id="btnB" class="tab-btn py-4 text-xs md:text-sm uppercase tracking-widest transition-all whitespace-nowrap">Texto B: Redes Sociales</button>
+                <button onclick="showTab('textoC')" id="btnC" class="tab-btn py-4 text-xs md:text-sm uppercase tracking-widest transition-all whitespace-nowrap">Texto C: ReforestaciÃ³n</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        
+        <!-- Columna de Lectura (Izquierda) -->
+        <div class="space-y-6">
+            <div id="textoA" class="tab-content active bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mb-4 uppercase">Identidades</span>
+                <h2 class="text-2xl font-extrabold text-gray-800 mb-4">Texto A: MÃ¡s que comida, un estilo de vida</h2>
+                <div class="prose prose-blue leading-relaxed text-gray-700 space-y-4">
+                    <p><strong>(LÃ­nea 1-8)</strong> La dieta mediterrÃ¡nea no es solo un plan de alimentaciÃ³n, es una herencia cultural compartida por paÃ­ses como EspaÃ±a, Grecia e Italia. Se basa en el consumo de productos locales y de temporada. El <strong>ingrediente</strong> principal es el aceite de oliva, conocido como el "oro lÃ­quido". AdemÃ¡s, el <strong>hÃ¡bito</strong> de comer en compaÃ±Ã­a refuerza los lazos familiares y sociales, reduciendo los niveles de estrÃ©s en la poblaciÃ³n.</p>
+                    <p><strong>(LÃ­nea 9-16)</strong> Investigaciones recientes confirman que esta dieta ayuda a prevenir enfermedades del corazÃ³n. Sin embargo, los jÃ³venes actuales estÃ¡n cambiando sus costumbres. Debido al <strong>ritmo</strong> de vida acelerado, muchos prefieren la comida rÃ¡pida, lo que supone un <strong>desafÃ­o</strong> para la salud pÃºblica en las prÃ³ximas dÃ©cadas.</p>
+                    <p><strong>(LÃ­nea 17-22)</strong> Es fundamental que las escuelas promuevan talleres de cocina tradicional. Aprender a cocinar no es solo una habilidad tÃ©cnica, sino una forma de preservar nuestra identidad y cuidar nuestro cuerpo.</p>
+                </div>
+            </div>
+
+            <div id="textoB" class="tab-content bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full mb-4 uppercase">Ingenio Humano</span>
+                <h2 class="text-2xl font-extrabold text-gray-800 mb-4">Texto B: Â¿Conectados o aislados?</h2>
+                <div class="prose prose-purple leading-relaxed text-gray-700 space-y-4">
+                    <p><em>Fragmento del blog de Marta S.</em></p>
+                    <p>Hoy quiero reflexionar sobre cÃ³mo las redes sociales han transformado nuestra comunicaciÃ³n. Por un lado, nos permiten mantener el <strong>vÃ­nculo</strong> con amigos que viven lejos. Podemos compartir fotos y mensajes al instante, lo cual es maravilloso.</p>
+                    <p><strong>(LÃ­nea 10-18)</strong> Pero hay una cara oculta. A veces, paso horas mirando la vida "perfecta" de otros y me siento un poco triste. Es una <strong>herramienta</strong> poderosa, pero hay que usarla con <strong>precauciÃ³n</strong>. Mi hermano dice que prefiere quedar en una cafeterÃ­a para hablar cara a cara. Ã‰l cree que los <strong>dispositivos</strong> nunca podrÃ¡n sustituir un abrazo real.</p>
+                    <p>MaÃ±ana voy a intentar un "ayuno digital": 24 horas sin revisar el telÃ©fono. Â¿Se unen al reto?</p>
+                </div>
+            </div>
+
+            <div id="textoC" class="tab-content bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <span class="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase">CÃ³mo compartimos el planeta</span>
+                <h2 class="text-2xl font-extrabold text-gray-800 mb-4">Texto C: Plantando el futuro en Costa Rica</h2>
+                <div class="prose prose-green leading-relaxed text-gray-700 space-y-4">
+                    <p><strong>Entrevistador:</strong> Hola, Carlos. CuÃ©ntanos sobre el proyecto "Bosque Vivo".</p>
+                    <p><strong>Carlos:</strong> Empezamos hace tres aÃ±os con un grupo pequeÃ±o de voluntarios. Nuestro objetivo es recuperar las zonas deforestadas por la ganaderÃ­a. Costa Rica es famosa por su biodiversidad y no podemos permitir que se pierda.</p>
+                    <p><strong>(LÃ­nea 12-20)</strong> Trabajamos con especies nativas porque son mÃ¡s resistentes al clima local. Los niÃ±os de las escuelas cercanas vienen los sÃ¡bados a ayudarnos. Queremos que entiendan que cada Ã¡rbol <strong>cuenta</strong>. Al principio, la gente del pueblo era escÃ©ptica, pero ahora todos se sienten <strong>orgullosos</strong> del cambio en el paisaje.</p>
+                    <p><strong>(LÃ­nea 21-28)</strong> El mayor problema es la falta de agua durante la temporada seca, pero hemos instalado sistemas de riego ecolÃ³gicos que funcionan muy bien.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna de Preguntas (Derecha) -->
+        <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 h-fit lg:sticky lg:top-24 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 border-b pb-4">
+                <h3 class="text-lg font-bold text-gray-800">Cuadernillo de Respuestas</h3>
+                <span class="text-xs font-medium text-gray-400">IB Spanish Ab Initio</span>
+            </div>
+            
+            <form id="examForm" class="space-y-12">
+                
+                <!-- SecciÃ³n Texto A -->
+                <section>
+                    <h4 class="font-black text-blue-600 mb-4 uppercase text-[10px] tracking-widest">Preguntas: Texto A</h4>
+                    
+                    <p class="text-sm font-medium mb-3">Busca una palabra en el texto que signifique:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs text-gray-500 w-24 font-mono">1. Componente:</span>
+                            <input type="text" name="q1" placeholder="Respuesta..." class="flex-1 border-b border-gray-200 p-1 text-sm outline-none focus:border-blue-500 transition-colors">
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs text-gray-500 w-24 font-mono">2. Reto:</span>
+                            <input type="text" name="q2" placeholder="Respuesta..." class="flex-1 border-b border-gray-200 p-1 text-sm outline-none focus:border-blue-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <p class="text-sm font-medium mb-3">3. SegÃºn el Texto A, Â¿por quÃ© los jÃ³venes consumen comida rÃ¡pida?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-blue-50 cursor-pointer transition-colors border-gray-100">
+                                <input type="radio" name="q3" value="A" class="w-4 h-4 text-blue-600">
+                                <span class="text-sm">Porque es mÃ¡s barata que el aceite de oliva.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-blue-50 cursor-pointer transition-colors border-gray-100">
+                                <input type="radio" name="q3" value="B" class="w-4 h-4 text-blue-600">
+                                <span class="text-sm">Debido a la velocidad de la vida moderna.</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-blue-50 cursor-pointer transition-colors border-gray-100">
+                                <input type="radio" name="q3" value="C" class="w-4 h-4 text-blue-600">
+                                <span class="text-sm">Porque no hay mercados locales en las ciudades.</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SecciÃ³n Texto B -->
+                <section>
+                    <h4 class="font-black text-purple-600 mb-4 uppercase text-[10px] tracking-widest">Preguntas: Texto B</h4>
+                    <p class="text-sm font-medium mb-4">4. Elige las TRES frases que son VERDADERAS segÃºn el Texto B:</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-purple-50 cursor-pointer transition-colors border-gray-100">
+                            <input type="checkbox" name="q4" value="A" class="rounded text-purple-600">
+                            <span class="text-sm">Marta cree que las redes sociales ayudan a la amistad a distancia.</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-purple-50 cursor-pointer transition-colors border-gray-100">
+                            <input type="checkbox" name="q4" value="B" class="rounded text-purple-600">
+                            <span class="text-sm">Las redes sociales siempre hacen que Marta se sienta feliz.</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-purple-50 cursor-pointer transition-colors border-gray-100">
+                            <input type="checkbox" name="q4" value="C" class="rounded text-purple-600">
+                            <span class="text-sm">El hermano de Marta prefiere la interacciÃ³n fÃ­sica al telÃ©fono.</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-purple-50 cursor-pointer transition-colors border-gray-100">
+                            <input type="checkbox" name="q4" value="D" class="rounded text-purple-600">
+                            <span class="text-sm">Marta va a dejar de usar las redes para siempre.</span>
+                        </label>
+                        <label class="flex items-center space-x-3 p-3 border rounded-xl hover:bg-purple-50 cursor-pointer transition-colors border-gray-100">
+                            <input type="checkbox" name="q4" value="E" class="rounded text-purple-600">
+                            <span class="text-sm">Marta planea un dÃ­a de desconexiÃ³n total.</span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- SecciÃ³n Texto C -->
+                <section>
+                    <h4 class="font-black text-green-600 mb-4 uppercase text-[10px] tracking-widest">Preguntas: Texto C</h4>
+                    <p class="text-sm font-medium mb-3">5. Â¿QuÃ© grupo participa activamente con los voluntarios los sÃ¡bados?</p>
+                    <select name="q5" class="w-full border rounded-xl p-3 text-sm border-gray-200 outline-none focus:border-green-500">
+                        <option value="">Selecciona una opciÃ³n...</option>
+                        <option value="A">Los ganaderos de la zona.</option>
+                        <option value="B">Los niÃ±os de las escuelas cercanas.</option>
+                        <option value="C">Turistas internacionales.</option>
+                    </select>
+
+                    <div class="mt-8 space-y-4">
+                        <p class="text-sm font-medium">6. "La poblaciÃ³n local siempre apoyÃ³ el proyecto".</p>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center space-x-2 text-sm cursor-pointer">
+                                <input type="radio" name="q6" value="V"> <span>Verdadero</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm cursor-pointer">
+                                <input type="radio" name="q6" value="F"> <span>Falso</span>
+                            </label>
+                        </div>
+                        <input type="text" name="q6_just" placeholder="JustificaciÃ³n (copia del texto)..." class="w-full border-b border-gray-200 p-1 text-sm outline-none focus:border-green-500 italic">
+                    </div>
+                </section>
+
+                <div class="pt-6">
+                    <button type="button" onclick="calculateResults()" class="w-full bg-gray-900 text-white font-bold py-4 rounded-xl shadow-xl hover:bg-blue-600 transition-all transform active:scale-95 uppercase tracking-widest text-sm">Entregar Examen</button>
+                </div>
+            </form>
+
+            <!-- Resultados -->
+            <div id="results" class="hidden mt-8 p-6 bg-white rounded-2xl border-2 border-dashed border-gray-200 text-center">
+                <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Tu puntuaciÃ³n final</p>
+                <h4 class="text-4xl font-black text-gray-900 mb-4"><span id="score">0</span> / 10</h4>
+                <div id="feedbackBox" class="p-4 rounded-xl text-sm mb-4"></div>
+                <button onclick="window.location.reload()" class="text-xs text-blue-600 font-bold hover:underline">REINTENTAR EXAMEN</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            if(id === 'textoA') document.getElementById('btnA').classList.add('active');
+            if(id === 'textoB') document.getElementById('btnB').classList.add('active');
+            if(id === 'textoC') document.getElementById('btnC').classList.add('active');
+        }
+
+        function calculateResults() {
+            const form = document.forms['examForm'];
+            let score = 0;
+
+            // Texto A (Vocabulario + Radio)
+            if(form.q1.value.toLowerCase().trim() === 'ingrediente') score += 1;
+            if(form.q2.value.toLowerCase().trim() === 'desafÃ­o') score += 1;
+            if(form.q3.value === 'B') score += 1;
+
+            // Texto B (Checkboxes - 3 correctas)
+            const q4Values = Array.from(form.querySelectorAll('input[name="q4"]:checked')).map(cb => cb.value);
+            if(q4Values.includes('A')) score += 1;
+            if(q4Values.includes('C')) score += 1;
+            if(q4Values.includes('E')) score += 1;
+
+            // Texto C (Select + Radio + JustificaciÃ³n)
+            if(form.q5.value === 'B') score += 1;
+            if(form.q6.value === 'F') score += 1;
+            
+            // JustificaciÃ³n manual bÃ¡sica (Check if contains keywords from text)
+            const just = form.q6_just.value.toLowerCase();
+            if(just.includes('al principio') && just.includes('escÃ©ptica')) {
+                score += 2; // Worth more as it's harder
+            }
+
+            // UI Display
+            const scoreDisplay = document.getElementById('score');
+            const resultsDiv = document.getElementById('results');
+            const feedbackBox = document.getElementById('feedbackBox');
+
+            scoreDisplay.innerText = score;
+            resultsDiv.classList.remove('hidden');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+
+            if(score >= 8) {
+                feedbackBox.innerText = "Â¡Excelente! Nivel 7. Dominas el vocabulario y la comprensiÃ³n de textos complejos.";
+                feedbackBox.className = "p-4 rounded-xl text-sm mb-4 bg-green-50 text-green-700 font-medium";
+            } else if(score >= 5) {
+                feedbackBox.innerText = "Bien. Tienes una comprensiÃ³n sÃ³lida, pero revisa los detalles especÃ­ficos y las justificaciones.";
+                feedbackBox.className = "p-4 rounded-xl text-sm mb-4 bg-yellow-50 text-yellow-700 font-medium";
+            } else {
+                feedbackBox.innerText = "Sigue practicando. EnfÃ³cate en identificar palabras clave en las preguntas y buscarlas en el texto.";
+                feedbackBox.className = "p-4 rounded-xl text-sm mb-4 bg-red-50 text-red-700 font-medium";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+

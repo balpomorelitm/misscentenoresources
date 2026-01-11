@@ -1,0 +1,396 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff7ed; /* Light orange background for "Experiences" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .vocab-card-back {
+            background-color: #ea580c; /* Orange-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #ea580c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #ffedd5; /* Orange-100 */
+            color: #c2410c; /* Orange-700 */
+            border-left: 4px solid #c2410c;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #ea580c;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-slate-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 3</h1>
+                <p class="text-xs text-slate-300">Digital Study Guide (Pages 53 - 76)</p>
+            </div>
+            <div class="text-sm bg-orange-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('present_regular')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Grammar: Present Tense (Regular)</button>
+                <button onclick="scrollToSection('vocab_activities')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Vocab: Activities & Professions</button>
+                <button onclick="scrollToSection('frequency')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Frequency Adverbs</button>
+                <button onclick="scrollToSection('present_irregular')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Grammar: Irregular Verbs</button>
+                <button onclick="scrollToSection('reflexives')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Grammar: Reflexive Verbs</button>
+                <button onclick="scrollToSection('hobbies_vocab')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Vocab: Hobbies</button>
+                <button onclick="scrollToSection('social')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Social Interactions & Feelings</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-orange-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-orange-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Experiences (Experiencias).<br>
+                    <strong>Focus:</strong> In Unit 3, "Â¿CÃ³mo manejo mi tiempo?" (How do I manage my time?), you will learn to talk about your daily routines, hobbies, and social interactions using the present tense.
+                </div>
+            </section>
+
+            <!-- Section 2: Present Tense Regular -->
+            <section id="present_regular" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Grammar: Present Tense (Regular)</h2>
+                <p class="mb-4">Use the present tense for facts, routines, and frequency. Verbs are grouped by their endings: <strong>-AR, -ER, -IR</strong>.</p>
+                
+                <div class="overflow-x-auto bg-white rounded shadow border border-gray-200">
+                    <table class="min-w-full text-sm text-center">
+                        <thead class="bg-slate-800 text-white font-bold">
+                            <tr>
+                                <th class="p-3">Pronoun</th>
+                                <th class="p-3">-AR (Hablar)</th>
+                                <th class="p-3">-ER (Beber)</th>
+                                <th class="p-3">-IR (Vivir)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr><td class="p-2 font-bold">Yo</td><td class="p-2">Habl<span class="text-orange-600 font-bold">o</span></td><td class="p-2">Beb<span class="text-orange-600 font-bold">o</span></td><td class="p-2">Viv<span class="text-orange-600 font-bold">o</span></td></tr>
+                            <tr><td class="p-2 font-bold">TÃº</td><td class="p-2">Habl<span class="text-orange-600 font-bold">as</span></td><td class="p-2">Beb<span class="text-orange-600 font-bold">es</span></td><td class="p-2">Viv<span class="text-orange-600 font-bold">es</span></td></tr>
+                            <tr><td class="p-2 font-bold">Ã‰l/Ella/Usted</td><td class="p-2">Habl<span class="text-orange-600 font-bold">a</span></td><td class="p-2">Beb<span class="text-orange-600 font-bold">e</span></td><td class="p-2">Viv<span class="text-orange-600 font-bold">e</span></td></tr>
+                            <tr><td class="p-2 font-bold">Nosotros</td><td class="p-2">Habl<span class="text-orange-600 font-bold">amos</span></td><td class="p-2">Beb<span class="text-orange-600 font-bold">emos</span></td><td class="p-2">Viv<span class="text-orange-600 font-bold">imos</span></td></tr>
+                            <tr><td class="p-2 font-bold">Ellos/Ellas</td><td class="p-2">Habl<span class="text-orange-600 font-bold">an</span></td><td class="p-2">Beb<span class="text-orange-600 font-bold">en</span></td><td class="p-2">Viv<span class="text-orange-600 font-bold">en</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 3: Vocab Activities -->
+            <section id="vocab_activities" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Vocab: Activities & Professions</h2>
+                <p class="mb-4 text-sm">Common verbs used in daily life (Page 55). Click to translate.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Caminar</div>
+                            <div class="vocab-card-back">To walk</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Comer</div>
+                            <div class="vocab-card-back">To eat</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Escribir</div>
+                            <div class="vocab-card-back">To write</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Leer</div>
+                            <div class="vocab-card-back">To read</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Bailar</div>
+                            <div class="vocab-card-back">To dance</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Correr</div>
+                            <div class="vocab-card-back">To run</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Abrir</div>
+                            <div class="vocab-card-back">To open</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold">Vender</div>
+                            <div class="vocab-card-back">To sell</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Frequency -->
+            <section id="frequency" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Frequency Adverbs</h2>
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-700 mb-4">Â¿QuÃ© tan a menudo? (How often?)</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center">
+                            <div class="w-1/3 font-bold text-green-600">100%</div>
+                            <div class="w-2/3"><span class="hover-translation" data-en="Always">Siempre</span></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/3 font-bold text-green-500">80%</div>
+                            <div class="w-2/3"><span class="hover-translation" data-en="Frequently">Frecuentemente</span> / <span class="hover-translation" data-en="Often">A menudo</span></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/3 font-bold text-yellow-500">50%</div>
+                            <div class="w-2/3"><span class="hover-translation" data-en="Sometimes">A veces</span> / <span class="hover-translation" data-en="On occasions">En ocasiones</span></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/3 font-bold text-orange-500">20%</div>
+                            <div class="w-2/3"><span class="hover-translation" data-en="Almost never">Casi nunca</span></div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-1/3 font-bold text-red-600">0%</div>
+                            <div class="w-2/3"><span class="hover-translation" data-en="Never">Nunca</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Irregular Verbs -->
+            <section id="present_irregular" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Grammar: Irregular Verbs</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- GO verbs -->
+                    <div class="bg-orange-100 p-4 rounded-lg">
+                        <h3 class="font-bold text-orange-800 mb-2">"GO" Verbs (Yo form only)</h3>
+                        <p class="text-xs mb-2">These verbs only change in the "Yo" (I) form.</p>
+                        <ul class="text-sm space-y-1">
+                            <li>Hacer (To do) â†’ <span class="font-bold">Hago</span></li>
+                            <li>Poner (To put) â†’ <span class="font-bold">Pongo</span></li>
+                            <li>Salir (To go out) â†’ <span class="font-bold">Salgo</span></li>
+                            <li>Tener (To have) â†’ <span class="font-bold">Tengo</span></li>
+                            <li>Decir (To say) â†’ <span class="font-bold">Digo</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Stem Changing -->
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 mb-2">Stem-Changing Verbs</h3>
+                        <p class="text-xs mb-2">The vowel in the stem changes (except in nosotros/vosotros).</p>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>E â†’ IE:</strong> Cerrar (Cierro), Empezar (Empiezo)</li>
+                            <li><strong>O â†’ UE:</strong> Dormir (Duermo), Almorzar (Almuerzo)</li>
+                            <li><strong>E â†’ I:</strong> Pedir (Pido), Servir (Sirvo)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Reflexive Verbs -->
+            <section id="reflexives" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Grammar: Reflexive Verbs (Rutina)</h2>
+                
+                <div class="bg-white p-6 rounded shadow border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 mb-2">What are they?</h3>
+                    <p class="text-sm mb-2">Verbs where the action reflects back to the subject. They end in <strong>-se</strong> (e.g., <em>Lavarse</em> - to wash oneself).</p>
+                    <p class="text-sm bg-purple-50 p-2 rounded">
+                        <strong>Pronouns:</strong> Me, Te, Se, Nos, Os, Se.
+                    </p>
+                </div>
+
+                <h3 class="font-bold text-slate-700 mb-4">Common Routine Verbs</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To wake up">Despertarse (e>ie)</span> â†’ Me despierto</div>
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To get up">Levantarse</span> â†’ Me levanto</div>
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To shower">Ducharse</span> â†’ Me ducho</div>
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To brush (teeth/hair)">Cepillarse</span> â†’ Me cepillo</div>
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To get dressed">Vestirse (e>i)</span> â†’ Me visto</div>
+                    <div class="p-2 bg-white rounded shadow-sm border hover:bg-gray-50"><span class="hover-translation font-bold text-purple-700" data-en="To go to bed">Acostarse (o>ue)</span> â†’ Me acuesto</div>
+                </div>
+            </section>
+
+            <!-- Section 7: Hobbies -->
+            <section id="hobbies_vocab" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Vocab: Hobbies (Pasatiempos)</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center text-sm">
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To play video games">Jugar videojuegos</div>
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To go to the gym">Ir al gimnasio</div>
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To take photos">Tomar fotografÃ­as</div>
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To play board games">Jugar juegos de mesa</div>
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To play guitar">Tocar la guitarra</div>
+                    <div class="bg-yellow-100 p-3 rounded hover:bg-yellow-200 transition hover-translation" data-en="To go to the beach">Ir a la playa</div>
+                </div>
+            </section>
+
+            <!-- Section 8: Social -->
+            <section id="social" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Social Interactions & Feelings</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-blue-600 mb-2">Actions (Verbos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation" data-en="To help">Ayudar</span></li>
+                            <li><span class="hover-translation" data-en="To share">Compartir</span></li>
+                            <li><span class="hover-translation" data-en="To support">Apoyar</span></li>
+                            <li><span class="hover-translation" data-en="To collaborate">Colaborar</span></li>
+                            <li><span class="hover-translation" data-en="To protect">Proteger</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded border border-gray-200">
+                        <h4 class="font-bold text-pink-600 mb-2">Adjectives (Adjetivos)</h4>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="hover-translation" data-en="Generous">Generoso/a</span></li>
+                            <li><span class="hover-translation" data-en="Honest">Honesto/a</span></li>
+                            <li><span class="hover-translation" data-en="Respectful">Respetuoso/a</span></li>
+                            <li><span class="hover-translation" data-en="Kind/Polite">CortÃ©s</span></li>
+                            <li><span class="hover-translation" data-en="Humanitarian">Humanitario/a</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick').includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

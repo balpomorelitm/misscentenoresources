@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaderno Digital: Adjetivos Demostrativos</title>
+    <style>
+        :root {
+            --primary-color: #e67e22; /* Naranja para Demostrativos */
+            --secondary-color: #f39c12;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .notebook {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--primary-color);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+
+        h1 { margin: 0; color: var(--primary-color); }
+        .subtitle { font-style: italic; color: #666; margin-top: 5px; }
+
+        .section {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+
+        .english-note {
+            background: #fff9db;
+            padding: 15px;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 0.95em;
+            margin: 10px 0 20px 0;
+            color: #856404;
+            line-height: 1.5;
+        }
+
+        /* Tooltip Styles */
+        .vocab {
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: underline dotted;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+        }
+
+        .vocab::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #34495e;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .vocab:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .grammar-table th { background-color: var(--primary-color); color: white; }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .exercise-grid { grid-template-columns: 1fr; }
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ddd;
+        }
+
+        input[type="text"] {
+            padding: 6px 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.95em;
+            width: 130px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(230, 126, 34, 0.2);
+        }
+
+        .btn-check {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-check:hover { filter: brightness(1.1); }
+
+        .feedback {
+            margin-top: 15px;
+            display: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .correct-box { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .incorrect-box { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .score-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .distance-guide {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background: #fff8f0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ffe0b2;
+        }
+
+        .distance-item { text-align: center; flex: 1; }
+        .distance-item b { color: var(--primary-color); display: block; }
+    </style>
+</head>
+<body>
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+<div class="score-display">Puntos: <span id="total-score">0</span></div>
+
+<div class="notebook">
+    <header>
+        <h1>Adjetivos Demostrativos</h1>
+        <p class="subtitle">This, That, That over there...</p>
+    </header>
+
+    <!-- GRAMMAR SECTION -->
+    <div class="section">
+        <h2>📘 Gramática: Distancia y Concordancia</h2>
+        <div class="english-note">
+            <strong>Demonstratives:</strong> In Spanish, we choose the word based on how <strong>far</strong> the object is from the speaker. They must agree in <strong>gender</strong> and <strong>number</strong> with the noun. 
+            <em>Hover over the words to see their meaning!</em>
+        </div>
+
+        <div class="distance-guide">
+            <div class="distance-item">
+                <span class="vocab" data-tooltip="Here">Aquí</span>
+                <b>Cerca</b>
+                <span class="vocab" data-tooltip="This (masc.)">Este</span> / <span class="vocab" data-tooltip="This (fem.)">Esta</span>
+            </div>
+            <div class="distance-item">
+                <span class="vocab" data-tooltip="There">Ahí</span>
+                <b>Distancia Media</b>
+                <span class="vocab" data-tooltip="That (masc.)">Ese</span> / <span class="vocab" data-tooltip="That (fem.)">Esa</span>
+            </div>
+            <div class="distance-item">
+                <span class="vocab" data-tooltip="Over there">Allí / Allá</span>
+                <b>Lejos</b>
+                <span class="vocab" data-tooltip="That (far masc.)">Aquel</span> / <span class="vocab" data-tooltip="That (far fem.)">Aquella</span>
+            </div>
+        </div>
+
+        <table class="grammar-table">
+            <thead>
+                <tr>
+                    <th>Distancia</th>
+                    <th>Masc. Sing.</th>
+                    <th>Fem. Sing.</th>
+                    <th>Masc. Plural</th>
+                    <th>Fem. Plural</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cerca (This)</td>
+                    <td><span class="vocab" data-tooltip="This">este</span></td>
+                    <td><span class="vocab" data-tooltip="This">esta</span></td>
+                    <td><span class="vocab" data-tooltip="These">estos</span></td>
+                    <td><span class="vocab" data-tooltip="These">estas</span></td>
+                </tr>
+                <tr>
+                    <td>Media (That)</td>
+                    <td><span class="vocab" data-tooltip="That">ese</span></td>
+                    <td><span class="vocab" data-tooltip="That">esa</span></td>
+                    <td><span class="vocab" data-tooltip="Those">esos</span></td>
+                    <td><span class="vocab" data-tooltip="Those">esas</span></td>
+                </tr>
+                <tr>
+                    <td>Lejos (Over there)</td>
+                    <td><span class="vocab" data-tooltip="That (far)">aquel</span></td>
+                    <td><span class="vocab" data-tooltip="That (far)">aquella</span></td>
+                    <td><span class="vocab" data-tooltip="Those (far)">aquellos</span></td>
+                    <td><span class="vocab" data-tooltip="Those (far)">aquellas</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- EJERCICIO 1: CERCA -->
+    <div class="section">
+        <h2>Ejercicio 1: Objetos Cerca (Aquí)</h2>
+        <div class="english-note">
+            Use the correct form of <span class="vocab" data-tooltip="this / these">este</span>.
+        </div>
+        <div class="exercise-block" id="ex1">
+            <div class="exercise-grid">
+                <div class="question">1. <input type="text" data-ans="este"> libro (masc. sing.)</div>
+                <div class="question">2. <input type="text" data-ans="esta"> mesa (fem. sing.)</div>
+                <div class="question">3. <input type="text" data-ans="estos"> bolígrafos (masc. plu.)</div>
+                <div class="question">4. <input type="text" data-ans="estas"> sillas (fem. plu.)</div>
+                <div class="question">5. <input type="text" data-ans="esta"> casa (fem. sing.)</div>
+                <div class="question">6. <input type="text" data-ans="este"> gato (masc. sing.)</div>
+                <div class="question">7. <input type="text" data-ans="estas"> manzanas (fem. plu.)</div>
+                <div class="question">8. <input type="text" data-ans="estos"> coches (masc. plu.)</div>
+                <div class="question">9. <input type="text" data-ans="este"> ordenador (masc. sing.)</div>
+                <div class="question">10. <input type="text" data-ans="esta"> mochila (fem. sing.)</div>
+            </div>
+            <button class="btn-check" onclick="checkExercise('ex1')">Corregir Cerca</button>
+            <div id="feedback-ex1" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- EJERCICIO 3: SEGÚN LA DISTANCIA (BASADO EN IMAGEN) -->
+    <div class="section">
+        <h2>Ejercicio 3: Completa según la distancia</h2>
+        <div class="english-note">
+            Fill in the blanks with the correct demonstrative based on the adverb in brackets (aquí, ahí, allí).
+        </div>
+        <div class="exercise-block" id="ex3">
+            <div class="exercise-grid">
+                <div class="question">1. <input type="text" data-ans="este"> gato (aquí)</div>
+                <div class="question">2. <input type="text" data-ans="ese"> perro (ahí)</div>
+                <div class="question">3. <input type="text" data-ans="aquel"> ratón (allí)</div>
+                <div class="question">4. <input type="text" data-ans="estas"> flores (aquí)</div>
+                <div class="question">5. <input type="text" data-ans="esas"> casas (ahí)</div>
+                <div class="question">6. <input type="text" data-ans="aquellos"> árboles (allí)</div>
+                <div class="question">7. <input type="text" data-ans="esta"> niña (aquí)</div>
+                <div class="question">8. <input type="text" data-ans="aquella"> montaña (allí)</div>
+                <div class="question">9. <input type="text" data-ans="esos"> edificios (ahí)</div>
+                <div class="question">10. <input type="text" data-ans="estas"> manzanas (aquí)</div>
+            </div>
+            <button class="btn-check" onclick="checkExercise('ex3')">Corregir Ejercicio 3</button>
+            <div id="feedback-ex3" class="feedback"></div>
+        </div>
+    </div>
+
+    <!-- EJERCICIO 4: TABLA DE CONCORDANCIA -->
+    <div class="section">
+        <h2>Ejercicio 4: Tabla de Concordancia</h2>
+        <div class="english-note">
+            Complete the pairs (Singular & Plural).
+        </div>
+        <div class="exercise-block" id="ex4">
+            <div class="exercise-grid">
+                <div class="question">1. Este libro -> <input type="text" data-ans="estos"> libros.</div>
+                <div class="question">2. <input type="text" data-ans="esta"> chica -> Estas chicas.</div>
+                <div class="question">3. Esa mesa -> <input type="text" data-ans="esas"> mesas.</div>
+                <div class="question">4. <input type="text" data-ans="ese"> gato -> Esos gatos.</div>
+                <div class="question">5. Aquella nube -> <input type="text" data-ans="aquellas"> nubes.</div>
+                <div class="question">6. <input type="text" data-ans="aquel"> niño -> Aquellos niños.</div>
+            </div>
+            <button class="btn-check" onclick="checkExercise('ex4')">Corregir Tabla</button>
+            <div id="feedback-ex4" class="feedback"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let globalScore = 0;
+    const completedBlocks = new Set();
+
+    function checkExercise(id) {
+        const container = document.getElementById(id);
+        const inputs = container.querySelectorAll('input');
+        const feedback = document.getElementById('feedback-' + id);
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userAns = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const correctAns = input.getAttribute('data-ans').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (userAns === correctAns) {
+                input.style.borderColor = "var(--success-color)";
+                input.style.backgroundColor = "#e8f5e9";
+                correctCount++;
+            } else {
+                input.style.borderColor = "var(--error-color)";
+                input.style.backgroundColor = "#ffebee";
+            }
+        });
+
+        feedback.style.display = "block";
+        if (correctCount === inputs.length) {
+            feedback.className = "feedback correct-box";
+            feedback.innerHTML = "¡Perfecto! Has dominado este bloque de distancia. ";
+            if (!completedBlocks.has(id)) {
+                globalScore += correctCount;
+                completedBlocks.add(id);
+                document.getElementById('total-score').innerText = globalScore;
+            }
+        } else {
+            feedback.className = "feedback incorrect-box";
+            feedback.innerHTML = `Has acertado ${correctCount} de ${inputs.length}. ¡Fíjate bien en la distancia!`;
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+

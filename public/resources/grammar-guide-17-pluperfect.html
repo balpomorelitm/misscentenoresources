@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 17</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 17: Pluscuamperfecto</h1>
+            <p class="text-indigo-200 mt-2">The "Past Perfect" (Had done)</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: Structure</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. PretÃ©rito Pluscuamperfecto</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">Use:</h3>
+                                <p class="text-lg mt-1">
+                                    To talk about an action that happened <strong>before</strong> another past action.
+                                </p>
+                                <p class="text-sm text-gray-500 mt-1 italic">
+                                    Example: Cuando lleguÃ© (Past), ella ya <span class="text-indigo-600 font-bold">habÃ­a salido</span> (Before Past).
+                                    <br>(When I arrived, she <span class="font-bold">had already left</span>.)
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">Step 1: HABER (Imperfect)</h3>
+                                    <ul class="text-sm list-none space-y-1 text-blue-900 font-mono">
+                                        <li>Yo <strong>habÃ­a</strong></li>
+                                        <li>TÃº <strong>habÃ­as</strong></li>
+                                        <li>Ã‰l/Ella <strong>habÃ­a</strong></li>
+                                        <li>Nosotros <strong>habÃ­amos</strong></li>
+                                        <li>Vosotros <strong>habÃ­ais</strong></li>
+                                        <li>Ellos/Ellas <strong>habÃ­an</strong></li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h3 class="font-bold text-green-800 text-lg mb-2">Step 2: PARTICIPLE</h3>
+                                    <ul class="text-sm list-none space-y-1 text-green-900 font-mono">
+                                        <li>AR -> <strong>-ado</strong> (Hablado)</li>
+                                        <li>ER/IR -> <strong>-ido</strong> (Comido)</li>
+                                        <li>Irregulars -> <strong>Hecho, Visto, Escrito...</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Form the Pluscuamperfecto
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Combine Haber + Participle. Example: (yo / comer) -> habÃ­a comido</p>
+
+                        <div class="space-y-4" id="ex1-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                
+                <!-- Exercise 2: Context -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Fill in the blanks to complete the sequence of events.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Complete the sentences
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex2-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+
+                <!-- Exercise 3: Order of Events -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                            Exercise: Logical Order
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4 italic">Which action happened FIRST? (The one that uses "HabÃ­a...")</p>
+                        
+                        <div class="space-y-4" id="ex3-container">
+                            <!-- Generated by JS -->
+                        </div>
+
+                         <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx3()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx3()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback3" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Formation
+        const ex1Data = [
+            { q: "(Yo / estudiar) ______ mucho antes del examen.", ans: "habÃ­a estudiado", hint: "I had studied" },
+            { q: "(TÃº / ver) ______ la pelÃ­cula ya.", ans: "habÃ­as visto", hint: "You had seen (Irregular: Visto)" },
+            { q: "(Ella / escribir) ______ el correo.", ans: "habÃ­a escrito", hint: "She had written (Irregular: Escrito)" },
+            { q: "(Nosotros / salir) ______ de casa.", ans: "habÃ­amos salido", hint: "We had left" },
+            { q: "(Ellos / hacer) ______ la tarea.", ans: "habÃ­an hecho", hint: "They had done (Irregular: Hecho)" }
+        ];
+
+        // Ex 2: Context Sentences
+        const ex2Data = [
+            { q: "Cuando lleguÃ© al cine, la pelÃ­cula ya ______ (empezar).", ans: "habÃ­a empezado", hint: "When I arrived, the movie HAD already STARTED." },
+            { q: "No tenÃ­a hambre porque yo ya ______ (comer).", ans: "habÃ­a comido", hint: "I wasn't hungry because I HAD already EATEN." },
+            { q: "Ella estaba cansada porque no ______ (dormir) bien.", ans: "habÃ­a dormido", hint: "She was tired because she HAD not SLEPT well." },
+            { q: "Nunca ______ (estar - nosotros) en ParÃ­s antes.", ans: "habÃ­amos estado", hint: "We HAD never BEEN to Paris before." },
+            { q: "Juan perdiÃ³ el libro que ______ (comprar).", ans: "habÃ­a comprado", hint: "Juan lost the book that he HAD BOUGHT." }
+        ];
+
+        // Ex 3: Logical Order (Multiple Choice)
+        const ex3Data = [
+            { 
+                q: "1. ComÃ­. 2. Llegaste. (I had eaten when you arrived)", 
+                options: ["Yo habÃ­a comido", "TÃº habÃ­as llegado"], 
+                ans: "Yo habÃ­a comido", 
+                hint: "Which happened first? The eating or the arriving?" 
+            },
+            { 
+                q: "1. EstudiÃ³. 2. Hizo el examen. (She had studied before the exam)", 
+                options: ["Ella habÃ­a estudiado", "Ella habÃ­a hecho el examen"], 
+                ans: "Ella habÃ­a estudiado", 
+                hint: "Which happened first? Studying or the exam?" 
+            },
+            { 
+                q: "1. PerdÃ­ las llaves. 2. No pude entrar. (I couldn't enter because I had lost keys)", 
+                options: ["No habÃ­a podido entrar", "HabÃ­a perdido las llaves"], 
+                ans: "HabÃ­a perdido las llaves", 
+                hint: "Which happened first? Losing keys or not entering?" 
+            }
+        ];
+
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200 flex flex-col sm:flex-row items-center gap-3">
+                    <span class="vocab-hint font-medium text-gray-700 w-full sm:w-1/2 text-left sm:text-right" data-en="${item.hint}">${item.q.split('______')[0]}</span>
+                    <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold" placeholder="...">
+                    <span class="text-gray-600 w-full sm:w-auto text-left">${item.q.split('______')[1] || ''}</span>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('ex2-container');
+            container.innerHTML = '';
+            ex2Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-2"><span class="vocab-hint" data-en="${item.hint}">Hint (Hover)</span></p>
+                    <div class="flex flex-col sm:flex-row items-center gap-2">
+                        <span class="text-gray-800">${item.q.split('______')[0]}</span>
+                        <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 py-1 w-40 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold" placeholder="...">
+                        <span class="text-gray-800">${item.q.split('______')[1]}</span>
+                    </div>
+                </div>`;
+                container.innerHTML += html;
+            });
+        }
+        
+        function renderEx3() {
+             const container = document.getElementById('ex3-container');
+            container.innerHTML = '';
+            ex3Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <p class="text-xs text-gray-500 mb-2 uppercase font-bold">Which action is the "Pluscuamperfecto" (First Event)?</p>
+                    <div class="flex flex-col gap-2">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex3-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            ex2Data.forEach((item, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                if(el.value.trim().toLowerCase() === item.ans.toLowerCase()) {
+                    el.classList.add('bg-green-100', 'border-green-500');
+                    el.classList.remove('bg-red-100', 'border-red-500');
+                    s++;
+                } else {
+                    el.classList.add('bg-red-100', 'border-red-500');
+                    el.classList.remove('bg-green-100', 'border-green-500');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function checkEx3() {
+            let s = 0;
+            ex3Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex3-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex3-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback3', s, ex3Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 py-1 w-full sm:w-48 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold";
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+        function resetEx2() {
+             ex2Data.forEach((_, i) => {
+                const el = document.getElementById(`ex2-${i}`);
+                el.value = "";
+                el.className = "border-b-2 border-gray-300 bg-transparent px-2 py-1 w-40 focus:border-indigo-500 outline-none text-center text-indigo-700 font-bold";
+            });
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        function resetEx3() {
+             ex3Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex3-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback3').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

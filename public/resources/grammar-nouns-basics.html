@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar: Los Sustantivos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .correct { border-color: #10b981 !important; background-color: #ecfdf5; }
+        .incorrect { border-color: #ef4444 !important; background-color: #fef2f2; }
+        .feedback-icon { display: none; margin-left: 8px; }
+        .show-feedback .feedback-icon { display: inline; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-relaxed">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+    <!-- Back Button -->
+    
+
+    <div class="max-w-4xl mx-auto p-6 md:p-12">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-blue-800 mb-4">Unidad 1: Los Sustantivos</h1>
+            <p class="text-lg text-slate-600">Grammar & Skills Interactive Workbook</p>
+        </header>
+
+        <!-- English Grammar Notes Section -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10">
+            <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center">
+                <span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </span>
+                Grammar Notes (Gender & Number)
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-700">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-blue-700 mb-2 uppercase tracking-wide">1. Gender (Género)</h3>
+                    <ul class="space-y-2">
+                        <li>• Most nouns ending in <strong class="text-blue-600">-o</strong> are <strong>Masculine</strong> (el libro).</li>
+                        <li>• Most nouns ending in <strong class="text-pink-600">-a</strong> are <strong>Feminine</strong> (la mesa).</li>
+                        <li>• Nouns ending in <strong class="text-slate-600">-ción, -dad, -tud</strong> are almost always <strong>Feminine</strong>.</li>
+                        <li>• <em class="text-amber-600 italic">Watch out!</em> Some are irregular: el mapa, el problema, la mano.</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-blue-700 mb-2 uppercase tracking-wide">2. Articles (Artículos)</h3>
+                    <p class="mb-2"><strong>Definite (The):</strong> El, La, Los, Las.</p>
+                    <p><strong>Indefinite (A/Some):</strong> Un, Una, Unos, Unas.</p>
+                    <p class="mt-2 italic text-slate-500">The article must match the gender and number of the noun.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercise 1 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10" id="exercise-1">
+            <h2 class="text-xl font-bold mb-6">Ejercicio 1: ¿Masculino o femenino?</h2>
+            <p class="text-slate-500 mb-6 italic">Select the correct gender for each word based on the rules.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="ex1-container">
+                <!-- Word list generated via JS -->
+            </div>
+            
+            <button onclick="checkEx1()" class="mt-8 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                Check Answers
+            </button>
+            <p id="ex1-score" class="mt-4 font-bold text-lg hidden"></p>
+        </section>
+
+        <!-- Exercise 2 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-10">
+            <h2 class="text-xl font-bold mb-6">Ejercicio 2: Artículos determinados e indeterminados</h2>
+            <p class="text-slate-500 mb-6 italic">Complete with the correct article (un, una, el, la, unos, etc.). Pay attention to capitalization if it starts a sentence.</p>
+            
+            <div class="space-y-4" id="ex2-container">
+                <!-- Sentences generated via JS -->
+            </div>
+
+            <button onclick="checkEx2()" class="mt-8 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                Check Answers
+            </button>
+        </section>
+
+        <!-- Exercise 3 -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+            <h2 class="text-xl font-bold mb-6">Ejercicio 3: El género y el número</h2>
+            <p class="text-slate-500 mb-6 italic">Complete the table with the correct forms.</p>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[500px]">
+                    <thead>
+                        <tr class="bg-slate-100">
+                            <th class="p-3 border border-slate-200">Masculino Sing.</th>
+                            <th class="p-3 border border-slate-200">Femenino Sing.</th>
+                            <th class="p-3 border border-slate-200">Masculino Plural</th>
+                            <th class="p-3 border border-slate-200">Femenino Plural</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ex3-body">
+                        <!-- Table rows generated via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <button onclick="checkEx3()" class="mt-8 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                Check Answers
+            </button>
+        </section>
+        
+        <footer class="mt-12 text-center text-slate-400 text-sm pb-12">
+            Spanish ab initio Workbook - Interactive Student Edition
+        </footer>
+    </div>
+
+    <script>
+        // --- DATA FROM PDF ANSWERS ---
+        
+        // Exercise 1 Data (Mock words matching the M/F answers)
+        const ex1Words = [
+            { word: "Libro", ans: "m" }, { word: "Diccionario", ans: "m" }, { word: "Bolígrafo", ans: "m" },
+            { word: "Mesa", ans: "f" }, { word: "Silla", ans: "f" }, { word: "Ventana", ans: "f" },
+            { word: "Cuaderno", ans: "m" }, { word: "Puerta", ans: "f" }, { word: "Reloj", ans: "m" },
+            { word: "Teléfono", ans: "m" }, { word: "Papel", ans: "m" }, { word: "Profesor", ans: "m" },
+            { word: "Actor", ans: "m" }, { word: "Hermano", ans: "m" }, { word: "Abuela", ans: "f" },
+            { word: "Tío", ans: "m" }, { word: "Hijo", ans: "m" }, { word: "Niño", ans: "m" },
+            { word: "Hija", ans: "f" }, { word: "Padre", ans: "m" }, { word: "Madre", ans: "f" },
+            { word: "Chico", ans: "m" }, { word: "Estudiante", ans: "m" }, { word: "Actriz", ans: "f" },
+            { word: "Noche", ans: "f" }
+        ];
+
+        // Exercise 2 Data
+        const ex2Answers = ["un", "El", "la, unos", "un", "Uno, el", "el", "unos", "la", "un", "una, el"];
+        const ex2Prompts = [
+            "Tengo ____ libro nuevo.",
+            "____ profesor de español es bueno.",
+            "En ____ casa hay ____ cuadros.",
+            "Soy ____ niño.",
+            "____ momento, ____ libro es mío.",
+            "Mira ____ reloj.",
+            "Tengo ____ lápices.",
+            "Me gusta ____ música.",
+            "¿Tienes ____ bolígrafo?",
+            "Es ____ chica y ____ chico."
+        ];
+
+        // Exercise 3 Data (Rows: hombre/mujer, padre/madre, niño/niña, tío/tía, profesor/profesora, actor/actriz, manzano/manzana)
+        const ex3Data = [
+            ["hombre", "mujer", "hombres", "mujeres"],
+            ["padre", "madre", "padres", "madres"],
+            ["niño", "niña", "niños", "niñas"],
+            ["tío", "tía", "tíos", "tías"],
+            ["profesor", "profesora", "profesores", "profesoras"],
+            ["actor", "actriz", "actores", "actrices"],
+            ["manzano", "manzana", "manzanos", "manzanas"]
+        ];
+
+        // Initialize Exercises
+        window.onload = () => {
+            // Populate Ex 1
+            const container1 = document.getElementById('ex1-container');
+            ex1Words.forEach((item, i) => {
+                container1.innerHTML += `
+                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+                        <span class="font-medium">${i+1}. ${item.word}</span>
+                        <select id="ex1-${i}" class="text-sm p-1 rounded border border-slate-300 focus:ring-2 focus:ring-blue-400 outline-none">
+                            <option value="">--</option>
+                            <option value="m">M</option>
+                            <option value="f">F</option>
+                        </select>
+                    </div>
+                `;
+            });
+
+            // Populate Ex 2
+            const container2 = document.getElementById('ex2-container');
+            ex2Prompts.forEach((prompt, i) => {
+                const parts = prompt.split('____');
+                let html = `<div class="p-3 bg-slate-50 rounded-lg border border-slate-200">${i+1}. `;
+                parts.forEach((part, pIdx) => {
+                    html += part;
+                    if (pIdx < parts.length - 1) {
+                        html += `<input type="text" id="ex2-${i}-${pIdx}" class="w-20 mx-1 p-1 text-center rounded border border-slate-300 outline-none focus:ring-2 focus:ring-blue-400" placeholder="...">`;
+                    }
+                });
+                html += `</div>`;
+                container2.innerHTML += html;
+            });
+
+            // Populate Ex 3
+            const tbody3 = document.getElementById('ex3-body');
+            ex3Data.forEach((row, rIdx) => {
+                let tr = `<tr>`;
+                row.forEach((cell, cIdx) => {
+                    // We hide one cell per row to make it an exercise
+                    const isHidden = (rIdx + cIdx) % 2 === 0; 
+                    if (isHidden) {
+                        tr += `<td class="p-2 border border-slate-200">
+                            <input type="text" id="ex3-${rIdx}-${cIdx}" class="w-full p-1 border-none bg-transparent focus:ring-2 focus:ring-blue-200 outline-none" placeholder="...">
+                        </td>`;
+                    } else {
+                        tr += `<td class="p-2 border border-slate-200 bg-slate-50 font-medium">${cell}</td>`;
+                    }
+                });
+                tr += `</tr>`;
+                tbody3.innerHTML += tr;
+            });
+        }
+
+        // --- CHECK LOGIC ---
+
+        function checkEx1() {
+            let correct = 0;
+            ex1Words.forEach((item, i) => {
+                const el = document.getElementById(`ex1-${i}`);
+                if (el.value === item.ans) {
+                    el.className = "text-sm p-1 rounded border-2 correct";
+                    correct++;
+                } else {
+                    el.className = "text-sm p-1 rounded border-2 incorrect";
+                }
+            });
+            const score = document.getElementById('ex1-score');
+            score.innerText = `Result: ${correct} / ${ex1Words.length}`;
+            score.classList.remove('hidden');
+        }
+
+        function checkEx2() {
+            ex2Answers.forEach((answerStr, i) => {
+                const expected = answerStr.split(',').map(s => s.trim());
+                expected.forEach((val, pIdx) => {
+                    const input = document.getElementById(`ex2-${i}-${pIdx}`);
+                    if (input.value.trim().toLowerCase() === val.toLowerCase()) {
+                        input.classList.add('correct');
+                        input.classList.remove('incorrect');
+                    } else {
+                        input.classList.add('incorrect');
+                        input.classList.remove('correct');
+                    }
+                });
+            });
+        }
+
+        function checkEx3() {
+            ex3Data.forEach((row, rIdx) => {
+                row.forEach((cell, cIdx) => {
+                    const input = document.getElementById(`ex3-${rIdx}-${cIdx}`);
+                    if (input) {
+                        if (input.value.trim().toLowerCase() === cell.toLowerCase()) {
+                            input.parentElement.classList.add('correct');
+                            input.parentElement.classList.remove('incorrect');
+                        } else {
+                            input.parentElement.classList.add('incorrect');
+                            input.parentElement.classList.remove('correct');
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

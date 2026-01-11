@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Al usar dominio personalizado (misscenteno.study), la base pasa a ser la raíz '/'
-  // en lugar del nombre del repositorio.
-  base: '/', 
+  // When using custom domain (misscenteno.study), base is '/'
+  base: '/',
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        resources: resolve(__dirname, 'resources.html'),
+      },
+    },
+  },
 })

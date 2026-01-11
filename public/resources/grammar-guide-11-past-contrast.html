@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Grammar Workbook: Unit 11</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+
+        /* Tooltip style for translations */
+        .vocab-hint {
+            border-bottom: 2px dotted #6366f1;
+            cursor: help;
+            position: relative;
+            display: inline-block;
+            color: #4338ca;
+            font-weight: 600;
+        }
+
+        .vocab-hint:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1f2937;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .vocab-hint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+            z-index: 10;
+        }
+
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+
+        .incorrect-answer {
+            border-color: #ef4444 !important;
+            background-color: #fee2e2 !important;
+            color: #991b1b !important;
+        }
+
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-primary:hover { background-color: #4338ca; }
+
+        .btn-secondary {
+            background-color: #9ca3af;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+            font-weight: 600;
+        }
+        .btn-secondary:hover { background-color: #6b7280; }
+        
+        .feedback-msg {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 600;
+            color: #6b7280;
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .highlight-box {
+            background-color: #e0e7ff;
+            border-left: 4px solid #4f46e5;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-indigo-900 text-white p-6 shadow-lg">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-2">
+                <i class="fas fa-book-open text-2xl text-indigo-300"></i>
+                <span class="uppercase tracking-wider text-xs font-bold text-indigo-300">Grammar & Skills Workbook</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold">Unit 11: Past Tense Contrast</h1>
+            <p class="text-indigo-200 mt-2">PretÃ©rito Perfecto vs. PretÃ©rito Indefinido</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8">
+        <div class="max-w-4xl mx-auto space-y-12">
+
+            <!-- TABS NAVIGATION -->
+            <div class="flex border-b border-gray-200 mb-6 overflow-x-auto">
+                <div class="tab-btn active whitespace-nowrap" onclick="openTab('grammar')">1. Grammar: When to use which?</div>
+                <div class="tab-btn whitespace-nowrap" onclick="openTab('practice')">2. Practice: Exercises</div>
+            </div>
+
+            <!-- TAB 1: GRAMMAR -->
+            <div id="grammar" class="tab-content active space-y-8">
+                
+                <!-- Concept Explanation -->
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-indigo-50">
+                        <h2 class="text-2xl font-bold text-indigo-900">1. PretÃ©rito Perfecto vs. Indefinido</h2>
+                        
+                        <div class="mt-4 space-y-6 text-gray-700">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Perfecto Column -->
+                                <div class="bg-blue-50 p-4 rounded border border-blue-200">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">PretÃ©rito Perfecto (He comido)</h3>
+                                    <p class="text-sm mb-3">Use this for actions in a time frame that is <strong>NOT finished</strong> yet, or for life experiences.</p>
+                                    <h4 class="font-bold text-blue-700 text-sm uppercase mb-2">Keywords (Marcadores):</h4>
+                                    <ul class="text-sm list-disc pl-5 space-y-1 text-blue-900">
+                                        <li><span class="vocab-hint" data-en="Today">Hoy</span></li>
+                                        <li><span class="vocab-hint" data-en="This morning/week/year">Esta maÃ±ana / semana / Este aÃ±o</span></li>
+                                        <li><span class="vocab-hint" data-en="Lately">Ãšltimamente</span></li>
+                                        <li><span class="vocab-hint" data-en="Ever / Never">Alguna vez / Nunca</span></li>
+                                        <li><span class="vocab-hint" data-en="Already / Yet">Ya / TodavÃ­a no</span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Indefinido Column -->
+                                <div class="bg-green-50 p-4 rounded border border-green-200">
+                                    <h3 class="font-bold text-green-800 text-lg mb-2">PretÃ©rito Indefinido (ComÃ­)</h3>
+                                    <p class="text-sm mb-3">Use this for actions completed at a <strong>specific time</strong> in the past.</p>
+                                    <h4 class="font-bold text-green-700 text-sm uppercase mb-2">Keywords (Marcadores):</h4>
+                                    <ul class="text-sm list-disc pl-5 space-y-1 text-green-900">
+                                        <li><span class="vocab-hint" data-en="Yesterday">Ayer</span></li>
+                                        <li><span class="vocab-hint" data-en="Last night">Anoche</span></li>
+                                        <li><span class="vocab-hint" data-en="The other day">El otro dÃ­a</span></li>
+                                        <li><span class="vocab-hint" data-en="Last week/year">La semana pasada / El aÃ±o pasado</span></li>
+                                        <li><span class="vocab-hint" data-en="In 2015">En 2015</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h3 class="font-bold text-indigo-800">Example Comparison:</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                                    <p class="text-sm italic">
+                                        <span class="font-bold text-blue-600">Hoy</span> he desayunado cafÃ©.
+                                        <br><span class="text-xs text-gray-500">(Today is not over yet)</span>
+                                    </p>
+                                    <p class="text-sm italic">
+                                        <span class="font-bold text-green-600">Ayer</span> desayunÃ© cafÃ©.
+                                        <br><span class="text-xs text-gray-500">(Yesterday is finished)</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: PRACTICE -->
+            <div id="practice" class="tab-content space-y-8">
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 bg-orange-50">
+                        <h2 class="text-2xl font-bold text-orange-900">2. Exercises</h2>
+                        <p class="text-gray-600 mt-2">
+                            Choose the correct verb form based on the time marker.
+                        </p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                            Exercise: Perfect vs. Indefinite
+                        </h3>
+                        
+                        <div class="space-y-4" id="ex1-container">
+                             <!-- Generated by JS -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx1()" class="btn-primary text-sm">Check Answers</button>
+                            <button onclick="resetEx1()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback1" class="feedback-msg"></div>
+                    </div>
+                </section>
+                
+                <section class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-700 mb-4 flex items-center">
+                            <span class="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                            Exercise: Drag & Drop (Sort by Tense)
+                        </h3>
+                        <p class="text-sm text-gray-500 mb-4">Drag the time markers to the correct box.</p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <!-- Drop Zones -->
+                            <div class="border-2 border-blue-300 bg-blue-50 rounded p-4 min-h-[150px]" ondrop="drop(event, 'perfecto')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-blue-700 text-center mb-2">PretÃ©rito Perfecto<br><span class="text-xs font-normal">(Time NOT finished)</span></h4>
+                                <div id="zone-perfecto" class="flex flex-wrap gap-2"></div>
+                            </div>
+                            <div class="border-2 border-green-300 bg-green-50 rounded p-4 min-h-[150px]" ondrop="drop(event, 'indefinido')" ondragover="allowDrop(event)">
+                                <h4 class="font-bold text-green-700 text-center mb-2">PretÃ©rito Indefinido<br><span class="text-xs font-normal">(Time finished)</span></h4>
+                                <div id="zone-indefinido" class="flex flex-wrap gap-2"></div>
+                            </div>
+                        </div>
+
+                        <!-- Draggable Items -->
+                        <div id="drag-items" class="flex flex-wrap gap-2 bg-gray-100 p-4 rounded border border-gray-300">
+                            <!-- JS Generated -->
+                        </div>
+
+                        <div class="mt-6 flex gap-2">
+                            <button onclick="checkEx2()" class="btn-primary text-sm">Check Sorting</button>
+                            <button onclick="resetEx2()" class="btn-secondary text-sm">Reset</button>
+                        </div>
+                        <div id="feedback2" class="feedback-msg"></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 mt-12 text-center text-sm">
+        <p>Spanish ab initio Grammar Practice | Based on Hodder Education 2019</p>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // --- DATA ---
+        
+        // Ex 1: Choose verb form
+        const ex1Data = [
+            { q: "Ayer yo ______ (ir) al cine.", options: ["he ido", "fui"], ans: "fui", hint: "Yesterday (Finished)" },
+            { q: "Hoy nosotros ______ (comer) paella.", options: ["hemos comido", "comimos"], ans: "hemos comido", hint: "Today (Not finished)" },
+            { q: "El aÃ±o pasado tÃº ______ (visitar) ParÃ­s.", options: ["has visitado", "visitaste"], ans: "visitaste", hint: "Last year (Finished)" },
+            { q: "Esta semana ella no ______ (estudiar) mucho.", options: ["ha estudiado", "estudiÃ³"], ans: "ha estudiado", hint: "This week (Not finished)" },
+            { q: "En 2010 mis padres ______ (comprar) una casa.", options: ["han comprado", "compraron"], ans: "compraron", hint: "In 2010 (Finished)" },
+            { q: "Â¿Alguna vez ______ (ver) un fantasma?", options: ["has visto", "viste"], ans: "has visto", hint: "Ever (Life experience)" }
+        ];
+
+        // Ex 2: Drag & Drop Data
+        const ex2Data = [
+            { text: "Hoy", type: "perfecto" },
+            { text: "Ayer", type: "indefinido" },
+            { text: "Esta maÃ±ana", type: "perfecto" },
+            { text: "Anoche", type: "indefinido" },
+            { text: "El mes pasado", type: "indefinido" },
+            { text: "Ãšltimamente", type: "perfecto" },
+            { text: "Hace dos dÃ­as", type: "indefinido" },
+            { text: "TodavÃ­a", type: "perfecto" }
+        ];
+
+
+        // --- TABS ---
+        function openTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+            
+            contents.forEach(c => c.classList.remove('active'));
+            btns.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // --- RENDER ---
+        function init() {
+            renderEx1();
+            renderEx2();
+        }
+
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            container.innerHTML = '';
+            ex1Data.forEach((item, i) => {
+                 let html = `
+                <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                    <p class="text-sm font-bold text-gray-700 mb-3"><span class="vocab-hint" data-en="${item.hint}">${item.q}</span></p>
+                    <div class="flex flex-col gap-2">`;
+                
+                item.options.forEach(opt => {
+                    html += `
+                        <label class="flex items-center gap-2 cursor-pointer bg-white px-3 py-2 rounded border hover:bg-indigo-50 transition">
+                            <input type="radio" name="ex1-${i}" value="${opt}" class="text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm text-gray-800">${opt}</span>
+                        </label>`;
+                });
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderEx2() {
+            const container = document.getElementById('drag-items');
+            container.innerHTML = '';
+            document.getElementById('zone-perfecto').innerHTML = '';
+            document.getElementById('zone-indefinido').innerHTML = '';
+            
+            // Shuffle
+            const shuffled = [...ex2Data].sort(() => Math.random() - 0.5);
+
+            shuffled.forEach((item, i) => {
+                const el = document.createElement('div');
+                el.className = "bg-white border border-gray-400 px-3 py-1 rounded cursor-move shadow-sm text-sm";
+                el.draggable = true;
+                el.id = `drag-${i}`;
+                el.textContent = item.text;
+                el.dataset.type = item.type;
+                el.ondragstart = drag;
+                container.appendChild(el);
+            });
+        }
+
+        // --- DRAG & DROP LOGIC ---
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev, zoneType) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var draggedEl = document.getElementById(data);
+            
+            // Append to the zone container, not the header text
+            if(ev.target.id === `zone-${zoneType}`) {
+                ev.target.appendChild(draggedEl);
+            } else if (ev.target.closest(`#zone-${zoneType}`)) {
+                 ev.target.closest(`#zone-${zoneType}`).appendChild(draggedEl);
+            }
+        }
+
+        // --- CHECK ---
+        function checkEx1() {
+            let s = 0;
+            ex1Data.forEach((item, i) => {
+                const selected = document.querySelector(`input[name="ex1-${i}"]:checked`);
+                const parent = document.getElementsByName(`ex1-${i}`)[0].closest('.bg-gray-50');
+                
+                parent.classList.remove('correct-answer', 'incorrect-answer');
+
+                if (selected) {
+                    if (selected.value === item.ans) {
+                        parent.classList.add('correct-answer');
+                        s++;
+                    } else {
+                        parent.classList.add('incorrect-answer');
+                    }
+                }
+            });
+            updateFeedback('feedback1', s, ex1Data.length);
+        }
+
+        function checkEx2() {
+            let s = 0;
+            const items = document.querySelectorAll('[id^="drag-"]');
+            
+            items.forEach(item => {
+                const parentId = item.parentElement.id;
+                const correctType = item.dataset.type;
+                
+                item.classList.remove('bg-green-200', 'bg-red-200', 'bg-white');
+
+                if (parentId === `zone-${correctType}`) {
+                    item.classList.add('bg-green-200');
+                    s++;
+                } else if (parentId === 'drag-items') {
+                    item.classList.add('bg-white'); // Still in start zone
+                } else {
+                    item.classList.add('bg-red-200');
+                }
+            });
+            updateFeedback('feedback2', s, ex2Data.length);
+        }
+
+        function updateFeedback(id, score, total) {
+            const el = document.getElementById(id);
+            el.textContent = `Score: ${score} / ${total}`;
+            el.className = score === total ? "feedback-msg text-green-600" : "feedback-msg text-indigo-600";
+        }
+
+        // --- RESET ---
+        function resetEx1() {
+            ex1Data.forEach((_, i) => {
+                const radios = document.getElementsByName(`ex1-${i}`);
+                radios.forEach(r => r.checked = false);
+                radios[0].closest('.bg-gray-50').classList.remove('correct-answer', 'incorrect-answer');
+            });
+            document.getElementById('feedback1').textContent = "";
+        }
+        
+         function resetEx2() {
+            renderEx2(); // Re-render to reset positions
+            document.getElementById('feedback2').textContent = "";
+        }
+
+        init();
+    </script>
+</body>
+</html>
+
+
+
+

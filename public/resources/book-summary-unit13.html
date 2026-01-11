@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 13: Study Guide - Spanish ab initio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ecfdf5; /* Emerald light background for "Environment" theme */
+            color: #334155;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+        }
+
+        .vocab-card {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .vocab-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .vocab-card.flipped .vocab-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .vocab-card-front, .vocab-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card-front {
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 2px solid #a7f3d0;
+        }
+
+        .vocab-card-back {
+            background-color: #059669; /* Emerald-600 */
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .section-title {
+            border-bottom: 2px solid #059669;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-link.active {
+            background-color: #d1fae5; /* Emerald-100 */
+            color: #065f46; /* Emerald-800 */
+            border-left: 4px solid #059669;
+        }
+
+        /* Tooltip Styles */
+        .hover-translation {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted #059669;
+        }
+
+        .hover-translation:hover::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1e293b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+        }
+        
+        .hover-translation:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+            margin-bottom: -6px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+<div style="position:fixed;top:20px;left:20px;z-index:9999" class="no-print"><a href="/resources.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:#6366f1;color:white;border-radius:8px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s" onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Resources</a></div>
+
+
+    <!-- Header -->
+    <header class="bg-emerald-900 text-white p-4 shadow-lg flex-shrink-0 z-20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Spanish ab initio - Unit 13</h1>
+                <p class="text-xs text-emerald-200">Digital Study Guide (Pages 283 - 302)</p>
+            </div>
+            <div class="text-sm bg-emerald-600 px-3 py-1 rounded-full flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Hover over text for English!
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col md:flex-row overflow-hidden w-full bg-white shadow-xl my-0">
+        
+        <!-- Sidebar Navigation -->
+        <div class="w-full md:w-1/4 flex flex-col border-r border-gray-200 bg-white h-1/3 md:h-full overflow-y-auto">
+            <div class="p-4 bg-gray-50 border-b border-gray-200">
+                <h2 class="font-bold text-gray-700 uppercase tracking-wide text-sm">Table of Contents</h2>
+            </div>
+            <nav class="flex-grow py-2">
+                <button onclick="scrollToSection('intro')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition active">1. Overview</button>
+                <button onclick="scrollToSection('vocab_nature')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">2. Vocab: Nature & Landscape</button>
+                <button onclick="scrollToSection('environmental_probs')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">3. Environmental Problems</button>
+                <button onclick="scrollToSection('sustainability')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">4. Sustainability & Solutions</button>
+                <button onclick="scrollToSection('disasters')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">5. Natural Disasters</button>
+                <button onclick="scrollToSection('grammar_subjunctive')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">6. Grammar: Intro to Subjunctive</button>
+                <button onclick="scrollToSection('para_que')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">7. Grammar: Para que + Subjunctive</button>
+                <button onclick="scrollToSection('practice')" class="nav-link w-full text-left px-4 py-3 hover:bg-gray-50 text-sm font-medium transition">8. Practice Exercises</button>
+            </nav>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full md:w-3/4 flex flex-col bg-emerald-50 h-2/3 md:h-full overflow-y-auto p-6 md:p-10 scroll-smooth">
+            
+            <!-- Section 1: Overview -->
+            <section id="intro" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">1. Overview (Resumen)</h2>
+                <div class="bg-white border-l-4 border-emerald-500 p-4 mb-6 text-sm text-slate-700 shadow-sm rounded-r">
+                    <strong>Theme:</strong> Sharing the Planet (Compartir el planeta).<br>
+                    <strong>Focus:</strong> In Unit 13, "Â¿QuÃ© retos plantea el medio ambiente?" (What challenges does the environment pose?), you will explore ecological issues, conservation, and learn to express purpose and desires using the subjunctive mood.
+                </div>
+            </section>
+
+            <!-- Section 2: Nature Vocab -->
+            <section id="vocab_nature" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">2. Vocab: Nature & Landscape (La Naturaleza)</h2>
+                <p class="mb-4 text-sm text-gray-600">Click cards to reveal the English meaning.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El bosque</div>
+                            <div class="vocab-card-back">Forest</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El ocÃ©ano / mar</div>
+                            <div class="vocab-card-back">Ocean / Sea</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El rÃ­o</div>
+                            <div class="vocab-card-back">River</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La montaÃ±a</div>
+                            <div class="vocab-card-back">Mountain</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">La selva</div>
+                            <div class="vocab-card-back">Jungle</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El aire puro</div>
+                            <div class="vocab-card-back">Fresh air</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El desierto</div>
+                            <div class="vocab-card-back">Desert</div>
+                        </div>
+                    </div>
+                    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+                        <div class="vocab-card-inner">
+                            <div class="vocab-card-front font-bold text-center">El paisaje</div>
+                            <div class="vocab-card-back">Landscape</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Environmental Problems -->
+            <section id="environmental_probs" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">3. Environmental Problems</h2>
+                <div class="bg-white p-4 rounded shadow-sm border border-emerald-200">
+                    <h4 class="font-bold text-emerald-700 mb-3 text-sm uppercase">Global Challenges:</h4>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                        <li>âš ï¸ <span class="hover-translation font-medium" data-en="Global warming">El calentamiento global</span></li>
+                        <li>ðŸ­ <span class="hover-translation font-medium" data-en="Pollution / Contamination">La contaminaciÃ³n</span></li>
+                        <li>ðŸ”¥ <span class="hover-translation font-medium" data-en="Greenhouse effect">El efecto invernadero</span></li>
+                        <li>ðŸŒ² <span class="hover-translation font-medium" data-en="Deforestation">La deforestaciÃ³n</span></li>
+                        <li>ðŸ—‘ï¸ <span class="hover-translation font-medium" data-en="The waste / Garbage">Los residuos / La basura</span></li>
+                        <li>ðŸ’¨ <span class="hover-translation font-medium" data-en="Carbon dioxide">El diÃ³xido de carbono</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4: Sustainability -->
+            <section id="sustainability" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">4. Sustainability & Solutions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-emerald-700 mb-2">The Three R's:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>â™»ï¸ <span class="hover-translation" data-en="To recycle">Reciclar</span></li>
+                            <li>ðŸ”„ <span class="hover-translation" data-en="To reuse">Reutilizar</span></li>
+                            <li>ðŸ“‰ <span class="hover-translation" data-en="To reduce">Reducir</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-emerald-700 mb-2">Green Energy:</h4>
+                        <ul class="text-sm space-y-2">
+                            <li>â˜€ï¸ <span class="hover-translation" data-en="Renewable energy">Las energÃ­as renovables</span></li>
+                            <li>ðŸ”‹ <span class="hover-translation" data-en="Solar panels">Los paneles solares</span></li>
+                            <li>ðŸƒ <span class="hover-translation" data-en="To save energy">Ahorrar energÃ­a</span></li>
+                            <li>ðŸ§´ <span class="hover-translation" data-en="Biodegradable products">Productos biodegradables</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Natural Disasters -->
+            <section id="disasters" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">5. Natural Disasters (Desastres Naturales)</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-center">
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Earthquake">El terremoto</span> ðŸŒ‹
+                    </div>
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Flood">La inundaciÃ³n</span> ðŸŒŠ
+                    </div>
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Wildfire">El incendio forestal</span> ðŸ”¥
+                    </div>
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Drought">La sequÃ­a</span> ðŸœï¸
+                    </div>
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Storm">La tormenta</span> â›ˆï¸
+                    </div>
+                    <div class="bg-red-50 p-3 rounded border border-red-200">
+                        <span class="hover-translation font-bold" data-en="Hurricane">El huracÃ¡n</span> ðŸŒ€
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Intro to Subjunctive -->
+            <section id="grammar_subjunctive" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">6. Grammar: Intro to Subjunctive (Deseos)</h2>
+                
+                <div class="bg-emerald-100 p-6 rounded-lg border-l-4 border-emerald-500 mb-6">
+                    <h3 class="font-bold text-emerald-900 mb-2">The Mood of Desire</h3>
+                    <p class="text-sm mb-4">Unlike the indicative (used for facts), the <strong>subjunctive</strong> is used to express desires, doubts, or emotions. In this unit, we use it with <strong>"Espero que..."</strong> (I hope that...).</p>
+                    
+                    <div class="bg-white p-4 rounded shadow-sm border border-emerald-200 overflow-x-auto">
+                        <table class="min-w-full text-sm text-center">
+                            <thead class="bg-emerald-700 text-white">
+                                <tr>
+                                    <th class="p-2">Infinitive</th>
+                                    <th class="p-2">Indicative (Fact)</th>
+                                    <th class="p-2">Subjunctive (Desire)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="p-2 font-bold italic">Reciclar</td>
+                                    <td>Yo reciclo</td>
+                                    <td class="font-bold text-emerald-600">Espero que recicle<strong>s</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold italic">Cuidar</td>
+                                    <td>Ã‰l cuida</td>
+                                    <td class="font-bold text-emerald-600">Quiero que Ã©l cuide</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs mt-4 italic text-slate-600">Tip: Subjunctive endings for -AR verbs use "e", and -ER/-IR verbs use "a" (they swap!).</p>
+                </div>
+            </section>
+
+            <!-- Section 7: Para que + Subjunctive -->
+            <section id="para_que" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">7. Grammar: Para que + Subjunctive</h2>
+                <div class="bg-slate-800 text-white p-6 rounded-lg shadow-lg">
+                    <div class="space-y-4 text-sm">
+                        <div>
+                            <p class="font-bold text-emerald-400">Expressing Purpose (So that):</p>
+                            <p class="italic mb-2"><span class="hover-translation" data-en="We recycle so that the planet is clean.">Reciclamos <strong>para que</strong> el planeta <strong>estÃ©</strong> limpio.</span></p>
+                            <p class="italic"><span class="hover-translation" data-en="I save water so that there is no drought.">Ahorro agua <strong>para que</strong> no <strong>haya</strong> sequÃ­a.</span></p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-600">
+                            <p class="font-bold text-emerald-400 text-xs uppercase">Common Structures:</p>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                <li><span class="hover-translation" data-en="It's important that...">Es importante que...</span></li>
+                                <li><span class="hover-translation" data-en="It's necessary that...">Es necesario que...</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Practice -->
+            <section id="practice" class="mb-20">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2 section-title">8. Practice Exercises (Ejercicios)</h2>
+                
+                <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-inner">
+                    <h4 class="font-bold mb-4">Vocabulary Check (Self-Check):</h4>
+                    <div class="space-y-3 text-sm">
+                        <p>1. <span class="hover-translation" data-en="The planet is hotter due to global warming.">El planeta estÃ¡ mÃ¡s caliente por el ______ global.</span> <span class="text-gray-400 italic">(Answer: calentamiento)</span></p>
+                        <p>2. <span class="hover-translation" data-en="It is necessary to recycle glass and paper.">Es necesario ______ el vidrio y el papel.</span> <span class="text-gray-400 italic">(Answer: reciclar)</span></p>
+                        <p>3. <span class="hover-translation" data-en="I hope you use solar panels.">Espero que tÃº ______ (usar) paneles solares.</span> <span class="text-gray-400 italic">(Answer: uses - subjunctive)</span></p>
+                        <p>4. <span class="hover-translation" data-en="The forest fire was very dangerous.">El ______ forestal fue muy peligroso.</span> <span class="text-gray-400 italic">(Answer: incendio)</span></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Highlight active link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const onclickAttr = link.getAttribute('onclick') || '';
+                if(onclickAttr.includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
