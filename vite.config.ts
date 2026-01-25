@@ -5,8 +5,8 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // GitHub Pages project site base path
-  base: '/misscentenoresources/',
+  // Use relative base so assets load on GitHub Pages or custom domains.
+  base: './',
   build: {
     rollupOptions: {
       input: {
