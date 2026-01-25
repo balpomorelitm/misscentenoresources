@@ -3,7 +3,7 @@ import { Experience, Education, SkillCategory, Language, PersonalInfo } from './
 export const personalInfo: PersonalInfo = {
   name: "Raquel M. Centeno",
   title: "Spanish & Art Teacher",
-  summary: "Experienced Spanish teacher with 18+ years of teaching experience across different education levels. Proven expertise in curriculum design, DELE exam preparation, and Spanish immersion programs. Passionate about fostering cultural awareness and student engagement through innovative teaching methods. Seeking to contribute to an institution that values linguistic and social diversity.",
+  summary: "Welcome students! Use the search bar or click a category to filter resources by skill (oral, grammar, games, listening, reading). Click any card to open the activity.",
   contact: {
     email: "rmartinezcenteno@hotmail.com",
     phone: "+852 9685 6173",

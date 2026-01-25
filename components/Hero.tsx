@@ -1,6 +1,5 @@
 import React from 'react';
 import { personalInfo } from '../constants';
-import { Mail, Download } from 'lucide-react';
 
 const Hero: React.FC = () => {
   // Colors for the dancing letters
@@ -49,7 +48,7 @@ const Hero: React.FC = () => {
         <div className="flex-1 text-center md:text-left space-y-4 md:space-y-6 w-full px-2 md:px-0">
           <div>
             <div className="inline-block px-3 py-1 bg-white/60 dark:bg-white/10 backdrop-blur-sm rounded-full border border-teacher-blue/20 dark:border-white/10 mb-2 md:mb-4">
-               <h2 className="font-display text-xs md:text-sm tracking-widest text-teacher-blue dark:text-teacher-teal font-bold uppercase">Teacher & Artist</h2>
+               <h2 className="font-display text-xs md:text-sm tracking-widest text-teacher-blue dark:text-teacher-teal font-bold uppercase">Student Resources</h2>
             </div>
             
             {/* Interactive Animated Name */}
@@ -77,25 +76,6 @@ const Hero: React.FC = () => {
             {personalInfo.summary}
           </p>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 pt-2 md:pt-4">
-            <a 
-              href={`mailto:${personalInfo.contact.email}`}
-              className="flex items-center gap-2 px-6 py-2.5 md:px-8 md:py-3 bg-teacher-red text-white rounded-full font-bold shadow-lg hover:bg-rose-600 transition-transform hover:-translate-y-1 active:translate-y-0 text-sm md:text-base"
-            >
-              <Mail size={18} className="md:w-5 md:h-5" />
-              Contact Me
-            </a>
-            
-            {/* Download CV */}
-            <a 
-              href="/documents/RMC_CV_2025.pdf"
-              download="RMC_CV_2025.pdf"
-              className="flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-white/50 dark:bg-white/10 backdrop-blur-sm text-teacher-dark dark:text-white border-2 border-teacher-dark/10 dark:border-white/20 rounded-full font-bold shadow-sm hover:bg-white hover:dark:bg-white/20 transition-colors text-sm md:text-base"
-            >
-              <Download size={18} className="md:w-5 md:h-5" />
-              Download CV
-            </a>
-          </div>
         </div>
       </div>
     </section>

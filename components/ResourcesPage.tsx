@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, Filter, BookOpen, Headphones, Gamepad2, BookText, GraduationCap, FolderOpen, X, ExternalLink, PenLine, MessageCircle, Moon, Sun, Calendar, ArrowLeft, FileText } from 'lucide-react';
+import { Search, Filter, BookOpen, Headphones, Gamepad2, BookText, GraduationCap, FolderOpen, X, ExternalLink, PenLine, MessageCircle, Moon, Sun, Calendar, ArrowLeft, FileText, Check } from 'lucide-react';
 import { resourcesData } from '../resourcesData';
 
 // Types for resources
@@ -118,20 +118,67 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
   }
 };
 
-const ResourcesPage: React.FC = () => {
+interface ResourcesPageProps {
+  showNav?: boolean;
+  showFooter?: boolean;
+}
+
+const VISITED_STORAGE_KEY = 'resourcesVisited';
+const COMPLETED_STORAGE_KEY = 'resourcesCompleted';
+
+const loadStoredIds = (key: string) => {
+  if (typeof window === 'undefined') {
+    return new Set<string>();
+  }
+  try {
+    const stored = window.localStorage.getItem(key);
+    if (!stored) {
+      return new Set<string>();
+    }
+    const parsed = JSON.parse(stored);
+    if (!Array.isArray(parsed)) {
+      return new Set<string>();
+    }
+    return new Set(parsed.filter((value) => typeof value === 'string'));
+  } catch {
+    return new Set<string>();
+  }
+};
+
+const persistIds = (key: string, ids: Set<string>) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  window.localStorage.setItem(key, JSON.stringify(Array.from(ids)));
+};
+
+const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFooter = true }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory | null>(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [visitedIds, setVisitedIds] = useState<Set<string>>(new Set());
+  const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    if (!showNav) {
+      return;
+    }
     // Check system preference
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setDarkMode(true);
       document.documentElement.classList.add('dark');
     }
+  }, [showNav]);
+
+  useEffect(() => {
+    setVisitedIds(loadStoredIds(VISITED_STORAGE_KEY));
+    setCompletedIds(loadStoredIds(COMPLETED_STORAGE_KEY));
   }, []);
 
   const toggleDarkMode = () => {
+    if (!showNav) {
+      return;
+    }
     setDarkMode(!darkMode);
     document.documentElement.classList.toggle('dark');
   };
@@ -176,38 +223,59 @@ const ResourcesPage: React.FC = () => {
 
   const categories = Object.keys(categoryConfig) as ResourceCategory[];
 
-  const openResource = (htmlFile: string) => {
-    window.location.href = htmlFile;
+  const openResource = (resource: Resource) => {
+    setVisitedIds((prev) => {
+      const nextVisited = new Set(prev);
+      nextVisited.add(resource.id);
+      persistIds(VISITED_STORAGE_KEY, nextVisited);
+      return nextVisited;
+    });
+    window.location.href = resource.htmlFile;
+  };
+
+  const toggleCompleted = (resourceId: string) => {
+    setCompletedIds((prev) => {
+      const nextCompleted = new Set(prev);
+      if (nextCompleted.has(resourceId)) {
+        nextCompleted.delete(resourceId);
+      } else {
+        nextCompleted.add(resourceId);
+      }
+      persistIds(COMPLETED_STORAGE_KEY, nextCompleted);
+      return nextCompleted;
+    });
   };
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm py-3 border-b border-gray-100 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <a 
-              href="/" 
-              className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-teacher-blue dark:hover:text-teacher-teal transition-colors font-semibold"
-            >
-              <ArrowLeft size={20} />
-              <span className="hidden sm:inline">Back to Portfolio</span>
+      {showNav && (
+        <nav className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm py-3 border-b border-gray-100 dark:border-gray-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <a 
+                href="/" 
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-teacher-blue dark:hover:text-teacher-teal transition-colors font-semibold"
+              >
+                <ArrowLeft size={20} />
+                <span className="hidden sm:inline">Back to Portfolio</span>
+              </a>
+            </div>
+            
+            <a href="/" className="font-handwriting font-bold text-2xl md:text-3xl text-teacher-dark dark:text-white hover:text-teacher-red transition-colors">
+              R. M. C.
             </a>
-          </div>
-          
-          <a href="/" className="font-handwriting font-bold text-2xl md:text-3xl text-teacher-dark dark:text-white hover:text-teacher-red transition-colors">
-            R. M. C.
-          </a>
 
-          <button 
-            onClick={toggleDarkMode} 
-            className="p-2 rounded-full bg-gray-100 dark:bg-slate-700 text-teacher-dark dark:text-teacher-yellow transition-colors"
-            aria-label="Toggle Dark Mode"
-          >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </div>
-      </nav>
+            <button 
+              onClick={toggleDarkMode} 
+              className="p-2 rounded-full bg-gray-100 dark:bg-slate-700 text-teacher-dark dark:text-teacher-yellow transition-colors"
+              aria-label="Toggle Dark Mode"
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </div>
+        </nav>
+      )}
 
       {/* Header Section */}
       <div className="relative overflow-hidden">
@@ -326,11 +394,18 @@ const ResourcesPage: React.FC = () => {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {resources.map(resource => (
+                {resources.map(resource => {
+                  const isVisited = visitedIds.has(resource.id);
+                  const isCompleted = completedIds.has(resource.id);
+                  return (
                   <div
                     key={resource.id}
-                    onClick={() => openResource(resource.htmlFile)}
-                    className="group bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-gray-700 hover:border-teacher-blue dark:hover:border-teacher-teal shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden"
+                    onClick={() => openResource(resource)}
+                    className={`group rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden ${
+                      isVisited
+                        ? 'bg-gray-50/80 dark:bg-slate-800/70 border-gray-200 dark:border-gray-600'
+                        : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-gray-700'
+                    } hover:border-teacher-blue dark:hover:border-teacher-teal`}
                   >
                     <div className="p-4">
                       <h3 className="font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-teacher-blue dark:group-hover:text-teacher-teal transition-colors line-clamp-2">
@@ -358,7 +433,30 @@ const ResourcesPage: React.FC = () => {
                       </div>
 
                       {/* Footer */}
-                      <div className="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-700">
+                      <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            toggleCompleted(resource.id);
+                          }}
+                          className={`flex items-center gap-2 text-xs font-semibold transition-colors ${
+                            isCompleted
+                              ? 'text-emerald-600 dark:text-emerald-400'
+                              : 'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300'
+                          }`}
+                          aria-pressed={isCompleted}
+                          aria-label={isCompleted ? 'Mark as not completed' : 'Mark as completed'}
+                        >
+                          <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full border ${
+                            isCompleted
+                              ? 'border-emerald-500 bg-emerald-500 text-white'
+                              : 'border-gray-300 bg-white dark:bg-slate-700 dark:border-gray-600'
+                          }`}>
+                            {isCompleted && <Check size={12} />}
+                          </span>
+                          {isCompleted ? 'Completed' : 'Mark complete'}
+                        </button>
                         {resource.difficulty && (
                           <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                             resource.difficulty === 'beginner' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
@@ -376,7 +474,8 @@ const ResourcesPage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                );
+                })}
               </div>
             </section>
           );
@@ -397,17 +496,19 @@ const ResourcesPage: React.FC = () => {
           </div>
         )}
       </div>
-
       {/* Footer */}
-      <footer className="bg-teacher-dark text-white py-8 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Raquel M. Centeno. All resources designed for IB Spanish Ab Initio.
-          </p>
-        </div>
-      </footer>
+      {showFooter && (
+        <footer className="bg-teacher-dark text-white py-8 px-4">
+          <div className="max-w-7xl mx-auto text-center">
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Raquel M. Centeno. All resources designed for IB Spanish Ab Initio.
+            </p>
+          </div>
+        </footer>
+      )}
     </div>
   );
 };
 
 export default ResourcesPage;
+

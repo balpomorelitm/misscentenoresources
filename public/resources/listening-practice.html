@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿?<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
     <div class="sticky-audio shadow-md p-4">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 items-center gap-4">
             <div>
-                <h1 class="text-xl font-black text-blue-900 uppercase">ComprensiÃ³n Auditiva</h1>
+                <h1 class="text-xl font-black text-blue-900 uppercase">Comprensión Auditiva</h1>
                 <p id="timerDisplay" class="text-2xl font-mono font-bold text-slate-700">15:00</p>
             </div>
             <div class="bg-slate-100 p-3 rounded-xl">
@@ -43,12 +43,12 @@
                 <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
                     <h2 class="text-xl font-bold text-blue-800 mb-6 flex items-center">
                         <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg mr-3 text-sm">TEXTO A</span>
-                        Entrevista: La cocina fusiÃ³n de Diego
+                        Entrevista: La cocina fusión de Diego
                     </h2>
                     
                     <div class="space-y-6">
                         <div class="p-4 bg-slate-50 rounded-xl">
-                            <p class="font-bold mb-3">1. Diego aprendiÃ³ a cocinar gracias a su...</p>
+                            <p class="font-bold mb-3">1. Diego aprendió a cocinar gracias a su...</p>
                             <div class="flex space-x-6">
                                 <label><input type="radio" name="q1" value="A" class="mr-2"> A. Abuela</label>
                                 <label><input type="radio" name="q1" value="B" class="mr-2"> B. Padre</label>
@@ -73,14 +73,14 @@
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-50">
-                                <th class="p-3 border">AfirmaciÃ³n</th>
+                                <th class="p-3 border">Afirmación</th>
                                 <th class="p-3 border text-center">V</th>
                                 <th class="p-3 border text-center">F</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="p-3 border">Las entradas son gratuitas para niÃ±os.</td>
+                                <td class="p-3 border">Las entradas son gratuitas para niños.</td>
                                 <td class="p-3 border text-center"><input type="radio" name="v1" value="V"></td>
                                 <td class="p-3 border text-center"><input type="radio" name="v1" value="F"></td>
                             </tr>
@@ -136,7 +136,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     gradeListening();
-                    alert("Â¡Tiempo agotado!");
+                    alert("¡Tiempo agotado!");
                 }
             }, 1000);
         }
@@ -164,7 +164,7 @@
         canvas.addEventListener('mousemove', draw);
         function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
-        // CALIFICACIÃ“N
+        // CALIFICACIÓN
         function gradeListening() {
             clearInterval(timerInterval);
             let score = 0;
@@ -176,11 +176,12 @@
             if(f.v1.value === 'V') score++;
             if(f.v2.value === 'F') score++;
 
-            alert(`Examen finalizado.\nPuntuaciÃ³n estimada: ${score} / 5\nÂ¡Revisa tus respuestas con el audio!`);
+            alert(`Examen finalizado.\nPuntuación estimada: ${score} / 5\n¡Revisa tus respuestas con el audio!`);
         }
     </script>
 </body>
 </html>
+
 
 
 

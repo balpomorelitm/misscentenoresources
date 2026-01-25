@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import Timeline from './components/Timeline';
-import SkillSection from './components/SkillSection';
-import Services from './components/Services';
-import Hobbies from './components/Hobbies';
-import { experiences, skills, languages, education, personalInfo } from './constants';
-import { Mail, Phone, FileText, Menu, X, Moon, Sun } from 'lucide-react';
+import ResourcesPage from './components/ResourcesPage';
+import { personalInfo } from './constants';
+import { Mail, FileText, Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,15 +17,6 @@ const App: React.FC = () => {
   }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-    }
-  };
 
   return (
     <main className="w-full min-h-screen relative overflow-x-hidden font-sans transition-colors duration-300">
@@ -45,36 +32,12 @@ const App: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            <a href="#experience" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-blue transition-colors">Experience</a>
-            <a href="#skills" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-teal transition-colors">Skills & Ed</a>
-            <a href="#tutoring" className="text-gray-600 dark:text-gray-300 font-bold hover:text-teacher-red transition-colors">Tutoring</a>
-            <a href="#hobbies" className="text-gray-600 dark:text-gray-300 font-bold hover:text-orange-500 transition-colors">Creativity</a>
-            <a href="/resources.html" className="text-gray-600 dark:text-gray-300 font-bold hover:text-purple-500 transition-colors">Resources</a>
+            <a href="#resources" className="text-gray-600 dark:text-gray-300 font-bold hover:text-purple-500 transition-colors">Resources</a>
             
-            <button 
-              onClick={toggleDarkMode} 
-              className="p-2 rounded-full bg-gray-100 dark:bg-slate-700 text-teacher-dark dark:text-teacher-yellow transition-colors"
-              aria-label="Toggle Dark Mode"
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
-            <a 
-              href={`mailto:${personalInfo.contact.email}`}
-              className="bg-teacher-dark text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-teacher-blue hover:scale-105 transition-all duration-200 flex items-center gap-2"
-            >
-              Hire me!
-            </a>
           </div>
 
           {/* Mobile Actions */}
           <div className="flex items-center gap-4 md:hidden">
-            <button 
-              onClick={toggleDarkMode} 
-              className="p-2 rounded-full bg-gray-100 dark:bg-slate-700 text-teacher-dark dark:text-teacher-yellow"
-            >
-               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
             <button className="text-teacher-dark dark:text-white p-2" onClick={toggleMenu}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -84,14 +47,7 @@ const App: React.FC = () => {
         {/* Mobile Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 shadow-lg py-4 px-6 flex flex-col gap-4 border-t border-gray-100 dark:border-gray-800">
-            <a href="#experience" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Experience</a>
-            <a href="#skills" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Skills & Education</a>
-            <a href="#tutoring" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Tutoring</a>
-            <a href="#hobbies" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Creativity</a>
-            <a href="/resources.html" className="text-lg font-bold text-gray-700 dark:text-gray-200">Resources</a>
-            <a href={`mailto:${personalInfo.contact.email}`} onClick={toggleMenu} className="bg-teacher-red text-white text-center py-3 rounded-xl font-bold mt-2">
-              Hire me!
-            </a>
+            <a href="#resources" onClick={toggleMenu} className="text-lg font-bold text-gray-700 dark:text-gray-200">Resources</a>
           </div>
         )}
       </nav>
@@ -101,36 +57,9 @@ const App: React.FC = () => {
         <Hero />
       </div>
 
-      {/* Professional Experience Section */}
-      <section id="experience" className="py-20 relative">
-        <div className="text-center mb-16 px-4">
-           <span className="text-teacher-blue dark:text-teacher-teal font-bold tracking-wider text-sm uppercase mb-2 block">My Journey</span>
-           <h2 className="font-display text-4xl font-black text-teacher-dark dark:text-white">Professional Experience</h2>
-           <div className="w-16 h-1.5 bg-teacher-red mx-auto mt-4 rounded-full"></div>
-        </div>
-        <Timeline experiences={experiences} />
-      </section>
-
-      {/* Skills & Education Section */}
-      <section id="skills" className="py-20 bg-gradient-to-b from-transparent to-white/50 dark:to-slate-800/50">
-        <div className="text-center mb-16 px-4">
-           <span className="text-teacher-teal font-bold tracking-wider text-sm uppercase mb-2 block">What I Bring</span>
-           <h2 className="font-display text-4xl font-black text-teacher-dark dark:text-white">Skills & Education</h2>
-           <div className="w-16 h-1.5 bg-teacher-yellow mx-auto mt-4 rounded-full"></div>
-        </div>
-        <div id="education">
-          <SkillSection skills={skills} languages={languages} education={education} />
-        </div>
-      </section>
-
-      {/* Services / Tutoring Section */}
-      <section id="tutoring" className="py-20 bg-white/30 dark:bg-slate-800/30">
-        <Services />
-      </section>
-
-      {/* Hobbies Section */}
-      <section id="hobbies" className="px-4 pb-20">
-        <Hobbies />
+      {/* Resources Section */}
+      <section id="resources">
+        <ResourcesPage showNav={false} showFooter={false} />
       </section>
 
       {/* Footer / Contact */}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿?<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -184,7 +184,7 @@
                                 <h3 class="font-bold text-indigo-800">Placement Rules:</h3>
                                 <ul class="list-disc pl-5 text-sm mt-1 space-y-1">
                                     <li><strong>Before</strong> conjugated verb: <span class="italic">Lo compro.</span></li>
-                                    <li><strong>Attached</strong> to Infinitive/Gerund: <span class="italic">Voy a comprarlo. / Estoy comprÃ¡ndolo.</span></li>
+                                    <li><strong>Attached</strong> to Infinitive/Gerund: <span class="italic">Voy a comprarlo. / Estoy comprándolo.</span></li>
                                     <li><strong>Order:</strong> Indirect comes first! <span class="italic font-bold">OI + OD</span> (Me lo das).</li>
                                     <li><strong>The "Se" Rule:</strong> If both start with 'L' (le lo), change 'Le' to <strong>'Se'</strong>. <br><span class="italic text-red-600">Le lo doy -> Se lo doy.</span></li>
                                 </ul>
@@ -282,7 +282,7 @@
         
         // Ex 1: Direct Object
         const ex1Data = [
-            { q: "Veo <u>la televisiÃ³n</u>.", ans: "La", hint: "I watch TV (fem)" },
+            { q: "Veo <u>la televisión</u>.", ans: "La", hint: "I watch TV (fem)" },
             { q: "Compro <u>los libros</u>.", ans: "Los", hint: "I buy the books (masc pl)" },
             { q: "Llevo <u>las maletas</u>.", ans: "Las", hint: "I carry the suitcases (fem pl)" },
             { q: "Como <u>el bocadillo</u>.", ans: "Lo", hint: "I eat the sandwich (masc)" },
@@ -291,7 +291,7 @@
 
         // Ex 2: Indirect Object
         const ex2Data = [
-            { q: "Doy el regalo <u>a MarÃ­a</u>.", ans: "Le", hint: "I give the gift TO Maria" },
+            { q: "Doy el regalo <u>a María</u>.", ans: "Le", hint: "I give the gift TO Maria" },
             { q: "Escribo <u>a mis amigos</u>.", ans: "Les", hint: "I write TO my friends" },
             { q: "Hablo <u>al profesor</u>.", ans: "Le", hint: "I speak TO the teacher" },
             { q: "Mando una carta <u>a mis padres</u>.", ans: "Les", hint: "I send a letter TO my parents" },
@@ -300,9 +300,9 @@
 
         // Ex 3: Double Pronouns
         const ex3Data = [
-            { q: "EnvÃ­o la carta a Juan.", ans: "Se la", hint: "I send IT TO HIM" },
+            { q: "Envío la carta a Juan.", ans: "Se la", hint: "I send IT TO HIM" },
             { q: "Doy el libro a ti.", ans: "Te lo", hint: "I give IT TO YOU" },
-            { q: "Explicas la lecciÃ³n a nosotros.", ans: "Nos la", hint: "You explain IT TO US" },
+            { q: "Explicas la lección a nosotros.", ans: "Nos la", hint: "You explain IT TO US" },
             { q: "Compras los regalos a ellos.", ans: "Se los", hint: "You buy THEM FOR THEM" },
             { q: "Digo la verdad a ella.", ans: "Se la", hint: "I tell IT TO HER" }
         ];
@@ -334,7 +334,7 @@
                  let html = `
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
                     <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
-                    <span class="text-gray-400">â†’</span>
+                    <span class="text-gray-400">→</span>
                     <input type="text" id="ex1-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
                     <span class="text-gray-600">${item.q.split(' ')[0]}</span>
                 </div>`;
@@ -349,7 +349,7 @@
                  let html = `
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
                     <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
-                    <span class="text-gray-400">â†’</span>
+                    <span class="text-gray-400">→</span>
                     <input type="text" id="ex2-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
                     <span class="text-gray-600">${item.q.split(' ')[0] + (item.q.split(' ')[1] === 'una' || item.q.split(' ')[1] === 'el' ? ' ' + item.q.split(' ')[1] + ' ' + item.q.split(' ')[2] : ' ' + item.q.split(' ')[1])}</span> 
                     <!-- Simplified display logic for demo, showing verb+object -->
@@ -365,7 +365,7 @@
                  let html = `
                 <div class="bg-gray-50 p-4 rounded border border-gray-200 flex items-center gap-3">
                     <span class="vocab-hint w-1/2 text-right" data-en="${item.hint}">${item.q}</span>
-                    <span class="text-gray-400">â†’</span>
+                    <span class="text-gray-400">→</span>
                     <input type="text" id="ex3-${i}" class="border-b-2 border-gray-300 bg-transparent px-2 w-24 focus:border-indigo-500 outline-none text-center" placeholder="...">
                     <span class="text-gray-600">${item.q.split(' ')[0]}</span>
                 </div>`;
@@ -460,6 +460,7 @@
     </script>
 </body>
 </html>
+
 
 
 
