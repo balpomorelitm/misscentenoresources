@@ -77,12 +77,12 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     description: 'Course planners and calendars'
   },
   'book-summary': {
-    label: 'Book Summary',
+    label: 'Class Grammar Topics',
     icon: <BookOpen size={20} />,
     color: 'text-purple-600 dark:text-purple-400',
     bgColor: 'bg-purple-100 dark:bg-purple-900/30',
     borderColor: 'border-purple-300 dark:border-purple-700',
-    description: 'Hodder Spanish Ab Initio textbook chapter summaries'
+    description: 'Grammar topics and summaries used in class'
   },
   listening: {
     label: 'Listening',
@@ -125,6 +125,8 @@ interface ResourcesPageProps {
 
 const VISITED_STORAGE_KEY = 'resourcesVisited';
 const COMPLETED_STORAGE_KEY = 'resourcesCompleted';
+const TEACHER_UNLOCKED_STORAGE_KEY = 'resourcesTeacherUnlocked';
+const TEACHER_PASSWORD = 'labestiadeokinawa';
 
 const loadStoredIds = (key: string) => {
   if (typeof window === 'undefined') {
@@ -152,12 +154,33 @@ const persistIds = (key: string, ids: Set<string>) => {
   window.localStorage.setItem(key, JSON.stringify(Array.from(ids)));
 };
 
+const loadTeacherUnlocked = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+  try {
+    return window.localStorage.getItem(TEACHER_UNLOCKED_STORAGE_KEY) === 'true';
+  } catch {
+    return false;
+  }
+};
+
+const persistTeacherUnlocked = (unlocked: boolean) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  window.localStorage.setItem(TEACHER_UNLOCKED_STORAGE_KEY, unlocked ? 'true' : 'false');
+};
+
 const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFooter = true }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ResourceCategory | null>(null);
   const [darkMode, setDarkMode] = useState(false);
   const [visitedIds, setVisitedIds] = useState<Set<string>>(new Set());
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
+  const [teacherUnlocked, setTeacherUnlocked] = useState(false);
+  const [teacherPassword, setTeacherPassword] = useState('');
+  const [teacherError, setTeacherError] = useState('');
 
   useEffect(() => {
     if (!showNav) {
@@ -173,6 +196,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
   useEffect(() => {
     setVisitedIds(loadStoredIds(VISITED_STORAGE_KEY));
     setCompletedIds(loadStoredIds(COMPLETED_STORAGE_KEY));
+    setTeacherUnlocked(loadTeacherUnlocked());
   }, []);
 
   const toggleDarkMode = () => {
@@ -183,19 +207,29 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
     document.documentElement.classList.toggle('dark');
   };
 
-  // Filter resources
-  const filteredResources = useMemo(() => {
-    return resourcesData.filter(resource => {
-      const matchesSearch = searchQuery === '' || 
-        resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        resource.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+  const matchesSearch = (resource: Resource) => {
+    return searchQuery === '' || 
+      resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      resource.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      resource.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+  };
 
-      const matchesCategory = !selectedCategory || resource.category === selectedCategory;
-
-      return matchesSearch && matchesCategory;
-    });
+  // Filter resources (students can see all categories except oral)
+  const generalFilteredResources = useMemo(() => {
+    return resourcesData
+      .filter(resource => resource.category !== 'oral')
+      .filter(resource => {
+        const matchesCategory = !selectedCategory || resource.category === selectedCategory;
+        return matchesSearch(resource) && matchesCategory;
+      });
   }, [searchQuery, selectedCategory]);
+
+  // Oral resources are only visible in the teacher section
+  const oralFilteredResources = useMemo(() => {
+    return resourcesData
+      .filter(resource => resource.category === 'oral')
+      .filter(resource => matchesSearch(resource));
+  }, [searchQuery]);
 
   // Group resources by category
   const groupedResources = useMemo(() => {
@@ -212,16 +246,20 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       'text-types': []
     };
     
-    filteredResources.forEach(resource => {
+    generalFilteredResources.forEach(resource => {
       if (groups[resource.category]) {
         groups[resource.category].push(resource);
       }
     });
     
     return groups;
-  }, [filteredResources]);
+  }, [generalFilteredResources]);
 
-  const categories = Object.keys(categoryConfig) as ResourceCategory[];
+  const categories = (Object.keys(categoryConfig) as ResourceCategory[]).filter(
+    (category) => category !== 'oral'
+  );
+
+  const totalAccessibleResults = generalFilteredResources.length + (teacherUnlocked ? oralFilteredResources.length : 0);
 
   const openResource = (resource: Resource) => {
     setVisitedIds((prev) => {
@@ -244,6 +282,18 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       persistIds(COMPLETED_STORAGE_KEY, nextCompleted);
       return nextCompleted;
     });
+  };
+
+  const handleTeacherUnlock = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (teacherPassword.trim() === TEACHER_PASSWORD) {
+      setTeacherUnlocked(true);
+      persistTeacherUnlocked(true);
+      setTeacherPassword('');
+      setTeacherError('');
+      return;
+    }
+    setTeacherError('Incorrect password.');
   };
 
   return (
@@ -357,7 +407,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
         {(selectedCategory || searchQuery) && (
           <div className="flex items-center justify-between mb-6">
             <p className="text-gray-500 dark:text-gray-400">
-              {filteredResources.length} result{filteredResources.length !== 1 ? 's' : ''} found
+              {totalAccessibleResults} result{totalAccessibleResults !== 1 ? 's' : ''} found
             </p>
             <button
               onClick={() => { setSelectedCategory(null); setSearchQuery(''); }}
@@ -481,8 +531,151 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
           );
         })}
 
+        {/* Teacher Section */}
+        <section className="mt-16 pt-10 border-t border-gray-200 dark:border-gray-700">
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-white dark:bg-slate-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-6 md:p-8 shadow-sm">
+              <div className="flex items-start gap-3 mb-6">
+                <div className="p-2 rounded-xl bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+                  <MessageCircle size={20} />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+                    Teacher Section
+                  </h2>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    Oral resources are available here for teachers only.
+                  </p>
+                </div>
+              </div>
+
+              {!teacherUnlocked && (
+                <form onSubmit={handleTeacherUnlock} className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                  <div className="flex-1">
+                    <label htmlFor="teacher-password" className="sr-only">
+                      Teacher password
+                    </label>
+                    <input
+                      id="teacher-password"
+                      type="password"
+                      value={teacherPassword}
+                      onChange={(event) => {
+                        setTeacherPassword(event.target.value);
+                        if (teacherError) {
+                          setTeacherError('');
+                        }
+                      }}
+                      placeholder="Enter teacher password"
+                      className="w-full px-4 py-2.5 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 text-gray-800 dark:text-white placeholder-gray-400 focus:border-teacher-blue dark:focus:border-teacher-teal focus:outline-none focus:ring-4 focus:ring-teacher-blue/10 dark:focus:ring-teacher-teal/10 transition-all"
+                    />
+                    {teacherError && (
+                      <p className="text-xs font-semibold text-rose-600 mt-2">{teacherError}</p>
+                    )}
+                  </div>
+                  <button
+                    type="submit"
+                    className="px-5 py-2.5 rounded-xl bg-slate-800 text-white font-semibold hover:bg-slate-700 transition-colors"
+                  >
+                    Unlock
+                  </button>
+                </form>
+              )}
+
+              {teacherUnlocked && (
+                <div>
+                  {oralFilteredResources.length === 0 ? (
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      No oral resources match your current search.
+                    </p>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                      {oralFilteredResources.map(resource => {
+                        const isVisited = visitedIds.has(resource.id);
+                        const isCompleted = completedIds.has(resource.id);
+                        const config = categoryConfig.oral;
+                        return (
+                          <div
+                            key={resource.id}
+                            onClick={() => openResource(resource)}
+                            className={`group rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden ${
+                              isVisited
+                                ? 'bg-gray-50/80 dark:bg-slate-800/70 border-gray-200 dark:border-gray-600'
+                                : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-gray-700'
+                            } hover:border-teacher-blue dark:hover:border-teacher-teal`}
+                          >
+                            <div className={`px-4 py-2 ${config.bgColor} ${config.color} border-b border-black/5 dark:border-white/5`}>
+                              <div className="flex items-center gap-2 text-sm font-semibold">
+                                {config.icon}
+                                {config.label}
+                              </div>
+                            </div>
+                            <div className="p-4">
+                              <h3 className="font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-teacher-blue dark:group-hover:text-teacher-teal transition-colors line-clamp-2">
+                                {resource.title}
+                              </h3>
+                              <p className="text-gray-500 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                                {resource.description}
+                              </p>
+
+                              <div className="flex flex-wrap gap-1 mb-3">
+                                {resource.tags.slice(0, 2).map(tag => (
+                                  <span 
+                                    key={tag}
+                                    className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
+                                  >
+                                    {tag}
+                                  </span>
+                                ))}
+                                {resource.tags.length > 2 && (
+                                  <span className="px-2 py-0.5 text-gray-400 text-xs">
+                                    +{resource.tags.length - 2}
+                                  </span>
+                                )}
+                              </div>
+
+                              <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+                                <button
+                                  type="button"
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    toggleCompleted(resource.id);
+                                  }}
+                                  className={`flex items-center gap-2 text-xs font-semibold transition-colors ${
+                                    isCompleted
+                                      ? 'text-emerald-600 dark:text-emerald-400'
+                                      : 'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300'
+                                  }`}
+                                  aria-pressed={isCompleted}
+                                  aria-label={isCompleted ? 'Mark as not completed' : 'Mark as completed'}
+                                >
+                                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full border ${
+                                    isCompleted
+                                      ? 'border-emerald-500 bg-emerald-500 text-white'
+                                      : 'border-gray-300 bg-white dark:bg-slate-700 dark:border-gray-600'
+                                  }`}>
+                                    {isCompleted && <Check size={12} />}
+                                  </span>
+                                  {isCompleted ? 'Completed' : 'Mark complete'}
+                                </button>
+                                <span className="flex items-center gap-1 text-teacher-blue dark:text-teacher-teal text-xs font-semibold group-hover:gap-2 transition-all ml-auto">
+                                  Open
+                                  <ExternalLink size={12} />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
         {/* Empty State */}
-        {filteredResources.length === 0 && (
+        {generalFilteredResources.length === 0 && (!teacherUnlocked || oralFilteredResources.length === 0) && (
           <div className="text-center py-20">
             <div className="w-20 h-20 mx-auto mb-6 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
               <FolderOpen size={36} className="text-gray-400" />
