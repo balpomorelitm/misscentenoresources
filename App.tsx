@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import ResourcesPage from './components/ResourcesPage';
-import { personalInfo } from './constants';
-import { Mail, FileText, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,57 +60,15 @@ const App: React.FC = () => {
       <section id="resources">
         <ResourcesPage showNav={false} showFooter={false} />
       </section>
-
-      {/* Footer / Contact */}
-      <footer className="bg-teacher-dark text-white pt-20 pb-10 px-4 mt-10 relative overflow-hidden">
-         {/* Decorational circles */}
-         <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-teacher-red via-teacher-yellow to-teacher-blue"></div>
-         <div className="absolute -right-20 top-20 w-64 h-64 bg-teacher-teal opacity-10 rounded-full blur-3xl"></div>
-
-         <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="font-handwriting text-5xl md:text-6xl font-bold mb-6 text-teacher-yellow">Let's Connect!</h2>
-            <p className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
-              I'm currently seeking opportunities to contribute to an institution that values linguistic and social diversity. 
-              Reach out if you'd like to discuss how I can bring my experience to your school.
-            </p>
-
-            <div className="flex flex-col md:flex-row justify-center items-center gap-6 mb-16">
-              <a 
-                href={`mailto:${personalInfo.contact.email}`}
-                className="group flex items-center gap-3 bg-white text-teacher-dark px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-teacher-yellow transition-all transform hover:-translate-y-1"
-              >
-                <div className="bg-teacher-red text-white p-2 rounded-lg group-hover:scale-110 transition-transform">
-                  <Mail size={24} />
-                </div>
-                <div className="text-left">
-                   <span className="block text-xs text-gray-500 uppercase font-bold">Email Me</span>
-                   <span className="text-sm md:text-base">{personalInfo.contact.email}</span>
-                </div>
-              </a>
-
-               <div 
-                className="group flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-bold"
-              >
-                <div className="bg-teacher-blue text-white p-2 rounded-lg">
-                  <FileText size={24} />
-                </div>
-                 <div className="text-left">
-                   <span className="block text-xs text-gray-400 uppercase font-bold">HK Permanent I.C</span>
-                   <span className="text-sm md:text-base"></span>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-              <p>© {new Date().getFullYear()} Raquel M. Centeno. All rights reserved.</p>
-              <p className="flex items-center gap-1">
-                Designed with <span className="text-teacher-red">♥</span> for Education
-              </p>
-            </div>
-         </div>
+      {/* Footer */}
+      <footer className="bg-teacher-dark text-white py-6 px-4 mt-10">
+        <div className="max-w-6xl mx-auto text-center text-sm text-gray-300">
+          © 2026 Raquel M. Centeno. All rights reserved.
+        </div>
       </footer>
     </main>
   );
 };
 
 export default App;
+

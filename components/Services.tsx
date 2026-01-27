@@ -8,8 +8,8 @@ const Services: React.FC = () => {
     {
       id: 1,
       name: "Tiffany Li",
-      role: "IB Diploma Student",
-      text: "I was really struggling with Spanish Ab Initio, but Raquel made everything click! Her patience and structured notes helped me achieve a Level 7 in my final exams. She knows exactly what the examiners are looking for.",
+      role: "Diploma Student",
+      text: "I was really struggling with Beginner Spanish, but Raquel made everything click! Her patience and structured notes helped me achieve a Level 7 in my final exams. She knows exactly what the examiners are looking for.",
       color: "bg-blue-50 border-blue-100"
     },
     {
@@ -61,7 +61,7 @@ const Services: React.FC = () => {
             Focused, strategy-based coaching to help you maximize your score. I provide past papers, mock exams, and specific feedback on grading criteria.
           </p>
           <ul className="space-y-3">
-            {['DELE (A1 - B2)', 'IB Spanish (Ab Initio & B)', 'HKDSE Category C', 'IGCSE / GCSE / A-Level'].map((item) => (
+            {['DELE (A1 - B2)', 'Beginner Spanish (A1-B1)', 'HKDSE Category C', 'IGCSE / GCSE / A-Level'].map((item) => (
               <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium">
                 <CheckCircle size={18} className="text-teacher-teal flex-shrink-0" />
                 {item}

@@ -1,19 +1,19 @@
 import { Resource, ResourceCategory } from './components/ResourcesPage';
 
 /**
- * Resource Bank for IB Spanish Ab Initio
+ * Resource Bank for Raquel MC materials
  * 
  * Categories:
  * - 'oral': Oral practice and simulators
  * - 'grammar': Grammar workbooks and exercises
  * - 'games': Interactive games
- * - 'ib-exam': Full exam simulations
+ * - 'exam': Exam-style simulations
  * - 'planner': Course planners and calendars
- * - 'book-summary': Hodder textbook summaries
+ * - 'book-summary': Class topic summaries
  * - 'listening': Listening comprehension practice
  * - 'reading': Reading comprehension practice
  * - 'grammar-guide': Complete grammar guide
- * - 'text-types': IB text typology examples
+ * - 'text-types': Text type examples
  */
 
 export const resourcesData: Resource[] = [
@@ -23,7 +23,7 @@ export const resourcesData: Resource[] = [
   {
     id: 'oral-vocab-glossary',
     title: 'Master Bilingual Glossary Level 7',
-    description: 'Complete vocabulary organized by IB core themes with translations and examples to reach the maximum level.',
+    description: 'Complete vocabulary organized by core themes with translations and examples to reach the maximum level.',
     category: 'oral',
     htmlFile: './resources/oral-glosario-vocabulario-nivel7.html',
     tags: ['vocabulary', 'glossary', 'bilingual', 'level 7', 'core themes'],
@@ -32,7 +32,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'oral-core-themes',
-    title: 'Pro Simulator: IB Core Themes',
+    title: 'Pro Simulator: Core Themes',
     description: 'Complete interactive guide with the 5 core themes: Identities, Experiences, Human Ingenuity, Social Organization and Planet.',
     category: 'oral',
     htmlFile: './resources/oral-temas-troncales-guia-completa.html',
@@ -182,13 +182,13 @@ export const resourcesData: Resource[] = [
   },
 
   // ==========================================
-  // IB EXAM SIMULATIONS
+  // EXAM PRACTICE
   // ==========================================
   {
     id: 'exam-simulation-1',
     title: 'Full Exam Simulation #1',
     description: 'Complete preparation platform with multiple visual stimulus variants, time control and on-screen guide.',
-    category: 'ib-exam',
+    category: 'exam',
     htmlFile: './resources/simulacro-examen-1-completo.html',
     tags: ['simulation', 'exam', 'variants', 'timer', 'visual stimuli'],
     difficulty: 'advanced',
@@ -197,8 +197,8 @@ export const resourcesData: Resource[] = [
   {
     id: 'exam-simulation-2',
     title: 'Full Exam Simulation #2: Timer',
-    description: 'Version 3.0 with 3 exam variants, 15+ visual stimuli and IB timer with exact times.',
-    category: 'ib-exam',
+    description: 'Version 3.0 with 3 exam variants, 15+ visual stimuli and an exam timer with exact times.',
+    category: 'exam',
     htmlFile: './resources/simulacro-examen-2-cronometro.html',
     tags: ['simulation', 'exam', 'timer', 'variants', '15 minutes'],
     difficulty: 'advanced',
@@ -208,7 +208,7 @@ export const resourcesData: Resource[] = [
     id: 'exam-simulation-3',
     title: 'Full Exam Simulation #3: Variants',
     description: 'Third version with new images and questions for practice without repetition.',
-    category: 'ib-exam',
+    category: 'exam',
     htmlFile: './resources/simulacro-examen-3-variantes.html',
     tags: ['simulation', 'exam', 'variants', 'new images'],
     difficulty: 'advanced',
@@ -218,19 +218,19 @@ export const resourcesData: Resource[] = [
     id: 'exam-simulation-4',
     title: 'Full Exam Simulation #4: Extra',
     description: 'Extra simulation material with additional stimuli for intensive practice.',
-    category: 'ib-exam',
+    category: 'exam',
     htmlFile: './resources/simulacro-examen-4-extra.html',
     tags: ['simulation', 'exam', 'extra', 'intensive'],
     difficulty: 'advanced',
     dateAdded: '2026-01-11'
   },
   {
-    id: 'exam-ib-aligned',
-    title: 'IB Aligned Practice',
-    description: 'Exercises perfectly aligned with IB evaluation criteria.',
-    category: 'ib-exam',
+    id: 'exam-class-aligned',
+    title: 'Class-Aligned Practice',
+    description: 'Exercises aligned with class evaluation criteria.',
+    category: 'exam',
     htmlFile: './resources/simulacro-practica-4-alineacion.html',
-    tags: ['practice', 'IB aligned', 'criteria', 'evaluation'],
+    tags: ['practice', 'class-aligned', 'criteria', 'evaluation'],
     difficulty: 'advanced',
     dateAdded: '2026-01-11'
   },
@@ -341,7 +341,7 @@ export const resourcesData: Resource[] = [
   {
     id: 'grammar-complete',
     title: 'Grammar: Complete Workbook',
-    description: 'Comprehensive grammar workbook covering all Ab Initio grammar topics with tabs.',
+    description: 'Comprehensive grammar workbook covering all beginner grammar topics with tabs.',
     category: 'grammar',
     htmlFile: './resources/grammar-complete-workbook.html',
     tags: ['complete', 'workbook', 'all topics', 'comprehensive'],
@@ -387,12 +387,12 @@ export const resourcesData: Resource[] = [
   // PLANNERS
   // ==========================================
   {
-    id: 'planner-ib-course',
-    title: 'IB Course Planner',
-    description: 'Comprehensive IB Ab Initio course planning tool with detailed scheduling.',
+    id: 'planner-course',
+    title: 'Course Planner',
+    description: 'Comprehensive course planning tool with detailed scheduling.',
     category: 'planner',
-    htmlFile: './resources/planner-ib-course.html',
-    tags: ['planner', 'IB', 'course', 'scheduling', 'syllabus'],
+    htmlFile: './resources/planner-course.html',
+    tags: ['planner', 'course', 'scheduling', 'syllabus'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -418,7 +418,7 @@ export const resourcesData: Resource[] = [
   },
 
   // ==========================================
-  // BOOK SUMMARY (Hodder Spanish Ab Initio)
+  // BOOK SUMMARY (class materials Beginner Spanish)
   // ==========================================
   {
     id: 'book-unit01',
@@ -426,7 +426,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 1 - Personal information, introductions, family and friends.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit01.html',
-    tags: ['unit 1', 'hodder', 'personal info', 'introductions', 'family'],
+    tags: ['unit 1', 'class materials', 'personal info', 'introductions', 'family'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -436,7 +436,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 2 - Daily routines, schedules and time expressions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit02.html',
-    tags: ['unit 2', 'hodder', 'routines', 'daily life', 'time'],
+    tags: ['unit 2', 'class materials', 'routines', 'daily life', 'time'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -446,7 +446,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 3 - School subjects, education system and classroom vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit03.html',
-    tags: ['unit 3', 'hodder', 'school', 'education', 'subjects'],
+    tags: ['unit 3', 'class materials', 'school', 'education', 'subjects'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -456,7 +456,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 4 - House, rooms, furniture and describing where you live.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit04.html',
-    tags: ['unit 4', 'hodder', 'home', 'house', 'rooms'],
+    tags: ['unit 4', 'class materials', 'home', 'house', 'rooms'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -466,7 +466,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 5 - Hobbies, leisure activities and entertainment.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit05.html',
-    tags: ['unit 5', 'hodder', 'free time', 'hobbies', 'leisure'],
+    tags: ['unit 5', 'class materials', 'free time', 'hobbies', 'leisure'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -476,7 +476,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 6 - Food, meals, restaurants and eating habits.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit06.html',
-    tags: ['unit 6', 'hodder', 'food', 'meals', 'restaurant'],
+    tags: ['unit 6', 'class materials', 'food', 'meals', 'restaurant'],
     difficulty: 'beginner',
     dateAdded: '2026-01-11'
   },
@@ -486,7 +486,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 7 - Body parts, health, illness and medical vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit07.html',
-    tags: ['unit 7', 'hodder', 'health', 'body', 'wellbeing'],
+    tags: ['unit 7', 'class materials', 'health', 'body', 'wellbeing'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -496,7 +496,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 8 - Shopping, clothes, prices and transactions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit08.html',
-    tags: ['unit 8', 'hodder', 'shopping', 'clothes', 'money'],
+    tags: ['unit 8', 'class materials', 'shopping', 'clothes', 'money'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -506,7 +506,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 9 - Transport, travel, directions and tourism.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit09.html',
-    tags: ['unit 9', 'hodder', 'transport', 'travel', 'directions'],
+    tags: ['unit 9', 'class materials', 'transport', 'travel', 'directions'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -516,7 +516,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 10 - Holidays, accommodation and vacation vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit10.html',
-    tags: ['unit 10', 'hodder', 'holidays', 'vacation', 'accommodation'],
+    tags: ['unit 10', 'class materials', 'holidays', 'vacation', 'accommodation'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -526,7 +526,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 11 - Environment, nature and ecological issues.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit11.html',
-    tags: ['unit 11', 'hodder', 'environment', 'nature', 'ecology'],
+    tags: ['unit 11', 'class materials', 'environment', 'nature', 'ecology'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -536,7 +536,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 12 - Jobs, professions and work vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit12.html',
-    tags: ['unit 12', 'hodder', 'work', 'jobs', 'careers'],
+    tags: ['unit 12', 'class materials', 'work', 'jobs', 'careers'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -546,7 +546,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 13 - Technology, media and communication.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit13.html',
-    tags: ['unit 13', 'hodder', 'technology', 'media', 'communication'],
+    tags: ['unit 13', 'class materials', 'technology', 'media', 'communication'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
   },
@@ -556,7 +556,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 14 - Hispanic culture, festivals and traditions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit14.html',
-    tags: ['unit 14', 'hodder', 'culture', 'traditions', 'festivals'],
+    tags: ['unit 14', 'class materials', 'culture', 'traditions', 'festivals'],
     difficulty: 'advanced',
     dateAdded: '2026-01-11'
   },
@@ -566,7 +566,7 @@ export const resourcesData: Resource[] = [
     description: 'Summary of Unit 15 - Global issues, social topics and current affairs.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit15.html',
-    tags: ['unit 15', 'hodder', 'global issues', 'social', 'current affairs'],
+    tags: ['unit 15', 'class materials', 'global issues', 'social', 'current affairs'],
     difficulty: 'advanced',
     dateAdded: '2026-01-11'
   },
@@ -577,7 +577,7 @@ export const resourcesData: Resource[] = [
   {
     id: 'listening-practice',
     title: 'Listening Comprehension: Interactive Practice',
-    description: 'IB listening comprehension with timer, canvas notes and audio controls. Includes interview and announcement sections.',
+    description: 'Listening comprehension practice with timer, canvas notes and audio controls. Includes interview and announcement sections.',
     category: 'listening',
     htmlFile: './resources/listening-practice.html',
     tags: ['listening', 'comprehension', 'practice', 'audio', 'timer', 'canvas'],
@@ -591,7 +591,7 @@ export const resourcesData: Resource[] = [
   {
     id: 'reading-test-1',
     title: 'Reading Test: 3 Texts (Diet, Social Media, Reforestation)',
-    description: 'IB reading comprehension with 3 texts covering core themes: Mediterranean diet, social networks, and Costa Rica reforestation project.',
+    description: 'Reading comprehension practice with 3 texts covering core themes: Mediterranean diet, social networks, and Costa Rica reforestation project.',
     category: 'reading',
     htmlFile: './resources/reading-test-1.html',
     tags: ['reading', 'comprehension', 'test', 'practice', '3 texts', 'themes'],
@@ -894,7 +894,7 @@ export const resourcesData: Resource[] = [
   },
 
   // ==========================================
-  // TEXT TYPES (Tipología Textual IB)
+  // TEXT TYPES (Tipología textual)
   // ==========================================
   {
     id: 'text-type-informal-letter',

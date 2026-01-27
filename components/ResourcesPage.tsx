@@ -18,7 +18,7 @@ export type ResourceCategory =
   | 'oral' 
   | 'grammar' 
   | 'games'
-  | 'ib-exam'
+  | 'exam'
   | 'planner'
   | 'book-summary'
   | 'listening'
@@ -60,13 +60,13 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     borderColor: 'border-pink-300 dark:border-pink-700',
     description: 'Fun interactive games to practice Spanish'
   },
-  'ib-exam': {
-    label: 'IB Exam',
+  exam: {
+    label: 'Exam Practice',
     icon: <GraduationCap size={20} />,
     color: 'text-red-600 dark:text-red-400',
     bgColor: 'bg-red-100 dark:bg-red-900/30',
     borderColor: 'border-red-300 dark:border-red-700',
-    description: 'Full exam simulations and IB-aligned materials'
+    description: 'Exam-style simulations and practice materials'
   },
   planner: {
     label: 'Planners',
@@ -90,7 +90,7 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     color: 'text-green-600 dark:text-green-400',
     bgColor: 'bg-green-100 dark:bg-green-900/30',
     borderColor: 'border-green-300 dark:border-green-700',
-    description: 'IB listening comprehension practice and exams'
+    description: 'Listening comprehension practice and exams'
   },
   reading: {
     label: 'Reading',
@@ -98,7 +98,7 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     color: 'text-indigo-600 dark:text-indigo-400',
     bgColor: 'bg-indigo-100 dark:bg-indigo-900/30',
     borderColor: 'border-indigo-300 dark:border-indigo-700',
-    description: 'IB reading comprehension tests and practice'
+    description: 'Reading comprehension tests and practice'
   },
   'grammar-guide': {
     label: 'Grammar Guide',
@@ -114,7 +114,7 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     color: 'text-rose-600 dark:text-rose-400',
     bgColor: 'bg-rose-100 dark:bg-rose-900/30',
     borderColor: 'border-rose-300 dark:border-rose-700',
-    description: 'IB text typology: letters, emails, articles, and more'
+    description: 'Spanish text types: letters, emails, articles, and more'
   }
 };
 
@@ -127,6 +127,9 @@ const VISITED_STORAGE_KEY = 'resourcesVisited';
 const COMPLETED_STORAGE_KEY = 'resourcesCompleted';
 const TEACHER_UNLOCKED_STORAGE_KEY = 'resourcesTeacherUnlocked';
 const TEACHER_PASSWORD = 'labestiadeokinawa';
+
+const PUBLIC_CATEGORIES: ResourceCategory[] = ['book-summary', 'grammar-guide', 'text-types', 'games'];
+const TEACHER_ONLY_CATEGORIES: ResourceCategory[] = ['oral', 'grammar', 'exam', 'planner', 'listening', 'reading'];
 
 const loadStoredIds = (key: string) => {
   if (typeof window === 'undefined') {
@@ -214,20 +217,20 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       resource.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
   };
 
-  // Filter resources (students can see all categories except oral)
+  // Public resources are visible to students
   const generalFilteredResources = useMemo(() => {
     return resourcesData
-      .filter(resource => resource.category !== 'oral')
+      .filter(resource => PUBLIC_CATEGORIES.includes(resource.category))
       .filter(resource => {
         const matchesCategory = !selectedCategory || resource.category === selectedCategory;
         return matchesSearch(resource) && matchesCategory;
       });
   }, [searchQuery, selectedCategory]);
 
-  // Oral resources are only visible in the teacher section
-  const oralFilteredResources = useMemo(() => {
+  // Teacher-only resources live behind the password gate
+  const teacherFilteredResources = useMemo(() => {
     return resourcesData
-      .filter(resource => resource.category === 'oral')
+      .filter(resource => TEACHER_ONLY_CATEGORIES.includes(resource.category))
       .filter(resource => matchesSearch(resource));
   }, [searchQuery]);
 
@@ -237,7 +240,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       oral: [],
       grammar: [],
       games: [],
-      'ib-exam': [],
+      exam: [],
       planner: [],
       'book-summary': [],
       listening: [],
@@ -255,11 +258,32 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
     return groups;
   }, [generalFilteredResources]);
 
-  const categories = (Object.keys(categoryConfig) as ResourceCategory[]).filter(
-    (category) => category !== 'oral'
-  );
+  const teacherGroupedResources = useMemo(() => {
+    const groups: Record<ResourceCategory, typeof resourcesData> = {
+      oral: [],
+      grammar: [],
+      games: [],
+      exam: [],
+      planner: [],
+      'book-summary': [],
+      listening: [],
+      reading: [],
+      'grammar-guide': [],
+      'text-types': []
+    };
 
-  const totalAccessibleResults = generalFilteredResources.length + (teacherUnlocked ? oralFilteredResources.length : 0);
+    teacherFilteredResources.forEach(resource => {
+      if (groups[resource.category]) {
+        groups[resource.category].push(resource);
+      }
+    });
+
+    return groups;
+  }, [teacherFilteredResources]);
+
+  const categories = PUBLIC_CATEGORIES;
+
+  const totalAccessibleResults = generalFilteredResources.length + (teacherUnlocked ? teacherFilteredResources.length : 0);
 
   const openResource = (resource: Resource) => {
     setVisitedIds((prev) => {
@@ -335,13 +359,13 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
           <div className="text-center">
             <span className="inline-block px-4 py-1.5 bg-teacher-blue/10 dark:bg-teacher-blue/20 rounded-full text-teacher-blue dark:text-teacher-teal font-bold text-sm tracking-wider uppercase mb-4 border border-teacher-blue/20">
-              IB Spanish Ab Initio
+              Raquel MC Materials
             </span>
             <h1 className="font-display text-4xl md:text-5xl font-black text-teacher-dark dark:text-white mb-3">
               Resource Bank
             </h1>
             <p className="max-w-2xl mx-auto text-base text-gray-600 dark:text-gray-300 mb-8">
-              Explore our collection of interactive exercises and materials for IB Spanish exam preparation.
+              Explore Raquel MC's interactive Spanish practice materials.
             </p>
 
             {/* Search Bar */}
@@ -373,7 +397,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
         
         {/* Category Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 mb-12">
           {categories.map(category => {
             const config = categoryConfig[category];
             const count = groupedResources[category]?.length || 0;
@@ -544,7 +568,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
                     Teacher Section
                   </h2>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Oral resources are available here for teachers only.
+                    Private categories for teacher use only.
                   </p>
                 </div>
               </div>
@@ -582,92 +606,121 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
               )}
 
               {teacherUnlocked && (
-                <div>
-                  {oralFilteredResources.length === 0 ? (
+                <div className="space-y-10">
+                  {teacherFilteredResources.length === 0 && (
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      No oral resources match your current search.
+                      No teacher-only resources match your current search.
                     </p>
-                  ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                      {oralFilteredResources.map(resource => {
-                        const isVisited = visitedIds.has(resource.id);
-                        const isCompleted = completedIds.has(resource.id);
-                        const config = categoryConfig.oral;
-                        return (
-                          <div
-                            key={resource.id}
-                            onClick={() => openResource(resource)}
-                            className={`group rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden ${
-                              isVisited
-                                ? 'bg-gray-50/80 dark:bg-slate-800/70 border-gray-200 dark:border-gray-600'
-                                : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-gray-700'
-                            } hover:border-teacher-blue dark:hover:border-teacher-teal`}
-                          >
-                            <div className={`px-4 py-2 ${config.bgColor} ${config.color} border-b border-black/5 dark:border-white/5`}>
-                              <div className="flex items-center gap-2 text-sm font-semibold">
-                                {config.icon}
-                                {config.label}
-                              </div>
-                            </div>
-                            <div className="p-4">
-                              <h3 className="font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-teacher-blue dark:group-hover:text-teacher-teal transition-colors line-clamp-2">
-                                {resource.title}
-                              </h3>
-                              <p className="text-gray-500 dark:text-gray-400 text-sm mb-3 line-clamp-2">
-                                {resource.description}
-                              </p>
-
-                              <div className="flex flex-wrap gap-1 mb-3">
-                                {resource.tags.slice(0, 2).map(tag => (
-                                  <span 
-                                    key={tag}
-                                    className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
-                                  >
-                                    {tag}
-                                  </span>
-                                ))}
-                                {resource.tags.length > 2 && (
-                                  <span className="px-2 py-0.5 text-gray-400 text-xs">
-                                    +{resource.tags.length - 2}
-                                  </span>
-                                )}
-                              </div>
-
-                              <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
-                                <button
-                                  type="button"
-                                  onClick={(event) => {
-                                    event.stopPropagation();
-                                    toggleCompleted(resource.id);
-                                  }}
-                                  className={`flex items-center gap-2 text-xs font-semibold transition-colors ${
-                                    isCompleted
-                                      ? 'text-emerald-600 dark:text-emerald-400'
-                                      : 'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300'
-                                  }`}
-                                  aria-pressed={isCompleted}
-                                  aria-label={isCompleted ? 'Mark as not completed' : 'Mark as completed'}
-                                >
-                                  <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full border ${
-                                    isCompleted
-                                      ? 'border-emerald-500 bg-emerald-500 text-white'
-                                      : 'border-gray-300 bg-white dark:bg-slate-700 dark:border-gray-600'
-                                  }`}>
-                                    {isCompleted && <Check size={12} />}
-                                  </span>
-                                  {isCompleted ? 'Completed' : 'Mark complete'}
-                                </button>
-                                <span className="flex items-center gap-1 text-teacher-blue dark:text-teacher-teal text-xs font-semibold group-hover:gap-2 transition-all ml-auto">
-                                  Open
-                                  <ExternalLink size={12} />
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
                   )}
+
+                  {TEACHER_ONLY_CATEGORIES.map((category) => {
+                    const resources = teacherGroupedResources[category];
+                    if (!resources || resources.length === 0) return null;
+
+                    const config = categoryConfig[category];
+
+                    return (
+                      <section key={category}>
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className={`p-2 rounded-xl ${config.bgColor} ${config.color}`}>
+                            {config.icon}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                              {config.label}
+                            </h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                              {config.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                          {resources.map(resource => {
+                            const isVisited = visitedIds.has(resource.id);
+                            const isCompleted = completedIds.has(resource.id);
+
+                            return (
+                              <div
+                                key={resource.id}
+                                onClick={() => openResource(resource)}
+                                className={`group rounded-xl border shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden ${
+                                  isVisited
+                                    ? 'bg-gray-50/80 dark:bg-slate-800/70 border-gray-200 dark:border-gray-600'
+                                    : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-gray-700'
+                                } hover:border-teacher-blue dark:hover:border-teacher-teal`}
+                              >
+                                <div className="p-4">
+                                  <h3 className="font-semibold text-gray-800 dark:text-white mb-2 group-hover:text-teacher-blue dark:group-hover:text-teacher-teal transition-colors line-clamp-2">
+                                    {resource.title}
+                                  </h3>
+                                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-3 line-clamp-2">
+                                    {resource.description}
+                                  </p>
+
+                                  <div className="flex flex-wrap gap-1 mb-3">
+                                    {resource.tags.slice(0, 2).map(tag => (
+                                      <span 
+                                        key={tag}
+                                        className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
+                                      >
+                                        {tag}
+                                      </span>
+                                    ))}
+                                    {resource.tags.length > 2 && (
+                                      <span className="px-2 py-0.5 text-gray-400 text-xs">
+                                        +{resource.tags.length - 2}
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+                                    <button
+                                      type="button"
+                                      onClick={(event) => {
+                                        event.stopPropagation();
+                                        toggleCompleted(resource.id);
+                                      }}
+                                      className={`flex items-center gap-2 text-xs font-semibold transition-colors ${
+                                        isCompleted
+                                          ? 'text-emerald-600 dark:text-emerald-400'
+                                          : 'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300'
+                                      }`}
+                                      aria-pressed={isCompleted}
+                                      aria-label={isCompleted ? 'Mark as not completed' : 'Mark as completed'}
+                                    >
+                                      <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full border ${
+                                        isCompleted
+                                          ? 'border-emerald-500 bg-emerald-500 text-white'
+                                          : 'border-gray-300 bg-white dark:bg-slate-700 dark:border-gray-600'
+                                      }`}>
+                                        {isCompleted && <Check size={12} />}
+                                      </span>
+                                      {isCompleted ? 'Completed' : 'Mark complete'}
+                                    </button>
+                                    {resource.difficulty && (
+                                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                                        resource.difficulty === 'beginner' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                                        resource.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                                        'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                                      }`}>
+                                        {resource.difficulty === 'beginner' ? 'Beginner' : 
+                                         resource.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced'}
+                                      </span>
+                                    )}
+                                    <span className="flex items-center gap-1 text-teacher-blue dark:text-teacher-teal text-xs font-semibold group-hover:gap-2 transition-all ml-auto">
+                                      Open
+                                      <ExternalLink size={12} />
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </section>
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -675,7 +728,7 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
         </section>
 
         {/* Empty State */}
-        {generalFilteredResources.length === 0 && (!teacherUnlocked || oralFilteredResources.length === 0) && (
+        {generalFilteredResources.length === 0 && (!teacherUnlocked || teacherFilteredResources.length === 0) && (
           <div className="text-center py-20">
             <div className="w-20 h-20 mx-auto mb-6 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
               <FolderOpen size={36} className="text-gray-400" />
@@ -691,11 +744,9 @@ const ResourcesPage: React.FC<ResourcesPageProps> = ({ showNav = true, showFoote
       </div>
       {/* Footer */}
       {showFooter && (
-        <footer className="bg-teacher-dark text-white py-8 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Raquel M. Centeno. All resources designed for IB Spanish Ab Initio.
-            </p>
+        <footer className="bg-teacher-dark text-white py-6 px-4 mt-10">
+          <div className="max-w-7xl mx-auto text-center text-sm text-gray-300">
+            {'\u00A9'} 2026 Raquel M. Centeno. All rights reserved.
           </div>
         </footer>
       )}

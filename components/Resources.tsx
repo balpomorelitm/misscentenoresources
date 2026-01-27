@@ -20,8 +20,8 @@ export type ResourceCategory =
   | 'listening' 
   | 'games' 
   | 'grammar' 
-  | 'ib-book' 
-  | 'other-ib';
+  | 'class-book' 
+  | 'other';
 
 interface CategoryConfig {
   label: string;
@@ -74,15 +74,15 @@ const categoryConfig: Record<ResourceCategory, CategoryConfig> = {
     bgColor: 'bg-teal-100 dark:bg-teal-900/30',
     borderColor: 'border-teal-300 dark:border-teal-700'
   },
-  'ib-book': {
-    label: 'IB Book',
+  'class-book': {
+    label: 'Class Book',
     icon: <GraduationCap size={18} />,
     color: 'text-red-600 dark:text-red-400',
     bgColor: 'bg-red-100 dark:bg-red-900/30',
     borderColor: 'border-red-300 dark:border-red-700'
   },
-  'other-ib': {
-    label: 'Other IB',
+  other: {
+    label: 'Other Resources',
     icon: <FolderOpen size={18} />,
     color: 'text-amber-600 dark:text-amber-400',
     bgColor: 'bg-amber-100 dark:bg-amber-900/30',
@@ -159,13 +159,13 @@ const Resources: React.FC<ResourcesProps> = ({ resources = sampleResources }) =>
         <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center">
             <span className="inline-block px-4 py-1.5 bg-teacher-blue/10 dark:bg-teacher-blue/20 rounded-full text-teacher-blue dark:text-teacher-teal font-bold text-sm tracking-wider uppercase mb-4 border border-teacher-blue/20">
-              IB Spanish Resources
+              Raquel MC Spanish Resources
             </span>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-teacher-dark dark:text-white mb-4">
               Banco de Recursos
             </h1>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Explora nuestra colección de ejercicios y materiales para preparar el examen IB de español. 
+              Explora nuestra colección de ejercicios y materiales para practicar español. 
               Filtra por categoría o busca el tema que necesitas.
             </p>
 
@@ -332,7 +332,7 @@ const Resources: React.FC<ResourcesProps> = ({ resources = sampleResources }) =>
             </h3>
             <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
               {resources.length === 0 
-                ? 'Estamos preparando una colección de recursos y ejercicios para ayudarte a preparar el examen IB de español. ¡Vuelve pronto!'
+                ? 'Estamos preparando una colección de recursos y ejercicios para ayudarte a practicar español. ¡Vuelve pronto!'
                 : 'Intenta ajustar los filtros o modificar tu búsqueda para encontrar lo que necesitas.'
               }
             </p>
