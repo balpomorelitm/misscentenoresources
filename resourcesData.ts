@@ -422,7 +422,7 @@ export const resourcesData: Resource[] = [
   // ==========================================
   {
     id: 'book-unit01',
-    title: 'Unit 1: My World',
+    title: '1',
     description: 'Summary of Unit 1 - Personal information, introductions, family and friends.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit01.html',
@@ -432,7 +432,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit02',
-    title: 'Unit 2: Daily Life',
+    title: '2',
     description: 'Summary of Unit 2 - Daily routines, schedules and time expressions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit02.html',
@@ -442,7 +442,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit03',
-    title: 'Unit 3: School Life',
+    title: '3',
     description: 'Summary of Unit 3 - School subjects, education system and classroom vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit03.html',
@@ -452,7 +452,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit04',
-    title: 'Unit 4: Home & Living',
+    title: '4',
     description: 'Summary of Unit 4 - House, rooms, furniture and describing where you live.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit04.html',
@@ -462,7 +462,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit05',
-    title: 'Unit 5: Free Time',
+    title: '5',
     description: 'Summary of Unit 5 - Hobbies, leisure activities and entertainment.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit05.html',
@@ -472,7 +472,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit06',
-    title: 'Unit 6: Food & Drink',
+    title: '6',
     description: 'Summary of Unit 6 - Food, meals, restaurants and eating habits.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit06.html',
@@ -482,7 +482,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit07',
-    title: 'Unit 7: Health & Wellbeing',
+    title: '7',
     description: 'Summary of Unit 7 - Body parts, health, illness and medical vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit07.html',
@@ -492,7 +492,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit08',
-    title: 'Unit 8: Shopping',
+    title: '8',
     description: 'Summary of Unit 8 - Shopping, clothes, prices and transactions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit08.html',
@@ -502,7 +502,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit09',
-    title: 'Unit 9: Transport & Travel',
+    title: '9',
     description: 'Summary of Unit 9 - Transport, travel, directions and tourism.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit09.html',
@@ -512,7 +512,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit10',
-    title: 'Unit 10: Holidays',
+    title: '10',
     description: 'Summary of Unit 10 - Holidays, accommodation and vacation vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit10.html',
@@ -522,7 +522,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit11',
-    title: 'Unit 11: Environment',
+    title: '11',
     description: 'Summary of Unit 11 - Environment, nature and ecological issues.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit11.html',
@@ -532,7 +532,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit12',
-    title: 'Unit 12: Work & Careers',
+    title: '12',
     description: 'Summary of Unit 12 - Jobs, professions and work vocabulary.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit12.html',
@@ -542,7 +542,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit13',
-    title: 'Unit 13: Technology',
+    title: '13',
     description: 'Summary of Unit 13 - Technology, media and communication.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit13.html',
@@ -552,7 +552,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit14',
-    title: 'Unit 14: Culture & Traditions',
+    title: '14',
     description: 'Summary of Unit 14 - Hispanic culture, festivals and traditions.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit14.html',
@@ -562,7 +562,7 @@ export const resourcesData: Resource[] = [
   },
   {
     id: 'book-unit15',
-    title: 'Unit 15: Global Issues',
+    title: '15',
     description: 'Summary of Unit 15 - Global issues, social topics and current affairs.',
     category: 'book-summary',
     htmlFile: './resources/book-summary-unit15.html',
