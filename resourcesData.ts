@@ -377,7 +377,7 @@ export const resourcesData: Resource[] = [
     title: 'External Game: The Conjugator',
     description: 'A fun interactive game to practice Spanish verb conjugations. Master your verb tenses and forms through engaging gameplay.',
     category: 'games',
-    htmlFile: 'https://conjugator.pablotorrado.site/',
+    htmlFile: 'https://conjugator.pablotorrado.space/',
     tags: ['verbs', 'conjugation', 'grammar', 'interactive', 'external'],
     difficulty: 'intermediate',
     dateAdded: '2026-01-11'
